@@ -759,7 +759,7 @@ var render = function() {
         [
           _c("template", { slot: "modal-title" }, [
             _c("div", { staticClass: "text-primary h2" }, [
-              _vm._v(_vm._s(_vm.title) + " Testimonio")
+              _vm._v(_vm._s(_vm.title) + " Cliente")
             ])
           ]),
           _vm._v(" "),
@@ -812,7 +812,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n            Mostrar Testimonio en la Web\n          "
+                                "\n            Mostrar Cliente en la Web\n          "
                               )
                             ]
                           )
@@ -1017,7 +1017,7 @@ var render = function() {
       _vm._v(" "),
       _c("destroy", {
         attrs: {
-          element: "testimonio",
+          element: "cliente",
           open: _vm.modalDestroy,
           "loading-get": _vm.loadingGet,
           "loading-submit": _vm.requestSubmit

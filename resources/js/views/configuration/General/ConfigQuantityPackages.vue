@@ -4,7 +4,7 @@
       <h2>Cantidad estimada de paquetes mensuales</h2>
       <p>
         Registra la Cantidad estimada de paquetes mensuales que el Cliente puede
-        escoger al dejar sus datos en la página de<b>Servicios</b>.
+        escoger al dejar sus datos en la página de <b>Servicios</b>.
       </p>
     </div>
     <div class="col-12 col-lg-9">

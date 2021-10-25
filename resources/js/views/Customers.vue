@@ -100,7 +100,7 @@
       body-class="pt-0"
     >
       <template slot="modal-title">
-        <div class="text-primary h2">{{ title }} Testimonio</div>
+        <div class="text-primary h2">{{ title }} Cliente</div>
       </template>
       <template slot="modal-header-close">
         <button type="button" class="btn p-0 bg-transparent" @click="restoreEl">
@@ -120,7 +120,7 @@
               name="check-button"
               switch
             >
-              Mostrar Testimonio en la Web
+              Mostrar Cliente en la Web
             </b-form-checkbox>
           </div>
         </div>
@@ -216,7 +216,7 @@
       </template>
     </b-modal>
     <destroy
-      element="testimonio"
+      element="cliente"
       @cancel="restoreEl"
       :open="modalDestroy"
       @submit="destroyConfirm"

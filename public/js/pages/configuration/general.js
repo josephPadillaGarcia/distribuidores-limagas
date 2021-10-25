@@ -906,7 +906,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", [
         _vm._v(
-          "\n      Registra la Cantidad estimada de paquetes mensuales que el Cliente puede\n      escoger al dejar sus datos en la página de"
+          "\n      Registra la Cantidad estimada de paquetes mensuales que el Cliente puede\n      escoger al dejar sus datos en la página de "
         ),
         _c("b", [_vm._v("Servicios")]),
         _vm._v(".\n    ")
