@@ -19,7 +19,7 @@
                 v-if="startBlock"
               >
                 <span class="btn-inner--icon">
-                  <jam-info class="current-color"></jam-info>
+                  <i class="ri-information-line current-color ri-lg" />
                 </span>
                 <span class="btn-inner--text">Editar Información</span>
               </a>
@@ -34,64 +34,39 @@
           <div class="row">
             <div class="col-12 col-md-6 col-lg-4">
               <div class="form-group">
-                <label class="font-weight-bold">Ubicación</label>
-                <div v-if="el.location" v-html="el.location">{{ el.location }}</div>
+                <label class="font-weight-bold">Dirección</label>
+                <div v-if="el.direction" v-html="el.direction">{{ el.direction }}</div>
                 <p v-else>No registrado</p>
               </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
               <div class="form-group">
-                <label class="font-weight-bold">Central de Ventas</label>
-                <p v-if="el.central_phone">{{ el.central_phone_formatted }}</p>
+                <label class="font-weight-bold">Chatbot Número de Whatsapp</label>
+                <p v-if="el.whatsapp_number">{{ el.whatsapp_number_formatted }}</p>
                 <p v-else>No registrado</p>
               </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
               <div class="form-group">
-                <label class="font-weight-bold">Oficina Principal</label>
-                <p v-if="el.main_office">{{ el.main_office_formatted }}</p>
+                <label class="font-weight-bold">Link de Acceso Clientes</label>
+                <p v-if="el.customers_link"><a style="text-decoration: underline;" :href="el.customers_link" target="_blank">{{ el.customers_link }}</a></p>
                 <p v-else>No registrado</p>
               </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
               <div class="form-group">
-                <label class="font-weight-bold">Email</label>
-                <p v-if="el.email">{{ el.email }}</p>
+                <label class="font-weight-bold">Nombre Link API</label>
+                <p v-if="el.name_api">{{ el.name_api }}</p>
                 <p v-else>No registrado</p>
               </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
               <div class="form-group">
-                <label class="font-weight-bold">Link de Comprobantes Electrónicos</label>
-                <p v-if="el.billing_url"><a style="text-decoration: underline;" :href="el.billing_url" target="_blank">{{ el.billing_url }}</a></p>
+                <label class="font-weight-bold">Link API</label>
+                <p v-if="el.api_link"><a style="text-decoration: underline;" :href="el.api_link" target="_blank">{{ el.api_link }}</a></p>
                 <p v-else>No registrado</p>
               </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
-              <div class="form-group">
-                <label class="font-weight-bold">Link de Trabaja con Nosotros</label>
-                <p v-if="el.link_jobs"><a style="text-decoration: underline;" :href="el.link_jobs" target="_blank">{{ el.link_jobs }}</a></p>
-                <p v-else>No registrado</p>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-              <div class="form-group">
-                <label class="font-weight-bold">Whatsapps</label>
-                <p v-if="!el.whatsapp_numbers">No registrado</p>
-                <p v-else> <span class="d-block" v-for="(el2,i) in el.whatsapp_formatted" :key="i">{{ el2.department }} - {{ el2.number }}</span> </p>
-              </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-4">
-              <div class="form-group">
-                <label class="font-weight-bold">Oficinas</label>
-                <p v-if="!el.phone_numbers">No registrado</p>
-                <p v-else> <span class="d-block" v-for="(el2,i) in el.phone_numbers_formatted" :key="i">{{ el2.department }} - {{ el2.number }}</span> </p>
-              </div>
-            </div>
-
-            
-
           </div>
         </div>
         <div class="card-body" v-else>
@@ -102,7 +77,6 @@
               </div>
               <div class="w-75">
               <Skeleton height="50px" />
-
               </div>
             </div>
           </div>
@@ -114,105 +88,69 @@
             <div class="row">
               <div class="col-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                  <label class="font-weight-bold" for="location">Ubicación</label>
-                  <!--<textarea
-                    type="text"
-                    class="form-control mb-2"
-                    v-model="el.location"
-                    id="location"
-                    rows="3"
-                  ></textarea>-->
+                  <label class="font-weight-bold" for="direction">Dirección</label>
                   <quill-Editor
                   @keydown.enter.prevent
-                  v-model="el.location"
+                  v-model="el.direction"
                   :options="editorOptions"
                   class="ql-height-10"
                   ref="ref_content"
                 ></quill-Editor>
                   <label
-                    v-if="errors && errors.location"
+                    v-if="errors && errors.direction"
                     class="mt-2 text-danger text-sm"
-                    for="location"
-                  >{{ errors.location[0] }}</label>
+                    for="direction"
+                  >{{ errors.direction[0] }}</label>
                 </div>
               </div>
               <div class="col-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                  <label class="font-weight-bold" for="phone">Central de Ventas</label>
-                  <input type="text" class="form-control" v-model="el.central_phone" id="central_phone" />
-                  <small class="form-text d-block" style="opacity: 0.7;">Ingrese un número de 7 dígitos</small>
+                  <label class="font-weight-bold" for="whatsapp_number">Chatbot Número de Whatsapp</label>
+                  <input type="number" class="form-control" v-model="el.whatsapp_number" id="whatsapp_number" />
+                  <small class="form-text d-block" style="opacity: 0.7;">Ingrese un número de 9 dígitos</small>
                   <label
-                    v-if="errors && errors.central_phone"
+                    v-if="errors && errors.whatsapp_number"
                     class="mt-2 text-danger text-sm"
-                    for="central_phone"
-                  >{{ errors.central_phone[0] }}</label>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="form-group">
-                  <label class="font-weight-bold" for="phone">Oficina Principal</label>
-                  <input type="text" class="form-control" v-model="el.main_office" id="main_office" />
-                  <small class="form-text d-block" style="opacity: 0.7;">Ingrese un número de 7 dígitos</small>
-                  <label
-                    v-if="errors && errors.main_office"
-                    class="mt-2 text-danger text-sm"
-                    for="main_office"
-                  >{{ errors.main_office[0] }}</label>
-                </div>
-              </div>
-              <div class="col-12 col-md-6 col-lg-4">
-                <div class="form-group">
-                  <label class="font-weight-bold" for="email">Email</label>
-                  <input type="text" class="form-control" v-model="el.email" id="email" />
-                  <label
-                    v-if="errors && errors.email"
-                    class="mt-2 text-danger text-sm"
-                    for="email"
-                  >{{ errors.email[0] }}</label>
+                    for="whatsapp_number"
+                  >{{ errors.whatsapp_number[0] }}</label>
                 </div>
               </div>
 
               <div class="col-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                  <label class="font-weight-bold" for="billing_url">Link Facturación</label>
-                  <input type="text" class="form-control" v-model="el.billing_url" id="billing_url" />
+                  <label class="font-weight-bold" for="customers_link">Link de Acceso Clientes</label>
+                  <input type="text" class="form-control" v-model="el.customers_link" id="customers_link" />
                   <label
-                    v-if="errors && errors.billing_url"
+                    v-if="errors && errors.customers_link"
                     class="mt-2 text-danger text-sm"
-                    for="billing_url"
-                  >{{ errors.billing_url[0] }}</label>
+                    for="customers_link"
+                  >{{ errors.customers_link[0] }}</label>
+                </div>
+              </div>
+
+                            <div class="col-12 col-md-6 col-lg-4">
+                <div class="form-group">
+                  <label class="font-weight-bold" for="name_api">Nombre Link API</label>
+                  <input type="text" class="form-control" v-model="el.name_api" id="name_api" />
+                  <label
+                    v-if="errors && errors.name_api"
+                    class="mt-2 text-danger text-sm"
+                    for="name_api"
+                  >{{ errors.name_api[0] }}</label>
                 </div>
               </div>
 
               <div class="col-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                  <label class="font-weight-bold" for="link_jobs">Link Trabaja con Nosotros</label>
-                  <input type="text" class="form-control" v-model="el.link_jobs" id="link_jobs" />
+                  <label class="font-weight-bold" for="api_link">Link API</label>
+                  <input type="text" class="form-control" v-model="el.api_link" id="api_link" />
                   <label
-                    v-if="errors && errors.link_jobs"
+                    v-if="errors && errors.api_link"
                     class="mt-2 text-danger text-sm"
-                    for="link_jobs"
-                  >{{ errors.link_jobs[0] }}</label>
+                    for="api_link"
+                  >{{ errors.api_link[0] }}</label>
                 </div>
               </div>
-
-              <div class="col-12 col-md-6 col-lg-4">
-                <InputSelectArray fieldName="whatsapp_numbers"
-                :errorsProp.sync="errors"
-                 :headers="[{variable: 'number', label : 'Whatsapp'},{ variable: 'department', label: 'departamento'}]"
-                        :array.sync="el.whatsapp_numbers"
-                        :array-prop="el.whatsapp_numbers" :selectItems="departments"/>
-              </div>
-
-              <div class="col-12 col-md-6 col-lg-4">
-                <InputSelectArray fieldName="phone_numbers"
-                :errorsProp.sync="errors"
-                 :headers="[{variable: 'number', label : 'teléfono'},{ variable: 'department', label: 'departamento'}]"
-                        :array.sync="el.phone_numbers"
-                        :array-prop="el.phone_numbers" :selectItems="departments"/>
-              </div>
-
-              
 
               <div class="col-12 text-right">
                 <Button
@@ -275,11 +213,11 @@ export default {
         },
       },
       el: {
-        location: "",
-        main_office: "",
-         central_phone: "",
-        email: "",
-        //billing_url: "",
+        direction: "",
+        name_api: "",
+        whatsapp_number: "",
+        customers_link: "",
+        api_link: "",
       },
       errors: {},
       requestSubmit: false,
@@ -328,9 +266,11 @@ export default {
     },
     restore() {
       this.el = {
-        location: "",
-        phone: "",
-        email: "",
+        direction: "",
+        name_api: "",
+        whatsapp_number: "",
+        customers_link: "",
+        api_link: "",
       };
       this.errors = {};
       (this.startBlock = true), (this.editBlock = false);

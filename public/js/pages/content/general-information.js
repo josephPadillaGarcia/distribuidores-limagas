@@ -431,68 +431,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -548,11 +486,11 @@ quill__WEBPACK_IMPORTED_MODULE_4___default.a.register("modules/clipboard", _func
         }
       },
       el: {
-        location: "",
-        main_office: "",
-        central_phone: "",
-        email: "" //billing_url: "",
-
+        direction: "",
+        name_api: "",
+        whatsapp_number: "",
+        customers_link: "",
+        api_link: ""
       },
       errors: {},
       requestSubmit: false,
@@ -605,9 +543,11 @@ quill__WEBPACK_IMPORTED_MODULE_4___default.a.register("modules/clipboard", _func
     },
     restore: function restore() {
       this.el = {
-        location: "",
-        phone: "",
-        email: ""
+        direction: "",
+        name_api: "",
+        whatsapp_number: "",
+        customers_link: "",
+        api_link: ""
       };
       this.errors = {};
       this.startBlock = true, this.editBlock = false;
@@ -1143,12 +1083,7 @@ var render = function() {
                         }
                       },
                       [
-                        _c(
-                          "span",
-                          { staticClass: "btn-inner--icon" },
-                          [_c("jam-info", { staticClass: "current-color" })],
-                          1
-                        ),
+                        _vm._m(0),
                         _vm._v(" "),
                         _c("span", { staticClass: "btn-inner--text" }, [
                           _vm._v("Editar Información")
@@ -1172,16 +1107,18 @@ var render = function() {
                     _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
                       _c("div", { staticClass: "form-group" }, [
                         _c("label", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Ubicación")
+                          _vm._v("Dirección")
                         ]),
                         _vm._v(" "),
-                        _vm.el.location
+                        _vm.el.direction
                           ? _c(
                               "div",
                               {
-                                domProps: { innerHTML: _vm._s(_vm.el.location) }
+                                domProps: {
+                                  innerHTML: _vm._s(_vm.el.direction)
+                                }
                               },
-                              [_vm._v(_vm._s(_vm.el.location))]
+                              [_vm._v(_vm._s(_vm.el.direction))]
                             )
                           : _c("p", [_vm._v("No registrado")])
                       ])
@@ -1190,12 +1127,12 @@ var render = function() {
                     _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
                       _c("div", { staticClass: "form-group" }, [
                         _c("label", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Central de Ventas")
+                          _vm._v("Chatbot Número de Whatsapp")
                         ]),
                         _vm._v(" "),
-                        _vm.el.central_phone
+                        _vm.el.whatsapp_number
                           ? _c("p", [
-                              _vm._v(_vm._s(_vm.el.central_phone_formatted))
+                              _vm._v(_vm._s(_vm.el.whatsapp_number_formatted))
                             ])
                           : _c("p", [_vm._v("No registrado")])
                       ])
@@ -1204,36 +1141,10 @@ var render = function() {
                     _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
                       _c("div", { staticClass: "form-group" }, [
                         _c("label", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Oficina Principal")
+                          _vm._v("Link de Acceso Clientes")
                         ]),
                         _vm._v(" "),
-                        _vm.el.main_office
-                          ? _c("p", [
-                              _vm._v(_vm._s(_vm.el.main_office_formatted))
-                            ])
-                          : _c("p", [_vm._v("No registrado")])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Email")
-                        ]),
-                        _vm._v(" "),
-                        _vm.el.email
-                          ? _c("p", [_vm._v(_vm._s(_vm.el.email))])
-                          : _c("p", [_vm._v("No registrado")])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Link de Comprobantes Electrónicos")
-                        ]),
-                        _vm._v(" "),
-                        _vm.el.billing_url
+                        _vm.el.customers_link
                           ? _c("p", [
                               _c(
                                 "a",
@@ -1242,11 +1153,11 @@ var render = function() {
                                     "text-decoration": "underline"
                                   },
                                   attrs: {
-                                    href: _vm.el.billing_url,
+                                    href: _vm.el.customers_link,
                                     target: "_blank"
                                   }
                                 },
-                                [_vm._v(_vm._s(_vm.el.billing_url))]
+                                [_vm._v(_vm._s(_vm.el.customers_link))]
                               )
                             ])
                           : _c("p", [_vm._v("No registrado")])
@@ -1256,10 +1167,22 @@ var render = function() {
                     _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
                       _c("div", { staticClass: "form-group" }, [
                         _c("label", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Link de Trabaja con Nosotros")
+                          _vm._v("Nombre Link API")
                         ]),
                         _vm._v(" "),
-                        _vm.el.link_jobs
+                        _vm.el.name_api
+                          ? _c("p", [_vm._v(_vm._s(_vm.el.name_api))])
+                          : _c("p", [_vm._v("No registrado")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { staticClass: "font-weight-bold" }, [
+                          _vm._v("Link API")
+                        ]),
+                        _vm._v(" "),
+                        _vm.el.api_link
                           ? _c("p", [
                               _c(
                                 "a",
@@ -1268,76 +1191,14 @@ var render = function() {
                                     "text-decoration": "underline"
                                   },
                                   attrs: {
-                                    href: _vm.el.link_jobs,
+                                    href: _vm.el.api_link,
                                     target: "_blank"
                                   }
                                 },
-                                [_vm._v(_vm._s(_vm.el.link_jobs))]
+                                [_vm._v(_vm._s(_vm.el.api_link))]
                               )
                             ])
                           : _c("p", [_vm._v("No registrado")])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Whatsapps")
-                        ]),
-                        _vm._v(" "),
-                        !_vm.el.whatsapp_numbers
-                          ? _c("p", [_vm._v("No registrado")])
-                          : _c(
-                              "p",
-                              _vm._l(_vm.el.whatsapp_formatted, function(
-                                el2,
-                                i
-                              ) {
-                                return _c(
-                                  "span",
-                                  { key: i, staticClass: "d-block" },
-                                  [
-                                    _vm._v(
-                                      _vm._s(el2.department) +
-                                        " - " +
-                                        _vm._s(el2.number)
-                                    )
-                                  ]
-                                )
-                              }),
-                              0
-                            )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Oficinas")
-                        ]),
-                        _vm._v(" "),
-                        !_vm.el.phone_numbers
-                          ? _c("p", [_vm._v("No registrado")])
-                          : _c(
-                              "p",
-                              _vm._l(_vm.el.phone_numbers_formatted, function(
-                                el2,
-                                i
-                              ) {
-                                return _c(
-                                  "span",
-                                  { key: i, staticClass: "d-block" },
-                                  [
-                                    _vm._v(
-                                      _vm._s(el2.department) +
-                                        " - " +
-                                        _vm._s(el2.number)
-                                    )
-                                  ]
-                                )
-                              }),
-                              0
-                            )
                       ])
                     ])
                   ])
@@ -1397,9 +1258,9 @@ var render = function() {
                             "label",
                             {
                               staticClass: "font-weight-bold",
-                              attrs: { for: "location" }
+                              attrs: { for: "direction" }
                             },
-                            [_vm._v("Ubicación")]
+                            [_vm._v("Dirección")]
                           ),
                           _vm._v(" "),
                           _c("quill-Editor", {
@@ -1424,22 +1285,22 @@ var render = function() {
                               }
                             },
                             model: {
-                              value: _vm.el.location,
+                              value: _vm.el.direction,
                               callback: function($$v) {
-                                _vm.$set(_vm.el, "location", $$v)
+                                _vm.$set(_vm.el, "direction", $$v)
                               },
-                              expression: "el.location"
+                              expression: "el.direction"
                             }
                           }),
                           _vm._v(" "),
-                          _vm.errors && _vm.errors.location
+                          _vm.errors && _vm.errors.direction
                             ? _c(
                                 "label",
                                 {
                                   staticClass: "mt-2 text-danger text-sm",
-                                  attrs: { for: "location" }
+                                  attrs: { for: "direction" }
                                 },
-                                [_vm._v(_vm._s(_vm.errors.location[0]))]
+                                [_vm._v(_vm._s(_vm.errors.direction[0]))]
                               )
                             : _vm._e()
                         ],
@@ -1453,9 +1314,9 @@ var render = function() {
                           "label",
                           {
                             staticClass: "font-weight-bold",
-                            attrs: { for: "phone" }
+                            attrs: { for: "whatsapp_number" }
                           },
-                          [_vm._v("Central de Ventas")]
+                          [_vm._v("Chatbot Número de Whatsapp")]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -1463,13 +1324,13 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.el.central_phone,
-                              expression: "el.central_phone"
+                              value: _vm.el.whatsapp_number,
+                              expression: "el.whatsapp_number"
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "text", id: "central_phone" },
-                          domProps: { value: _vm.el.central_phone },
+                          attrs: { type: "number", id: "whatsapp_number" },
+                          domProps: { value: _vm.el.whatsapp_number },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
@@ -1477,7 +1338,7 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.el,
-                                "central_phone",
+                                "whatsapp_number",
                                 $event.target.value
                               )
                             }
@@ -1490,17 +1351,17 @@ var render = function() {
                             staticClass: "form-text d-block",
                             staticStyle: { opacity: "0.7" }
                           },
-                          [_vm._v("Ingrese un número de 7 dígitos")]
+                          [_vm._v("Ingrese un número de 9 dígitos")]
                         ),
                         _vm._v(" "),
-                        _vm.errors && _vm.errors.central_phone
+                        _vm.errors && _vm.errors.whatsapp_number
                           ? _c(
                               "label",
                               {
                                 staticClass: "mt-2 text-danger text-sm",
-                                attrs: { for: "central_phone" }
+                                attrs: { for: "whatsapp_number" }
                               },
-                              [_vm._v(_vm._s(_vm.errors.central_phone[0]))]
+                              [_vm._v(_vm._s(_vm.errors.whatsapp_number[0]))]
                             )
                           : _vm._e()
                       ])
@@ -1512,9 +1373,9 @@ var render = function() {
                           "label",
                           {
                             staticClass: "font-weight-bold",
-                            attrs: { for: "phone" }
+                            attrs: { for: "customers_link" }
                           },
-                          [_vm._v("Oficina Principal")]
+                          [_vm._v("Link de Acceso Clientes")]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -1522,13 +1383,13 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.el.main_office,
-                              expression: "el.main_office"
+                              value: _vm.el.customers_link,
+                              expression: "el.customers_link"
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "text", id: "main_office" },
-                          domProps: { value: _vm.el.main_office },
+                          attrs: { type: "text", id: "customers_link" },
+                          domProps: { value: _vm.el.customers_link },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
@@ -1536,30 +1397,21 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.el,
-                                "main_office",
+                                "customers_link",
                                 $event.target.value
                               )
                             }
                           }
                         }),
                         _vm._v(" "),
-                        _c(
-                          "small",
-                          {
-                            staticClass: "form-text d-block",
-                            staticStyle: { opacity: "0.7" }
-                          },
-                          [_vm._v("Ingrese un número de 7 dígitos")]
-                        ),
-                        _vm._v(" "),
-                        _vm.errors && _vm.errors.main_office
+                        _vm.errors && _vm.errors.customers_link
                           ? _c(
                               "label",
                               {
                                 staticClass: "mt-2 text-danger text-sm",
-                                attrs: { for: "main_office" }
+                                attrs: { for: "customers_link" }
                               },
-                              [_vm._v(_vm._s(_vm.errors.main_office[0]))]
+                              [_vm._v(_vm._s(_vm.errors.customers_link[0]))]
                             )
                           : _vm._e()
                       ])
@@ -1571,9 +1423,9 @@ var render = function() {
                           "label",
                           {
                             staticClass: "font-weight-bold",
-                            attrs: { for: "email" }
+                            attrs: { for: "name_api" }
                           },
-                          [_vm._v("Email")]
+                          [_vm._v("Nombre Link API")]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -1581,31 +1433,31 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.el.email,
-                              expression: "el.email"
+                              value: _vm.el.name_api,
+                              expression: "el.name_api"
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "text", id: "email" },
-                          domProps: { value: _vm.el.email },
+                          attrs: { type: "text", id: "name_api" },
+                          domProps: { value: _vm.el.name_api },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(_vm.el, "email", $event.target.value)
+                              _vm.$set(_vm.el, "name_api", $event.target.value)
                             }
                           }
                         }),
                         _vm._v(" "),
-                        _vm.errors && _vm.errors.email
+                        _vm.errors && _vm.errors.name_api
                           ? _c(
                               "label",
                               {
                                 staticClass: "mt-2 text-danger text-sm",
-                                attrs: { for: "email" }
+                                attrs: { for: "name_api" }
                               },
-                              [_vm._v(_vm._s(_vm.errors.email[0]))]
+                              [_vm._v(_vm._s(_vm.errors.name_api[0]))]
                             )
                           : _vm._e()
                       ])
@@ -1617,9 +1469,9 @@ var render = function() {
                           "label",
                           {
                             staticClass: "font-weight-bold",
-                            attrs: { for: "billing_url" }
+                            attrs: { for: "api_link" }
                           },
-                          [_vm._v("Link Facturación")]
+                          [_vm._v("Link API")]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -1627,153 +1479,35 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.el.billing_url,
-                              expression: "el.billing_url"
+                              value: _vm.el.api_link,
+                              expression: "el.api_link"
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "text", id: "billing_url" },
-                          domProps: { value: _vm.el.billing_url },
+                          attrs: { type: "text", id: "api_link" },
+                          domProps: { value: _vm.el.api_link },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.$set(
-                                _vm.el,
-                                "billing_url",
-                                $event.target.value
-                              )
+                              _vm.$set(_vm.el, "api_link", $event.target.value)
                             }
                           }
                         }),
                         _vm._v(" "),
-                        _vm.errors && _vm.errors.billing_url
+                        _vm.errors && _vm.errors.api_link
                           ? _c(
                               "label",
                               {
                                 staticClass: "mt-2 text-danger text-sm",
-                                attrs: { for: "billing_url" }
+                                attrs: { for: "api_link" }
                               },
-                              [_vm._v(_vm._s(_vm.errors.billing_url[0]))]
+                              [_vm._v(_vm._s(_vm.errors.api_link[0]))]
                             )
                           : _vm._e()
                       ])
                     ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "font-weight-bold",
-                            attrs: { for: "link_jobs" }
-                          },
-                          [_vm._v("Link Trabaja con Nosotros")]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.el.link_jobs,
-                              expression: "el.link_jobs"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text", id: "link_jobs" },
-                          domProps: { value: _vm.el.link_jobs },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(_vm.el, "link_jobs", $event.target.value)
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _vm.errors && _vm.errors.link_jobs
-                          ? _c(
-                              "label",
-                              {
-                                staticClass: "mt-2 text-danger text-sm",
-                                attrs: { for: "link_jobs" }
-                              },
-                              [_vm._v(_vm._s(_vm.errors.link_jobs[0]))]
-                            )
-                          : _vm._e()
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "col-12 col-md-6 col-lg-4" },
-                      [
-                        _c("InputSelectArray", {
-                          attrs: {
-                            fieldName: "whatsapp_numbers",
-                            errorsProp: _vm.errors,
-                            headers: [
-                              { variable: "number", label: "Whatsapp" },
-                              { variable: "department", label: "departamento" }
-                            ],
-                            array: _vm.el.whatsapp_numbers,
-                            "array-prop": _vm.el.whatsapp_numbers,
-                            selectItems: _vm.departments
-                          },
-                          on: {
-                            "update:errorsProp": function($event) {
-                              _vm.errors = $event
-                            },
-                            "update:errors-prop": function($event) {
-                              _vm.errors = $event
-                            },
-                            "update:array": function($event) {
-                              return _vm.$set(
-                                _vm.el,
-                                "whatsapp_numbers",
-                                $event
-                              )
-                            }
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "col-12 col-md-6 col-lg-4" },
-                      [
-                        _c("InputSelectArray", {
-                          attrs: {
-                            fieldName: "phone_numbers",
-                            errorsProp: _vm.errors,
-                            headers: [
-                              { variable: "number", label: "teléfono" },
-                              { variable: "department", label: "departamento" }
-                            ],
-                            array: _vm.el.phone_numbers,
-                            "array-prop": _vm.el.phone_numbers,
-                            selectItems: _vm.departments
-                          },
-                          on: {
-                            "update:errorsProp": function($event) {
-                              _vm.errors = $event
-                            },
-                            "update:errors-prop": function($event) {
-                              _vm.errors = $event
-                            },
-                            "update:array": function($event) {
-                              return _vm.$set(_vm.el, "phone_numbers", $event)
-                            }
-                          }
-                        })
-                      ],
-                      1
-                    ),
                     _vm._v(" "),
                     _c(
                       "div",
@@ -1813,7 +1547,16 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "btn-inner--icon" }, [
+      _c("i", { staticClass: "ri-information-line current-color ri-lg" })
+    ])
+  }
+]
 render._withStripped = true
 
 

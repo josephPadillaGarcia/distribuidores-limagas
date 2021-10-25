@@ -19,10 +19,11 @@ class GeneralInformationRequest extends FormRequest
     public function attributes()
     {
         return [
-                'phone_numbers.*.number' => 'teléfono',
+                /*'phone_numbers.*.number' => 'teléfono',
                 'whatsapp_numbers.*.number' => 'whatsapp',
                 'phone_numbers.*.department' => 'departamento',
-                'whatsapp_numbers.*.department' => 'departamento',
+                'whatsapp_numbers.*.department' => 'departamento',*/
+                'whatsapp_number' => 'número whatsapp'
             ];
     }
 
@@ -34,17 +35,10 @@ class GeneralInformationRequest extends FormRequest
     public function rules()
     {
         return [
-            'location' => 'required',
-            'central_phone' => 'nullable|sometimes|digits:7',
-            'main_office' => 'nullable|sometimes|digits:7',
-            'email' => 'required|email|max:100',
-            'billing_url' => 'nullable|sometimes|url',
-            'link_jobs' => 'nullable|sometimes|url',
-            //'whatsapp_numbers' => 'required',
-            'whatsapp_numbers.*.number' => 'required',
-            'whatsapp_numbers.*.department' => 'required',
-            'phone_numbers.*.number' => 'required',
-            'phone_numbers.*.department' => 'required'
+            'direction' => 'required',
+            'api_link' => 'nullable|sometimes|url',
+            'customers_link' => 'nullable|sometimes|url',
+            'whatsapp_number' => 'nullable|digits:9',
         ];
     }
 }
