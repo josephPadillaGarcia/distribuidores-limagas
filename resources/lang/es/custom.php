@@ -28,7 +28,8 @@ return [
         'suscriber' => 'El suscriptor',
         'schedule' => 'El horario',
         'image' => 'La imagen',
-        'elements' => 'Los elementos'
+        'elements' => 'Los elementos',
+        'customer' => 'El cliente'
     ],
     'title' => [
         'error' => 'Error',

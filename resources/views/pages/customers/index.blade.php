@@ -10,11 +10,12 @@
 </style>
 @endsection
 @section('content')
-    <customers-index 
+    <customers
+    message-order="@lang('custom.message.order')"
     route="{{ route('cms.customers.index') }}" 
+    route-order="{{ route('cms.customers.order') }}"
+    images-url="{{ config('services.images_url') }}"
     route-get-all="{{ route('cms.customers.get-all') }}"
-    all-export="{{ route('cms.customers.all-export')}}" 
-    filter-export="{{ route('cms.customers.filter-export')}}" 
-    ></customers-index>
+    ></customers>
 @endsection
 

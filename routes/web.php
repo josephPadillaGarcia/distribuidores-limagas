@@ -43,11 +43,13 @@ Route::middleware(['auth'])->namespace('Cms')->name('cms.')->group(function () {
 
     #Customers
     Route::namespace('Customers')->prefix('clientes')->name('customers.')->group(function () {
-        Route::get('/', 'CustomersController@index')->name('index');
-        Route::get('/json/get-all', 'CustomersController@getAll')->name('get-all');
-        Route::get('/all-export', 'CustomersController@allExport')->name('all-export');
-        Route::post('/filter-export', 'CustomersController@filterExport')->name('filter-export');
-        Route::get('/{element}', 'CustomersController@read')->name('read');
+        Route::get('/', 'IndexController@index')->name('index');
+        Route::post('/', 'IndexController@store')->name('store');
+        Route::put('/order', 'IndexController@order')->name('order');
+        Route::put('/{element}', 'IndexController@update')->name('update');
+        Route::delete('/{element}', 'IndexController@destroy')->name('destroy');
+        Route::get('/json/get-all', 'IndexController@getAll')->name('get-all');
+        Route::get('/json/get/{element}', 'IndexController@get')->name('get');
     });
 
     Route::namespace('Content')->prefix('contenido')->name('content.')->group(function () {
