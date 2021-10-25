@@ -13,7 +13,7 @@
     </template>
     <template slot="modal-header-close">
       <button type="button" class="btn p-0 bg-transparent" @click="cancelCustom">
-        <jam-close></jam-close>
+        <i class="ri-close-line ri-lg"></i>
       </button>
     </template>
     <div v-if="loadingGet">

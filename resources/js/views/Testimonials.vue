@@ -292,6 +292,7 @@ export default {
       title: "",
       element: {
         image: "",
+        active: true,
       },
       dropzoneOptions: {
         url: "/",
@@ -451,7 +452,7 @@ export default {
     restore() {
       (this.element = {
         image: "",
-        type_video: true,
+        active: true,
       }),
         (this.modalCreateUpdate = this.modalDestroy = false);
       this.getEls();
@@ -464,6 +465,7 @@ export default {
     restoreEl() {
       (this.element = {
         image: "",
+        active: true,
       }),
         (this.modalCreateUpdate = this.modalDestroy = false);
       this.errors = {};

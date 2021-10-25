@@ -12,7 +12,7 @@ class MasterModulesTableSeeder extends Seeder
     public function run()
     {
         $pContenido = 4;
-        $pConfiguracion = 13;
+        $pConfiguracion = 14;
         $pBlog = 9;
         $position = 1;
         DB::table('master_modules')->insert([

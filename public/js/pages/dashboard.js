@@ -362,7 +362,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var simplebar_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! simplebar-vue */ "./node_modules/simplebar-vue/dist/simplebar-vue.esm.js");
 /* harmony import */ var simplebar_dist_simplebar_min_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! simplebar/dist/simplebar.min.css */ "./node_modules/simplebar/dist/simplebar.min.css");
 /* harmony import */ var simplebar_dist_simplebar_min_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(simplebar_dist_simplebar_min_css__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _components_filters_DateRange__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/filters/DateRange */ "./resources/js/components/filters/DateRange.vue");
+/* harmony import */ var _components_filters_DateRange__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/filters/DateRange */ "./resources/js/components/filters/DateRange.vue");
 /* harmony import */ var _components_NoData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/NoData */ "./resources/js/components/NoData.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -841,7 +841,7 @@ import ChartLine from "../components/charts/Line.js";*/
     NoData: _components_NoData__WEBPACK_IMPORTED_MODULE_9__["default"],
     BreadCrumb: _components_BreadCrumb__WEBPACK_IMPORTED_MODULE_3__["default"],
     Loader: _components_Loader__WEBPACK_IMPORTED_MODULE_4__["default"],
-    FilterDateRange: _components_filters_DateRange__WEBPACK_IMPORTED_MODULE_10__["default"],
+    FilterDateRange: _components_filters_DateRange__WEBPACK_IMPORTED_MODULE_8__["default"],
     Skeleton: vue_loading_skeleton__WEBPACK_IMPORTED_MODULE_5__["Skeleton"],
     VeLine: v_charts_lib_line_common__WEBPACK_IMPORTED_MODULE_1___default.a,
     simplebar: simplebar_vue__WEBPACK_IMPORTED_MODULE_6__["default"],

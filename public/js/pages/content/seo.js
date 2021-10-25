@@ -194,13 +194,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     label: String,
     variable: String,
     errors: Object,
     valueEnParent: String,
-    valueEsParent: String
+    valueEsParent: String,
+    showEnglish: {
+      "default": false,
+      type: Boolean
+    }
   },
   data: function data() {
     return {
@@ -1169,6 +1174,14 @@ var render = function() {
         _c(
           "a",
           {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.showEnglish,
+                expression: "showEnglish"
+              }
+            ],
             staticClass: "btn btn-sm py-0 px-2 btn-icon",
             class: _vm.active == "en" ? "btn-primary" : "btn-outline-primary",
             attrs: { href: "#" },
