@@ -12,9 +12,14 @@ class LeadRepository
     {
         if ($q) {
             $leads = Lead::select("*")
-            ->where('name', 'like', '%'.$q.'%')
-            ->orWhere('mobile', 'like', '%'.$q.'%')
-            ->orWhere('business', 'like', '%'.$q.'%')
+            ->where(function($query) use ($q){
+                return $query->where('name', 'like', '%' . $q . '%')
+                ->orWhere('mobile', 'like', '%' . $q . '%')
+                ->orWhere('business', 'like', '%' . $q . '%')
+                ->orWhereHas('serviceRel', function ($q2) use ($q){
+                    $q2->where('title_es', 'like', '%' . $q . '%');
+                });
+            })
             ->with('serviceRel')
             ->orderBy('created_at', 'desc')
             ->paginate($items_per_page);
