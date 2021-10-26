@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\LeadRepository;
 use App\Lead;
-use App\Http\Requests\Cms\ApplicantDestinationRequest;
+use App\Http\Requests\Cms\LeadDestinationRequest;
 use App\EmailDestination;
 use App\Exports\LeadTraditionalExport;
 use App\Http\Requests\Cms\Export\LeadExportExcel;
@@ -24,7 +24,7 @@ class LeadTraditionalController extends Controller
     public function getAll(Request $request, LeadRepository $repo)
     {
         $q = $request->q;
-        $headers = ["id", "Nombre", "Móvil", "DNI", "Email", "Departamento", "Fuente", "Registrado El"];
+        $headers = ["id", "Nombres y Apellidos", "Email", "Celular", "Empresa", "Servicio", "Registrado El"];
         if ($q) {
             $elements = $repo->datatable($request->itemsPerPage, $q);
         } else {
@@ -38,7 +38,7 @@ class LeadTraditionalController extends Controller
 
     public function get(Lead $element)
     {
-        return response()->json($element);
+        return response()->json($element->load('serviceRel'));
     }
     
     public function destroy(Lead $element)
@@ -51,9 +51,14 @@ class LeadTraditionalController extends Controller
         }
     }
 
-    public function update(ApplicantDestinationRequest $request)
+    public function update(LeadDestinationRequest $request)
     {
-        $email_destination = $this->getArrayColumn($request->email_destination);
+        if($request->email_destination){
+            $email_destination = $this->getArrayColumn($request->email_destination);
+        }
+        else{
+            $email_destination = NULL;
+        }
         $information = ["leads_traditional" => $email_destination,"type" => "traditional"];
         //dd($information);
         $information_registered = EmailDestination::where('type', 'traditional')->first();
@@ -77,7 +82,7 @@ class LeadTraditionalController extends Controller
 
     public function allExport()
     {
-        $leads = Lead::with("sourceRel")->orderBy('created_at', 'asc')->get();
+        $leads = Lead::with("serviceRel")->orderBy('created_at', 'asc')->get();
         return new LeadTraditionalExport(null, null, $leads);
     }
 
@@ -85,7 +90,7 @@ class LeadTraditionalController extends Controller
     {
         $from = date("Y-m-d H:i:s", strtotime($request->from));
         $to = date("Y-m-d H:i:s", strtotime($request->to));
-        $leads = Lead::with('sourceRel')->whereBetween('created_at', [$from,$to])->orderBy('created_at', 'asc')->get();
+        $leads = Lead::with('serviceRel')->whereBetween('created_at', [$from,$to])->orderBy('created_at', 'asc')->get();
         return (new LeadTraditionalExport($from,$to,$leads));
     }
 }

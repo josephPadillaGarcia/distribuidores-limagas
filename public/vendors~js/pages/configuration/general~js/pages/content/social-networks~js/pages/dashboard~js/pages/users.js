@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["vendors~js/pages/configuration/general~js/pages/content/social-networks~js/pages/dashboard~js/pages/~dc4249e6"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["vendors~js/pages/configuration/general~js/pages/content/social-networks~js/pages/dashboard~js/pages/users"],{
 
 /***/ "./node_modules/@juggle/resize-observer/lib/DOMRectReadOnly.js":
 /*!*********************************************************************!*\

@@ -10,20 +10,28 @@
             @keydown.enter.prevent="agregarElemento"
           />
         </div>
-        <div class="col-auto">
+        <div
+          class="col-auto"
+          style="
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            margin-bottom: 10px;
+          "
+        >
           <button
-            class="btn btn-sm btn-icon-only rounded-circle btn-inverse-info"
+            class="btn btn-sm btn-icon-only rounded-circle btn-inverse-primary"
             @click.prevent="agregarElemento(index)"
-            v-if="(arreglo.length - 1) == index"
+            v-if="arreglo.length - 1 == index"
           >
-            <jam-plus class="current-color" />
+            <i class="ri-add-line current-color ri-lg" />
           </button>
           <button
             class="btn btn-sm btn-icon-only rounded-circle btn-inverse-danger"
             @click.prevent="eliminarElemento(index)"
             v-if="index != 0"
           >
-            <jam-trash-alt class="current-color" />
+            <i class="ri-delete-bin-line text-lg current-color" />
           </button>
         </div>
       </div>

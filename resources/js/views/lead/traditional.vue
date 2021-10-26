@@ -6,9 +6,9 @@
           <div class="row align-items-center pt-0 pt-md-2 pb-4">
             <div class="col-6 col-md-7">
               <BreadCrumb
-                title="Tradicionales"
-                parent="Leads"
-                active="Tradicionales"
+                title="Leads"
+                parent=""
+                active="Leads"
               ></BreadCrumb>
             </div>
             
@@ -40,7 +40,7 @@
                 :style="elements.total == 0 ? 'opacity: 0.50' : ''"
               >
                 <span class="btn-inner--icon">
-                  <jam-download class="current-color" />
+                  <i class="ri-download-line current-color"></i>
                 </span>
                 <span class="btn-inner--text">Exportar {{ elements.total == 0 ? '(0 Leads)' : '' }}</span>
               </button>
@@ -48,7 +48,7 @@
             <div class="col-12">
               <DataTable
                 :object="elements"
-                placeholder="Nombre, Teléfono, DNI"
+                placeholder="Nombre y Apellidos, Celular, Empresa"
                 :button-update="false"
                 :button-read="true"
                 :button-delete="true"
@@ -70,10 +70,11 @@
             <div class="row">
               <div class="col-12">
                 <div class="card">
-                  <div class="card-header border-0">
-                    <h2 class="mb-0 text-uppercase text-primary">
-                      Emails Destino
+                  <div class="card-header border-0 pb-0">
+                    <h2 class="mb-0 text-primary">
+                      Emails de Destino
                     </h2>
+                    <p class="mb-0">Indique los emails donde llegarán la notificación cuando una persona registre sus datos en la Web.</p>
                   </div>
                   <div class="card-body">
                     <form @submit.prevent="updateEmail">
@@ -182,7 +183,7 @@
       </template>
       <template slot="modal-header-close">
         <button type="button" class="btn p-0 bg-transparent" @click="restoreEl">
-          <jam-close></jam-close>
+          <i class="ri-close-line current-color ri-lg"></i>
         </button>
       </template>
       <div class="row">
@@ -196,9 +197,9 @@
               format="HH:mm DD-MM-YYYY"
               type="datetime"
               :time-picker-options="{
-                start: '06:00',
-                step: '00:05',
-                end: '24:00',
+                start: '00:00',
+                step: '00:01',
+                end: '23:59',
               }"
               :first-day-of-week="1"
               lang="es"
@@ -226,9 +227,9 @@
               format="HH:mm DD-MM-YYYY"
               type="datetime"
               :time-picker-options="{
-                start: '06:00',
-                step: '00:05',
-                end: '24:00',
+                start: '00:00',
+                step: '00:01',
+                end: '23:59',
               }"
               :first-day-of-week="1"
               lang="es"
@@ -249,7 +250,7 @@
       <template v-slot:modal-footer="{ ok }">
         <button
           type="button"
-          class="btn btn-inverse-primary"
+          class="btn btn-primary"
           @click="allExportFunction"
           :disabled="request_todo"
         >
@@ -287,7 +288,7 @@
 
         <button
           type="button"
-          class="btn btn-inverse-info"
+          class="btn btn-inverse-primary"
           @click="filterExportFunction"
           :disabled="request_filter"
         >
@@ -323,7 +324,7 @@
           <span v-else>Con Filtros</span>
         </button>
 
-        <button type="button" class="btn btn-inverse-light" @click="restoreEl">
+        <button type="button" class="btn btn-secondary" @click="restoreEl">
           Cerrar
         </button>
       </template>
@@ -340,11 +341,11 @@
       body-class="pt-0"
     >
       <template slot="modal-title">
-        <div class="text-primary h2">Lead</div>
+        <div class="text-primary h2">Detalle Lead</div>
       </template>
       <template slot="modal-header-close">
         <button type="button" class="btn p-0 bg-transparent" @click="restoreEl">
-          <jam-close></jam-close>
+          <i class="ri-close-line ri-lg"></i>
         </button>
       </template>
       <div v-if="loadingGet">
@@ -363,7 +364,7 @@
             <div class="form-group">
               <label class="font-weight-bold">Teléfono:</label>
 
-              <p>{{ element.mobile }}</p>
+              <p>{{ element.mobile_format }}</p>
             </div>
           </div>
           <div class="col-12 col-md-6">
@@ -375,15 +376,21 @@
           </div>
           <div class="col-12 col-md-6">
             <div class="form-group">
-              <label class="font-weight-bold">DNI:</label>
+              <label class="font-weight-bold">Empresa:</label>
 
-              <p>{{ element.document_number }}</p>
+              <p>{{ element.business }}</p>
             </div>
           </div>
           <div class="col-12 col-md-12">
             <div class="form-group">
-              <label class="font-weight-bold">Mensaje:</label>
-              <p>{{ element.message }}</p>
+              <label class="font-weight-bold">Cantidad estimada de paquetes mensuales:</label>
+              <p>{{ element.quantity_packages }}</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-12">
+            <div class="form-group">
+              <label class="font-weight-bold">Servicio:</label>
+              <p>{{ element.service_rel.title_es }}</p>
             </div>
           </div>
         </div>
@@ -446,10 +453,12 @@ export default {
       element_form: {},
 
       elements: {},
-      element: {},
+      element: {
+        service_rel: {}
+      },
       loadingGet: false,
       title: "",
-      elementsPerPage: 10,
+      elementsPerPage: 20,
       errors: {},
       modalDestroy: false,
       requestSubmit: false,
@@ -483,7 +492,7 @@ export default {
           );
           const link = document.createElement("a");
           link.href = downloadUrl;
-          link.setAttribute("download", "Líder Leads.xlsx");
+          link.setAttribute("download", "Dinet Leads.xlsx");
           document.body.appendChild(link);
           link.click();
           link.remove();
@@ -521,7 +530,7 @@ export default {
           );
           const link = document.createElement("a");
           link.href = downloadUrl;
-          link.setAttribute("download", "Líder Leads.xlsx");
+          link.setAttribute("download", "Dinet Leads.xlsx");
           document.body.appendChild(link);
           link.click();
           link.remove();
@@ -599,7 +608,7 @@ export default {
             this.errors = error.response.data.errors || {};
             return;
           }
-          this.restorePage();
+          //this.restorePage();
           Swal.fire({
             title: error.response.data.title,
             text: error.response.data.message,
@@ -646,7 +655,9 @@ export default {
     },
     restore() {
       this.errors = {};
-      this.element = {};
+      this.element = {
+        service_rel : {}
+      };
       this.modalDestroy = false;
       this.getElements(1, this.elementsPerPage);
     },
@@ -661,7 +672,9 @@ export default {
     restoreEl() {
       this.modalView = false;
       this.errors = {};
-      this.element = {};
+      this.element = {
+        service_rel : {}
+      };
       this.modalDestroy = false;
       this.modalExport = false;
       this.element_form = {};

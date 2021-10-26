@@ -149,7 +149,6 @@ Route::middleware(['auth'])->namespace('Cms')->name('cms.')->group(function () {
     });*/
 
     Route::namespace('Leads')->prefix('leads')->name('leads.')->group(function () {
-        Route::name('traditional.')->prefix('tradicionales')->group(function () {
             Route::get('/', 'LeadTraditionalController@index')->name('index');
             Route::get('/json/get-all', 'LeadTraditionalController@getAll')->name('get-all');
             Route::delete('/{element}', 'LeadTraditionalController@destroy')->name('destroy');
@@ -158,7 +157,6 @@ Route::middleware(['auth'])->namespace('Cms')->name('cms.')->group(function () {
             Route::get('/get-email-destination', 'LeadTraditionalController@getEmailDestination')->name('get-email-destination');
             Route::get('/all-export', 'LeadTraditionalController@allExport')->name('all-export');
             Route::post('/filter-export', 'LeadTraditionalController@filterExport')->name('filter-export');
-        });
     });
 
     #Misc

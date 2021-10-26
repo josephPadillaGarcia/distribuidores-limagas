@@ -18,9 +18,9 @@ class LeadDestinationRequest extends FormRequest
 
     public function messages(){
         return [
-            'email_destination_leads.*.email' => 'Los campos correo(s) electrónico(s) destino deben ser una dirección de correo válida.',
-            'email_destination_leads.*.required' => 'Los campos correo(s) electrónico(s) destino es obligatorio.',
-            'email_destination_leads.required' => 'Los campos correo(s) electrónico(s) destino es obligatorio.'
+            'email_destination.*.email' => 'Los campos correo(s) electrónico(s) destino deben ser una dirección de correo válida.',
+            'email_destination.*.required' => 'Los campos correo(s) electrónico(s) destino es obligatorio.',
+            'email_destination.required' => 'Los campos correo(s) electrónico(s) destino es obligatorio.'
         ];
     }
 
@@ -32,9 +32,8 @@ class LeadDestinationRequest extends FormRequest
     public function rules()
     {
         return [
-            'email_destination_leads' => 'required',
-            'email_destination_leads.*' => 'required|email|max:100',
-            'department_id' => 'required'
+            'email_destination' => 'nullable',
+            'email_destination.*' => 'nullable|sometimes|email|max:100',
         ];
     }
 }

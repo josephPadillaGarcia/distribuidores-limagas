@@ -93,7 +93,7 @@
                       v-if="buttonRead == true"
                       href="#"
                       @click.prevent="clickRead(element[slugColumn])"
-                      class="btn btn-sm btn-icon-only rounded-circle btn-inverse-info"
+                      class="btn btn-sm btn-icon-only rounded-circle btn-inverse-primary"
                     >
                       <i class="current-color ri-eye-line text-lg" />
                     </a>
@@ -101,7 +101,7 @@
                       v-if="buttonUpdate == true"
                       href="#"
                       @click.prevent="clickUpdate(element[slugColumn])"
-                      class="btn btn-sm btn-icon-only rounded-circle btn-inverse-info"
+                      class="btn btn-sm btn-icon-only rounded-circle btn-inverse-primary"
                     >
                       <i class="current-color ri-pencil-line text-lg" />
                     </a>
@@ -109,7 +109,7 @@
                       v-if="buttonDisable == true"
                       href="#"
                       @click.prevent="clickDisable(element[slugColumn])"
-                      class="btn btn-sm btn-icon-only rounded-circle btn-inverse-info"
+                      class="btn btn-sm btn-icon-only rounded-circle btn-inverse-primary"
                     >
                       <i class="current-color ri--line text-lg" />
                     </a>
@@ -212,7 +212,7 @@
 import Loader from "./Loader";
 import { Skeleton } from "vue-loading-skeleton";
 import simplebar from "simplebar-vue";
-//import "simplebar/dist/simplebar.min.css";
+import "simplebar/dist/simplebar.min.css";
 import NoData from "../components/NoData";
 export default {
   props: {

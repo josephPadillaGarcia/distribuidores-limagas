@@ -1181,8 +1181,7 @@ var render = function() {
                 attrs: { type: "button" },
                 on: { click: _vm.restoreEl }
               },
-              [_c("jam-close")],
-              1
+              [_c("i", { staticClass: "ri-close-line ri-lg" })]
             )
           ]),
           _vm._v(" "),
