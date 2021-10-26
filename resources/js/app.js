@@ -42,6 +42,10 @@ const app = new Vue({
             import(
                 "./views/content/GeneralContent.vue" /* webpackChunkName: "js/pages/content/general-content" */
             ),
+        'services-index': () => import('./views/services/Index.vue' /* webpackChunkName: "js/pages/services/index" */),
+        'services-create': () => import('./views/services/Create.vue' /* webpackChunkName: "js/pages/services/create" */),
+        'services-edit': () => import('./views/services/Edit.vue' /* webpackChunkName: "js/pages/services/edit" */),
+        'services-read': () => import('./views/services/Read.vue' /* webpackChunkName: "js/pages/services/read" */),
         //'slider-index': () => import('./views/slider/Index.vue' /* webpackChunkName: "js/pages/slider/index" */),
         //'slider-create': () => import('./views/slider/Create.vue' /* webpackChunkName: "js/pages/slider/create" */),
         //'slider-edit': () => import('./views/slider/Edit.vue' /* webpackChunkName: "js/pages/slider/edit" */),

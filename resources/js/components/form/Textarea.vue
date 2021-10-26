@@ -13,6 +13,7 @@
       <span class="btn-inner--text">Español</span>
     </a>
     <a
+      v-show="showEnglish"
       href="#"
       class="btn btn-sm py-0 px-2 btn-icon"
       :class="active == 'en' ? 'btn-primary' : 'btn-outline-primary'"
@@ -37,6 +38,10 @@
 <script>
 export default {
   props: {
+    showEnglish: {
+      default: false,
+      type: Boolean
+    },
     label: String,
     variable: String,
     errors: Object,

@@ -220,6 +220,7 @@ return [
         'answer' => 'respuesta',
         'latitude' => 'latitud',
         'longitude' => 'longitud',
+        'title_es' => 'título español'
     ],
 
 ];

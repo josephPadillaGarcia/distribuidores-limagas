@@ -41,6 +41,19 @@ Route::middleware(['auth'])->namespace('Cms')->name('cms.')->group(function () {
         });
     });
 
+    Route::prefix('servicios')->name('services.')->group(function () {
+        Route::get('/', 'ServicesController@index')->name('index');
+        Route::get('/nuevo', 'ServicesController@create')->name('create');
+        Route::get('/editar/{element}', 'ServicesController@edit')->name('edit');
+        Route::put('/order', 'ServicesController@order')->name('order');
+        Route::post('/', 'ServicesController@store')->name('store');
+        Route::get('/{element}', 'ServicesController@read')->name('read');
+        Route::put('/{element}', 'ServicesController@update')->name('update');
+        Route::delete('/{element}', 'ServicesController@destroy')->name('destroy');
+        Route::get('/json/get-all', 'ServicesController@getAll')->name('get-all');
+        Route::get('/json/get/{element}', 'ServicesController@get')->name('get');
+    });
+
     #Customers
     Route::namespace('Customers')->prefix('clientes')->name('customers.')->group(function () {
         Route::get('/', 'IndexController@index')->name('index');

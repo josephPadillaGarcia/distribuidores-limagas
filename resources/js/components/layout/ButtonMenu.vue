@@ -1,6 +1,6 @@
 <template>
   <button
-    class="navbar-toggler"
+    class="navbar-toggler px-2"
     type="button"
     @click="toogleMenu"
     aria-controls="sidenav-main"

@@ -24,6 +24,16 @@ class CreateServicesTable extends Migration
             $table->string('image', 100);
             $table->string('icon_white', 100)->nullable();
             $table->string('icon_colour', 100)->nullable();
+            $table->integer('index');
+            $table->boolean('active')->default(true);
+            $table->text('url_video')->nullable();
+            $table->string('seo_title_en')->nullable();
+            $table->string('seo_title_es')->nullable();
+            $table->string('seo_description_es')->nullable();
+            $table->string('seo_description_en')->nullable();
+            $table->text('seo_keywords_es')->nullable();
+            $table->text('seo_keywords_en')->nullable();
+            $table->string('seo_image',100)->nullable();
             $table->timestamps();
         });
     }

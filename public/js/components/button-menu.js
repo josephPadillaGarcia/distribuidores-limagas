@@ -55,7 +55,7 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass: "navbar-toggler",
+      staticClass: "navbar-toggler px-2",
       attrs: {
         type: "button",
         "aria-controls": "sidenav-main",

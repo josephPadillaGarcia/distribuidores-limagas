@@ -29,7 +29,8 @@ return [
         'schedule' => 'El horario',
         'image' => 'La imagen',
         'elements' => 'Los elementos',
-        'customer' => 'El cliente'
+        'customer' => 'El cliente',
+        'service' => 'El servicio'
     ],
     'title' => [
         'error' => 'Error',
