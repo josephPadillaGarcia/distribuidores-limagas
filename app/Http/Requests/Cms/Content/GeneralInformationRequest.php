@@ -36,6 +36,8 @@ class GeneralInformationRequest extends FormRequest
     {
         return [
             'direction' => 'required',
+            'book_link' => 'nullable|sometime|url',
+            'contact_number' => 'nullable|digits:9',
             'api_link' => 'nullable|sometimes|url',
             'customers_link' => 'nullable|sometimes|url',
             'whatsapp_number' => 'nullable|digits:9',

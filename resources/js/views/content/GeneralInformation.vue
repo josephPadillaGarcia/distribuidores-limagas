@@ -67,6 +67,20 @@
                 <p v-else>No registrado</p>
               </div>
             </div>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="form-group">
+                <label class="font-weight-bold">Link Libro de Reclamaciones</label>
+                <div v-if="el.book_link" v-html="el.book_link">{{ el.book_link }}</div>
+                <p v-else>No registrado</p>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="form-group">
+                <label class="font-weight-bold">Número de Contacto Asesores</label>
+                <div v-if="el.contact_number">{{ el.contact_number_format }}</div>
+                <p v-else>No registrado</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="card-body" v-else>
@@ -149,6 +163,31 @@
                     class="mt-2 text-danger text-sm"
                     for="api_link"
                   >{{ errors.api_link[0] }}</label>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="form-group">
+                  <label class="font-weight-bold" for="contact_number">Número de Contacto de Asesores</label>
+                  <input type="number" class="form-control" v-model="el.contact_number" id="contact_number" />
+                  <label
+                    v-if="errors && errors.contact_number"
+                    class="mt-2 text-danger text-sm"
+                    for="contact_number"
+                  >{{ errors.contact_number[0] }}</label>
+                </div>
+              </div>
+
+
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="form-group">
+                  <label class="font-weight-bold" for="book_link">Link Libro de Reclamaciones</label>
+                  <input type="text" class="form-control" v-model="el.book_link" id="book_link" />
+                  <label
+                    v-if="errors && errors.book_link"
+                    class="mt-2 text-danger text-sm"
+                    for="book_link"
+                  >{{ errors.book_link[0] }}</label>
                 </div>
               </div>
 

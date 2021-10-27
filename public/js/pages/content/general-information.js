@@ -431,6 +431,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1200,6 +1239,40 @@ var render = function() {
                             ])
                           : _c("p", [_vm._v("No registrado")])
                       ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { staticClass: "font-weight-bold" }, [
+                          _vm._v("Link Libro de Reclamaciones")
+                        ]),
+                        _vm._v(" "),
+                        _vm.el.book_link
+                          ? _c(
+                              "div",
+                              {
+                                domProps: {
+                                  innerHTML: _vm._s(_vm.el.book_link)
+                                }
+                              },
+                              [_vm._v(_vm._s(_vm.el.book_link))]
+                            )
+                          : _c("p", [_vm._v("No registrado")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { staticClass: "font-weight-bold" }, [
+                          _vm._v("Número de Contacto Asesores")
+                        ]),
+                        _vm._v(" "),
+                        _vm.el.contact_number
+                          ? _c("div", [
+                              _vm._v(_vm._s(_vm.el.contact_number_format))
+                            ])
+                          : _c("p", [_vm._v("No registrado")])
+                      ])
                     ])
                   ])
                 ])
@@ -1504,6 +1577,102 @@ var render = function() {
                                 attrs: { for: "api_link" }
                               },
                               [_vm._v(_vm._s(_vm.errors.api_link[0]))]
+                            )
+                          : _vm._e()
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "font-weight-bold",
+                            attrs: { for: "contact_number" }
+                          },
+                          [_vm._v("Número de Contacto de Asesores")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.el.contact_number,
+                              expression: "el.contact_number"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "number", id: "contact_number" },
+                          domProps: { value: _vm.el.contact_number },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.el,
+                                "contact_number",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.errors && _vm.errors.contact_number
+                          ? _c(
+                              "label",
+                              {
+                                staticClass: "mt-2 text-danger text-sm",
+                                attrs: { for: "contact_number" }
+                              },
+                              [_vm._v(_vm._s(_vm.errors.contact_number[0]))]
+                            )
+                          : _vm._e()
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "font-weight-bold",
+                            attrs: { for: "book_link" }
+                          },
+                          [_vm._v("Link Libro de Reclamaciones")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.el.book_link,
+                              expression: "el.book_link"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", id: "book_link" },
+                          domProps: { value: _vm.el.book_link },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.el, "book_link", $event.target.value)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.errors && _vm.errors.book_link
+                          ? _c(
+                              "label",
+                              {
+                                staticClass: "mt-2 text-danger text-sm",
+                                attrs: { for: "book_link" }
+                              },
+                              [_vm._v(_vm._s(_vm.errors.book_link[0]))]
                             )
                           : _vm._e()
                       ])
