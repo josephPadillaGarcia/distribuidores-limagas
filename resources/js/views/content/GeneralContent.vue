@@ -119,14 +119,6 @@
                                     </Input>
                           </div>
                           <div v-if="field.type == 'editor_small'">
-                            <!--<quill-editor
-                              class="ql-height-8"
-                              @keydown.enter.prevent
-                              v-model="fields[index].value"
-                              ref="ref_content"
-                              :placeholder="''"
-                              :options="quillEditorOptions"
-                            ></quill-editor>-->
                             <Editor
                               size="md"
                               :label="field.name"
@@ -149,15 +141,6 @@
                       :valueEnParent="fields[index].value_en"
                       :valueEsParent="fields[index].value_es"
                     />
-                            <!--<quill-editor
-
-                              class="ql-height-25"
-                              @keydown.enter.prevent
-                              v-model="fields[index].value"
-                              ref="ref_content"
-                              :placeholder="''"
-                              :options="quillEditorOptions"
-                            ></quill-editor>-->
                           </div>
                           <div v-if="field.type == 'image'">
                             <div class="row">
@@ -214,7 +197,7 @@
                               <div class="col-12 mb-3" v-if="field.value">
                                 <a
                                   target="_blank"
-                                  :href="videosUrl + '/content/' + field.value"
+                                  :href="videosUrl + '/pages/' + field.value"
                                   class="btn btn-primary"
                                 >
                                   <i class="fas fa-play mr-1"></i>
@@ -416,6 +399,39 @@ export default {
         this.$refs.ref_video[0].dropzone.files[0]
       ) {
         fd.append("video", this.$refs.ref_video[0].dropzone.files[0]);
+      }
+
+      if (
+        this.$refs.ref_icon_1 &&
+        this.$refs.ref_icon_1.length > 0 &&
+        this.$refs.ref_icon_1[0].dropzone.files[0]
+      ) {
+        fd.append(
+          "icon_1",
+          this.$refs.ref_icon_1[0].dropzone.files[0]
+        );
+      }
+
+      if (
+        this.$refs.ref_icon_2 &&
+        this.$refs.ref_icon_2.length > 0 &&
+        this.$refs.ref_icon_2[0].dropzone.files[0]
+      ) {
+        fd.append(
+          "icon_2",
+          this.$refs.ref_icon_2[0].dropzone.files[0]
+        );
+      }
+
+      if (
+        this.$refs.ref_icon_3 &&
+        this.$refs.ref_icon_3.length > 0 &&
+        this.$refs.ref_icon_3[0].dropzone.files[0]
+      ) {
+        fd.append(
+          "icon_3",
+          this.$refs.ref_icon_3[0].dropzone.files[0]
+        );
       }
 
       fd.append("_method", "put");

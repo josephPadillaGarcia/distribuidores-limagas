@@ -15,6 +15,7 @@ return [
     */
     'web_url' => env('WEB_URL', 'http://127.0.0.1:8000'),
     'images_url' => env('IMAGES_URL', 'http://127.0.0.1:8000/storage/img'),
+    'videos_url' => env('VIDEOS_URL', 'http://127.0.0.1:8000/storage/videos'),
     'files_url' => env('FILES_URL', 'http://127.0.0.1:8000/storage/files'),
 
     'mailgun' => [

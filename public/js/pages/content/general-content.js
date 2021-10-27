@@ -335,23 +335,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -486,6 +469,18 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.$refs.ref_video && this.$refs.ref_video.length > 0 && this.$refs.ref_video[0].dropzone.files[0]) {
         fd.append("video", this.$refs.ref_video[0].dropzone.files[0]);
+      }
+
+      if (this.$refs.ref_icon_1 && this.$refs.ref_icon_1.length > 0 && this.$refs.ref_icon_1[0].dropzone.files[0]) {
+        fd.append("icon_1", this.$refs.ref_icon_1[0].dropzone.files[0]);
+      }
+
+      if (this.$refs.ref_icon_2 && this.$refs.ref_icon_2.length > 0 && this.$refs.ref_icon_2[0].dropzone.files[0]) {
+        fd.append("icon_2", this.$refs.ref_icon_2[0].dropzone.files[0]);
+      }
+
+      if (this.$refs.ref_icon_3 && this.$refs.ref_icon_3.length > 0 && this.$refs.ref_icon_3[0].dropzone.files[0]) {
+        fd.append("icon_3", this.$refs.ref_icon_3[0].dropzone.files[0]);
       }
 
       fd.append("_method", "put");
@@ -1235,7 +1230,7 @@ var render = function() {
                                                         target: "_blank",
                                                         href:
                                                           _vm.videosUrl +
-                                                          "/content/" +
+                                                          "/pages/" +
                                                           field.value
                                                       }
                                                     },

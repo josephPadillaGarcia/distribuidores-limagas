@@ -13,8 +13,21 @@ class MasterSectionsTableSeeder extends Seeder
     public function run()
     {
         DB::table('master_sections')->insert([
+            #Home
             [
-                'name' 		=> 'Cami',
+                'name' 		=> 'Banner',
+                'master_page_id'     => MasterPage::where('name','Home')->first()->id,
+            ],
+            [
+                'name' 		=> 'Servicios',
+                'master_page_id'     => MasterPage::where('name','Home')->first()->id,
+            ],
+            [
+                'name' 		=> 'Tutoriales',
+                'master_page_id'     => MasterPage::where('name','Home')->first()->id,
+            ],
+            [
+                'name' 		=> 'Sumando experiencia en cada servicio',
                 'master_page_id'     => MasterPage::where('name','Home')->first()->id,
             ],
             [
@@ -22,81 +35,54 @@ class MasterSectionsTableSeeder extends Seeder
                 'master_page_id'     => MasterPage::where('name','Home')->first()->id,
             ],
             [
-                'name' 		=> 'Banner',
-                'master_page_id'     => MasterPage::where('name','Cami')->first()->id,
+                'name' 		=> 'Nuestros Clientes',
+                'master_page_id'     => MasterPage::where('name','Home')->first()->id,
             ],
             [
-                'name' 		=> 'Banner',
-                'master_page_id'     => MasterPage::where('name','Contacto')->first()->id,
+                'name' 		=> 'Contamos con cuatro DARK STORE en lima para atender el e-commerce',
+                'master_page_id'     => MasterPage::where('name','Home')->first()->id,
             ],
+            #Nosotros
+            [
+                'name' 		=> 'Banner',
+                'master_page_id'     => MasterPage::where('name','Sobre Dinet')->first()->id,
+            ],
+            [
+                'name' 		=> 'Somos el operador logístico del Grupo Sandoval',
+                'master_page_id'     => MasterPage::where('name','Sobre Dinet')->first()->id,
+            ],
+            [
+                'name' 		=> 'Nuestros Clientes',
+                'master_page_id'     => MasterPage::where('name','Sobre Dinet')->first()->id,
+            ],
+            [
+                'name' 		=> 'Testimonios',
+                'master_page_id'     => MasterPage::where('name','Sobre Dinet')->first()->id,
+            ],
+
+            #Servicios
+            [
+                'name' 		=> 'Banner',
+                'master_page_id'     => MasterPage::where('name','Servicios')->first()->id,
+            ],
+
+            #Cotizaciones
+            [
+                'name' 		=> 'Banner',
+                'master_page_id'     => MasterPage::where('name','Cotizaciones')->first()->id,
+            ],
+
             [
                 'name' 		=> 'Información',
-                'master_page_id'     => MasterPage::where('name','Contacto')->first()->id,
+                'master_page_id'     => MasterPage::where('name','Cotizaciones')->first()->id,
             ],
-            [
+
+            /*#Blog
+             [
                 'name' 		=> 'Banner',
                 'master_page_id'     => MasterPage::where('name','Blog')->first()->id,
-            ],
-            [
-                'name' 		=> 'Suscríbete',
-                'master_page_id'     => MasterPage::where('name','Blog')->first()->id,
-            ],
-            [
-                'name' 		=> 'Banner',
-                'master_page_id'     => MasterPage::where('name','Testimoniales')->first()->id,
-            ],
-            [
-                'name' 		=> 'Conoce lo que dicen nuestros vecinos Líder',
-                'master_page_id'     => MasterPage::where('name','Testimoniales')->first()->id,
-            ],
-            [
-                'name' 		=> 'Banner',
-                'master_page_id'     => MasterPage::where('name','Vende tu terreno')->first()->id,
-            ],
-            [
-                'name' 		=> 'Información',
-                'master_page_id'     => MasterPage::where('name','Vende tu terreno')->first()->id,
-            ],
-            [
-                'name' 		=> 'Banner',
-                'master_page_id'     => MasterPage::where('name','Trabaja con nosotros')->first()->id,
-            ],
-            [
-                'name' 		=> 'Información',
-                'master_page_id'     => MasterPage::where('name','Trabaja con nosotros')->first()->id,
-            ],
-            [
-                'name' 		=> 'Banner',
-                'master_page_id'     => MasterPage::where('name','Términos y Condiciones')->first()->id,
-            ],
-            [
-                'name' 		=> 'Información',
-                'master_page_id'     => MasterPage::where('name','Términos y Condiciones')->first()->id,
-            ],
-            [
-                'name' 		=> 'Banner',
-                'master_page_id'     => MasterPage::where('name','Proyectos')->first()->id,
-            ],
-            [
-                'name' 		=> 'Banner',
-                'master_page_id'     => MasterPage::where('name','Nosotros')->first()->id,
-            ],
-            [
-                'name' 		=> 'Banner',
-                'master_page_id'     => MasterPage::where('name','Cita Online')->first()->id,
-            ],
-            [
-                'name' 		=> 'Información',
-                'master_page_id'     => MasterPage::where('name','Cita Online')->first()->id,
-            ],
-            [
-                'name' 		=> 'Banner',
-                'master_page_id'     => MasterPage::where('name','Políticas de Privacidad')->first()->id,
-            ],
-            [
-                'name' 		=> 'Información',
-                'master_page_id'     => MasterPage::where('name','Políticas de Privacidad')->first()->id,
-            ],
+            ],*/
+
         ]);
     }
 }
