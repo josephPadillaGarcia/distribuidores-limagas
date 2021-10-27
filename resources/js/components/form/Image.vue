@@ -7,7 +7,7 @@
       >{{ countErrors }} {{ countErrors > 1 ? 'Errores' : 'Error'}}</div>
     </div>-->
     <div class="">
-        <label class="font-weight-bold" :for="label+random">{{ label }} :</label>
+        <label class="font-weight-bold" :for="label+random">{{ label }}:</label>
     </div>
     <div>
       <div class="row">
@@ -73,7 +73,7 @@ export default {
     },
     handleAddedFiles(e){
       setTimeout(() => {
-        console.log(this.$refs.ref_image.dropzone.files[0]);
+        //console.log(this.$refs.ref_image.dropzone.files[0]);
         this.$emit("update:value", this.$refs.ref_image.dropzone.files[0]);
       }, 500);
     }

@@ -159,6 +159,12 @@ Route::middleware(['auth'])->namespace('Cms')->name('cms.')->group(function () {
             Route::post('/filter-export', 'LeadTraditionalController@filterExport')->name('filter-export');
     });
 
+    Route::name('app-tracking.')->prefix('app-rastreo')->group(function () {
+        Route::get('/', 'AppTrackingController@index')->name('index');
+        Route::post('/', 'AppTrackingController@store')->name('store');
+        Route::get('/json/get', 'AppTrackingController@get')->name('get');
+    });
+
     #Misc
     Route::get('files/{folder}/{subfolder}/{file}', 'CmsController@getFile')->name('get-file');
     Route::get('json/get-departments', 'CmsController@getDepartmentsParent')->name('json.get-departments');

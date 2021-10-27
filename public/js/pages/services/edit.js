@@ -87,8 +87,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       setTimeout(function () {
-        console.log(_this.$refs.ref_image.dropzone.files[0]);
-
+        //console.log(this.$refs.ref_image.dropzone.files[0]);
         _this.$emit("update:value", _this.$refs.ref_image.dropzone.files[0]);
       }, 500);
     }
@@ -728,7 +727,7 @@ var render = function() {
             staticClass: "font-weight-bold",
             attrs: { for: _vm.label + _vm.random }
           },
-          [_vm._v(_vm._s(_vm.label) + " :")]
+          [_vm._v(_vm._s(_vm.label) + ":")]
         )
       ]),
       _vm._v(" "),

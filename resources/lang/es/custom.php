@@ -30,7 +30,8 @@ return [
         'image' => 'La imagen',
         'elements' => 'Los elementos',
         'customer' => 'El cliente',
-        'service' => 'El servicio'
+        'service' => 'El servicio',
+        'app_tracking' => 'App de rastreo'
     ],
     'title' => [
         'error' => 'Error',
