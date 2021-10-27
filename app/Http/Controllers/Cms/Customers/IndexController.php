@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Cms\Customers;
 use App\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Testimonial;
 use App\Http\Requests\Cms\CustomerRequest;
 use App\Http\Traits\CmsTrait;
 use Illuminate\Support\Facades\Storage;

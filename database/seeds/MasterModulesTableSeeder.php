@@ -11,9 +11,9 @@ class MasterModulesTableSeeder extends Seeder
      */
     public function run()
     {
-        $pContenido = 5;
-        $pConfiguracion = 15;
-        $pBlog = 10;
+        $pContenido = 6;
+        $pConfiguracion = 16;
+        $pBlog = 11;
         $position = 1;
         DB::table('master_modules')->insert([
             [
@@ -45,6 +45,14 @@ class MasterModulesTableSeeder extends Seeder
                 'slug' 		=> 'app-rastreo',
                 'parent' 	=> NULL,
                 'icon' 		=> 'android',
+                'index'    => $position++
+            ],
+
+            [
+                'name' 	=> 'Tutoriales',
+                'slug' 		=> 'tutoriales',
+                'parent' 	=> NULL,
+                'icon' 		=> 'vidicon',
                 'index'    => $position++
             ],
             
@@ -131,7 +139,7 @@ class MasterModulesTableSeeder extends Seeder
 				'slug' 		=> NULL,
 				'parent' 	=> NULL,
 				'icon' 		=> 'settings-5',
-                'index'    => $position++
+                'index'    => 99
             ],
                 [
                     'name' 	    => 'Configuración General',

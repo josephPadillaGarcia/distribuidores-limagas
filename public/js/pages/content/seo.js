@@ -1,50 +1,5 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["js/pages/content/seo"],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Loader.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Loader.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    iconClasses: Array,
-    iconoEstilos: Object,
-    texto: String,
-    styles: Object,
-    iconWidth: {
-      type: Number,
-      required: true
-    },
-    iconHeight: {
-      type: Number,
-      required: true
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/form/Input.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/form/Input.vue?vue&type=script&lang=js& ***!
@@ -169,11 +124,17 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_form_Input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/form/Input */ "./resources/js/components/form/Input.vue");
 /* harmony import */ var _components_form_Textarea__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/form/Textarea */ "./resources/js/components/form/Textarea.vue");
-/* harmony import */ var _components_Loader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Loader */ "./resources/js/components/Loader.vue");
-/* harmony import */ var vue2_dropzone__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue2-dropzone */ "./node_modules/vue2-dropzone/dist/vue2Dropzone.js");
-/* harmony import */ var vue2_dropzone__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue2_dropzone__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Button */ "./resources/js/components/Button.vue");
-/* harmony import */ var _components_BreadCrumb__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/BreadCrumb */ "./resources/js/components/BreadCrumb.vue");
+/* harmony import */ var vue2_dropzone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-dropzone */ "./node_modules/vue2-dropzone/dist/vue2Dropzone.js");
+/* harmony import */ var vue2_dropzone__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue2_dropzone__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Button */ "./resources/js/components/Button.vue");
+/* harmony import */ var _components_BreadCrumb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/BreadCrumb */ "./resources/js/components/BreadCrumb.vue");
+/* harmony import */ var vue_loading_skeleton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-loading-skeleton */ "./node_modules/vue-loading-skeleton/dist/vue-loading-skeleton.esm.js");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -367,12 +328,12 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   components: {
-    Button: _components_Button__WEBPACK_IMPORTED_MODULE_4__["default"],
-    vueDropzone: vue2_dropzone__WEBPACK_IMPORTED_MODULE_3___default.a,
-    Loader: _components_Loader__WEBPACK_IMPORTED_MODULE_2__["default"],
-    BreadCrumb: _components_BreadCrumb__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Button: _components_Button__WEBPACK_IMPORTED_MODULE_3__["default"],
+    vueDropzone: vue2_dropzone__WEBPACK_IMPORTED_MODULE_2___default.a,
+    BreadCrumb: _components_BreadCrumb__WEBPACK_IMPORTED_MODULE_4__["default"],
     Input: _components_form_Input__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Textarea: _components_form_Textarea__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Textarea: _components_form_Textarea__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Skeleton: vue_loading_skeleton__WEBPACK_IMPORTED_MODULE_5__["Skeleton"]
   },
   data: function data() {
     return {
@@ -549,97 +510,6 @@ var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/a
 if(content.locals) module.exports = content.locals;
 
 if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Loader.vue?vue&type=template&id=e79ec684&":
-/*!*********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Loader.vue?vue&type=template&id=e79ec684& ***!
-  \*********************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "component-loader text-sm w-100", style: _vm.styles },
-    [
-      _c(
-        "div",
-        {
-          staticClass: "d-flex align-items-center justify-content-center h-100"
-        },
-        [
-          _vm.texto ? _c("span", [_vm._v(_vm._s(_vm.texto))]) : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "svg",
-            {
-              class: _vm.iconClasses,
-              style: _vm.iconoEstilos,
-              attrs: {
-                xmlns: "http://www.w3.org/2000/svg",
-                width: _vm.iconWidth,
-                height: _vm.iconHeight,
-                viewBox: "0 0 40 40",
-                stroke: "#525f7f"
-              }
-            },
-            [
-              _c("g", { attrs: { fill: "none", "fill-rule": "evenodd" } }, [
-                _c(
-                  "g",
-                  {
-                    attrs: { transform: "translate(1 1)", "stroke-width": "2" }
-                  },
-                  [
-                    _c("circle", {
-                      attrs: { "stroke-opacity": "1", cx: "0", cy: "0", r: "0" }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "path",
-                      {
-                        attrs: {
-                          d: "M36 18c0-9.94-8.06-18-18-18",
-                          transform: "rotate(83.9974 18 18)"
-                        }
-                      },
-                      [
-                        _c("animateTransform", {
-                          attrs: {
-                            attributeName: "transform",
-                            type: "rotate",
-                            from: "0 18 18",
-                            to: "360 18 18",
-                            dur: "1s",
-                            repeatCount: "indefinite"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ]
-                )
-              ])
-            ]
-          )
-        ]
-      )
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
 
 /***/ }),
 
@@ -834,265 +704,315 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "container-fluid mt--6" },
-      [
-        _vm.requestServerGet
-          ? _c("Loader", {
-              style: { display: "inline-block", height: "400px" },
-              attrs: { iconHeight: 30, iconWidth: 30 }
-            })
-          : _c(
-              "div",
-              { staticClass: "row" },
-              _vm._l(_vm.pages, function(page) {
-                return _c(
-                  "div",
-                  {
-                    key: page.id,
-                    staticClass: "col-lg-4 col-md-6 col-12 mb-4"
-                  },
-                  [
-                    _c(
-                      "form",
-                      {
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            return _vm.updatePage.apply(null, arguments)
-                          }
+    _c("div", { staticClass: "container-fluid mt--6" }, [
+      _vm.requestServerGet
+        ? _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(6, function(i) {
+              return _c(
+                "div",
+                { key: i, staticClass: "col-12 col-lg-4 mb-4" },
+                [_c("Skeleton", { attrs: { height: "250px" } })],
+                1
+              )
+            }),
+            0
+          )
+        : _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.pages, function(page) {
+              return _c(
+                "div",
+                { key: page.id, staticClass: "col-lg-4 col-md-6 col-12 mb-4" },
+                [
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.updatePage.apply(null, arguments)
                         }
-                      },
-                      [
-                        _vm.pageSelected != page.id
-                          ? _c("div", [
-                              page.seo_image
-                                ? _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "img-holder bg-seo card-img-top position-relative",
-                                      style: {
-                                        "background-image":
-                                          "url(" +
-                                          _vm.assetUrl +
-                                          "/storage/img/pages/" +
-                                          page.seo_image +
-                                          ")"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "a",
-                                        {
-                                          staticClass:
-                                            "btn btn-primary btn-sm right position-absolute m-2",
-                                          attrs: {
-                                            href:
-                                              _vm.assetUrl +
-                                              "/storage/img/pages/" +
-                                              page.seo_image,
-                                            target: "_blank",
-                                            rel: "noopener noreferrer"
-                                          }
-                                        },
-                                        [_vm._v("Ver Imagen")]
-                                      )
-                                    ]
-                                  )
-                                : _vm._e()
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "card" }, [
-                          _c("div", { staticClass: "card-body " }, [
-                            _c("div", [
-                              _vm.editBlock && _vm.pageSelected == page.id
-                                ? _c(
-                                    "div",
-                                    { staticClass: "form-group" },
-                                    [
-                                      _c(
-                                        "label",
-                                        {
-                                          staticClass: "font-weight-bold mb-0",
-                                          attrs: { for: "id_imagen" }
-                                        },
-                                        [_vm._v("Imagen")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "small",
-                                        { staticClass: "d-block mb-0 lh-1" },
-                                        [
-                                          _vm._v(
-                                            "Resolución recomendada: 1200x900px"
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "small",
-                                        {
-                                          staticClass:
-                                            "text-muted d-block mb-2 lh-1"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "Tamaño recomendado: Menor a 100kb"
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "vue-dropzone",
-                                        {
-                                          ref: "ref_image",
-                                          refInFor: true,
-                                          attrs: {
-                                            id: "id_imagen",
-                                            options: _vm.dropzoneOptions,
-                                            duplicateCheck: true,
-                                            useCustomSlot: true
-                                          },
-                                          on: {
-                                            "vdropzone-file-added": function(
-                                              $event
-                                            ) {
-                                              return _vm.$validateImageDropzone(
-                                                $event,
-                                                _vm.$refs.ref_image[0].dropzone,
-                                                1,
-                                                100000,
-                                                "100kb"
-                                              )
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "dropzone-custom-content"
-                                            },
-                                            [
-                                              _c(
-                                                "h5",
-                                                {
-                                                  staticClass:
-                                                    "dropzone-custom-title text-primary"
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "Suelte el archivo aquí o haga click para cargarlo."
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm.errors && _vm.errors.imagen
-                                        ? _c(
-                                            "label",
-                                            {
-                                              staticClass:
-                                                "text-danger text-sm d-block",
-                                              attrs: { for: "id_imagen" }
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(_vm.errors.imagen[0])
-                                              )
-                                            ]
-                                          )
-                                        : _vm._e()
-                                    ],
-                                    1
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              !_vm.editBlock
-                                ? _c("div", { staticClass: "text-right" }, [
+                      }
+                    },
+                    [
+                      _vm.pageSelected != page.id
+                        ? _c("div", [
+                            page.seo_image
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "img-holder bg-seo card-img-top position-relative",
+                                    style: {
+                                      "background-image":
+                                        "url(" +
+                                        _vm.assetUrl +
+                                        "/storage/img/pages/" +
+                                        page.seo_image +
+                                        ")"
+                                    }
+                                  },
+                                  [
                                     _c(
                                       "a",
                                       {
-                                        staticClass: "d-inline-block",
-                                        staticStyle: {
-                                          "text-decoration": "underline"
-                                        },
+                                        staticClass:
+                                          "btn btn-primary btn-sm right position-absolute m-2",
                                         attrs: {
-                                          target: "_blank",
-                                          rel: "noopener noreferrer",
                                           href:
-                                            _vm.appUrl +
-                                            (page.slug_es
-                                              ? "/" + page.slug_es
-                                              : "")
+                                            _vm.assetUrl +
+                                            "/storage/img/pages/" +
+                                            page.seo_image,
+                                          target: "_blank",
+                                          rel: "noopener noreferrer"
                                         }
                                       },
+                                      [_vm._v("Ver Imagen")]
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card" }, [
+                        _c("div", { staticClass: "card-body " }, [
+                          _c("div", [
+                            _vm.editBlock && _vm.pageSelected == page.id
+                              ? _c(
+                                  "div",
+                                  { staticClass: "form-group" },
+                                  [
+                                    _c(
+                                      "label",
+                                      {
+                                        staticClass: "font-weight-bold mb-0",
+                                        attrs: { for: "id_imagen" }
+                                      },
+                                      [_vm._v("Imagen")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "small",
+                                      { staticClass: "d-block mb-0 lh-1" },
                                       [
-                                        _vm._v(_vm._s(_vm.appUrl)),
-                                        page.slug_es
-                                          ? _c("small", [
-                                              _vm._v("/" + _vm._s(page.slug_es))
-                                            ])
-                                          : _vm._e()
+                                        _vm._v(
+                                          "Resolución recomendada: 1200x900px"
+                                        )
                                       ]
                                     ),
                                     _vm._v(" "),
-                                    _c("br"),
+                                    _c(
+                                      "small",
+                                      {
+                                        staticClass:
+                                          "text-muted d-block mb-2 lh-1"
+                                      },
+                                      [
+                                        _vm._v(
+                                          "Tamaño recomendado: Menor a 100kb"
+                                        )
+                                      ]
+                                    ),
                                     _vm._v(" "),
                                     _c(
-                                      "a",
+                                      "vue-dropzone",
                                       {
-                                        staticClass: "d-inline-block",
-                                        staticStyle: {
-                                          "text-decoration": "underline"
-                                        },
+                                        ref: "ref_image",
+                                        refInFor: true,
                                         attrs: {
-                                          target: "_blank",
-                                          rel: "noopener noreferrer",
-                                          href:
-                                            _vm.appUrl +
-                                            (page.slug_en
-                                              ? "/en/" + page.slug_en
-                                              : "/en")
+                                          id: "id_imagen",
+                                          options: _vm.dropzoneOptions,
+                                          duplicateCheck: true,
+                                          useCustomSlot: true
+                                        },
+                                        on: {
+                                          "vdropzone-file-added": function(
+                                            $event
+                                          ) {
+                                            return _vm.$validateImageDropzone(
+                                              $event,
+                                              _vm.$refs.ref_image[0].dropzone,
+                                              1,
+                                              100000,
+                                              "100kb"
+                                            )
+                                          }
                                         }
                                       },
                                       [
-                                        _vm._v(_vm._s(_vm.appUrl)),
-                                        page.slug_en
-                                          ? _c("small", [
-                                              _vm._v(
-                                                "/en/" + _vm._s(page.slug_en)
-                                              )
-                                            ])
-                                          : _c("small", [_vm._v("/en")])
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "dropzone-custom-content"
+                                          },
+                                          [
+                                            _c(
+                                              "h5",
+                                              {
+                                                staticClass:
+                                                  "dropzone-custom-title text-primary"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "Suelte el archivo aquí o haga click para cargarlo."
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
                                       ]
-                                    )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _vm.pageSelected != page.id
-                                ? _c(
-                                    "h4",
-                                    { staticClass: "mb-3 font-weight-bold" },
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.errors && _vm.errors.imagen
+                                      ? _c(
+                                          "label",
+                                          {
+                                            staticClass:
+                                              "text-danger text-sm d-block",
+                                            attrs: { for: "id_imagen" }
+                                          },
+                                          [_vm._v(_vm._s(_vm.errors.imagen[0]))]
+                                        )
+                                      : _vm._e()
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            !_vm.editBlock
+                              ? _c("div", { staticClass: "text-right" }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "d-inline-block",
+                                      staticStyle: {
+                                        "text-decoration": "underline"
+                                      },
+                                      attrs: {
+                                        target: "_blank",
+                                        rel: "noopener noreferrer",
+                                        href:
+                                          _vm.appUrl +
+                                          (page.slug_es
+                                            ? "/" + page.slug_es
+                                            : "")
+                                      }
+                                    },
                                     [
-                                      _vm._v(
-                                        "Título ES: " +
-                                          _vm._s(page.title_es) +
-                                          " "
-                                      ),
-                                      _c("br"),
-                                      _vm._v(
-                                        " Título EN: " + _vm._s(page.title_en)
-                                      )
+                                      _vm._v(_vm._s(_vm.appUrl)),
+                                      page.slug_es
+                                        ? _c("small", [
+                                            _vm._v("/" + _vm._s(page.slug_es))
+                                          ])
+                                        : _vm._e()
                                     ]
-                                  )
+                                  ),
+                                  _vm._v(" "),
+                                  _c("br")
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.pageSelected != page.id
+                              ? _c(
+                                  "h4",
+                                  { staticClass: "mb-3 font-weight-bold" },
+                                  [
+                                    _vm._v(
+                                      "Título: " +
+                                        _vm._s(page.title_es) +
+                                        "\n                    "
+                                    )
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.editBlock && _vm.pageSelected == page.id
+                              ? _c(
+                                  "div",
+                                  { staticClass: "form-group" },
+                                  [
+                                    _c("Input", {
+                                      attrs: {
+                                        label: "Título",
+                                        variable: "title",
+                                        errors: _vm.errors,
+                                        valueEn: page.title_en,
+                                        valueEs: page.title_es,
+                                        valueEnParent: page.title_en,
+                                        valueEsParent: page.title_es
+                                      },
+                                      on: {
+                                        "update:valueEn": function($event) {
+                                          return _vm.$set(
+                                            page,
+                                            "title_en",
+                                            $event
+                                          )
+                                        },
+                                        "update:value-en": function($event) {
+                                          return _vm.$set(
+                                            page,
+                                            "title_en",
+                                            $event
+                                          )
+                                        },
+                                        "update:valueEs": function($event) {
+                                          return _vm.$set(
+                                            page,
+                                            "title_es",
+                                            $event
+                                          )
+                                        },
+                                        "update:value-es": function($event) {
+                                          return _vm.$set(
+                                            page,
+                                            "title_es",
+                                            $event
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mb-2" }, [
+                              _vm.pageSelected != page.id
+                                ? _c("div", [
+                                    _c(
+                                      "p",
+                                      {
+                                        staticClass:
+                                          "mb-0 text-primary font-weight-bold"
+                                      },
+                                      [_vm._v("Descripción SEO")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("div", [
+                                      page.seo_description_es
+                                        ? _c(
+                                            "p",
+                                            {
+                                              staticClass:
+                                                "project-description mb-0"
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(page.seo_description_es)
+                                              )
+                                            ]
+                                          )
+                                        : _c("p", { staticClass: "mb-0" }, [
+                                            _vm._v("No registrado")
+                                          ])
+                                    ])
+                                  ])
                                 : _vm._e(),
                               _vm._v(" "),
                               _vm.editBlock && _vm.pageSelected == page.id
@@ -1100,42 +1020,43 @@ var render = function() {
                                     "div",
                                     { staticClass: "form-group" },
                                     [
-                                      _c("Input", {
+                                      _c("Textarea", {
                                         attrs: {
-                                          label: "Título",
-                                          variable: "title",
+                                          label: "Descripción SEO",
+                                          variable: "seo_description",
                                           errors: _vm.errors,
-                                          valueEn: page.title_en,
-                                          valueEs: page.title_es,
-                                          valueEnParent: page.title_en,
-                                          valueEsParent: page.title_es
+                                          valueEn: page.seo_description_en,
+                                          valueEs: page.seo_description_es,
+                                          valueEnParent:
+                                            page.seo_description_en,
+                                          valueEsParent: page.seo_description_es
                                         },
                                         on: {
                                           "update:valueEn": function($event) {
                                             return _vm.$set(
                                               page,
-                                              "title_en",
+                                              "seo_description_en",
                                               $event
                                             )
                                           },
                                           "update:value-en": function($event) {
                                             return _vm.$set(
                                               page,
-                                              "title_en",
+                                              "seo_description_en",
                                               $event
                                             )
                                           },
                                           "update:valueEs": function($event) {
                                             return _vm.$set(
                                               page,
-                                              "title_es",
+                                              "seo_description_es",
                                               $event
                                             )
                                           },
                                           "update:value-es": function($event) {
                                             return _vm.$set(
                                               page,
-                                              "title_es",
+                                              "seo_description_es",
                                               $event
                                             )
                                           }
@@ -1144,364 +1065,154 @@ var render = function() {
                                     ],
                                     1
                                   )
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _vm.pageSelected != page.id
+                                ? _c("div", [
+                                    _c(
+                                      "p",
+                                      {
+                                        staticClass:
+                                          "mb-0 text-primary font-weight-bold"
+                                      },
+                                      [_vm._v("Keywords SEO")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("div", [
+                                      page.seo_keywords_es
+                                        ? _c("p", { staticClass: "mb-0" }, [
+                                            _vm._v(_vm._s(page.seo_keywords_es))
+                                          ])
+                                        : _c("p", { staticClass: "mb-0" }, [
+                                            _vm._v("ES: No registrado")
+                                          ])
+                                    ])
+                                  ])
                                 : _vm._e(),
                               _vm._v(" "),
-                              _c("div", { staticClass: "mb-2" }, [
-                                _vm.pageSelected != page.id
-                                  ? _c("div", [
-                                      _c(
-                                        "p",
-                                        {
-                                          staticClass:
-                                            "mb-0 text-primary font-weight-bold"
-                                        },
-                                        [_vm._v("Descripción SEO")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("div", [
-                                        page.seo_description_es
-                                          ? _c(
-                                              "p",
-                                              {
-                                                staticClass:
-                                                  "project-description mb-0"
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "ES: " +
-                                                    _vm._s(
-                                                      page.seo_description_es
-                                                    )
-                                                )
-                                              ]
-                                            )
-                                          : _c("p", { staticClass: "mb-0" }, [
-                                              _vm._v("ES: No registrado")
-                                            ])
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", [
-                                        page.seo_description_en
-                                          ? _c(
-                                              "p",
-                                              {
-                                                staticClass:
-                                                  "project-description mb-0"
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "EN: " +
-                                                    _vm._s(
-                                                      page.seo_description_en
-                                                    )
-                                                )
-                                              ]
-                                            )
-                                          : _c("p", { staticClass: "mb-0" }, [
-                                              _vm._v("ES: No registrado")
-                                            ])
-                                      ])
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.editBlock && _vm.pageSelected == page.id
-                                  ? _c(
-                                      "div",
-                                      { staticClass: "form-group" },
-                                      [
-                                        _c("Textarea", {
-                                          attrs: {
-                                            label: "Descripción SEO",
-                                            variable: "seo_description",
-                                            errors: _vm.errors,
-                                            valueEn: page.seo_description_en,
-                                            valueEs: page.seo_description_es,
-                                            valueEnParent:
-                                              page.seo_description_en,
-                                            valueEsParent:
-                                              page.seo_description_es
-                                          },
-                                          on: {
-                                            "update:valueEn": function($event) {
-                                              return _vm.$set(
-                                                page,
-                                                "seo_description_en",
-                                                $event
-                                              )
-                                            },
-                                            "update:value-en": function(
-                                              $event
-                                            ) {
-                                              return _vm.$set(
-                                                page,
-                                                "seo_description_en",
-                                                $event
-                                              )
-                                            },
-                                            "update:valueEs": function($event) {
-                                              return _vm.$set(
-                                                page,
-                                                "seo_description_es",
-                                                $event
-                                              )
-                                            },
-                                            "update:value-es": function(
-                                              $event
-                                            ) {
-                                              return _vm.$set(
-                                                page,
-                                                "seo_description_es",
-                                                $event
-                                              )
-                                            }
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e()
-                              ]),
-                              _vm._v(" "),
-                              _c("div", [
-                                _vm.pageSelected != page.id
-                                  ? _c("div", [
-                                      _c(
-                                        "p",
-                                        {
-                                          staticClass:
-                                            "mb-0 text-primary font-weight-bold"
-                                        },
-                                        [_vm._v("Keywords SEO")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("div", [
-                                        page.seo_keywords_es
-                                          ? _c("p", { staticClass: "mb-0" }, [
-                                              _vm._v(
-                                                "ES: " +
-                                                  _vm._s(page.seo_keywords_es)
-                                              )
-                                            ])
-                                          : _c("p", { staticClass: "mb-0" }, [
-                                              _vm._v("ES: No registrado")
-                                            ])
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", [
-                                        page.seo_keywords_en
-                                          ? _c("p", { staticClass: "mb-0" }, [
-                                              _vm._v(
-                                                "EN: " +
-                                                  _vm._s(page.seo_keywords_en)
-                                              )
-                                            ])
-                                          : _c("p", { staticClass: "mb-0" }, [
-                                              _vm._v("EN: No registrado")
-                                            ])
-                                      ])
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm.editBlock && _vm.pageSelected == page.id
-                                  ? _c(
-                                      "div",
-                                      { staticClass: "form-group" },
-                                      [
-                                        _c("Textarea", {
-                                          attrs: {
-                                            label: "Keywords SEO",
-                                            variable: "seo_keywords",
-                                            errors: _vm.errors,
-                                            valueEn: page.seo_keywords_en,
-                                            valueEs: page.seo_keywords_es,
-                                            valueEnParent: page.seo_keywords_en,
-                                            valueEsParent: page.seo_keywords_es
-                                          },
-                                          on: {
-                                            "update:valueEn": function($event) {
-                                              return _vm.$set(
-                                                page,
-                                                "seo_keywords_en",
-                                                $event
-                                              )
-                                            },
-                                            "update:value-en": function(
-                                              $event
-                                            ) {
-                                              return _vm.$set(
-                                                page,
-                                                "seo_keywords_en",
-                                                $event
-                                              )
-                                            },
-                                            "update:valueEs": function($event) {
-                                              return _vm.$set(
-                                                page,
-                                                "seo_keywords_es",
-                                                $event
-                                              )
-                                            },
-                                            "update:value-es": function(
-                                              $event
-                                            ) {
-                                              return _vm.$set(
-                                                page,
-                                                "seo_keywords_es",
-                                                $event
-                                              )
-                                            }
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e()
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "text-right mt-2" },
-                                [
-                                  _vm.pageSelected != page.id
-                                    ? _c(
-                                        "a",
-                                        {
-                                          staticClass:
-                                            "btn btn-inverse-primary btn-sm",
-                                          attrs: { href: "#" },
-                                          on: {
-                                            click: function($event) {
-                                              $event.preventDefault()
-                                              return _vm.editPage(page.id)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                      Editar"
-                                          )
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.editBlock && _vm.pageSelected == page.id
-                                    ? _c("Button", {
+                              _vm.editBlock && _vm.pageSelected == page.id
+                                ? _c(
+                                    "div",
+                                    { staticClass: "form-group" },
+                                    [
+                                      _c("Textarea", {
                                         attrs: {
-                                          text: "Actualizar",
-                                          classes: ["btn-inverse-primary"],
-                                          "request-server": _vm.requestServer
+                                          label: "Keywords SEO",
+                                          variable: "seo_keywords",
+                                          errors: _vm.errors,
+                                          valueEn: page.seo_keywords_en,
+                                          valueEs: page.seo_keywords_es,
+                                          valueEnParent: page.seo_keywords_en,
+                                          valueEsParent: page.seo_keywords_es
+                                        },
+                                        on: {
+                                          "update:valueEn": function($event) {
+                                            return _vm.$set(
+                                              page,
+                                              "seo_keywords_en",
+                                              $event
+                                            )
+                                          },
+                                          "update:value-en": function($event) {
+                                            return _vm.$set(
+                                              page,
+                                              "seo_keywords_en",
+                                              $event
+                                            )
+                                          },
+                                          "update:valueEs": function($event) {
+                                            return _vm.$set(
+                                              page,
+                                              "seo_keywords_es",
+                                              $event
+                                            )
+                                          },
+                                          "update:value-es": function($event) {
+                                            return _vm.$set(
+                                              page,
+                                              "seo_keywords_es",
+                                              $event
+                                            )
+                                          }
                                         }
                                       })
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.editBlock && _vm.pageSelected == page.id
-                                    ? _c(
-                                        "button",
-                                        {
-                                          staticClass: "btn btn-secondary",
-                                          attrs: { type: "button" },
-                                          on: {
-                                            click: function($event) {
-                                              $event.preventDefault()
-                                              return _vm.restoreEl.apply(
-                                                null,
-                                                arguments
-                                              )
-                                            }
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "text-right mt-2" },
+                              [
+                                _vm.pageSelected != page.id
+                                  ? _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "btn btn-inverse-primary btn-sm",
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.editPage(page.id)
                                           }
-                                        },
-                                        [_vm._v("Cancelar")]
-                                      )
-                                    : _vm._e()
-                                ],
-                                1
-                              )
-                            ])
+                                        }
+                                      },
+                                      [_vm._v("\n                      Editar")]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.editBlock && _vm.pageSelected == page.id
+                                  ? _c("Button", {
+                                      attrs: {
+                                        text: "Actualizar",
+                                        classes: ["btn-inverse-primary"],
+                                        "request-server": _vm.requestServer
+                                      }
+                                    })
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.editBlock && _vm.pageSelected == page.id
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-secondary",
+                                        attrs: { type: "button" },
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            return _vm.restoreEl.apply(
+                                              null,
+                                              arguments
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("Cancelar")]
+                                    )
+                                  : _vm._e()
+                              ],
+                              1
+                            )
                           ])
                         ])
-                      ]
-                    )
-                  ]
-                )
-              }),
-              0
-            )
-      ],
-      1
-    )
+                      ])
+                    ]
+                  )
+                ]
+              )
+            }),
+            0
+          )
+    ])
   ])
 }
 var staticRenderFns = []
 render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/Loader.vue":
-/*!********************************************!*\
-  !*** ./resources/js/components/Loader.vue ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Loader_vue_vue_type_template_id_e79ec684___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Loader.vue?vue&type=template&id=e79ec684& */ "./resources/js/components/Loader.vue?vue&type=template&id=e79ec684&");
-/* harmony import */ var _Loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loader.vue?vue&type=script&lang=js& */ "./resources/js/components/Loader.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Loader_vue_vue_type_template_id_e79ec684___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Loader_vue_vue_type_template_id_e79ec684___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/Loader.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/Loader.vue?vue&type=script&lang=js&":
-/*!*********************************************************************!*\
-  !*** ./resources/js/components/Loader.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Loader.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Loader.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/Loader.vue?vue&type=template&id=e79ec684&":
-/*!***************************************************************************!*\
-  !*** ./resources/js/components/Loader.vue?vue&type=template&id=e79ec684& ***!
-  \***************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_template_id_e79ec684___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Loader.vue?vue&type=template&id=e79ec684& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Loader.vue?vue&type=template&id=e79ec684&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_template_id_e79ec684___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_template_id_e79ec684___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

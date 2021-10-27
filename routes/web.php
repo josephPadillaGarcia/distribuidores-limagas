@@ -159,6 +159,16 @@ Route::middleware(['auth'])->namespace('Cms')->name('cms.')->group(function () {
             Route::post('/filter-export', 'LeadTraditionalController@filterExport')->name('filter-export');
     });
 
+    Route::prefix('tutoriales')->name('tutorials.')->group(function () {
+        Route::get('/', 'TutorialsController@index')->name('index');
+        Route::post('/', 'TutorialsController@store')->name('store');
+        Route::put('/order', 'TutorialsController@order')->name('order');
+        Route::put('/{element}', 'TutorialsController@update')->name('update');
+        Route::delete('/{element}', 'TutorialsController@destroy')->name('destroy');
+        Route::get('/json/get-all', 'TutorialsController@getAll')->name('get-all');
+        Route::get('/json/get/{element}', 'TutorialsController@get')->name('get');
+    });
+
     Route::name('app-tracking.')->prefix('app-rastreo')->group(function () {
         Route::get('/', 'AppTrackingController@index')->name('index');
         Route::post('/', 'AppTrackingController@store')->name('store');

@@ -23,11 +23,20 @@ class MasterPagesTableSeeder extends Seeder
             ],
 
             [
-                'name' 		=> 'Nosotros',
-                'slug_es'     => 'nosotros',
-                'title_es'     => 'Quiénes somos',
-                'slug_en'     => 'about-us',
-                'title_en'     => 'About Us',
+                'name' 		=> 'Sobre Dinet',
+                'slug_es'     => 'sobre-dinet',
+                'title_es'     => 'Sobre Dinet',
+                'slug_en'     => 'about-dinet',
+                'title_en'     => 'About Dinet',
+                'index' => $position++
+            ],
+
+            [
+                'name' 		=> 'Servicios',
+                'slug_es'     => 'servicios',
+                'title_es'     => 'Servicios',
+                'slug_en'     => 'services',
+                'title_en'     => 'Services',
                 'index' => $position++
             ],
 

@@ -31,7 +31,8 @@ return [
         'elements' => 'Los elementos',
         'customer' => 'El cliente',
         'service' => 'El servicio',
-        'app_tracking' => 'App de rastreo'
+        'app_tracking' => 'App de rastreo',
+        'tutorial' => 'El tutorial'
     ],
     'title' => [
         'error' => 'Error',
