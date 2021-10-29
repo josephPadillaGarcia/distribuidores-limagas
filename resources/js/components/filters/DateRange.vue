@@ -9,7 +9,8 @@
       :toggle-class="[]"
     >
       <template v-slot:button-content>
-        <jam-calendar height="18px" width="18px" style="margin-top: -4px;" class="current-color"></jam-calendar>
+        <!-- <jam-calendar height="18px" width="18px" style="margin-top: -4px;" class="current-color"></jam-calendar> -->
+        <i style="vertical-align: sub;line-height:1" class="ri-calendar-line ri-lg current-color"/>
         <span class>{{ active.text }}</span>
       </template>
       <b-dropdown-text tag="div" class="px-2" style="width: 16rem;">
@@ -33,7 +34,8 @@
           width="100%"
           range
         >
-          <jam-calendar height="18" width="18" slot="calendar-icon" class="current-color mt-2"></jam-calendar>
+          <!-- <jam-calendar height="18" width="18" slot="calendar-icon" class="current-color mt-2"></jam-calendar> -->
+          <i style="vertical-align: sub;line-height:1" class="ri-calendar-line ri-lg current-color"/>
         </date-picker>
       </b-dropdown-text>
     </b-dropdown>

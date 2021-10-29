@@ -21,6 +21,7 @@ use App\Http\Traits\CmsTrait;
 use App\LeadVideocall;
 use App\Order;
 use App\ProjectQuotation;
+use App\Service;
 use App\Suscriber;
 
 class DashboardController extends Controller
@@ -73,10 +74,10 @@ class DashboardController extends Controller
 
     public function getStatisticsByDate(Request $request){
         //$subscriptions = $this->getSubscriptions($request->date, $request->range);
-        $leadsVideocall = $this->getLeadsVideocall($request->date, $request->range);
+        // $leadsVideocall = $this->getLeadsVideocall($request->date, $request->range);
         $leadsQuotations = $this->getLeadsQuotations($request->date, $request->range);
         //$response = ["subscriptions" => $subscriptions, "leadsVideocall" => $leadsVideocall, "leadsQuotations"=> $leadsQuotations];
-        $response = ["leadsVideocall" => $leadsVideocall, "leadsQuotations"=> $leadsQuotations];
+        $response = ["leadsQuotations" => $leadsQuotations];
         return response()->json($response, 200);
     }
 
@@ -149,53 +150,53 @@ class DashboardController extends Controller
         $rangeStatisticsTemp = $this->getRangeStatistics($date, $range);
         $rangeStatistics = $rangeStatisticsTemp["rows"];
         $rangeType = $rangeStatisticsTemp["rangeType"];
-        $projects = Project::get();
-        foreach ($projects as $key => $value) {
-            $columns[] = $value->name_es;
+        $services = Service::get();
+        foreach ($services as $key => $value) {
+            $columns[] = $value->title_es;
         }
             foreach ($rangeStatistics as $key => $value) {
                 switch ($date) {
                     case 'today':
-                        foreach ($projects as $key2 => $value2) {
-                            $temp = ProjectQuotation::where('project_id',$value2->id)->whereBetween('created_at', [$value["dateValue"], $value["dateValue2"]])->get()->count();
-                            $rangeStatistics[$key][$value2->name_es] = $temp ?? 0;
+                    foreach ($services as $key2 => $value2) {
+                        $temp = Lead::where('service_id', $value2->id)->whereBetween('created_at', [$value["dateValue"], $value["dateValue2"]])->get()->count();
+                        $rangeStatistics[$key][$value2->title_es] = $temp ?? 0;
                         }
-                        break;
+                    break;
                     case 'range':
-                        foreach ($projects as $key2 => $value2) {
+                    foreach ($services as $key2 => $value2) {
                             if ($rangeType == "day") {
-                                $temp = ProjectQuotation::where('project_id',$value2->id)->whereBetween('created_at', [$value["dateValue"], $value["dateValue2"]]);
+                            $temp = Lead::where('service_id', $value2->id)->whereBetween('created_at', [$value["dateValue"], $value["dateValue2"]]);
                             } else if ($rangeType == "month") {
-                                $temp = ProjectQuotation::where('project_id',$value2->id)->whereMonth('created_at', $value["dateValue"])->whereYear('created_at', $value["dateYear"]);
+                            $temp = Lead::where('service_id', $value2->id)->whereMonth('created_at', $value["dateValue"])->whereYear('created_at', $value["dateYear"]);
                             }
                             $temp = $temp->get()->count();
-                            $rangeStatistics[$key][$value2->name_es] = $temp ?? 0;
+                        $rangeStatistics[$key][$value2->title_es] = $temp ?? 0;
                         }
                         break;
                     case '7':
-                        foreach ($projects as $key2 => $value2) {
-                            $temp = ProjectQuotation::where('project_id',$value2->id)->whereBetween('created_at', [$value["dateValue"], $value["dateValue2"]])->get()->count();
-                            $rangeStatistics[$key][$value2->name_es] = $temp ?? 0;
+                    foreach ($services as $key2 => $value2) {
+                        $temp = Lead::where('service_id', $value2->id)->whereBetween('created_at', [$value["dateValue"], $value["dateValue2"]])->get()->count();
+                        $rangeStatistics[$key][$value2->title_es] = $temp ?? 0;
                         }
                         break;
                     case '30':
-                        foreach ($projects as $key2 => $value2) {
-                            $temp = ProjectQuotation::where('project_id',$value2->id)->whereBetween('created_at', [$value["dateValue"], $value["dateValue2"]])->get()->count();
-                            $rangeStatistics[$key][$value2->name_es] = $temp ?? 0;
+                    foreach ($services as $key2 => $value2) {
+                        $temp = Lead::where('service_id', $value2->id)->whereBetween('created_at', [$value["dateValue"], $value["dateValue2"]])->get()->count();
+                        $rangeStatistics[$key][$value2->title_es] = $temp ?? 0;
                         }
                         break;
 
                     case '90':
-                        foreach ($projects as $key2 => $value2) {
-                            $temp = ProjectQuotation::where('project_id',$value2->id)->whereBetween('created_at', [$value["dateValue"], $value["dateValue2"]])->get()->count();
-                            $rangeStatistics[$key][$value2->name_es] = $temp ?? 0;
+                    foreach ($services as $key2 => $value2) {
+                        $temp = Lead::where('service_id', $value2->id)->whereBetween('created_at', [$value["dateValue"], $value["dateValue2"]])->get()->count();
+                        $rangeStatistics[$key][$value2->title_es] = $temp ?? 0;
                         }
                         break;
 
                     case 'this_year':
-                        foreach ($projects as $key2 => $value2) {
-                            $temp = ProjectQuotation::where('project_id',$value2->id)->whereMonth('created_at', $value["dateValue"])->whereYear('created_at', $value["dateYear"])->get()->count();
-                            $rangeStatistics[$key][$value2->name_es] = $temp ?? 0;
+                    foreach ($services as $key2 => $value2) {
+                        $temp = Lead::where('service_id', $value2->id)->whereMonth('created_at', $value["dateValue"])->whereYear('created_at', $value["dateYear"])->get()->count();
+                        $rangeStatistics[$key][$value2->title_es] = $temp ?? 0;
                         }
                         break;
                 }
