@@ -35,6 +35,10 @@ Route::namespace('Api')->group(function() {
     });
     Route::prefix('page')->group(function() { 
         Route::get('home', 'PageController@home');
+        Route::get('about', 'PageController@about');
+        Route::get('services', 'PageController@services');
+
+
         Route::get('blog', 'PageController@blog');
         Route::get('blog/category/{slug}', 'PageController@blogCategory');
         Route::get('blog/category/{slug}/{post}', 'PageController@blogCategoryPost');

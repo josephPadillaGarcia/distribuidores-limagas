@@ -18,6 +18,7 @@ use App\Project;
 use App\ProjectBanner;
 use App\ProjectQuotation;
 use App\ProjectTypeDepartment;
+use App\Service;
 use App\Slider;
 use App\Testimonial;
 use Carbon\Carbon;
@@ -29,19 +30,35 @@ class PageController extends BaseController
     public function home(Request $request)
     {
         $page = $this->getSeoPage(NULL, $request->locale);
-        $slider = Slider::select('id','link', 'image_' . $request->locale, 'image_responsive_' . $request->locale)->where('from', '<=', Carbon::now()->toDateTimeString())
-            ->where('to', '>=', Carbon::now()->toDateTimeString())->orderBy('index')->get();
-        $projects = $this->paginateProjects($request);
-        $posts = Post::select('id', 'excerpt_' . $request->locale, 'created_at', 'category_id', 'thumbnail', 'title_' . $request->locale, 'slug_' . $request->locale)
-            ->orderBy('created_at', 'desc')->where('published', 1)->with('category:id,name_' . $request->locale . ',slug_' . $request->locale)->take(9)->get();
-        $filters = $this->getFilters();
+        $services = Service::select('id', 'description_' . $request->locale, 'title_' . $request->locale, 'slug_' . $request->locale, 'image')->where('active', 1)->orderBy('index')->get();
         $content = $this->getContentPage(NULL);
         $data = array(
-            "filters" => $filters,
             "page" => $page,
-            "slider" => $slider,
-            "projects" => $projects,
-            "posts" => $posts,
+            "services" => $services,
+            "content" => $content
+        );
+        return $this->sendResponse($data, '');
+    }
+
+    public function about(Request $request)
+    {
+        $page = $this->getSeoPage('about-dinet', $request->locale);
+        $content = $this->getContentPage('about-dinet');
+        $data = array(
+            "page" => $page,
+            "content" => $content
+        );
+        return $this->sendResponse($data, '');
+    }
+
+    public function services(Request $request)
+    {
+        $page = $this->getSeoPage('services', $request->locale);
+        $services = Service::select('id', 'description_' . $request->locale, 'title_' . $request->locale, 'slug_' . $request->locale, 'image')->where('active', 1)->orderBy('index')->get();
+        $content = $this->getContentPage('services');
+        $data = array(
+            "page" => $page,
+            "services" => $services,
             "content" => $content
         );
         return $this->sendResponse($data, '');
