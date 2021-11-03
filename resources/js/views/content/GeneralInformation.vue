@@ -55,14 +55,14 @@
             </div>
             <div class="col-12 col-md-6 col-lg-4">
               <div class="form-group">
-                <label class="font-weight-bold">Nombre Link API</label>
+                <label class="font-weight-bold">Footer Nombre Link API</label>
                 <p v-if="el.name_api">{{ el.name_api }}</p>
                 <p v-else>No registrado</p>
               </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
               <div class="form-group">
-                <label class="font-weight-bold">Link API</label>
+                <label class="font-weight-bold">Footer Link API</label>
                 <p v-if="el.api_link"><a style="text-decoration: underline;" :href="el.api_link" target="_blank">{{ el.api_link }}</a></p>
                 <p v-else>No registrado</p>
               </div>
@@ -78,6 +78,13 @@
               <div class="form-group">
                 <label class="font-weight-bold">Número de Contacto Asesores</label>
                 <div v-if="el.contact_number">{{ el.contact_number_format }}</div>
+                <p v-else>No registrado</p>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="form-group">
+                <label class="font-weight-bold">Link Envio Cliente Número Tracking (Link que se usará para enviar al cliente a la Plataforma para revisar el estado de su pedido)</label>
+                <div v-if="el.api_url_tracking" v-html="el.api_url_tracking">{{ el.api_url_tracking }}</div>
                 <p v-else>No registrado</p>
               </div>
             </div>
@@ -144,7 +151,7 @@
 
                             <div class="col-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                  <label class="font-weight-bold" for="name_api">Nombre Link API</label>
+                  <label class="font-weight-bold" for="name_api">Footer Nombre Link API</label>
                   <input type="text" class="form-control" v-model="el.name_api" id="name_api" />
                   <label
                     v-if="errors && errors.name_api"
@@ -156,7 +163,7 @@
 
               <div class="col-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                  <label class="font-weight-bold" for="api_link">Link API</label>
+                  <label class="font-weight-bold" for="api_link">Footer Link API</label>
                   <input type="text" class="form-control" v-model="el.api_link" id="api_link" />
                   <label
                     v-if="errors && errors.api_link"
@@ -190,6 +197,20 @@
                   >{{ errors.book_link[0] }}</label>
                 </div>
               </div>
+
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="form-group">
+                  <label class="font-weight-bold" for="book_link">Link Envio Cliente Número Tracking</label>
+                  <input type="text" class="form-control" v-model="el.api_url_tracking" id="api_url_tracking" />
+                  <label
+                    v-if="errors && errors.api_url_tracking"
+                    class="mt-2 text-danger text-sm"
+                    for="api_url_tracking"
+                  >{{ errors.api_url_tracking[0] }}</label>
+                </div>
+              </div>
+
+              
 
               <div class="col-12 text-right">
                 <Button

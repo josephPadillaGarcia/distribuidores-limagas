@@ -79,6 +79,19 @@
                   </div>
                   <div class="col-12">
                     <div class="form-group">
+                      <Textarea
+                        label="Descripción Corta"
+                        variable="excerpt"
+                        :errors="errors"
+                        :valueEn.sync="element.excerpt_en"
+                        :valueEs.sync="element.excerpt_es"
+                        :valueEnParent="element.excerpt_en"
+                        :valueEsParent="element.excerpt_es"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
                       <small class="d-block mb-0 lh-1"
                         >Resolución recomendada: 1920×969px</small
                       >
@@ -420,6 +433,9 @@ export default {
       fd.append("id", this.element.id);
       if (this.element.description_es) {
         fd.append("description_es", this.element.description_es);
+      }
+      if (this.element.excerpt_es) {
+        fd.append("excerpt_es", this.element.excerpt_es);
       }
       if (this.element.title_es) {
         fd.append("title_es", this.element.title_es);

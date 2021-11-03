@@ -109,13 +109,13 @@ class GeneralContentController extends Controller
                 else{
                     $value_es = $element["value_es"];
                     $value_en = $element["value_en"];
-                    if($value_en || $value_es){
-                        $content = Content::where("master_section_id",$section_id)->where("field",$element["variable"]);
-                        if($content){
-                            $content = $content->delete();
-                        }
-                        $content = Content::UpdateOrCreate(array_merge(["value"=> $element["value"],"value_es"=> $element["value_es"],"value_en"=> $element["value_en"], "field" => $element["variable"] ,"master_section_id"=>$section_id]));
+                    $content = Content::where("master_section_id",$section_id)->where("field",$element["variable"]);
+                    if($content){
+                        $content = $content->delete();
                     }
+                    $value_es2 = $element["value_es"] ? $element["value_es"] : NULL;
+                    $value_en2 = $element["value_en"] ? $element["value_en"] : NULL;
+                    $content = Content::UpdateOrCreate(array_merge(["value"=> $element["value"],"value_es"=> $value_es2,"value_en"=> $value_en2, "field" => $element["variable"] ,"master_section_id"=>$section_id]));
                 }
             }
             return response()->json(['title'=> trans('custom.title.success'), 'message'=> trans('custom.message.update.success', ['name' => trans('custom.attribute.section')]) ],200);

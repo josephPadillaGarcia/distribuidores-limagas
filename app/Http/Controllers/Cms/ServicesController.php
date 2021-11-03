@@ -39,7 +39,7 @@ class ServicesController extends Controller
     public function store(ServiceRequest $request)
     {
         $service = request(['title_es',"description_en","description_es",'title_en','slug_en','slug_es','active',
-        "seo_keywords_es","seo_keywords_en","seo_description_es","seo_description_en","seo_title_es","seo_title_en",'url_video']);
+        "seo_keywords_es","seo_keywords_en","seo_description_es","seo_description_en","seo_title_es","seo_title_en",'url_video','excerpt_en','excerpt_es']);
         
         $fileName2 = $this->setFileName('ssi-', $request->file('image'));
         $storeFile2 = Storage::disk('public')->putFileAs('img/services/', $request->file('image'), $fileName2);
@@ -87,7 +87,7 @@ class ServicesController extends Controller
     public function update(ServiceRequest $request, $element)
     {
         $request_element = request(['title_es',"description_en","description_es",'title_en','slug_en','slug_es','active',
-        "seo_keywords_es","seo_keywords_en","seo_description_es","seo_description_en","seo_title_es","seo_title_en",'url_video']);
+        "seo_keywords_es","seo_keywords_en","seo_description_es","seo_description_en","seo_title_es","seo_title_en",'url_video','excerpt_en','excerpt_es']);
         $serviceRegistered = Service::find($request->id);
         if ($request->hasFile('image')) {
             $imageName = $this->setFileName('ssi-', $request->file('image'));

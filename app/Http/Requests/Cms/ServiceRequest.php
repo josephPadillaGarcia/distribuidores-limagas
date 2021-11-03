@@ -27,6 +27,7 @@ class ServiceRequest extends FormRequest
         $rules = [
             //'title_es' => 'required|max:100',
             'title_es' => ['required',Rule::unique('services')->ignore($this->id),'max:150'],
+            'excerpt_es' => 'required',
             'seo_image' => 'sometimes|required',
             'seo_title_es' => 'sometimes|max:60',
             'seo_title_en' => 'sometimes|max:60',
