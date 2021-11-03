@@ -77,11 +77,14 @@ class MasterSectionsTableSeeder extends Seeder
                 'master_page_id'     => MasterPage::where('name','Cotizaciones')->first()->id,
             ],
 
-            /*#Blog
-             [
+            [
                 'name' 		=> 'Banner',
-                'master_page_id'     => MasterPage::where('name','Blog')->first()->id,
-            ],*/
+                'master_page_id'     => MasterPage::where('name','Políticas de Privacidad')->first()->id,
+            ],
+            [
+                'name' 		=> 'Información',
+                'master_page_id'     => MasterPage::where('name','Políticas de Privacidad')->first()->id,
+            ],
 
         ]);
     }

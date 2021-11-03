@@ -76,6 +76,15 @@ class MasterPagesTableSeeder extends Seeder
                 'index' => $position++
             ],
 
+            [
+                'name' 		=> 'Políticas de Privacidad',
+                'slug_es'     => 'politicas-privacidad',
+                'title_es'     => 'Políticas de Privacidad',
+                'slug_en'     => 'privacy-policies',
+                'title_en'     => 'Privacy Policies',
+                'index' => $position++
+            ],
+
         ]);
     }
 }

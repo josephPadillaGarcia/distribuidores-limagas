@@ -2,25 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\AboutCustomerSupport;
-use App\AboutProjectFinished;
-use App\AboutText;
-use App\AboutWarrantyElement;
-use App\Cami;
-use App\CamiElement;
+use App\AppTracking;
 use App\Category;
-use App\FinancingOption;
+use App\ConfigQuantityPackage;
+use App\Customer;
 use App\Http\Controllers\Api\BaseController;
 use App\MasterLeadMedium;
-use App\MasterLeadTimeDay;
 use App\Post;
 use App\Project;
-use App\ProjectBanner;
-use App\ProjectQuotation;
-use App\ProjectTypeDepartment;
 use App\Service;
-use App\Slider;
 use App\Testimonial;
+use App\Tutorial;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -30,23 +22,35 @@ class PageController extends BaseController
     public function home(Request $request)
     {
         $page = $this->getSeoPage(NULL, $request->locale);
-        $services = Service::select('id', 'description_' . $request->locale, 'title_' . $request->locale, 'slug_' . $request->locale, 'image')->where('active', 1)->orderBy('index')->get();
+        $services = Service::where('active', 1)->orderBy('index')->get();
+        $tutos = Tutorial::orderBy('index')->get();
         $content = $this->getContentPage(NULL);
+        $customers = Customer::where('active', 1)->orderBy('index')->get();
+        $appTracking = AppTracking::first();
         $data = array(
             "page" => $page,
             "services" => $services,
-            "content" => $content
+            "content" => $content,
+            "tutos" => $tutos,
+            "customers" => $customers,
+            "appTracking" => $appTracking
         );
         return $this->sendResponse($data, '');
     }
 
     public function about(Request $request)
     {
+        $appTracking = AppTracking::first();
         $page = $this->getSeoPage('about-dinet', $request->locale);
         $content = $this->getContentPage('about-dinet');
+        $customers = Customer::where('active', 1)->orderBy('index')->get();
+        $testimonials = Testimonial::where('active', 1)->orderBy('index')->get();
         $data = array(
             "page" => $page,
-            "content" => $content
+            "content" => $content,
+            "customers" => $customers,
+            "testimonials" => $testimonials,
+            "appTracking" => $appTracking
         );
         return $this->sendResponse($data, '');
     }
@@ -54,102 +58,53 @@ class PageController extends BaseController
     public function services(Request $request)
     {
         $page = $this->getSeoPage('services', $request->locale);
-        $services = Service::select('id', 'description_' . $request->locale, 'title_' . $request->locale, 'slug_' . $request->locale, 'image')->where('active', 1)->orderBy('index')->get();
+        $services = Service::where('active', 1)->orderBy('index')->get();
         $content = $this->getContentPage('services');
+        $appTracking = AppTracking::first();
         $data = array(
             "page" => $page,
             "services" => $services,
-            "content" => $content
+            "content" => $content,
+            "appTracking" => $appTracking
         );
         return $this->sendResponse($data, '');
     }
 
-    public function blog(Request $request)
+    public function servicesRead(Request $request)
     {
-        $page = $this->getSeoPage('blog', $request->locale);
-        $categories = Category::has('post')->orderBy('name_' . $request->locale)->get();
-        $posts = $this->paginateBlog($request->q, $request);
-        $content = $this->getContentPage('blog');
-        $data = array(
-            "page" => $page,
-            "categories" => $categories,
-            "posts" => $posts,
-            "content" => $content
-        );
-        return $this->sendResponse($data, '');
-    }
-
-    public function blogCategory(Request $request)
-    {
-        $category = Category::select('id', 'name_' . $request->locale, 'slug_es', 'slug_en')->where('slug_' . $request->locale, $request->slug)->first();
-        if (!$category) {
+        $service = Service::where('slug_' . $request->locale, $request->slug)->where('active',true)->first();
+        if (!$service) {
             return $this->sendError("");
         }
-        $posts = $this->paginateBlog($request->q, $request,$category->id);
-        $page = $this->getSeoPage('blog', $request->locale);
-        $categories = Category::has('post')->orderBy('name_' . $request->locale)->get();
-        $content = $this->getContentPage('blog');
-        $data = array(
-            "page" => $page,
-            "category" => $category,
-            "categories" => $categories,
-            "posts" => $posts,
-            "content" => $content
-        );
-        return $this->sendResponse($data, '');
-    }
-
-    public function blogCategoryPost(Request $request)
-    {
-        $category = Category::select('id', 'name_' . $request->locale, 'slug_es', 'slug_en')->where('slug_' . $request->locale, $request->slug)->first();
-        if (!$category) {
-            return $this->sendError("Not found");
-        }
-        $post = Post::where('slug_' . $request->locale, $request->post)->where('category_id', $category->id)->where('published', 1)->first();
-        if (!$post) {
-            return $this->sendError("Not found");
-        }
-        $page = $this->getSeoPage('blog', $request->locale);
-        $categories = Category::has('post')->orderBy('name_' . $request->locale)->get();
-        $posts = Post::where('published', 1)->where('id', '!=', $post->id)->with('category:id,name_' . $request->locale . ',slug_' . $request->locale)->inRandomOrder()->take(3)->get();
-        $content = $this->getContentPage('blog');
-        $data = array(
-            "page" => $page,
-            "category" => $category,
-            "posts" => $posts,
-            'post' => $post,
-            "categories" => $categories,
-            "content" => $content
-        );
-        return $this->sendResponse($data, '');
-    }
-
-    public function contactUs(Request $request)
-    {
-        $page = $this->getSeoPage('contact-us', $request->locale);
-        $medium = MasterLeadMedium::where('videocall', 0)->get();
-        $projects = Project::select('id', 'logo','logo_colour', 'name_es', 'name_en')->where('active', 1)->get();
-        $content = $this->getContentPage('contact-us');
-        $terms = $this->getContentPage('terms-conditions');
+        $page = $this->getSeoPage('services', $request->locale);
         $privacy = $this->getContentPage('privacy-policies');
+        $appTracking = AppTracking::first();
+        $services = Service::where('active',true)->where('id', '!=', $service->id)->inRandomOrder()->take(3)->get();
+        $quantityPackages = ConfigQuantityPackage::where('active', 1)->orderBy('index')->get();
+        $content = $this->getContentPage('services');
+        $contentQuotes = $this->getContentPage('quotes');
         $data = array(
-            "page" => $page,
-            "medium" => $medium,
-            "projects" => $projects,
-            "content" => $content,
+            "page" => $page,            
             'privacy' => $privacy,
-            'terms' => $terms
+            "appTracking" => $appTracking,
+            "services" => $services,
+            "quantity" => $quantityPackages,
+            "service" => $service,
+            "content" => $content,
+            "contentQuotes" => $contentQuotes
         );
         return $this->sendResponse($data, '');
     }
 
-    public function termsConditions(Request $request)
+    public function quotes(Request $request)
     {
-        $page = $this->getSeoPage('terms-conditions', $request->locale);
-        $content = $this->getContentPage('terms-conditions');
+        $page = $this->getSeoPage('quotes', $request->locale);
+        $content = $this->getContentPage('quotes');
+        $quantityPackages = ConfigQuantityPackage::where('active', 1)->orderBy('index')->get();
         $data = array(
             "page" => $page,
-            "content" => $content
+            "content" => $content,
+            "quantity" => $quantityPackages
         );
         return $this->sendResponse($data, '');
     }
@@ -165,17 +120,4 @@ class PageController extends BaseController
         return $this->sendResponse($data, '');
     }
 
-    public function testimonials(Request $request)
-    {
-        $page = $this->getSeoPage('testimonials', $request->locale);
-        $testimonials = $this->paginateTestimonials($request);
-        $content = $this->getContentPage('testimonials');
-        $data = array(
-            "page" => $page,
-            "testimonials" => $testimonials,
-            "content" => $content
-        );
-        return $this->sendResponse($data, '');
-    }
-    
 }
