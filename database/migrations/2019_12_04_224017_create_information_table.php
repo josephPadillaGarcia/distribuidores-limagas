@@ -17,6 +17,7 @@ class CreateInformationTable extends Migration
             $table->bigIncrements('id');
             $table->text('customers_link')->nullable();
             $table->text('book_link')->nullable();
+            $table->text('api_url_tracking')->nullable();
             $table->string('contact_number',20)->nullable();
             $table->text('direction');
             $table->string('whatsapp_number',15)->nullable();

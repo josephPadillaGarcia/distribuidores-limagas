@@ -96,6 +96,10 @@
                         <p>{{ el.title_es }}</p>
                       </div>
                       <div class="col-12">
+                        <label class="font-weight-bold d-block">Descripción Corta </label>
+                        <p>{{ el.excerpt_es }}</p>
+                      </div>
+                      <div class="col-12">
                         <label class="font-weight-bold d-block"
                           >Mostrar en la Web
                         </label>

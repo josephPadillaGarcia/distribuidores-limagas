@@ -23,7 +23,8 @@ class GeneralInformationRequest extends FormRequest
                 'whatsapp_numbers.*.number' => 'whatsapp',
                 'phone_numbers.*.department' => 'departamento',
                 'whatsapp_numbers.*.department' => 'departamento',*/
-                'whatsapp_number' => 'número whatsapp'
+                'whatsapp_number' => 'número whatsapp',
+                'api_url_tracking' => 'link envio cliente número tracking'
             ];
     }
 
@@ -37,6 +38,7 @@ class GeneralInformationRequest extends FormRequest
         return [
             'direction' => 'required',
             'book_link' => 'nullable|sometimes|url',
+            'api_url_tracking' => 'nullable|sometimes|url',
             'contact_number' => 'nullable|digits:9',
             'api_link' => 'nullable|sometimes|url',
             'customers_link' => 'nullable|sometimes|url',

@@ -85,13 +85,13 @@
       </form>
       <div class="row px-sm-3 px-lg-4" v-if="loginBlock">
         <div class="col-12">
-          <a
+          <!--<a
             href="#"
             class="text-primary"
             @click.prevent="()=>{ loginBlock = false; resetearBlock = true; restorePage() }"
           >
             <small>Olvidaste tu contraseña?</small>
-          </a>
+          </a>-->
         </div>
       </div>
       <div class="row px-sm-3 px-lg-4" v-if="resetearBlock">

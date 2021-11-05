@@ -17,6 +17,8 @@ class CreateServicesTable extends Migration
             $table->bigIncrements('id');
             $table->text('description_es')->nullable();
             $table->text('description_en')->nullable();
+            $table->text('excerpt_es')->nullable();
+            $table->text('excerpt_en')->nullable();
             $table->string('title_es',150);
             $table->string('title_en',150)->nullable();
             $table->string('slug_en',170);
