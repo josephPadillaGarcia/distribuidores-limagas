@@ -273,13 +273,13 @@ class MasterFieldsTableSeeder extends Seeder
                 'name' 		            => 'Fondo',
                 'variable'              => 'image',
                 'type'                  => 'image',
-                'master_section_id'     => MasterSection::where('name','Información')->where('master_page_id',MasterPage::where('name','Políticas de Privacidad')->first()->id)->first()->id
+                'master_section_id'     => MasterSection::where('name','Banner')->where('master_page_id',MasterPage::where('name','Políticas de Privacidad')->first()->id)->first()->id
             ],
             [
                 'name' 		            => 'Título',
                 'variable' 		        => 'title',
                 'type'                  => 'input',
-                'master_section_id'     => MasterSection::where('name','Información')->where('master_page_id',MasterPage::where('name','Políticas de Privacidad')->first()->id)->first()->id
+                'master_section_id'     => MasterSection::where('name','Banner')->where('master_page_id',MasterPage::where('name','Políticas de Privacidad')->first()->id)->first()->id
             ],
             [
                 'name' 		            => 'Descripción',
