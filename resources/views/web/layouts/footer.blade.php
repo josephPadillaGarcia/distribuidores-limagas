@@ -1,6 +1,8 @@
 @php
 $information = $footer["information"];
 $social_networks = $footer["social_networks"];
+$locale = $footer["locale"];
+$routeLocale = $footer["routeLocale"];
 @endphp
 <footer class="grid align-center lazyload" data-bg="/storage/web/img/footer.png">
     <div class="container">
@@ -46,21 +48,21 @@ $social_networks = $footer["social_networks"];
                 <div class="menu_footer">
                     <ul>
                         <li>
-                            <a href="{{ route('web.aboutUs') }}">
+                            <a href="{!! Helper::getCustomRoute('web.aboutUs', $routeLocale) !!}">
                                 <img class="lazyload" src="/storage/web/img/icon_list.png" alt="Sobre Dinet" />
                                 <!-- $t("Sobre Dinet") -->
                                 Sobre Dinet
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('web.services') }}">
+                            <a href="{!! Helper::getCustomRoute('web.services', $routeLocale) !!}">
                                 <img class="lazyload" src="/storage/web/img/icon_list.png" alt="Servicios" />
                                 <!-- $t("Servicios") -->
                                 Servicios
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('web.quotations') }}">
+                            <a href="{!! Helper::getCustomRoute('web.quotations', $routeLocale) !!}">
                                 <img class="lazyload" src="/storage/web/img/icon_list.png" alt="Cotizaciones" />
                                 <!-- $t("Cotizaciones") -->
                                 Cotizaciones

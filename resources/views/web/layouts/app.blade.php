@@ -1,7 +1,7 @@
 @php
 $webUrl = config('services.web_url');
 $storageUrl = config('services.storage_url');
-$locale = "es";
+$locale = App::getLocale();
 @endphp
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">

@@ -9,8 +9,9 @@
     $tutos = $data["tutos"];
     $customers = $data["customers"];
     $footer = $data["footer"];
+    $locale = $data["locale"];
+    $routeLocale = $data["routeLocale"];
     $page = $data["page"];
-    $locale = "es";
 @endphp
   <main>
         <section class="position-relative marginb_section section_bannerHome section_bannerHome_02" id="seccion_banner_global">
@@ -104,7 +105,7 @@
                             <div>
                                 <!-- ItemService -->
                                 <div class="item">
-                                    <a href="{{ route('web.service', $service['slug_' . $locale]) }}">
+                                    <a href="{!! Helper::getCustomRoute('web.service', $routeLocale, ['slug' => $service['slug_' . $locale] ? $service['slug_' . $locale] : $service['slug_es']]) !!}">
                                       @if($service["image"])
                                         <img class="lazyload" src="{{ $storageUrl . '/img/services/' . $service['image'] }}" alt="{{ 'Imagen ' . $service['title_' . $locale ]}}" />
                                       @endif
@@ -117,7 +118,7 @@
                                         </span>
                                         <b class="text-center">{{ $service["title_" . $locale] }}</b>
                                         <p class="text-center">{{ $service["excerpt_" . $locale] }}</p>
-                                        <a href="{{ route('web.service', $service['slug_' . $locale]) }}" class="btn_global btn_border text-center btn_color_text">
+                                        <a href="{!! Helper::getCustomRoute('web.service', $routeLocale, ['slug' => $service['slug_' . $locale] ? $service['slug_' . $locale] : $service['slug_es']]) !!}" class="btn_global btn_border text-center btn_color_text">
                                             <!-- $t("Conoce más") -->
                                             Conoce más
                                         </a>
@@ -477,7 +478,7 @@
                                 </a>
                               @endif
                                 <a
-                                    href="{{ $webUrl . ($page['slug_es'] ? '/' . $page['slug_es'] : '')}}"
+                                    href="{!! Helper::getCustomRoute('web.quotations', $routeLocale) !!}"
                                     class="b_boton text-white text-center btn_global"
                                 >
                                     <!-- $t("Quiero cotizar") -->

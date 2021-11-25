@@ -18,9 +18,35 @@ use App\Information;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 
 class WebController extends Controller
 {
+    private $locale;
+
+    public function __construct() {
+        $this->locale = App::getLocale();
+    }
+
+    public function validateLocale($locale){
+        // dd($locale);
+        // if(!$locale){
+        //     App::setLocale('es');
+        //     $this->locale = App::getLocale();
+        //     return;
+        // }
+        if(!in_array($locale, ['en'])){
+            // return abort(400);
+            App::setLocale('es');
+            $this->locale = App::getLocale();
+            // return;
+        } else {
+            App::setLocale($locale);
+            $this->locale = App::getLocale();
+            // return;
+        }
+    }
+
     public function getSeoPage($slug, $lang){
         $page = MasterPage::select('id','title_'.$lang,'seo_description_'.$lang,'seo_keywords_'.$lang,'seo_image','slug_'.$lang)->where('slug_en',$slug)->first()->toArray();
         return $page;
@@ -31,10 +57,10 @@ class WebController extends Controller
         return $content;
     }
 
-    public function index()
+    public function index($locale = null)
     {
-        // $page = $this->getSeoPage(NULL, $request->locale);
-        $page = $this->getSeoPage(NULL, "es");
+        $this->validateLocale($locale);
+        $page = $this->getSeoPage(NULL, $this->locale);
         $services = Service::where('active', 1)->orderBy('index')->get();
         $tutos = Tutorial::orderBy('index')->get();
         $content = $this->getContentPage(NULL);
@@ -57,15 +83,18 @@ class WebController extends Controller
             "customers" => $customers,
             "appTracking" => $appTracking,
             "footer" => $footer,
+            "locale" => $this->locale,
+            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.index", compact('data'));
     }
 
-    public function aboutUs() 
+    public function aboutUs($locale = null) 
     {
-        // $page = $this->getSeoPage('about-dinet', $request->locale);
-        $page = $this->getSeoPage('about-dinet', "es");
+        $this->validateLocale($locale);
+        $page = $this->getSeoPage('about-dinet', $this->locale);
+        // $page = $this->getSeoPage('about-dinet', "es");
         $testimonials = Testimonial::where('active', 1)->orderBy('index')->get();
         $content = $this->getContentPage('about-dinet');
         $customers = Customer::where('active', 1)->orderBy('index')->get();
@@ -76,29 +105,33 @@ class WebController extends Controller
             "content" => $content,
             "customers" => $customers,
             "testimonials" => $testimonials,
-            "appTracking" => $appTracking
+            "appTracking" => $appTracking,
+            "locale" => $this->locale
         );
 
         return view("web.pages.about-us", compact('data'));
     }
 
-    public function privacyPolicies() 
+    public function privacyPolicies($locale = null) 
     {
-        // $page = $this->getSeoPage('privacy-policies', $request->locale);
-        $page = $this->getSeoPage('privacy-policies', 'es');
+        $this->validateLocale($locale);
+        $page = $this->getSeoPage('privacy-policies', $this->locale);
+        // $page = $this->getSeoPage('privacy-policies', 'es');
         $content = $this->getContentPage('privacy-policies');
         $data = array(
             "page" => $page,
-            "content" => $content
+            "content" => $content,
+            "locale" => $this->locale
         );
 
         return view("web.pages.privacy-policies", compact('data'));
     }
 
-    public function quotations() 
+    public function quotations($locale = null) 
     {
-        // $page = $this->getSeoPage('quotes', $request->locale);
-        $page = $this->getSeoPage('quotes', "es");
+        $this->validateLocale($locale);
+        $page = $this->getSeoPage('quotes', $this->locale);
+        // $page = $this->getSeoPage('quotes', "es");
         $content = $this->getContentPage('quotes');
         $services = Service::where('active', 1)->orderBy('index')->get()->toJson();
         $quantityPackages = ConfigQuantityPackage::where('active', 1)->orderBy('index')->get()->toJson();
@@ -106,16 +139,18 @@ class WebController extends Controller
             "page" => $page,
             "content" => $content,
             "services" => $services,
-            "quantity" => $quantityPackages
+            "quantity" => $quantityPackages,
+            "locale" => $this->locale
         );
 
         return view("web.pages.quotations", compact('data'));
     }
 
-    public function services() 
+    public function services($locale = null) 
     {
-        // $page = $this->getSeoPage('services', $request->locale);
-        $page = $this->getSeoPage('services', "es");
+        $this->validateLocale($locale);
+        $page = $this->getSeoPage('services', $this->locale);
+        // $page = $this->getSeoPage('services', "es");
         $services = Service::where('active', 1)->orderBy('index')->get();
         $content = $this->getContentPage('services');
         $appTracking = AppTracking::first();
@@ -123,22 +158,24 @@ class WebController extends Controller
             "page" => $page,
             "services" => $services,
             "content" => $content,
-            "appTracking" => $appTracking
+            "appTracking" => $appTracking,
+            "locale" => $this->locale
         );
 
         return view("web.pages.services", compact('data'));
     }
 
-    public function service(Request $request, $slug) 
+    public function service($locale = null, Request $request, $slug) 
     {
-        // $service = Service::where('slug_' . $request->locale, $request->slug)->where('active',true)->first();
-        $service = Service::where('slug_' . "es", $slug)->where('active', true)->first();
+        $this->validateLocale($locale);
+        $service = Service::where('slug_' . $this->locale, $slug)->where('active',true)->first();
+        // $service = Service::where('slug_' . "es", $slug)->where('active', true)->first();
 
         if (!$service) {
             return $this->sendError("");
         }
-        // $page = $this->getSeoPage('services', $request->locale);
-        $page = $this->getSeoPage('services', "es");
+        $page = $this->getSeoPage('services', $this->locale);
+        // $page = $this->getSeoPage('services', "es");
         $privacy = $this->getContentPage('privacy-policies');
         $appTracking = AppTracking::first();
         $services = Service::where('active',true)->where('id', '!=', $service->id)->inRandomOrder()->take(3)->get();
@@ -153,7 +190,8 @@ class WebController extends Controller
             "quantity" => $quantityPackages,
             "service" => $service,
             "content" => $content,
-            "contentQuotes" => $contentQuotes
+            "contentQuotes" => $contentQuotes,
+            "locale" => $this->locale
         );
 
         return view("web.pages.service", compact('data'));

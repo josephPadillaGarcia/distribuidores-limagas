@@ -11,6 +11,7 @@ use App\Module;
 use App\Service;
 use App\SocialNetwork;
 use App\Information;
+use Illuminate\Support\Facades\App;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -71,7 +72,9 @@ class AppServiceProvider extends ServiceProvider
             $menu = array(
                 "social_networks" => $social_networks,
                 "information" => $information,
-                "services" => $services
+                "services" => $services,
+                "locale" => App::getLocale(),
+                "routeLocale" => App::getLocale() === "es" ? "" : App::getLocale()
             );
 
             $view->with(compact("menu"));
@@ -84,6 +87,8 @@ class AppServiceProvider extends ServiceProvider
             $footer = array(
                 "social_networks" => $social_networks,
                 "information" => $information,
+                "locale" => App::getLocale(),
+                "routeLocale" => App::getLocale() === "es" ? "" : App::getLocale()
             );
 
             $view->with(compact("footer"));

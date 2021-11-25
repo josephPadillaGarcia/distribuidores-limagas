@@ -1,12 +1,14 @@
 @php
 $services = $menu["services"];
 $information = $menu["information"];
+$locale = $menu["locale"];
+$routeLocale = $menu["routeLocale"];
 @endphp
 <header class="fixed-top" id="content_header">
     <nav class="navbar navbar-expand-lg position-relative" aria-label="Tenth navbar example">
         <div class="container-fluid" id="header_container">
             <div class="logo_dinet" id="header_logo_wrapper">
-                <a href="{{ route('web.index') }}">
+                <a href="{!! Helper::getCustomRoute('web.index', $routeLocale) !!}">
                     <img id="header_logo" class="" src="/storage/web/img/logo_dinet.png" alt="" />
                 </a>
             </div>
@@ -34,11 +36,11 @@ $information = $menu["information"];
             <div class="collapse navbar-collapse justify-content-end" id="navbarMain">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('web.aboutUs') }}">Sobre Dinet</a>
+                        <a class="nav-link" href="{!! Helper::getCustomRoute('web.aboutUs', $routeLocale) !!}">Sobre Dinet</a>
                     </li>
                     <li class="nav-item dropdown">
                         <div class="list-servicios-mobil">
-                            <a class="nav-link dropdown-toggle" href="{{ route('web.services') }}" id="navbarDropdown">
+                            <a class="nav-link dropdown-toggle" href="{!! Helper::getCustomRoute('web.services', $routeLocale) !!}" id="navbarDropdown">
                                 Servicios
                             </a>
                             <span class="icon-drop"><i class="flaticon-descargar"></i></span>
@@ -48,7 +50,7 @@ $information = $menu["information"];
                             <ul class="content-dropdown" aria-labelledby="navbarDropdown">
                                 @foreach ($services as $service)
                                 <li class="position-relative list-ser">
-                                    <a class="dropdown-item" href="{{ route('web.service', $service['slug_' . $locale]) }}">
+                                    <a class="dropdown-item" href="{!! Helper::getCustomRoute('web.service', $routeLocale, ['slug' => $service['slug_' . $locale] ? $service['slug_' . $locale] : $service['slug_es']]) !!}">
                                         @if($service["icon_colour"])
                                         <img
                                             height="34"
@@ -66,7 +68,7 @@ $information = $menu["information"];
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('web.quotations') }}">
+                        <a class="nav-link" href="{!! Helper::getCustomRoute('web.quotations', $routeLocale) !!}">
                             <!-- $t('Cotizaciones') -->
                             Cotizaciones
                         </a>

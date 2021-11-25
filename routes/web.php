@@ -1,11 +1,36 @@
 <?php
 Route::namespace('Web')->name('web.')->group(function() {
     Route::get('/', 'WebController@index')->name('index');
-    Route::get('/about-us', 'WebController@aboutUs')->name('aboutUs');
-    Route::get('/privacy-policies', 'WebController@privacyPolicies')->name('privacyPolicies');
-    Route::get('/quotations', 'WebController@quotations')->name('quotations');
-    Route::get('/services', 'WebController@services')->name('services');
-    Route::get('/services/{slug}', 'WebController@service')->name('service');
+    Route::get('/sobre-dinet', 'WebController@aboutUs')->name('aboutUs');
+    Route::get('/politicas-privacidad', 'WebController@privacyPolicies')->name('privacyPolicies');
+    Route::get('/cotizaciones', 'WebController@quotations')->name('quotations');
+    Route::get('/servicios', 'WebController@services')->name('services');
+    Route::get('/servicios/{slug}', 'WebController@service')->name('service');
+});
+
+Route::group(['prefix' => '{locale?}', 'where' => ['locale' => '[a-zA-Z]{2}']], function() {
+    Route::namespace('Web')->name('web.')->group(function() {
+        Route::get('/', 'WebController@index')->name('index');
+        // Route::get('/about-dinet', 'WebController@aboutUs')->name('aboutUs');
+        // Route::get('/privacy-policies', 'WebController@privacyPolicies')->name('privacyPolicies');
+        // Route::get('/quotations', 'WebController@quotations')->name('quotations');
+        // Route::get('/services', 'WebController@services')->name('services');
+        // Route::get('/services/{slug}', 'WebController@service')->name('service');
+    });
+    // Route::group(['prefix' => '{locale}'], function() {
+    //     // if($locale == '') {
+    //     //     App::setLocale('es');
+    //     // } else if (! in_array($locale, ['en'])) {
+    //     //     // abort(400);
+    //     //     dd((string) $locale);
+    //     // } else {
+    //     //     App::setLocale($locale);
+    //     // }
+
+    //     dd((string) $locale);
+
+    //     // Route::get('/', 'WebController@index')->name('index');
+    // });
 });
 
 Route::prefix('admin')->group(function() {
