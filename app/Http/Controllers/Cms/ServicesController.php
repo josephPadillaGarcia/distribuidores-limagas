@@ -16,12 +16,12 @@ class ServicesController extends Controller
 
     public function index()
     {
-        return view("pages.services.index");
+        return view("admin.pages.services.index");
     }
 
     public function create()
     {
-        return view("pages.services.create");
+        return view("admin.pages.services.create");
     }
 
     public function getAll()
@@ -185,13 +185,13 @@ class ServicesController extends Controller
     public function edit($element)
     {
         $element = Service::where('slug_es', $element)->firstOrFail();
-        return view("pages.services.edit", compact('element'));
+        return view("admin.pages.services.edit", compact('element'));
     }
 
     public function read($element)
     {
         $element = Service::where('slug_es', $element)->firstOrFail();
-        return view("pages.services.read", compact('element'));
+        return view("admin.pages.services.read", compact('element'));
     }
 
     public function order(Request $request)

@@ -37,7 +37,7 @@ class LeadTraditionalExport implements FromView, Responsable
     */
     public function view(): View
     {
-        return view('exports.leads', [
+        return view('admin.exports.leads', [
             'today' =>  (Carbon::now())->format('H:i d-m-Y'),
             'leads' => $this->leads,
             "start" => $this->start,

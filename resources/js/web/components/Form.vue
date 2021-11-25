@@ -1,0 +1,241 @@
+<template>
+  <transition name="slide-fade">
+    <div v-if="success" key="true" class="form__text-success-2">
+      <h3>
+        <!-- <b>¡{{ $t("Excelente") }}!</b> -->
+        <b>¡Excelente</b>
+      </h3>
+      <!-- <p>
+        {{
+          $t(
+            "Hemos registrado tus datos con éxito. Pronto nos pondremos contacto contigo."
+          )
+        }}.
+      </p> -->
+      <p>
+        Hemos registrado tus datos con éxito. Pronto nos pondremos contacto contigo.
+      </p>
+      <!-- <b>{{ $t("¡Gracias por solicitar información!") }}</b> -->
+      <b>¡Gracias por solicitar información!</b>
+    </div>
+    <form @submit.prevent="submit" v-else>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="grupo-form">
+            <label for="name">Nombre y Apellidos*</label>
+            <!-- <label for="name">{{ $t("Nombre y Apellidos") }}*</label> -->
+            <input type="text" id="name" v-model="form.name" />
+            <span
+              class="error error-red"
+              v-if="errors && errors.name"
+              for="name"
+              >
+              <!-- {{ $t(errors.name[0]) }} -->
+              {{ errors.name[0] }}
+              </span>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="grupo-form">
+            <!-- <label for="email">{{ $t("Correo electrónico") }}*</label> -->
+            <label for="email">Correo electrónico*</label>
+            <input type="text" id="email" v-model="form.email" />
+            <span
+              class="error error-red"
+              v-if="errors && errors.email"
+              for="email"
+              >
+              <!-- {{ $t(errors.email[0]) }} -->
+              {{ errors.email[0] }}
+              </span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="grupo-form">
+            <!-- <label for="celular">{{ $t("Celular") }}*</label> -->
+            <label for="celular">Celular*</label>
+            <input type="number" id="celular" v-model="form.mobile" />
+            <span
+              class="error error-red"
+              v-if="errors && errors.mobile"
+              for="mobile"
+              >
+              <!-- {{ $t(errors.mobile[0]) }} -->
+              {{ errors.mobile[0] }}
+              </span
+            >
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="grupo-form">
+            <!-- <label for="business">{{ $t("Empresa") }}*</label> -->
+            <label for="business">Empresa*</label>
+            <input type="text" id="business" v-model="form.business" />
+            <span
+              class="error error-red"
+              v-if="errors && errors.business"
+              for="business"
+              >
+              <!-- {{ $t(errors.business[0]) }} -->
+              {{ errors.business[0] }}
+              </span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="grupo-form">
+            <label for="quantity_packages"
+              >
+              <!-- {{ $t("Cantidad estimada de paquetes mensuales") }}: -->
+              Cantidad estimada de paquetes mensuales:
+              </label
+            >
+            <select
+              v-model="form.quantity_packages"
+              id="quantity_packages"
+              class="form-select"
+            >
+              <!-- <option value="" selected>{{ $t("Selecciona") }}</option> -->
+              <option value="" selected>Selecciona</option>
+              <option :value="el.name_es" v-for="el in quantity" :key="el.id">
+                {{ el["name_" + getLocale()] }}
+              </option>
+            </select>
+            <span
+              class="error error-red"
+              v-if="errors && errors.quantity_packages"
+              for="quantity_packages"
+              >
+              <!-- {{ $t(errors.quantity_packages[0]) }} -->
+              {{ errors.quantity_packages[0] }}
+              </span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row" v-if="showServices">
+        <div class="col-lg-12">
+          <div class="grupo-form">
+            <!-- <label for="service">{{ $t("Tipo de Servicio") }}:</label> -->
+            <label for="service">Tipo de Servicio:</label>
+            <select v-model="form.service_id" id="service" class="form-select">
+              <!-- <option value="" selected>{{ $t("Selecciona") }}</option> -->
+              <option value="" selected>Selecciona</option>
+              <option :value="el.id" v-for="el in services" :key="el.id">
+                {{ el["title_" + getLocale()] }}
+              </option>
+            </select>
+            <span
+              class="error error-red"
+              v-if="errors && errors.service_id"
+              for="service_id"
+              >
+              <!-- {{ $t(errors.service_id[0]) }} -->
+              {{ errors.service_id[0] }}
+              </span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="grupo-form">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              v-model="form.accepted"
+              id="accepted"
+              checked
+            />
+            <label class="form-check-label" for="accepted">
+              <!-- {{ $t("Acepto las") }} -->
+              Acepto las
+              <a :href="localePath('privacy-policies')">
+                <!-- {{ $t("políticas de privacidad web") }} -->
+                políticas de privacidad web
+              </a> </label
+            ><span
+              class="error error-red"
+              v-if="errors && errors.accepted"
+              for="accepted"
+              >
+              <!-- {{ $t(errors.accepted[0]) }} -->
+              {{ errors.accepted[0] }}
+              </span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <button
+            type="submit"
+            :class="request ? 'btn--opacity' : ''"
+            :disabled="request"
+          >
+            <!-- {{ request ? $t("Cargando") + "..." : $t("Enviar") }} -->
+            {{ request ? "Cargando" + "..." : "Enviar" }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </transition>
+</template>
+<script>
+export default {
+  props: {
+    quantity: Array,
+    services: Array,
+    service: Object,
+    showServices: {
+      default: false,
+      type: Boolean,
+    },
+  },
+  data() {
+    return {
+      request: false,
+      success: false,
+      form: {
+        name: "",
+        quantity_packages: "",
+        service_id: "",
+        accepted: true,
+      },
+      errors: {},
+    };
+  },
+  methods: {
+    submit() {
+      this.request = true;
+      this.form.isPage = this.showServices;
+      if (!this.showServices) {
+        this.form.service_id = this.service.id;
+      }
+      axios
+        .post("/api/post/lead", this.form)
+        .then((response) => {
+          this.request = false;
+          this.success = true;
+        })
+        .catch((error) => {
+          this.request = false;
+          if (error.response.status === 422) {
+            this.errors = error.response.data.errors || {};
+            return;
+          }
+        });
+    },
+  },
+  watch: {
+    success: function (newValue, oldValue) {
+      this.$emit("update:successProp", Boolean(newValue));
+    },
+  },
+};
+</script>

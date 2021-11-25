@@ -1,0 +1,167 @@
+
+@font-face {
+    font-family: "Flaticon";
+    src: url("../../fonts/Flaticon.eot");
+    src: url("../../fonts/Flaticon.eot?#iefix") format("embedded-opentype"),
+         url("../../fonts/Flaticon.woff2") format("woff2"),
+         url("../../fonts/Flaticon.woff") format("woff"),
+         url("../../fonts/Flaticon.ttf") format("truetype");
+         /*url("../../fonts/Flaticon.svg#Flaticon") format("svg");*/
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /*@media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+      font-family: "Flaticon";
+      src: url("../../fonts/Flaticon.svg#Flaticon") format("svg");
+    }
+  }*/
+  
+  [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+  [class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+    font-family: Flaticon;
+  font-style: normal;
+  }
+
+.flaticon-atras:before {
+    content: "\f101";
+}
+.flaticon-avatar:before {
+    content: "\f102";
+}
+.flaticon-bocadillo-de-dialogo-ovalado-de-comentario-de-chat-con-lineas-de-texto:before {
+    content: "\f103";
+}
+.flaticon-boton-de-campana-de-notificaciones:before {
+    content: "\f104";
+}
+.flaticon-boton-de-menu-de-tres-lineas-horizontales:before {
+    content: "\f105";
+}
+.flaticon-calendario-1:before {
+    content: "\f106";
+}
+.flaticon-calendario:before {
+    content: "\f107";
+}
+.flaticon-campana:before {
+    content: "\f108";
+}
+.flaticon-cancelar:before {
+    content: "\f109";
+}
+.flaticon-clock-circular-outline:before {
+    content: "\f10a";
+}
+.flaticon-clock:before {
+    content: "\f10b";
+}
+.flaticon-comentario:before {
+    content: "\f10c";
+}
+.flaticon-comprobado:before {
+    content: "\f10d";
+}
+.flaticon-correo-electronico:before {
+    content: "\f10e";
+}
+.flaticon-descargar:before {
+    content: "\f10f";
+}
+.flaticon-envelope:before {
+    content: "\f110";
+}
+.flaticon-facebook:before {
+    content: "\f111";
+}
+.flaticon-heart:before {
+    content: "\f112";
+}
+.flaticon-help:before {
+    content: "\f113";
+}
+.flaticon-information:before {
+    content: "\f114";
+}
+.flaticon-instagram:before {
+    content: "\f115";
+}
+.flaticon-like-1:before {
+    content: "\f116";
+}
+.flaticon-like:before {
+    content: "\f117";
+}
+.flaticon-linkedin:before {
+    content: "\f118";
+}
+.flaticon-lista:before {
+    content: "\f119";
+}
+.flaticon-llamada-de-telefono-inteligente:before {
+    content: "\f11a";
+}
+.flaticon-llamada-telefonica:before {
+    content: "\f11b";
+}
+.flaticon-lupa-1:before {
+    content: "\f11c";
+}
+.flaticon-lupa:before {
+    content: "\f11d";
+}
+.flaticon-menu-1:before {
+    content: "\f11e";
+}
+.flaticon-menu-2:before {
+    content: "\f11f";
+}
+.flaticon-menu-de-puntos:before {
+    content: "\f120";
+}
+.flaticon-menu:before {
+    content: "\f121";
+}
+.flaticon-notificacion:before {
+    content: "\f122";
+}
+.flaticon-proximo:before {
+    content: "\f123";
+}
+.flaticon-send:before {
+    content: "\f124";
+}
+.flaticon-settings:before {
+    content: "\f125";
+}
+.flaticon-share-1:before {
+    content: "\f126";
+}
+.flaticon-share:before {
+    content: "\f127";
+}
+.flaticon-smartphone:before {
+    content: "\f128";
+}
+.flaticon-star:before {
+    content: "\f129";
+}
+.flaticon-telefono-inteligente:before {
+    content: "\f12a";
+}
+.flaticon-telefono:before {
+    content: "\f12b";
+}
+.flaticon-telephone:before {
+    content: "\f12c";
+}
+.flaticon-whatsapp:before {
+    content: "\f12d";
+}
+.flaticon-youtube-1:before {
+    content: "\f12e";
+}
+.flaticon-youtube:before {
+    content: "\f12f";
+}

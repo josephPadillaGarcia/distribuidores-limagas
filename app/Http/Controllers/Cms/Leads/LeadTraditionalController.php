@@ -18,7 +18,7 @@ class LeadTraditionalController extends Controller
     
     public function index()
     {
-        return view("pages.lead.traditional");
+        return view("admin.pages.lead.traditional");
     }
 
     public function getAll(Request $request, LeadRepository $repo)

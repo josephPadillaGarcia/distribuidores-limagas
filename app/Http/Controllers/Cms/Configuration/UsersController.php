@@ -22,7 +22,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        return view('pages.configuration.users');
+        return view('admin.pages.configuration.users');
     }
 
     public function update(UserRequest $request, User $user)

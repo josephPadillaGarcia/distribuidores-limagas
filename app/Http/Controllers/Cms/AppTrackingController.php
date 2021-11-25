@@ -17,7 +17,7 @@ class AppTrackingController extends Controller
 
     public function index()
     {
-        return view("pages.app-tracking");
+        return view("admin.pages.app-tracking");
     }
 
     public function store(AppTrackingRequest $request)

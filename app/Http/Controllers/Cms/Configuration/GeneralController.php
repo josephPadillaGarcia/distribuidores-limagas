@@ -10,6 +10,6 @@ class GeneralController extends Controller
 
     public function index()
     {
-        return view("pages.configuration.general");
+        return view("admin.pages.configuration.general");
     }
 }

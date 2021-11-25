@@ -17,7 +17,7 @@ class SocialController extends Controller
     public function index()
     {
         $elements = MasterSocialNetwork::all();
-        return view ("pages.content.social-networks",compact('elements'));
+        return view("admin.pages.content.social-networks",compact('elements'));
     }
 
     public function getAll(){

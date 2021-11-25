@@ -19,7 +19,7 @@ class GeneralContentController extends Controller
 
     public function index()
     {
-        return view ("pages.content.general-content");
+        return view("admin.pages.content.general-content");
     }
 
     public function getAllPages(){

@@ -15,7 +15,7 @@ class TutorialsController extends Controller
 
     public function index()
     {
-        return view("pages.tutorials");
+        return view("admin.pages.tutorials");
     }
 
     public function store(TutorialRequest $request)

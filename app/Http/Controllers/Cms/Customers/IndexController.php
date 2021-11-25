@@ -15,7 +15,7 @@ class IndexController extends Controller
 
     public function index()
     {
-        return view("pages.customers.index");
+        return view("admin.pages.customers.index");
     }
 
     public function store(CustomerRequest $request)

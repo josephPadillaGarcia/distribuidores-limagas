@@ -14,9 +14,12 @@ return [
     |
     */
     'web_url' => env('WEB_URL', 'http://127.0.0.1:8000'),
+    'storage_url' => env('STORAGE_URL', 'http://127.0.0.1:8000/storage'),
     'images_url' => env('IMAGES_URL', 'http://127.0.0.1:8000/storage/img'),
     'videos_url' => env('VIDEOS_URL', 'http://127.0.0.1:8000/storage/videos'),
     'files_url' => env('FILES_URL', 'http://127.0.0.1:8000/storage/files'),
+    'mail_from_name' => env('MAIL_FROM_NAME', 'Dinet e-Commerce Lead'),
+    'mail_dinet_token' => env('MAIL_DINET_TOKEN'),
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),

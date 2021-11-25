@@ -15,7 +15,7 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        return view("pages.blog.categories");
+        return view("admin.pages.blog.categories");
     }
 
     public function get(Category $element)

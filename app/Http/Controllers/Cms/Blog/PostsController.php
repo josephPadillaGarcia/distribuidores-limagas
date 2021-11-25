@@ -22,7 +22,7 @@ class PostsController extends Controller
 
     public function index()
     {
-        return view("pages.blog.posts.index");
+        return view("admin.pages.blog.posts.index");
     }
 
     public function storeImage(Request $request)
@@ -38,14 +38,14 @@ class PostsController extends Controller
 
     public function create()
     {
-        return view("pages.blog.posts.create");
+        return view("admin.pages.blog.posts.create");
     }
 
     public function edit(Post $element)
     {
         //$element = $element->load('category', 'tags:post_id,name_es as tag_es,name_en as tag_en');
         $element = $element->load('category');
-        return view("pages.blog.posts.edit", compact('element'));
+        return view("admin.pages.blog.posts.edit", compact('element'));
     }
 
     public function getAll(Request $request, PostRepository $repo)

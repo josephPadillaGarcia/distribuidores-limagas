@@ -15,7 +15,7 @@ class SeoController extends Controller
     use CmsTrait;
 
     public function index(){
-        return view("pages.content.seo");
+        return view("admin.pages.content.seo");
     }
 
     public function getAll(){

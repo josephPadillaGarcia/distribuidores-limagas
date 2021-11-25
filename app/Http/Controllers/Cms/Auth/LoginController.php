@@ -30,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/contenido/informacion-general';
+    protected $redirectTo = '/admin/contenido/informacion-general';
 
     /**
      * Create a new controller instance.
@@ -43,7 +43,7 @@ class LoginController extends Controller
     }
 
     public function showLoginForm(){
-        return view('pages.auth.login');
+        return view('admin.pages.auth.login');
     }
 
     protected function sendLoginResponse(Request $request){
@@ -64,6 +64,6 @@ class LoginController extends Controller
 
     public function logout(Request $request) {
         Auth::logout();
-        return redirect('/');
+        return redirect('/admin');
     }
 }

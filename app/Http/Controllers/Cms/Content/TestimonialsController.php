@@ -15,7 +15,7 @@ class TestimonialsController extends Controller
 
     public function index()
     {
-        return view("pages.testimonials");
+        return view("admin.pages.testimonials");
     }
 
     public function store(TestimonialRequest $request)

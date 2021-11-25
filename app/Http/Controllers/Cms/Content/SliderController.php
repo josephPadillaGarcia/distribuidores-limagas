@@ -14,11 +14,11 @@ class SliderController extends Controller
     use CmsTrait;
 
     public function index(){
-        return view ("pages.slider.index");   
+        return view("admin.pages.slider.index");   
     }
 
     public function create(){
-        return view("pages.slider.create"); 
+        return view("admin.pages.slider.create"); 
     }
 
     public function store(SliderRequest $request){
@@ -99,7 +99,7 @@ class SliderController extends Controller
     }
 
     public function edit(Slider $element){
-        return view("pages.slider.edit", compact('element')); 
+        return view("admin.pages.slider.edit", compact('element')); 
     }
 
     public function update(SliderRequest $request,Slider $element){
