@@ -16,6 +16,7 @@
             :quantity="quantity"
             :showServices="showServices"
             :services="services"
+            :locale="locale"
         />
     </div>
 </template>
@@ -48,11 +49,14 @@ export default {
             default: true,
             type: Boolean
         },
+        locale: {
+            type: String
+        },
     },
     data() {
         return {
             success: false
         };
-    }
+    },
 };
 </script>

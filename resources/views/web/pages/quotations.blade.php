@@ -7,7 +7,8 @@
     $services = $data["services"];
     $quantity = $data["quantity"];
     $page = $data["page"];
-    $locale = "es";
+    $locale = $data["locale"];
+    $routeLocale = $data["routeLocale"];
 @endphp
 
 <main>
@@ -83,6 +84,7 @@
           <form-quote
             title="{{ $title_informacion }}"
             description="{{ $description_informacion }}"
+            locale="{{ $locale }}"
             :with-description="true"
             :show-services="true"
             :quantity="{{ $quantity }}"

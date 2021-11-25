@@ -36,12 +36,14 @@ $routeLocale = $menu["routeLocale"];
             <div class="collapse navbar-collapse justify-content-end" id="navbarMain">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{!! Helper::getCustomRoute('web.aboutUs', $routeLocale) !!}">Sobre Dinet</a>
+                        <a class="nav-link" href="{!! Helper::getCustomRoute('web.aboutUs', $routeLocale) !!}">
+                            {{ __("Sobre Dinet") }}
+                        </a>
                     </li>
                     <li class="nav-item dropdown">
                         <div class="list-servicios-mobil">
                             <a class="nav-link dropdown-toggle" href="{!! Helper::getCustomRoute('web.services', $routeLocale) !!}" id="navbarDropdown">
-                                Servicios
+                                {{ __("Servicios") }}
                             </a>
                             <span class="icon-drop"><i class="flaticon-descargar"></i></span>
                         </div>
@@ -69,18 +71,16 @@ $routeLocale = $menu["routeLocale"];
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{!! Helper::getCustomRoute('web.quotations', $routeLocale) !!}">
-                            <!-- $t('Cotizaciones') -->
-                            Cotizaciones
+                            {{ __("Cotizaciones") }}
                         </a>
                     </li>
                     <li class="nav-item code-send hiden" id="header_code_send">
-                        <form-header :desktop="true" link="{{ $information['api_url_tracking'] ? $information['api_url_tracking'] : '' }}" />
+                        <form-header locale="{{ $locale }}" :desktop="true" link="{{ $information['api_url_tracking'] ? $information['api_url_tracking'] : '' }}" />
                     </li>
                     @if(isset($information['customers_link']))
                     <li class="nav-item boton">
                         <a class="nav-link text-white text-center" href="{{ $information['customers_link'] }}" target="_blank">
-                            <!-- $t("Acceso Clientes") -->
-                            Acceso Clientes
+                            {{ __("Acceso Clientes") }}
                         </a>
                     </li>
                     @endif

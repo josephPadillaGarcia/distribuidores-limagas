@@ -29,21 +29,12 @@ class WebController extends Controller
     }
 
     public function validateLocale($locale){
-        // dd($locale);
-        // if(!$locale){
-        //     App::setLocale('es');
-        //     $this->locale = App::getLocale();
-        //     return;
-        // }
         if(!in_array($locale, ['en'])){
-            // return abort(400);
             App::setLocale('es');
             $this->locale = App::getLocale();
-            // return;
         } else {
             App::setLocale($locale);
             $this->locale = App::getLocale();
-            // return;
         }
     }
 
@@ -106,7 +97,8 @@ class WebController extends Controller
             "customers" => $customers,
             "testimonials" => $testimonials,
             "appTracking" => $appTracking,
-            "locale" => $this->locale
+            "locale" => $this->locale,
+            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.about-us", compact('data'));
@@ -121,7 +113,8 @@ class WebController extends Controller
         $data = array(
             "page" => $page,
             "content" => $content,
-            "locale" => $this->locale
+            "locale" => $this->locale,
+            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.privacy-policies", compact('data'));
@@ -140,7 +133,8 @@ class WebController extends Controller
             "content" => $content,
             "services" => $services,
             "quantity" => $quantityPackages,
-            "locale" => $this->locale
+            "locale" => $this->locale,
+            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.quotations", compact('data'));
@@ -159,13 +153,14 @@ class WebController extends Controller
             "services" => $services,
             "content" => $content,
             "appTracking" => $appTracking,
-            "locale" => $this->locale
+            "locale" => $this->locale,
+            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.services", compact('data'));
     }
 
-    public function service($locale = null, Request $request, $slug) 
+    public function service(Request $request, $slug, $locale = null) 
     {
         $this->validateLocale($locale);
         $service = Service::where('slug_' . $this->locale, $slug)->where('active',true)->first();
@@ -191,7 +186,8 @@ class WebController extends Controller
             "service" => $service,
             "content" => $content,
             "contentQuotes" => $contentQuotes,
-            "locale" => $this->locale
+            "locale" => $this->locale,
+            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.service", compact('data'));

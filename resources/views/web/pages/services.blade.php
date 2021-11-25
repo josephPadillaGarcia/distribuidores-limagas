@@ -7,7 +7,8 @@
     $services = $data["services"];
     $appTracking = $data["appTracking"];
     $page = $data["page"];
-    $locale = "es";
+    $locale = $data["locale"];
+    $routeLocale = $data["routeLocale"];
 @endphp
     <main>
       @php
@@ -54,7 +55,7 @@
                     <div class="col-lg-4">
                         <!-- ItemService -->
                         <div class="item">
-                                    <a href="{{ route('web.service', $service['slug_' . $locale]) }}">
+                                    <a href="{!! Helper::getCustomRoute('web.service', $routeLocale, ['slug' => $service['slug_' . $locale] ? $service['slug_' . $locale] : $service['slug_es']]) !!}">
                                       @if($service["image"])
                                         <img class="lazyload" src="{{ $storageUrl . '/img/services/' . $service['image'] }}" alt="{{ 'Imagen ' . $service['title_' . $locale ]}}" />
                                       @endif
@@ -67,7 +68,7 @@
                                         </span>
                                         <b class="text-center">{{ $service["title_" . $locale] }}</b>
                                         <p class="text-center">{{ $service["excerpt_" . $locale] }}</p>
-                                        <a href="{{ route('web.service', $service['slug_' . $locale]) }}" class="btn_global btn_border text-center btn_color_text">
+                                        <a href="{!! Helper::getCustomRoute('web.service', $routeLocale, ['slug' => $service['slug_' . $locale] ? $service['slug_' . $locale] : $service['slug_es']]) !!}" class="btn_global btn_border text-center btn_color_text">
                                             <!-- $t("Conoce más") -->
                                             Conoce más
                                         </a>

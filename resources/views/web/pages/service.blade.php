@@ -11,7 +11,8 @@
     $quantity = $data["quantity"];
     $appTracking = $data["appTracking"];
     $page = $data["page"];
-    $locale = "es";
+    $locale = $data["locale"];
+    $routeLocale = $data["routeLocale"];
 @endphp
     <main>
       @php
@@ -25,9 +26,8 @@
         }
 
         $title_banner = "";
-        if(in_array("title", $banner["content_formatted"])) {
-          $index = array_search("title", array_column($banner["content"], 'field'));
-          $title_banner = $banner["content"][$index]["value_" . $locale];
+        if($service["title_" . $locale]) {
+          $title_banner = $service["title_" . $locale];
         }
       @endphp
         <!-- Banner-->
@@ -88,6 +88,7 @@
                   @endphp
                   <form-quote
                     title="{{ $title_informacion }}"
+                    locale="{{ $locale }}"
                     :with-description="false"
                     :show-services="false"
                     :quantity="{{ $quantity }}"
@@ -152,7 +153,7 @@
                           @foreach($services as $serv)
                             <!-- ItemService -->
                             <div class="item">
-                                    <a href="{{ route('web.service', $serv['slug_' . $locale]) }}">
+                                    <a href="{!! Helper::getCustomRoute('web.service', $routeLocale, ['slug' => $service['slug_' . $locale] ? $service['slug_' . $locale] : $service['slug_es']]) !!}">
                                       @if($serv["image"])
                                         <img class="lazyload" src="{{ $storageUrl . '/img/services/' . $serv['image'] }}" alt="{{ 'Imagen ' . $serv['title_' . $locale ]}}" />
                                       @endif
@@ -165,7 +166,7 @@
                                         </span>
                                         <b class="text-center">{{ $serv["title_" . $locale] }}</b>
                                         <p class="text-center">{{ $serv["excerpt_" . $locale] }}</p>
-                                        <a href="{{ route('web.service', $serv['slug_' . $locale]) }}" class="btn_global btn_border text-center btn_color_text">
+                                        <a href="{!! Helper::getCustomRoute('web.service', $routeLocale, ['slug' => $service['slug_' . $locale] ? $service['slug_' . $locale] : $service['slug_es']]) !!}" class="btn_global btn_border text-center btn_color_text">
                                             <!-- $t("Conoce más") -->
                                             Conoce más
                                         </a>

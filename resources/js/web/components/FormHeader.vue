@@ -6,7 +6,7 @@
         >
             <input
                 type="text"
-                placeholder="Código de envío"
+                :placeholder="t('Código de envío')"
                 v-model="code"
                 :id="
                     desktop
@@ -22,7 +22,7 @@
             >
                 <img
                     class=""
-                    :src="'/storage/web/img/codigo_blanco.png'"
+                    src="/storage/web/img/codigo_blanco.png"
                     alt=""
                 />
             </button>
@@ -34,7 +34,8 @@
 export default {
     props: {
         desktop: { type: Boolean, default: false },
-        link: { type: String }
+        link: { type: String },
+        locale: { type: String },
     },
     data() {
         return {
@@ -42,6 +43,9 @@ export default {
         };
     },
     methods: {
+        t(name){
+            return this.$t(name, this.locale);
+        },
         goTo() {
             if (this.code.length != 20) {
                 return false;

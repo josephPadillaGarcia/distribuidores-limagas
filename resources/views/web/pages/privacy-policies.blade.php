@@ -1,14 +1,12 @@
 @extends('web.layouts.app')
 @section('content')
-  <!-- <web-privacy-policies
-    storage-url="{{ config('services.storage_url') }}"
-  ></web-privacy-policies> -->
 @php
     $webUrl = config('services.web_url');
     $storageUrl = config('services.storage_url');
     $content = $data["content"];
     $page = $data["page"];
-    $locale = "es";
+    $locale = $data["locale"];
+    $routeLocale = $data["routeLocale"];
 @endphp
     <main class="main_page">
       @php

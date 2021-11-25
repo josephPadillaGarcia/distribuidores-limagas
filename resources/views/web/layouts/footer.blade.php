@@ -50,22 +50,19 @@ $routeLocale = $footer["routeLocale"];
                         <li>
                             <a href="{!! Helper::getCustomRoute('web.aboutUs', $routeLocale) !!}">
                                 <img class="lazyload" src="/storage/web/img/icon_list.png" alt="Sobre Dinet" />
-                                <!-- $t("Sobre Dinet") -->
-                                Sobre Dinet
+                                {{ __("Sobre Dinet") }}
                             </a>
                         </li>
                         <li>
                             <a href="{!! Helper::getCustomRoute('web.services', $routeLocale) !!}">
                                 <img class="lazyload" src="/storage/web/img/icon_list.png" alt="Servicios" />
-                                <!-- $t("Servicios") -->
-                                Servicios
+                                {{ __("Servicios") }}
                             </a>
                         </li>
                         <li>
                             <a href="{!! Helper::getCustomRoute('web.quotations', $routeLocale) !!}">
                                 <img class="lazyload" src="/storage/web/img/icon_list.png" alt="Cotizaciones" />
-                                <!-- $t("Cotizaciones") -->
-                                Cotizaciones
+                                {{ __("Cotizaciones") }}
                             </a>
                         </li>
                     </ul>
@@ -78,8 +75,7 @@ $routeLocale = $footer["routeLocale"];
                             @if($information['book_link'])
                             <a href="{{ $information['book_link'] }}">
                                 <img class="lazyload" src="/storage/web/img/icon_libro.png" alt="Libro de reclamaciones" />
-                                <!-- $t("Libro de reclamaciones") -->
-                                Libro de reclamaciones
+                                {{ __("Libro de reclamaciones") }}
                             </a>
                             @endif
                         </li>
@@ -108,8 +104,7 @@ $routeLocale = $footer["routeLocale"];
                 </div>
                 <div class="col-lg-3 col-md-5 col-sm-12">
                     <div class="developer">
-                        Desarrollado por
-                        <!-- $t("Desarrollado por") -->
+                        {{ __("Desarrollado por") }}
                         <a href="https://playgroup.pe" target="_blank">
                             <div class="img-dev">
                                 <img src="/storage/web/img/logo-play.svg" class="lazyload" />

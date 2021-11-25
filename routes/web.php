@@ -17,20 +17,6 @@ Route::group(['prefix' => '{locale?}', 'where' => ['locale' => '[a-zA-Z]{2}']], 
         // Route::get('/services', 'WebController@services')->name('services');
         // Route::get('/services/{slug}', 'WebController@service')->name('service');
     });
-    // Route::group(['prefix' => '{locale}'], function() {
-    //     // if($locale == '') {
-    //     //     App::setLocale('es');
-    //     // } else if (! in_array($locale, ['en'])) {
-    //     //     // abort(400);
-    //     //     dd((string) $locale);
-    //     // } else {
-    //     //     App::setLocale($locale);
-    //     // }
-
-    //     dd((string) $locale);
-
-    //     // Route::get('/', 'WebController@index')->name('index');
-    // });
 });
 
 Route::prefix('admin')->group(function() {

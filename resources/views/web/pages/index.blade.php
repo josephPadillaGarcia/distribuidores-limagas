@@ -65,7 +65,7 @@
                             <div>
                               {!! $description_banner !!}
                             </div>
-                            <form-index storage-url="{{ $storageUrl }}"></form-index>
+                            <form-index locale="{{ $locale }}" storage-url="{{ $storageUrl }}"></form-index>
                           @endif
                         </div>
                     </div>
@@ -91,8 +91,7 @@
                     }
                   @endphp
                     <div class="titulo_global">
-                        <!-- <b>$t("Servicios")</b> -->
-                        <b>Servicios</b>
+                        <b>{{ __("Servicios") }}</b>
                         @if($title_servicios)
                         <h2>{{ $title_servicios }}</h2>
                         @endif
@@ -119,8 +118,7 @@
                                         <b class="text-center">{{ $service["title_" . $locale] }}</b>
                                         <p class="text-center">{{ $service["excerpt_" . $locale] }}</p>
                                         <a href="{!! Helper::getCustomRoute('web.service', $routeLocale, ['slug' => $service['slug_' . $locale] ? $service['slug_' . $locale] : $service['slug_es']]) !!}" class="btn_global btn_border text-center btn_color_text">
-                                            <!-- $t("Conoce más") -->
-                                            Conoce más
+                                            {{ __("Conoce más") }}
                                         </a>
                                     </div>
                                 </div>
@@ -220,7 +218,7 @@
                                 <p>{{ $tuto["title_" . $locale] }}</p>
                                 <!-- <a class="position-relative fancybox" data-fancybox="Tutoriales" :href="el.link">$t("Ver video") -->
                                 <a class="position-relative fancybox" data-fancybox="Tutoriales" href="{{ $tuto['link'] }}">
-                                    Ver video
+                                    {{ __("Ver video") }}
                                     <span class="position-absolute">
                                         <img src="/storage/web/img/flecha_iz.png" class="lazyload" alt=""/>
                                     </span>
@@ -240,8 +238,7 @@
                   @if($url_tutoriales)
                     <div class="content_boton">
                         <a target="_blank" href="{{ $url_tutoriales }}" class="b_boton text-white text-center btn_global">
-                            <!-- $t("Ver más tutoriales") -->
-                            Ver más tutoriales
+                            {{ __("Ver más tutoriales") }}
                         </a>
                     </div>
                   @endif
@@ -481,8 +478,7 @@
                                     href="{!! Helper::getCustomRoute('web.quotations', $routeLocale) !!}"
                                     class="b_boton text-white text-center btn_global"
                                 >
-                                    <!-- $t("Quiero cotizar") -->
-                                    Quiero cotizar
+                                    {{ __("Quiero cotizar") }}
                                 </a>
                             </div>
                         </div>

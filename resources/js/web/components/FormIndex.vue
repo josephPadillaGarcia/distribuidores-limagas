@@ -5,11 +5,11 @@
                 class="input_search"
                 type="text"
                 v-model="code_banner"
-                placeholder="Escribe el código de envío"
+                :placeholder="t('Escribe el código de envío')"
             />
             <span class="position-absolute"><img src="/storage/web/img/rastreo.png" alt=""/></span>
             <button class="b_boton text-white position-absolute btn_global">
-                <b>Buscar</b>
+                <b>{{ t('Buscar') }}</b>
                 <i class="flaticon-lupa-1"></i>
             </button>
         </div>
@@ -26,7 +26,8 @@
 export default {
     name: "FormIndex",
     props: {
-        storageUrl: { type: String }
+        storageUrl: { type: String },
+        locale: { type: String }
     },
     data() {
         return {
@@ -35,6 +36,9 @@ export default {
         };
     },
     methods: {
+        t(name){
+            return this.$t(name, this.locale);
+        },
         goTo() {
             if (this.code_banner.length != 20) {
                 this.message_error =

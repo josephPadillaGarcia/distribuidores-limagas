@@ -1,4 +1,6 @@
 <script>
+import en from './en.json';
+import es from './es.json';
 export default {
     data() {
         return {
@@ -8,7 +10,9 @@ export default {
             },
             $i18n: {
                 locale: "es"
-            }
+            },
+            es: es,
+            en: en
         };
     },
     mounted() {
@@ -16,22 +20,15 @@ export default {
     },
 
     methods: {
+        $t(name, locale) {
+            return this[locale] && this[locale].hasOwnProperty(name) ? this[locale][name] : name;
+        },
         onResize() {
             this.windowSize = { x: window.innerWidth, y: window.innerHeight };
         },
-        getLocale() {
-            // return this.getLocale()
-            return "es";
-        },
-        getLocales() {
-            // return this.getLocale()
-            return ["es", "en"];
-        },
-        localePath(object) {
-            const locale = this.getLocale() === "es" ? "" : this.getLocale();
-            const { name, params = null } = object;
-            const addSlug = params ? `/${params.slug}` : "";
-            const path = `${locale}/${name}${addSlug}`;
+        localePath(name, localeString) {
+            const locale = localeString === 'es' ? '' : localeString;
+            const path = `${locale}/${this.$t(name, localeString)}`;
 
             return path;
         },

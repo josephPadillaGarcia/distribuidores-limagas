@@ -2,6 +2,9 @@
 $webUrl = config('services.web_url');
 $storageUrl = config('services.storage_url');
 $locale = App::getLocale();
+if(Route::currentRouteName() === 'web.service') {
+    $page["title_" . $locale] = $service["seo_title_" . $locale];
+}
 @endphp
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
