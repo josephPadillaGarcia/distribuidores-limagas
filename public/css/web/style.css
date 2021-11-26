@@ -1652,6 +1652,13 @@ li.nav-item.boton a {
   background: linear-gradient(88deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 40%, rgba(255,255,255,0.4) 100%)!important;
 }
 
+section#error-404 {
+  min-height: calc(100vh - 300px);
+  display: grid;
+  align-content: center;
+  margin-top: 35px;
+}
+
 /*========================================*/
 /*
     Responsive
