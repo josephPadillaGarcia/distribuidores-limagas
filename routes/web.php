@@ -8,16 +8,16 @@ Route::namespace('Web')->name('web.')->group(function() {
     Route::get('/servicios/{slug}', 'WebController@service')->name('service');
 });
 
-Route::group(['prefix' => '{locale?}', 'where' => ['locale' => '[a-zA-Z]{2}']], function() {
-    Route::namespace('Web')->name('web.')->group(function() {
-        Route::get('/', 'WebController@index')->name('index');
-        // Route::get('/about-dinet', 'WebController@aboutUs')->name('aboutUs');
-        // Route::get('/privacy-policies', 'WebController@privacyPolicies')->name('privacyPolicies');
-        // Route::get('/quotations', 'WebController@quotations')->name('quotations');
-        // Route::get('/services', 'WebController@services')->name('services');
-        // Route::get('/services/{slug}', 'WebController@service')->name('service');
-    });
-});
+// Route::group(['prefix' => '{locale?}', 'where' => ['locale' => '[a-zA-Z]{2}']], function() {
+//     Route::namespace('Web')->name('web.')->group(function() {
+//         Route::get('/', 'WebController@index')->name('index');
+//         Route::get('/about-dinet', 'WebController@aboutUs')->name('aboutUs');
+//         Route::get('/privacy-policies', 'WebController@privacyPolicies')->name('privacyPolicies');
+//         Route::get('/quotations', 'WebController@quotations')->name('quotations');
+//         Route::get('/services', 'WebController@services')->name('services');
+//         Route::get('/services/{slug}', 'WebController@service')->name('service');
+//     });
+// });
 
 Route::prefix('admin')->group(function() {
     Route::get('/', 'Cms\Auth\LoginController@showLoginForm')->name('login');
