@@ -1648,6 +1648,10 @@ li.nav-item.boton a {
   width: 100%;
 }
 
+#seccion_banner_global.section_bannerHome {
+  background: linear-gradient(88deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 40%, rgba(255,255,255,0.4) 100%)!important;
+}
+
 /*========================================*/
 /*
     Responsive
