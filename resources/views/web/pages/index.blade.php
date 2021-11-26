@@ -65,7 +65,7 @@
                             <div>
                               {!! $description_banner !!}
                             </div>
-                            <form-index locale="{{ $locale }}" storage-url="{{ $storageUrl }}"></form-index>
+                            <form-index locale="{{ $locale }}" storage-url="{{ $storageUrl }}" link="{{ $footer['information']['api_url_tracking'] ? $footer['information']['api_url_tracking'] : '' }}"></form-index>
                           @endif
                         </div>
                     </div>

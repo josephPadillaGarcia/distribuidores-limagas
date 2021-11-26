@@ -16,6 +16,7 @@
             :quantity="quantity"
             :showServices="showServices"
             :services="services"
+            :service="service"
             :locale="locale"
         />
     </div>
@@ -40,6 +41,9 @@ export default {
         },
         services: {
             type: Array
+        },
+        service: {
+            type: Object
         },
         showServices: {
             default: false,

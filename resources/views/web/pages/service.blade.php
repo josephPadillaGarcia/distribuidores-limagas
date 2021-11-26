@@ -93,6 +93,7 @@
                     :show-services="false"
                     :quantity="{{ $quantity }}"
                     :services="{{ $services }}"
+                    :service="{{ $service }}"
                   />
                 </div>
             </div>

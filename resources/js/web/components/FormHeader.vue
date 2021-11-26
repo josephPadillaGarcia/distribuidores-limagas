@@ -50,11 +50,8 @@ export default {
             if (this.code.length != 20) {
                 return false;
             }
-            if (
-                this.menu.information &&
-                this.menu.information.api_url_tracking
-            ) {
-                let link = this.menu.information.api_url_tracking + this.code;
+            if ( this.link ) {
+                let link = this.link + this.code;
                 window.open(link, "_blank");
             }
         }

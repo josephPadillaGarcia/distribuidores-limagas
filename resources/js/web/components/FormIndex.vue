@@ -27,6 +27,7 @@ export default {
     name: "FormIndex",
     props: {
         storageUrl: { type: String },
+        link: { type: String },
         locale: { type: String }
     },
     data() {
@@ -49,11 +50,10 @@ export default {
                 return false;
             }
             if (
-                this.menu.information &&
-                this.menu.information.api_url_tracking
+                this.link
             ) {
                 let link =
-                    this.menu.information.api_url_tracking + this.code_banner;
+                    this.link + this.code_banner;
                 window.open(link, "_blank");
             }
         }

@@ -16,7 +16,7 @@ $routeLocale = $menu["routeLocale"];
             <div class="codigo_mobil">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <form-header :desktop="false" link="{{ $information['api_url_tracking'] ? $information['api_url_tracking'] : '' }}" />
+                        <form-header locale="{{ $locale }}" :desktop="false" link="{{ $information['api_url_tracking'] ? $information['api_url_tracking'] : '' }}" />
                     </li>
                 </ul>
             </div>
