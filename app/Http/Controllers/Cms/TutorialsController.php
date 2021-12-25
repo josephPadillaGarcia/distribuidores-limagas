@@ -78,7 +78,7 @@ class TutorialsController extends Controller
         }
     }
 
-    public function update(TutorialRequest $request, Customer $element)
+    public function update(TutorialRequest $request, Tutorial $element)
     {
         $request_testimonial = request(["title_es", "title_en", "link"]);
         if ($request->hasFile('image')) {

@@ -107,9 +107,9 @@
     <div id="app">
         @yield('page')
     </div>
-    <script src="{{ mix('js/manifest.js') }}"></script>
-    <script src="{{ mix('js/vendor.js') }}"></script>
-    <script src="{{ mix('js/admin.js') }}"></script>
+    <script src="{{ asset('js/admin/manifest.js') }}"></script>
+    <script src="{{ asset('js/admin/vendor.js') }}"></script>
+    <script src="{{ asset('js/admin/admin.js') }}"></script>
     @stack('scripts')
 </body>
 

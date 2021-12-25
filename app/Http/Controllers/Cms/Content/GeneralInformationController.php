@@ -20,8 +20,7 @@ class GeneralInformationController extends Controller
 
     public function index()
     {
-        $departments = $this->getDepartments();
-        return view("admin.pages.content.general-information", compact('departments'));
+        return view("admin.pages.content.general-information");
     }
 
     public function store(GeneralInformationRequest $request)

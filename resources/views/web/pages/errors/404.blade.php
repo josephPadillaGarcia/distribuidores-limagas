@@ -64,9 +64,9 @@ $routeLocale = $locale == 'es' ? '' : $locale;
         </section>
         @include('web.layouts.footer') 
     </div>
-    <script src="{{ mix('js/manifest.js') }}"></script>
-    <script src="{{ mix('js/vendor.js') }}"></script>
-    <script src="{{ mix('js/web.js') }}"></script>
+    <script src="{{ asset('js/web/manifest.js') }}"></script>
+    <script src="{{ asset('js/web/vendor.js') }}"></script>
+    <script src="{{ asset('js/web/web.js') }}"></script>
 </body>
 
 </html>

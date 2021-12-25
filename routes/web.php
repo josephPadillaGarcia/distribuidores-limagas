@@ -8,17 +8,6 @@ Route::namespace('Web')->name('web.')->group(function() {
     Route::get('/servicios/{slug}', 'WebController@service')->name('service');
 });
 
-// Route::group(['prefix' => '{locale?}', 'where' => ['locale' => '[a-zA-Z]{2}']], function() {
-//     Route::namespace('Web')->name('web.')->group(function() {
-//         Route::get('/', 'WebController@index')->name('index');
-//         Route::get('/about-dinet', 'WebController@aboutUs')->name('aboutUs');
-//         Route::get('/privacy-policies', 'WebController@privacyPolicies')->name('privacyPolicies');
-//         Route::get('/quotations', 'WebController@quotations')->name('quotations');
-//         Route::get('/services', 'WebController@services')->name('services');
-//         Route::get('/services/{slug}', 'WebController@service')->name('service');
-//     });
-// });
-
 Route::prefix('admin')->group(function() {
     Route::get('/', 'Cms\Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Cms\Auth\LoginController@login')->name('login.post');
@@ -130,43 +119,7 @@ Route::prefix('admin')->group(function() {
                 Route::get('/json/get/{element}', 'TestimonialsController@get')->name('get');
             });
     
-            #Slider
-            /*Route::prefix('slider')->name('slider.')->group(function () {
-                Route::get('/', 'SliderController@index')->name('index');
-                Route::get('/nuevo', 'SliderController@create')->name('create');
-                Route::get('/editar/{element}', 'SliderController@edit')->name('edit');
-                Route::put('/order', 'SliderController@order')->name('order');
-                Route::post('/', 'SliderController@store')->name('store');
-                Route::put('/{element}', 'SliderController@update')->name('update');
-                Route::delete('/{element}', 'SliderController@destroy')->name('destroy');
-                Route::get('/json/get-all', 'SliderController@getAll')->name('get-all');
-                Route::get('/json/get/{element}', 'SliderController@get')->name('get');
-            });*/
-    
         });
-    
-        /*Route::namespace('Blog')->prefix('blog')->name('blog.')->group(function () {
-            Route::name('category.')->prefix('categorias')->group(function () {
-                Route::get('/', 'CategoriesController@index')->name('index');
-                Route::post('/', 'CategoriesController@store')->name('store');
-                Route::put('/{element}', 'CategoriesController@update')->name('update');
-                Route::delete('/{element}', 'CategoriesController@destroy')->name('destroy');
-                Route::get('/json/get-all', 'CategoriesController@getAll')->name('get-all');
-                Route::get('/json/get/{element}', 'CategoriesController@get')->name('get');
-            });
-    
-            Route::name('posts.')->prefix('posts')->group(function () {
-                Route::get('/', 'PostsController@index')->name('index');
-                Route::get('/nuevo', 'PostsController@create')->name('create');
-                Route::get('/editar/{element}', 'PostsController@edit')->name('edit');
-                Route::post('/', 'PostsController@store')->name('store');
-                Route::put('/{element}', 'PostsController@update')->name('update');
-                Route::delete('/{element}', 'PostsController@destroy')->name('destroy');
-                Route::get('/json/get-all', 'PostsController@getAll')->name('get-all');
-                Route::get('/json/get/{element}', 'PostsController@get')->name('get');
-                Route::post('/posts/image', 'PostsController@storeImage')->name('store-image');
-            });
-        });*/
     
         Route::namespace('Leads')->prefix('leads')->name('leads.')->group(function () {
                 Route::get('/', 'LeadTraditionalController@index')->name('index');
@@ -196,9 +149,6 @@ Route::prefix('admin')->group(function() {
         });
     
         #Misc
-        Route::get('json/get-departments', 'CmsController@getDepartmentsParent')->name('json.get-departments');
-        Route::get('json/get-provinces', 'CmsController@getProvincesParent')->name('json.get-provinces');
-        Route::get('json/get-districts', 'CmsController@getDistrictsParent')->name('json.get-districts');
         Route::get('json/select/categories', 'CmsController@getCategories')->name('json.get-categories');
     });
 });

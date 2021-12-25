@@ -58,12 +58,11 @@ if(Route::currentRouteName() === 'web.service') {
     <div id="app">
         @include('web.layouts.menu') 
         @yield('content')
-        <!-- <web-footer></web-footer> -->
         @include('web.layouts.footer') 
     </div>
-    <script src="{{ mix('js/manifest.js') }}"></script>
-    <script src="{{ mix('js/vendor.js') }}"></script>
-    <script src="{{ mix('js/web.js') }}"></script>
+    <script src="{{ asset('js/web/manifest.js') }}"></script>
+    <script src="{{ asset('js/web/vendor.js') }}"></script>
+    <script src="{{ asset('js/web/web.js') }}"></script>
     @stack('scripts')
 </body>
 
