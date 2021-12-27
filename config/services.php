@@ -21,6 +21,7 @@ return [
     'files_url' => env('FILES_URL', 'http://127.0.0.1:8000/storage/files'),
     'mail_from_name' => env('MAIL_FROM_NAME', 'Dinet e-Commerce Lead'),
     'mail_dinet_token' => env('MAIL_DINET_TOKEN'),
+    'mail_dinet_api_url' => env('MAIL_DINET_API_URL', 'https://app-dev.dinet.com.pe/AppApiIntegration/api/General/SendMail/EcommerceMailHTML'),
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),

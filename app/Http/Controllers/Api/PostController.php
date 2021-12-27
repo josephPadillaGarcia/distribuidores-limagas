@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\EmailDestination;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\Api\Post\LeadRequest;
@@ -14,18 +15,21 @@ class PostController extends BaseController
     public function lead(LeadRequest $request){
         $el = request(['name','email','mobile','business','service_id','quantity_packages']);
 
-        $cuerpoMensaje = $this->buildBodyMsg($request);
-
-        $data = [
-            "destinatarios" => $request->email,
-            "asuntoMensaje" => config('services.mail_from_name'),
-            "cuerpoMensajeHtml" => $cuerpoMensaje,
-        ];
-
-		try {
+        try {
             $el = Lead::UpdateOrCreate($el);
 
-            $this->sendMessage($data);
+            $emails = EmailDestination::where('type','traditional')->first();
+            if($emails){
+                $cuerpoMensaje = $this->buildBodyMsg($request);
+
+                $data = [
+                    "destinatarios" => $emails->leads_traditional,
+                    "asuntoMensaje" => config('services.mail_from_name'),
+                    "cuerpoMensajeHtml" => $cuerpoMensaje,
+                ];
+
+                $this->sendMessage($data);
+            }
 
             return $this->sendResponse([], trans('custom.title.success'), 200);;
         } catch (\Exception $e) {
@@ -75,7 +79,7 @@ class PostController extends BaseController
             'CuerpoMensajeHtml' => $data["cuerpoMensajeHtml"],
         );
 
-        $make_call = $this->callAPI('POST', 'https://app-dev.dinet.com.pe/AppApiIntegration/api/General/SendMail/EcommerceMailHTML', json_encode($data));
+        $make_call = $this->callAPI('POST', config('services.mail_dinet_api_url'), json_encode($data));
 
         if($make_call == 200) {
             return response()->json(["success" => true], 200);
