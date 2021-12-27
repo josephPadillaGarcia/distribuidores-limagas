@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
     return $request->user();
 });*/
 
+Route::namespace('Api')->group(function() { 
+    Route::prefix('post')->group(function() { 
+        Route::post('lead', 'PostController@lead');
+    });
+});
