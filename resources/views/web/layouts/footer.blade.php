@@ -103,16 +103,6 @@ $routeLocale = $footer["routeLocale"];
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-5 col-sm-12">
-                    <div class="developer">
-                        {{ __("Desarrollado por") }}
-                        <a href="https://playgroup.pe" target="_blank">
-                            <div class="img-dev">
-                                <img src="/storage/web/img/logo-play.svg" class="lazyload" />
-                                <img class="lazyload litt" src="/storage/web/img/lid.png" />
-                            </div>
-                            PLAY Group
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
