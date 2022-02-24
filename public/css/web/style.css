@@ -2025,7 +2025,10 @@ section#error-404 {
   #section_rastreo {
     background-size: cover;
     border-radius: 10px;
-    margin: 25px;
+    margin-top: 25px;
+    margin-left: 25px;
+    margin-right: 25px;    
+    margin-bottom: 25px;
     overflow: hidden;
   }
   #section_rastreo .img_cinta {
@@ -2062,10 +2065,76 @@ section#error-404 {
     bottom: 0;
   }
 }
-@media (max-width: 480px) {
-  .section_bannerHome .content_banner p {
-    display: none;
+
+@media (max-width: 500px) {
+  header.fixed-top{
+    position: initial !important;
   }
+  h1, h2{
+    font-size: 1.8rem !important;
+  }
+
+  #seccion_banner_global.section_bannerHome{
+    background: initial !important;
+    height: initial !important;
+    margin-bottom: 0 !important;
+  }
+  #seccion_banner_global .mb-4{
+    margin-bottom: 0 !important;
+  }
+  #seccion_banner_global video {
+    z-index: -50;
+    width: 100vw;
+    height: initial !important;
+    min-height: initial !important;
+    min-width: initial !important;
+    position: initial !important;
+    top: 0 !important;
+    left: 0 !important;
+    -webkit-transform: initial !important;
+    transform: initial !important;
+  }
+  .section_bannerHome .content_banner p, .content_input_search {
+      display: none;
+  }
+  #seccion_banner_global .content_banner h1{
+    text-align: center;
+  }
+  #seccion_banner_global .content_banner {
+    padding: 25px 20px;
+  }
+
+  .titulo_global h2 {
+    margin-bottom: 15px !important;
+  }
+  .carousel_clientes {
+    margin-top: 25px;
+  }
+
+  #section_darkstore .man-dinet {
+    padding: 0 50px 50px;
+  }
+  .bottom_section {
+    padding-bottom: 40px !important;
+    margin-bottom: 40px !important;
+  }
+  #seccion_banner_global.section_bannerNosotros {
+    padding: 65px 0px 65px !important;
+  }
+  #section_video_nosotros .content_info_video h3 strong {
+    font-size: 1.8rem !important;
+  } 
+
+  #form_servicio h3,#section_video_nosotros .content_info_video h3 {
+    font-size: 1.8rem;
+  }
+  .paddingb_section {
+    padding-bottom: 30px !important;
+  } 
+
+}
+
+@media (max-width: 480px) {
   .section_bannerHome .content_banner .content_input_search input {
     padding-left: 20px !important;
   }
@@ -2084,9 +2153,6 @@ section#error-404 {
     color: #ffffff !important;
   }
 
-  #section_darkstore .man-dinet {
-    padding: 50px;
-  }
   #section_darkstore .content_store .caja_botones {
     padding-top: 8px;
   }
