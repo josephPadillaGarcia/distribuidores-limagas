@@ -1659,6 +1659,121 @@ section#error-404 {
   margin-top: 35px;
 }
 
+
+/*========================================*/
+/*
+    ENCUESTA
+*/
+
+.encuesta{
+  max-width: 280px;
+  max-height: 172px;
+  width: 280px;
+  height: 172px;
+  position: fixed;
+  bottom: 0;
+  right: 150px;
+  z-index: 5;
+  background-color: #ffffff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  display: none;
+}
+
+.encuesta02{
+  display: block;
+}
+
+.encuesta__container {
+  padding: 17px;
+  display: grid;
+  height: 100%;
+}
+
+.encuesta__head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  grid-gap: 15px;
+}
+
+.encuesta__head p{
+  color: #484848;
+  margin: 0;
+  font-size: 12px !important;
+}
+
+.encuesta__head a {
+  display: grid;
+  justify-content: end;
+}
+
+.encuesta__head span i{
+  color: #F67706;
+}
+
+.encuesta__body {
+  display: grid;
+  align-items: center;
+}
+
+.encuesta__body p strong{
+  color: #F67706;
+  display: block;
+  text-align: center;
+}
+
+.encuesta__option {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 8px;
+}
+
+.encuesta__campo textarea {
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  border: 1px solid #dbdbdb;
+  border-radius: 2px;
+  padding: 5px;
+  outline: none;
+}
+
+.encuesta__campo textarea::placeholder { color: #B8B8B8; }
+
+.encuesta__option a {
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  background: #E3E3E3;
+  display: grid;
+  justify-content: center;
+  padding: 4px;
+}
+
+.encuesta__option a:hover {
+  border: 1px solid #ffb674;
+  background: #ffca9b;
+}
+
+.encuesta__action {
+  display: grid;
+  align-items: end;
+}
+
+.encuesta__action .btn_global {
+  padding: 3px 0;
+  border-radius: 50px;
+  border: 2px solid #F67706;
+  background: none;
+  color: #F67706 !important;
+}
+
+.encuesta__action .btn_global:hover {
+  background: #F67706;
+  color: #ffffff !important;
+}
+
 /*========================================*/
 /*
     Responsive

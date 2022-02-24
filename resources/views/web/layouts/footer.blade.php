@@ -119,6 +119,92 @@ $routeLocale = $footer["routeLocale"];
         </ul>
     </div>
     @endif
+
+
+<div class="encuesta">
+    <div class="encuesta__container">
+        <div class="encuesta__head">
+            <p>¿Cuán probable es que recomiendes Dinet a un conocido?</p>
+            <a href="#!">
+                <span>
+                    <i class="flaticon-cancelar"></i>
+                </span>
+            </a>
+        </div>
+        <div class="encuesta__body">
+            <div class="encuesta__option">
+                <a href="">
+                    <img data-src="/storage/web/img/face_1.png" class="lazyload" alt="" />
+                </a>
+                <a href="">
+                    <img data-src="/storage/web/img/face_2.png" class="lazyload" alt="" />
+                </a>
+                <a href="">
+                    <img data-src="/storage/web/img/face_3.png" class="lazyload" alt="" />
+                </a>
+                <a href="">
+                    <img data-src="/storage/web/img/face_4.png" class="lazyload" alt="" />
+                </a>
+                <a href="">
+                    <img data-src="/storage/web/img/face_5.png" class="lazyload" alt="" />
+                </a>
+            </div>
+        </div>
+        <div class="encuesta__action">
+            <a
+                href="!#"
+                class="b_boton text-white text-center btn_global"
+            >
+                {{ __("Siguiente") }}
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="encuesta ">
+    <div class="encuesta__container">
+        <div class="encuesta__head">
+            <p>Cuentanos los motivos de tu respuesta</p>
+            <a href="#!">
+                <span>
+                    <i class="flaticon-cancelar"></i>
+                </span>
+            </a>
+        </div>
+        <div class="encuesta__body">
+            <div class="encuesta__campo">
+                <textarea name="textarea" placeholder="Por favor, escribe aquí..."></textarea>
+            </div>
+        </div>
+        <div class="encuesta__action">
+            <a
+                href="!#"
+                class="b_boton text-white text-center btn_global"
+            >
+                {{ __("Enviar") }}
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="encuesta encuesta02">
+    <div class="encuesta__container">
+        <div class="encuesta__head">
+            <a href="#!">
+                <span>
+                    <i class="flaticon-cancelar"></i>
+                </span>
+            </a>
+        </div>
+        <div class="encuesta__body">
+            <p><strong>Gracias por tu opinión</strong></p>
+        </div>
+        <div class="encuesta__action">
+        </div>
+    </div>
+</div>
+
+
 </footer>
 
 @push('scripts')
