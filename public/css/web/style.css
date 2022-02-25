@@ -1626,6 +1626,7 @@ li.nav-item.boton a {
   bottom: 35px;
   right: 35px;
   z-index: 5;
+  transition: .5s;
 }
 .chat-bot li {
   display: grid;
@@ -1679,9 +1680,10 @@ section#error-404 {
   border-top-right-radius: 10px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   display: none;
+  transition: .5s;
 }
 
-.encuesta02{
+.encuest--show{
   display: block;
 }
 
@@ -1704,9 +1706,11 @@ section#error-404 {
   font-size: 12px !important;
 }
 
-.encuesta__head a {
+.encuesta__head button {
   display: grid;
   justify-content: end;
+  border: none;
+  background: none;
 }
 
 .encuesta__head span i{
@@ -1751,7 +1755,7 @@ section#error-404 {
   padding: 4px;
 }
 
-.encuesta__option a:hover {
+.encuesta__option a:hover,  .encuesta__option a.active_face{
   border: 1px solid #ffb674;
   background: #ffca9b;
 }
@@ -1772,6 +1776,17 @@ section#error-404 {
 .encuesta__action .btn_global:hover {
   background: #F67706;
   color: #ffffff !important;
+}
+
+@media (max-width: 480px) {
+  .encuesta{
+    max-width: initial !important;
+    width: 100% !important;
+    right: 0 !important;
+  }
+  .chat-bot {
+    bottom: 190px !important;
+  }
 }
 
 /*========================================*/

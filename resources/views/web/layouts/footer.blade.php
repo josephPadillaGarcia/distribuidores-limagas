@@ -121,55 +121,62 @@ $routeLocale = $footer["routeLocale"];
     @endif
 
 
-<div class="encuesta">
+<div class="encuesta encuest--show" id="options">
+
+<!--div id="rectangulo" style="padding:10px 10px 10px 10px; background-color:#000; color:#fff;">Rectángulo de ejemplo, que variará de opacidad</div>
+
+<input type="button" id="mostrar" value="Mostrar con fadeIn()">
+<input type="button" id="ocultar" value="Ocultar con fadeOut()">
+<input type="button" id="mostrar2" value="Mostrar con fadeIn() en 4000 milisengos">
+<input type="button" id="ocultar2" value="Ocultar fadeOut() en 4000 milisegundos">
+<input type="button" id="mostrar3" value="Mostrar con fadeIn() en 4000 milisengos y callback">
+<input type="button" id="ocultar3" value="Ocultar fadeOut() en 4000 milisegundos y callback"-->
+
     <div class="encuesta__container">
         <div class="encuesta__head">
             <p>¿Cuán probable es que recomiendes Dinet a un conocido?</p>
-            <a href="#!">
+            <button class="btn_close">
                 <span>
                     <i class="flaticon-cancelar"></i>
                 </span>
-            </a>
+            </button>
         </div>
         <div class="encuesta__body">
-            <div class="encuesta__option">
-                <a href="">
+            <div class="encuesta__option" id="option">
+                <a href="#!">
                     <img data-src="/storage/web/img/face_1.png" class="lazyload" alt="" />
                 </a>
-                <a href="">
+                <a href="#!">
                     <img data-src="/storage/web/img/face_2.png" class="lazyload" alt="" />
                 </a>
-                <a href="">
+                <a href="#!">
                     <img data-src="/storage/web/img/face_3.png" class="lazyload" alt="" />
                 </a>
-                <a href="">
+                <a href="#!">
                     <img data-src="/storage/web/img/face_4.png" class="lazyload" alt="" />
                 </a>
-                <a href="">
+                <a href="#!">
                     <img data-src="/storage/web/img/face_5.png" class="lazyload" alt="" />
                 </a>
             </div>
         </div>
         <div class="encuesta__action">
-            <a
-                href="!#"
-                class="b_boton text-white text-center btn_global"
-            >
+            <a href="#!" class="b_boton text-white text-center btn_global" id="btn_encuesta">
                 {{ __("Siguiente") }}
             </a>
         </div>
     </div>
 </div>
 
-<div class="encuesta ">
+<div class="encuesta " id="respuesta">
     <div class="encuesta__container">
         <div class="encuesta__head">
             <p>Cuentanos los motivos de tu respuesta</p>
-            <a href="#!">
+            <button class="btn_close">
                 <span>
                     <i class="flaticon-cancelar"></i>
                 </span>
-            </a>
+            </button>
         </div>
         <div class="encuesta__body">
             <div class="encuesta__campo">
@@ -180,6 +187,7 @@ $routeLocale = $footer["routeLocale"];
             <a
                 href="!#"
                 class="b_boton text-white text-center btn_global"
+                id="enviar"
             >
                 {{ __("Enviar") }}
             </a>
@@ -187,14 +195,14 @@ $routeLocale = $footer["routeLocale"];
     </div>
 </div>
 
-<div class="encuesta encuesta02">
+<div class="encuesta" id="gracias">
     <div class="encuesta__container">
         <div class="encuesta__head">
-            <a href="#!">
+            <button class="btn_close">
                 <span>
                     <i class="flaticon-cancelar"></i>
                 </span>
-            </a>
+            </button>
         </div>
         <div class="encuesta__body">
             <p><strong>Gracias por tu opinión</strong></p>
@@ -210,6 +218,7 @@ $routeLocale = $footer["routeLocale"];
 @push('scripts')
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#btn_encuesta').prop('disabled', true); 
         $("ul.navbar-nav li.dropdown").hover(
                 function() {
                     $(this)
@@ -237,7 +246,34 @@ $routeLocale = $footer["routeLocale"];
             )}`;
             
             window.open(link, "_blank");
-        })
+        });
+
+        $(".encuesta__option a").click(function(e){
+            e.preventDefault();
+            if($(this).hasClass("active_face")){
+                $(this).removeClass("active_face");
+            }else{
+                $(".encuesta__option a").removeClass("active_face");
+                $(this).addClass("active_face");
+            }
+            
+        });
+
+        $("#btn_encuesta").click(function(event){
+            $("#options").hide();
+            $("#respuesta").show();
+        });
+
+        $("#enviar").click(function(e){
+            e.preventDefault();
+            $("#respuesta").hide();
+            $("#gracias").show();
+        });
+
+        $(".btn_close").click(function(){
+            $(".encuesta").hide();
+        });
+
     });
 </script>
 @endpush
