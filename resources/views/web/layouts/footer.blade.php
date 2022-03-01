@@ -109,7 +109,7 @@ $routeLocale = $footer["routeLocale"];
     </div>
 
     @if($information['whatsapp_number'])
-    <div class="chat-bot">
+    <div class="chat-bot chat-bot--mobil">
         <ul>
             <li class="bot">
                 <a class="chatbot-wsp" target="_blank">
@@ -272,6 +272,7 @@ $routeLocale = $footer["routeLocale"];
 
         $(".btn_close").click(function(){
             $(".encuesta").hide();
+            $(".chat-bot").removeClass("chat-bot--mobil");
         });
 
     });

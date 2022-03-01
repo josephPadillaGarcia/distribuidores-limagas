@@ -1784,7 +1784,7 @@ section#error-404 {
     width: 100% !important;
     right: 0 !important;
   }
-  .chat-bot {
+  .chat-bot--mobil {
     bottom: 190px !important;
   }
 }
