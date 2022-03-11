@@ -119,14 +119,14 @@ $routeLocale = $footer["routeLocale"];
         </ul>
     </div>
     @endif
-
 <form class="encuesta" action="" method="post">
+
     <div class="encuesta--show" id="options">
 
         <div class="encuesta__container">
             <div class="encuesta__head">
                 <p>¿Cuán probable es que recomiendes Dinet a un conocido?</p>
-                <button class="btn_close">
+                <button class="btn_close" type="button">
                     <span>
                         <i class="flaticon-cancelar"></i>
                     </span>
@@ -134,7 +134,7 @@ $routeLocale = $footer["routeLocale"];
             </div>
             <div class="encuesta__body">
                 <div class="encuesta__option" id="option">
-                    <button class="" value="1">
+                    <!--button class="" value="1">
                         <img data-src="/storage/web/img/face_1.png" class="lazyload" alt="" />
                     </button>
                     <button class="" value="2">
@@ -148,7 +148,8 @@ $routeLocale = $footer["routeLocale"];
                     </button>
                     <button class="" value="5">
                         <img data-src="/storage/web/img/face_5.png" class="lazyload" alt="" />
-                    </button>
+                    </button-->
+                    <input type="text" name="num_face" id="num_face">
                 </div>
             </div>
             <div class="encuesta__action">
@@ -163,7 +164,7 @@ $routeLocale = $footer["routeLocale"];
         <div class="encuesta__container">
             <div class="encuesta__head">
                 <p>Cuentanos los motivos de tu respuesta</p>
-                <button class="btn_close">
+                <button class="btn_close" type="button">
                     <span>
                         <i class="flaticon-cancelar"></i>
                     </span>
@@ -171,14 +172,15 @@ $routeLocale = $footer["routeLocale"];
             </div>
             <div class="encuesta__body">
                 <div class="encuesta__campo">
-                    <textarea name="textarea" placeholder="Por favor, escribe aquí..."></textarea>
+                    <textarea name="respuesta" id="text_respuesta" placeholder="Por favor, escribe aquí..."></textarea>
                 </div>
             </div>
             <div class="encuesta__action">
-                <a
-                    href="!#"
+                <button
+                    type="button"
                     class="b_boton text-white text-center btn_global"
                     id="enviar"
+                    value="enviar"
                 >
                     Enviar
                 </a>
@@ -189,7 +191,7 @@ $routeLocale = $footer["routeLocale"];
     <div class="encuesta--hide" id="gracias">
         <div class="encuesta__container">
             <div class="encuesta__head">
-                <button class="btn_close">
+                <button class="btn_close" type="button">
                     <span>
                         <i class="flaticon-cancelar"></i>
                     </span>
@@ -271,15 +273,46 @@ $routeLocale = $footer["routeLocale"];
         });
 
         $("#enviar").click(function(e){
+            $.ajaxSetup({headers:{'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')}  });
             e.preventDefault();
+
+            
+            var formData = {
+            num_face: $('#num_face').val(),
+            respuesta: $('#text_respuesta').val(),
+            };
+
+            var state = $('#enviar').val();
+            var type = "POST";
+            $.ajax({
+                type: type,
+                url: "{{ route('web.encuesta') }}",
+                data: formData,
+                dataType: 'json',
+                success: function (data){
+                    if(data){
+                        console.log("MENSAJE ENVIADO");
+                    }
+                    else{
+                        console.log("LA CAGASTE");
+                    }
+                },
+                error: function (data){
+                    console.log(data);
+                }
+            });
+
             $("#respuesta").hide();
             $("#gracias").show();
         });
 
         $(".btn_close").click(function(){
+            e.preventDefault();
             $(".encuesta").hide();
             $(".chat-bot").removeClass("chat-bot--mobil");
         });
+        /*--------------------------*/
+        /*===============================*/
 
     });
 </script>

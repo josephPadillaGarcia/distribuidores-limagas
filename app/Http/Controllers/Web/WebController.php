@@ -79,6 +79,14 @@ class WebController extends Controller
             "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
+        //dd($request->all());
+
+       /* $encuesta= new Encuesta();
+        $encuesta->num_face = $request->num_face;
+        $encuesta->respuesta = $request->respuesta;
+
+        $encuesta->save();*/
+
         return view("web.pages.index", compact('data'));
     }
 
@@ -196,11 +204,18 @@ class WebController extends Controller
 
 
     public function encuesta(Request $request){
-        $encuesta= new Encuesta();
-        $encuesta->num_face = $request->num_face;
-        $encuesta->respuesta = $request->respuesta;
+        try {
+            $encuesta= new Encuesta();
+            $encuesta->num_face = $request->num_face;
+            $encuesta->respuesta = $request->respuesta;
 
-        $encuesta->save();
+            $encuesta->save();
+            return  response()->json($encuesta, 200);
+        } catch (\Exception $e) {
+            return  response()->json('malo', 500);
+        }
+        
+
     }
 
 
