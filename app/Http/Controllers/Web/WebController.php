@@ -16,6 +16,7 @@ use App\MasterPage;
 use App\SocialNetwork;
 use App\Information;
 use Carbon\Carbon;
+use App\Encuesta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
@@ -192,4 +193,15 @@ class WebController extends Controller
 
         return view("web.pages.service", compact('data'));
     }
+
+
+    public function encuesta(Request $request){
+        $encuesta= new Encuesta();
+        $encuesta->num_face = $request->num_face;
+        $encuesta->respuesta = $request->respuesta;
+
+        $encuesta->save();
+    }
+
+
 }

@@ -120,98 +120,90 @@ $routeLocale = $footer["routeLocale"];
     </div>
     @endif
 
+<form class="encuesta" action="" method="post">
+    <div class="encuesta--show" id="options">
 
-<div class="encuesta encuest--show" id="options">
-
-<!--div id="rectangulo" style="padding:10px 10px 10px 10px; background-color:#000; color:#fff;">Rectángulo de ejemplo, que variará de opacidad</div>
-
-<input type="button" id="mostrar" value="Mostrar con fadeIn()">
-<input type="button" id="ocultar" value="Ocultar con fadeOut()">
-<input type="button" id="mostrar2" value="Mostrar con fadeIn() en 4000 milisengos">
-<input type="button" id="ocultar2" value="Ocultar fadeOut() en 4000 milisegundos">
-<input type="button" id="mostrar3" value="Mostrar con fadeIn() en 4000 milisengos y callback">
-<input type="button" id="ocultar3" value="Ocultar fadeOut() en 4000 milisegundos y callback"-->
-
-    <div class="encuesta__container">
-        <div class="encuesta__head">
-            <p>¿Cuán probable es que recomiendes Dinet a un conocido?</p>
-            <button class="btn_close">
-                <span>
-                    <i class="flaticon-cancelar"></i>
-                </span>
-            </button>
-        </div>
-        <div class="encuesta__body">
-            <div class="encuesta__option" id="option">
-                <a href="#!">
-                    <img data-src="/storage/web/img/face_1.png" class="lazyload" alt="" />
-                </a>
-                <a href="#!">
-                    <img data-src="/storage/web/img/face_2.png" class="lazyload" alt="" />
-                </a>
-                <a href="#!">
-                    <img data-src="/storage/web/img/face_3.png" class="lazyload" alt="" />
-                </a>
-                <a href="#!">
-                    <img data-src="/storage/web/img/face_4.png" class="lazyload" alt="" />
-                </a>
-                <a href="#!">
-                    <img data-src="/storage/web/img/face_5.png" class="lazyload" alt="" />
+        <div class="encuesta__container">
+            <div class="encuesta__head">
+                <p>¿Cuán probable es que recomiendes Dinet a un conocido?</p>
+                <button class="btn_close">
+                    <span>
+                        <i class="flaticon-cancelar"></i>
+                    </span>
+                </button>
+            </div>
+            <div class="encuesta__body">
+                <div class="encuesta__option" id="option">
+                    <button class="" value="1">
+                        <img data-src="/storage/web/img/face_1.png" class="lazyload" alt="" />
+                    </button>
+                    <button class="" value="2">
+                        <img data-src="/storage/web/img/face_2.png" class="lazyload" alt="" />
+                    </button>
+                    <button class="" value="3">
+                        <img data-src="/storage/web/img/face_3.png" class="lazyload" alt="" />
+                    </button>
+                    <button class="" value="4">
+                        <img data-src="/storage/web/img/face_4.png" class="lazyload" alt="" />
+                    </button>
+                    <button class="" value="5">
+                        <img data-src="/storage/web/img/face_5.png" class="lazyload" alt="" />
+                    </button>
+                </div>
+            </div>
+            <div class="encuesta__action">
+                <a href="#!" class="b_boton text-white text-center btn_global" id="btn_encuesta">
+                    Siguiente
                 </a>
             </div>
         </div>
-        <div class="encuesta__action">
-            <a href="#!" class="b_boton text-white text-center btn_global" id="btn_encuesta">
-                {{ __("Siguiente") }}
-            </a>
-        </div>
     </div>
-</div>
-
-<div class="encuesta " id="respuesta">
-    <div class="encuesta__container">
-        <div class="encuesta__head">
-            <p>Cuentanos los motivos de tu respuesta</p>
-            <button class="btn_close">
-                <span>
-                    <i class="flaticon-cancelar"></i>
-                </span>
-            </button>
-        </div>
-        <div class="encuesta__body">
-            <div class="encuesta__campo">
-                <textarea name="textarea" placeholder="Por favor, escribe aquí..."></textarea>
+    
+    <div class="encuesta--hide" id="respuesta">
+        <div class="encuesta__container">
+            <div class="encuesta__head">
+                <p>Cuentanos los motivos de tu respuesta</p>
+                <button class="btn_close">
+                    <span>
+                        <i class="flaticon-cancelar"></i>
+                    </span>
+                </button>
+            </div>
+            <div class="encuesta__body">
+                <div class="encuesta__campo">
+                    <textarea name="textarea" placeholder="Por favor, escribe aquí..."></textarea>
+                </div>
+            </div>
+            <div class="encuesta__action">
+                <a
+                    href="!#"
+                    class="b_boton text-white text-center btn_global"
+                    id="enviar"
+                >
+                    Enviar
+                </a>
             </div>
         </div>
-        <div class="encuesta__action">
-            <a
-                href="!#"
-                class="b_boton text-white text-center btn_global"
-                id="enviar"
-            >
-                {{ __("Enviar") }}
-            </a>
+    </div>
+    
+    <div class="encuesta--hide" id="gracias">
+        <div class="encuesta__container">
+            <div class="encuesta__head">
+                <button class="btn_close">
+                    <span>
+                        <i class="flaticon-cancelar"></i>
+                    </span>
+                </button>
+            </div>
+            <div class="encuesta__body">
+                <p><strong>Gracias por tu opinión</strong></p>
+            </div>
+            <div class="encuesta__action">
+            </div>
         </div>
     </div>
-</div>
-
-<div class="encuesta" id="gracias">
-    <div class="encuesta__container">
-        <div class="encuesta__head">
-            <button class="btn_close">
-                <span>
-                    <i class="flaticon-cancelar"></i>
-                </span>
-            </button>
-        </div>
-        <div class="encuesta__body">
-            <p><strong>Gracias por tu opinión</strong></p>
-        </div>
-        <div class="encuesta__action">
-        </div>
-    </div>
-</div>
-
+    
+</form>
 
 </footer>
 
@@ -248,12 +240,26 @@ $routeLocale = $footer["routeLocale"];
             window.open(link, "_blank");
         });
 
+        /*--------------------------*/
+        /*ENCUESTA*/
+
         $(".encuesta__option a").click(function(e){
             e.preventDefault();
             if($(this).hasClass("active_face")){
                 $(this).removeClass("active_face");
             }else{
                 $(".encuesta__option a").removeClass("active_face");
+                $(this).addClass("active_face");
+            }
+            
+        });
+
+        $(".encuesta__option button").click(function(e){
+            e.preventDefault();
+            if($(this).hasClass("active_face")){
+                $(this).removeClass("active_face");
+            }else{
+                $(".encuesta__option button").removeClass("active_face");
                 $(this).addClass("active_face");
             }
             

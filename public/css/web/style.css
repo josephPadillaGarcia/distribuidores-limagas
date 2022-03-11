@@ -1679,12 +1679,17 @@ section#error-404 {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  display: none;
+  /*display: none;*/
   transition: .5s;
 }
 
-.encuest--show{
+.encuesta--show{
   display: block;
+  height: 100%;
+}
+.encuesta--hide{
+  display: none;
+  height: 100%;
 }
 
 .encuesta__container {
@@ -1697,13 +1702,14 @@ section#error-404 {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: start;
-  grid-gap: 15px;
+  justify-content: space-between;
 }
 
 .encuesta__head p{
   color: #484848;
   margin: 0;
   font-size: 12px !important;
+  padding-right: 15px;
 }
 
 .encuesta__head button {
@@ -1746,7 +1752,7 @@ section#error-404 {
 
 .encuesta__campo textarea::placeholder { color: #B8B8B8; }
 
-.encuesta__option a {
+.encuesta__option a, .encuesta__option button {
   border: 1px solid #dbdbdb;
   border-radius: 4px;
   background: #E3E3E3;
@@ -1755,7 +1761,7 @@ section#error-404 {
   padding: 4px;
 }
 
-.encuesta__option a:hover,  .encuesta__option a.active_face{
+.encuesta__option a:hover, .encuesta__option button:hover,  .encuesta__option a.active_face, .encuesta__option button.active_face{
   border: 1px solid #ffb674;
   background: #ffca9b;
 }
