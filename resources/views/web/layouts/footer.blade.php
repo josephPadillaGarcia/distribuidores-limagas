@@ -119,7 +119,7 @@ $routeLocale = $footer["routeLocale"];
         </ul>
     </div>
     @endif
-<form class="encuesta" action="" method="post">
+<form class="encuesta" action="" method="post" if="formencuesta">
 
     <div class="encuesta--show" id="options">
 
@@ -134,21 +134,21 @@ $routeLocale = $footer["routeLocale"];
             </div>
             <div class="encuesta__body">
                 <div class="encuesta__option" id="option">
-                    <!--button class="" value="1">
+                    <button class="button_face" name="buttonface1" value="1">
                         <img data-src="/storage/web/img/face_1.png" class="lazyload" alt="" />
                     </button>
-                    <button class="" value="2">
+                    <button class="button_face" name="buttonface2" value="2">
                         <img data-src="/storage/web/img/face_2.png" class="lazyload" alt="" />
                     </button>
-                    <button class="" value="3">
+                    <button class="button_face" name="buttonface3" value="3">
                         <img data-src="/storage/web/img/face_3.png" class="lazyload" alt="" />
                     </button>
-                    <button class="" value="4">
+                    <button class="button_face" name="buttonface4" value="4">
                         <img data-src="/storage/web/img/face_4.png" class="lazyload" alt="" />
                     </button>
-                    <button class="" value="5">
+                    <button class="button_face" name="buttonface5" value="5">
                         <img data-src="/storage/web/img/face_5.png" class="lazyload" alt="" />
-                    </button-->
+                    </button>
                     <input type="text" name="num_face" id="num_face">
                 </div>
             </div>
@@ -266,8 +266,17 @@ $routeLocale = $footer["routeLocale"];
             }
             
         });
+        
+        $(".button_face").click(function (e){
+            e.preventDefault();
+            var numero_face = $(this).val();
+            console.log(numero_face);
+            $("#num_face").val(numero_face);
+        });
 
-        $("#btn_encuesta").click(function(event){
+        $("#btn_encuesta").click(function(e){
+            e.preventDefault();
+            
             $("#options").hide();
             $("#respuesta").show();
         });
@@ -276,7 +285,6 @@ $routeLocale = $footer["routeLocale"];
             $.ajaxSetup({headers:{'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')}  });
             e.preventDefault();
 
-            
             var formData = {
             num_face: $('#num_face').val(),
             respuesta: $('#text_respuesta').val(),
@@ -306,7 +314,7 @@ $routeLocale = $footer["routeLocale"];
             $("#gracias").show();
         });
 
-        $(".btn_close").click(function(){
+        $(".btn_close").click(function(e){
             e.preventDefault();
             $(".encuesta").hide();
             $(".chat-bot").removeClass("chat-bot--mobil");

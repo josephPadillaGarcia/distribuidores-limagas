@@ -1740,6 +1740,10 @@ section#error-404 {
   grid-gap: 8px;
 }
 
+.encuesta__option input{
+  display: none;
+}
+
 .encuesta__campo textarea {
   width: 100%;
   height: 100%;
