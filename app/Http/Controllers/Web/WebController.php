@@ -202,6 +202,15 @@ class WebController extends Controller
         return view("web.pages.service", compact('data'));
     }
 
+    public function faq($locale = null){
+        $page = $this->getSeoPage('services', $this->locale);
+        $data = array(
+            "page" => $page,
+        );
+
+        return view("web.pages.faq", compact('data'));
+
+    }
 
     public function encuesta(Request $request){
         try {

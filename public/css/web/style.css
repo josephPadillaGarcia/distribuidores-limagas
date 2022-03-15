@@ -348,6 +348,11 @@ footer .pie .developer .img-dev img.litt {
 /*
     Section Mensaje
 */
+
+.mensajetext{
+  margin: 60px 0;
+}
+
 #mensaje .content_mensaje h3 {
   font-size: 20px;
   font-weight: bold;
@@ -355,6 +360,14 @@ footer .pie .developer .img-dev img.litt {
   text-align: center;
 }
 #mensaje .content_mensaje h3 strong {
+  color: #F67706;
+}
+
+#mensaje p{
+  text-align: center;
+}
+
+#mensaje p strong{
   color: #F67706;
 }
 
@@ -662,6 +675,145 @@ footer .pie .developer .img-dev img.litt {
   font-size: 14px;
   margin-bottom: 30px;
 }
+
+/*=============================*/
+/* 
+*
+ACORDEON
+*
+*/
+
+.accordion {
+  margin-bottom: 60px;
+}
+.accordion__item{
+  border: 1.5px solid #0D2355;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  transition: .5s;
+}
+.accordion__item:hover{
+  border: 1.5px solid #F67706;
+}
+.accordion__title {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+}
+.accordion__title span{
+  font-weight: bold;
+  font-size: 0.9rem !important;
+  color: #0D2355;
+}
+/*.accordion__title:hover {
+  background: #484b77;
+}*/
+.accordion__title .icono-acordeon {
+  transition: 0.3s;
+  transform: rotate(-90deg);
+}
+.accordion__title .icono-acordeon.active {
+  transform: rotate(0deg);
+}
+.accordion__copy {
+  display: none;
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.accordion__copy--open {
+  display: block;
+}
+
+.accordion__likes{
+  /*padding: 0rem 1.5rem 1rem 1.5rem;*/
+}
+.accordion__likes p{
+  font-weight: bold;
+  color: #0D2355;
+}
+.accordion__likes__item, .accordion__likes__item a {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+}
+.accordion__likes__item a {
+  margin-right: 35px;
+  align-items: center;
+}
+.accordion__likes__item a img{
+  margin-right: 5px;
+}
+
+
+/*===========================*/
+
+/*
+   EDITOR
+   *
+   -----------------------------------------
+   *
+ */
+ .editar p, .editar ul, .editar a {
+  margin-bottom: 12px;
+  display: block;
+}
+.editar strong, .editar b {
+  color: #2B2B2B;
+}
+.editar a {
+  color: #0067cd;
+  text-decoration: revert;
+}
+.editar ul li {
+  padding-bottom: 10px;
+  font-size: 13px;
+  padding-left: 15px;
+  position: relative;
+}
+.editar ul li:before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #F67706;
+  border-radius: 50%;
+  top: 2px;
+  left: 0;
+}
+.editar ol {
+  padding-left: 0rem;
+}
+.editar ol li {
+  padding-bottom: 10px;
+  color: #F67706;
+  list-style-type: none;
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+  counter-increment: list-0;
+}
+.editar ol li:before {
+  content: counter(list-0, decimal) ". ";
+}
+.editar ol li.ql-indent-1 {
+  margin-left: 2rem;
+  color: #000000;
+  counter-reset: list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+  counter-increment: list-1;
+  text-align: justify;
+}
+.editar ol li.ql-indent-1:before {
+  content: counter(list-1, lower-alpha) ". ";
+}
+.editar ol li.ql-indent-1:not(.ql-direction-rtl):before {
+  margin-left: -1.1em;
+}
+
+/*------------------------------------------*/
+/*========================================*/
+
 #section_acordion .accordion .accordion-item {
   margin-bottom: 12px !important;
   border: 1.5px solid #0D2355 !important;

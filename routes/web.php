@@ -7,6 +7,7 @@ Route::namespace('Web')->name('web.')->group(function() {
     Route::get('/servicios', 'WebController@services')->name('services');
     Route::get('/servicios/{slug}', 'WebController@service')->name('service');
     Route::post('/encuesta','WebController@encuesta')->name('encuesta');
+    Route::get('/faq', 'WebController@faq')->name('faq');
 });
 
 Route::prefix('admin')->group(function() {

@@ -72,6 +72,12 @@ $routeLocale = $footer["routeLocale"];
                 <div class="opciones_footer">
                     <ul>
                         <li>
+                            <a href="{{ route('web.faq') }}">
+                                <img class="lazyload" src="/storage/web/img/icon_libro.png" alt="Libro de reclamaciones" />
+                                Preguntas Frecuentes
+                            </a>
+                        </li>
+                        <li>
                             @if($information['book_link'])
                             <a href="{{ $information['book_link'] }}">
                                 <img class="lazyload" src="/storage/web/img/icon_libro.png" alt="Libro de reclamaciones" />
@@ -340,6 +346,31 @@ $routeLocale = $footer["routeLocale"];
         });
         /*--------------------------*/
         /*===============================*/
+
+        /* ====================================================== */
+
+        /* 
+            ACORDEON 
+            *
+            ---------------------------------------------
+            *
+        */
+
+        var $title = $('.js-title');
+        var copy   = '.js-copy';
+
+        $title.click(function () {
+        $(this).next(copy).slideToggle();
+        $(this).parent().siblings().children().next().slideUp();
+        if($(this).children('span.icono-acordeon').hasClass('active')){
+            $(this).children('span.icono-acordeon').removeClass('active');
+        }else{
+            $('span.icono-acordeon').removeClass('active');
+            $(this).children('span.icono-acordeon').addClass('active');
+        }
+        });
+
+        /* ====================================================== */
 
     });
 </script>
