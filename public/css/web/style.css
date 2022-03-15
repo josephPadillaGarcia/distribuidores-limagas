@@ -1740,6 +1740,13 @@ section#error-404 {
   grid-gap: 8px;
 }
 
+.message_error {
+  color: red;
+  font-size: 11px !important;
+  margin: 0;
+  display: none;
+}
+
 .encuesta__option input{
   display: none;
 }

@@ -150,7 +150,8 @@ $routeLocale = $footer["routeLocale"];
                         <img data-src="/storage/web/img/face_5.png" class="lazyload" alt="" />
                     </button>
                     <input type="text" name="num_face" id="num_face">
-                </div>
+                </div>                
+                <p class="message_error">Por favor marcar una carita</p>
             </div>
             <div class="encuesta__action">
                 <a href="#!" class="b_boton text-white text-center btn_global" id="btn_encuesta">
@@ -174,6 +175,7 @@ $routeLocale = $footer["routeLocale"];
                 <div class="encuesta__campo">
                     <textarea name="respuesta" id="text_respuesta" placeholder="Por favor, escribe aquí..."></textarea>
                 </div>
+                <p class="message_error">Por favor llena el campo requerido</p>
             </div>
             <div class="encuesta__action">
                 <button
@@ -266,52 +268,69 @@ $routeLocale = $footer["routeLocale"];
             }
             
         });
-        
+
         $(".button_face").click(function (e){
-            e.preventDefault();
-            var numero_face = $(this).val();
-            console.log(numero_face);
-            $("#num_face").val(numero_face);
-        });
+                e.preventDefault();
+                var numero_face = $(this).val();
+                $("#num_face").val(numero_face);
+            });
 
         $("#btn_encuesta").click(function(e){
             e.preventDefault();
-            
-            $("#options").hide();
-            $("#respuesta").show();
+
+            let num_face = $('#num_face').val();
+
+            if(num_face){
+                $("#options").hide();
+                $("#respuesta").show();
+                $('.message_error').css("display", "none");
+            }else{
+                $('.message_error').css("display", "block");
+            }
+
         });
+
 
         $("#enviar").click(function(e){
             $.ajaxSetup({headers:{'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')}  });
             e.preventDefault();
 
-            var formData = {
-            num_face: $('#num_face').val(),
-            respuesta: $('#text_respuesta').val(),
-            };
+            var message_respuesta = $('#text_respuesta').val();
 
-            var state = $('#enviar').val();
-            var type = "POST";
-            $.ajax({
-                type: type,
-                url: "{{ route('web.encuesta') }}",
-                data: formData,
-                dataType: 'json',
-                success: function (data){
-                    if(data){
-                        console.log("MENSAJE ENVIADO");
-                    }
-                    else{
-                        console.log("LA CAGASTE");
-                    }
-                },
-                error: function (data){
-                    console.log(data);
+            if(message_respuesta){
+                $('.message_error').css("display", "none");
+
+                var formData = {
+                    num_face: $('#num_face').val(),
+                    respuesta: message_respuesta,
                 }
-            });
 
-            $("#respuesta").hide();
-            $("#gracias").show();
+                var state = $('#enviar').val();
+                var type = "POST";
+                $.ajax({
+                    type: type,
+                    url: "{{ route('web.encuesta') }}",
+                    data: formData,
+                    dataType: 'json',
+                    success: function (data){
+                        if(data){
+                            console.log("MENSAJE ENVIADO");
+                        }
+                        else{
+                            console.log("LA CAGASTE");
+                        }
+                    },
+                    error: function (data){
+                        console.log(data);
+                    }
+                });
+
+                $("#respuesta").hide();
+                $("#gracias").show();
+
+            }else{                
+                $('.message_error').css("display", "block");
+            }
         });
 
         $(".btn_close").click(function(e){
