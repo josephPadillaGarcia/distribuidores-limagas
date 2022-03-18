@@ -17,6 +17,7 @@ return [
         'applicant' => 'El postulante',
         'section' => 'La sección',
         'testimonial' => 'El testimonio',
+        'faqs' => 'El FAQ',
         'member' => 'El miembro',
         'lead' => 'El lead',
         'features' => 'La característica',

@@ -762,10 +762,10 @@ ACORDEON
   display: block;
 }
 .editar strong, .editar b {
-  color: #2B2B2B;
+  color: #F67706;
 }
 .editar a {
-  color: #0067cd;
+  color: #F67706;
   text-decoration: revert;
 }
 .editar ul li {

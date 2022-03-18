@@ -81,6 +81,9 @@ Route::prefix('admin')->group(function() {
             Route::post('/', 'FaqController@store')->name('store');
             Route::put('/order', 'FaqController@order')->name('order');
             Route::get('/json/get-all', 'FaqController@getAll')->name('get-all');
+            Route::put('/{element}', 'FaqController@update')->name('update');
+            Route::get('/json/get/{element}', 'FaqController@get')->name('get');
+            Route::delete('/{element}', 'FaqController@destroy')->name('destroy');
         });
     
         Route::namespace('Content')->prefix('contenido')->name('content.')->group(function () {

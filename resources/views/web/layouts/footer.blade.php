@@ -358,6 +358,10 @@ $routeLocale = $footer["routeLocale"];
 
         var $title = $('.js-title');
         var copy   = '.js-copy';
+        var $body = $('.accordion__item');
+        
+        $('.js-title:first').children('span.icono-acordeon').addClass('active');
+        $('.accordion__item:first').children('div.accordion__copy').addClass('accordion__copy--open');
 
         $title.click(function () {
         $(this).next(copy).slideToggle();

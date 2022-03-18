@@ -25,6 +25,11 @@ class FaqController extends Controller
     }
     /*----------------------------------------------------*/
 
+    public function get(Faq $element)
+    {
+        return response()->json($element);
+    }
+
     public function order(Request $request)
     {
         $elements = $request->all();
@@ -36,7 +41,7 @@ class FaqController extends Controller
                 'title' => trans('custom.title.success'), 
                 'message' => trans('custom.message.update.success', 
                     [
-                        'name' => trans('custom.attribute.testimonial')
+                        'name' => trans('custom.attribute.faqs')
                     ])
                 ], 200);
         } catch (\Exception $e) {
@@ -44,7 +49,7 @@ class FaqController extends Controller
                 'title' => trans('custom.title.error'), 
                 'message' => trans('custom.message.update.error', 
                     [
-                        'name' => trans('custom.attribute.testimonial')
+                        'name' => trans('custom.attribute.faqs')
                     ])
                 ], 500);
         }
@@ -60,9 +65,51 @@ class FaqController extends Controller
         $testimonial = array_merge($testimonial, ["index" => $testimonialIndex]);*/
         try {
             $faq = Faq::UpdateOrCreate($faq);
-            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.create.success', ['name' => trans('custom.attribute.testimonial')])], 200);
+            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.create.success', ['name' => trans('custom.attribute.faqs')])], 200);
         } catch (\Exception $e) {
-            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.create.error', ['name' => trans('custom.attribute.testimonial')])], 500);
+            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.create.error', ['name' => trans('custom.attribute.faqs')])], 500);
         }
     }
+
+    public function update(FaqRequest $request, Faq $element)
+    {
+        $faq = request(["question", "description"]);
+        /*if ($request->hasFile('image')) {
+            $image_name = $this->setFileName('t-', $request->file('image'));
+            $store_image = Storage::disk('public')->putFileAs('img/testimonials/', $request->file('image'), $image_name);
+            if (!$store_image) {
+                return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.errors.image')], 500);
+            }
+            $request_testimonial = array_merge($request_testimonial, ["image" => $image_name]);
+        } else {
+            $request_testimonial = array_merge($request_testimonial, ["image" => $element->image]);
+        }
+        if ($request->hasFile('image') && $element->image) {
+            Storage::disk('public')->delete('img/testimonials/' . $element->image);
+        }*/
+        try {
+            $element = Faq::UpdateOrCreate(["id" => $element->id], $faq);
+            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.update.success', ['name' => trans('custom.attribute.faqs')])], 200);
+        } catch (\Exception $e) {
+            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.update.error', ['name' => trans('custom.attribute.faqs')])], 500);
+        }
+    }
+
+    public function destroy(Faq $element)
+    {
+        $image = $element->image;
+        try {
+            $delete_element = $element->delete();
+            /*if ($delete_element) {
+                if ($image) {
+                    Storage::disk('public')->delete('img/testimonials/' . $image);
+                }
+            }*/
+            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.delete.success', ['name' => trans('custom.attribute.faqs')])], 200);
+        } catch (\Exception $e) {
+            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.delete.error', ['name' => trans('custom.attribute.faqs')])], 500);
+        }
+    }
+
+
 }

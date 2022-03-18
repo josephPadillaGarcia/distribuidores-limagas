@@ -138,7 +138,7 @@ quill__WEBPACK_IMPORTED_MODULE_0___default.a.register("modules/clipboard", _func
             }], [{
               align: []
             }], //['clean'],
-            ["link", "video", this.textImage]]
+            ["link", "video", "image"]]
           }
         }
       },
@@ -442,11 +442,10 @@ var render = function() {
       _vm._v(" "),
       _c("file-upload", {
         ref: "ref_content_f",
-        staticClass: "d-none",
         attrs: {
           extensions: "jpg,jpeg,png",
           accept: "image/png, image/jpeg, image/jpg",
-          drop: false,
+          drop: true,
           multiple: true,
           "input-id": "id_content_images"
         },

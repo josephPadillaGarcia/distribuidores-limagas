@@ -413,6 +413,7 @@ export default {
       } else {
         fd.append("active", 0);
       }
+
       axios({
         method: method,
         url: url,
@@ -491,6 +492,7 @@ export default {
           this.loadingGet = false;
         })
         .catch((error) => {});
+
     },
   },
   created() {

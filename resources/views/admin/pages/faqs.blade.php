@@ -9,8 +9,7 @@
 </style>
 @endsection
 
-@section('content')
-    
+@section('content')    
 <faqs
     message-order="@lang('custom.message.order')"
     route="{{ route('cms.faqs.index') }}" 

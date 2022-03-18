@@ -155,10 +155,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Button */ "./resources/js/admin/components/Button.vue");
 /* harmony import */ var _components_form_Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/form/Input */ "./resources/js/admin/components/form/Input.vue");
 /* harmony import */ var vue_loading_skeleton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-loading-skeleton */ "./node_modules/vue-loading-skeleton/dist/vue-loading-skeleton.esm.js");
-/* harmony import */ var _components_form_Editor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/form/Editor */ "./resources/js/admin/components/form/Editor.vue");
-/* harmony import */ var _components_modals_Destroy__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/modals/Destroy */ "./resources/js/admin/components/modals/Destroy.vue");
-/* harmony import */ var _components_skeleton_form__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/skeleton/form */ "./resources/js/admin/components/skeleton/form.vue");
-/* harmony import */ var _components_NoData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/NoData */ "./resources/js/admin/components/NoData.vue");
+/* harmony import */ var vue_quill_editor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-quill-editor */ "./node_modules/vue-quill-editor/dist/vue-quill-editor.js");
+/* harmony import */ var vue_quill_editor__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_quill_editor__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_form_Editor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/form/Editor */ "./resources/js/admin/components/form/Editor.vue");
+/* harmony import */ var _components_modals_Destroy__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/modals/Destroy */ "./resources/js/admin/components/modals/Destroy.vue");
+/* harmony import */ var _components_skeleton_form__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/skeleton/form */ "./resources/js/admin/components/skeleton/form.vue");
+/* harmony import */ var _components_NoData__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/NoData */ "./resources/js/admin/components/NoData.vue");
 var _components;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -347,6 +349,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -361,14 +373,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: (_components = {
     BreadCrumb: _components_BreadCrumb__WEBPACK_IMPORTED_MODULE_0__["default"],
     messageCantDelete: String,
-    Destroy: _components_modals_Destroy__WEBPACK_IMPORTED_MODULE_7__["default"],
+    Destroy: _components_modals_Destroy__WEBPACK_IMPORTED_MODULE_8__["default"],
     Button: _components_Button__WEBPACK_IMPORTED_MODULE_3__["default"],
     Input: _components_form_Input__WEBPACK_IMPORTED_MODULE_4__["default"],
     vueDropzone: vue2_dropzone__WEBPACK_IMPORTED_MODULE_2___default.a,
     Skeleton: vue_loading_skeleton__WEBPACK_IMPORTED_MODULE_5__["Skeleton"],
-    SkeletonForm: _components_skeleton_form__WEBPACK_IMPORTED_MODULE_8__["default"],
+    SkeletonForm: _components_skeleton_form__WEBPACK_IMPORTED_MODULE_9__["default"],
     draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_1___default.a
-  }, _defineProperty(_components, "Input", _components_form_Input__WEBPACK_IMPORTED_MODULE_4__["default"]), _defineProperty(_components, "Editor", _components_form_Editor__WEBPACK_IMPORTED_MODULE_6__["default"]), _defineProperty(_components, "NoData", _components_NoData__WEBPACK_IMPORTED_MODULE_9__["default"]), _components),
+  }, _defineProperty(_components, "Input", _components_form_Input__WEBPACK_IMPORTED_MODULE_4__["default"]), _defineProperty(_components, "Editor", _components_form_Editor__WEBPACK_IMPORTED_MODULE_7__["default"]), _defineProperty(_components, "NoData", _components_NoData__WEBPACK_IMPORTED_MODULE_10__["default"]), _defineProperty(_components, "quillEditor", vue_quill_editor__WEBPACK_IMPORTED_MODULE_6__["quillEditor"]), _components),
   props: {
     route: String,
     routeGetAll: String,
@@ -477,6 +489,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     /* Envio de datos */
     submit: function submit() {
+      var _this3 = this;
+
       this.requestSubmit = true;
       var url;
       var method;
@@ -498,63 +512,65 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.element.description) {
         fd.append("description", this.element.description);
       }
-
-      if (this.element.description_en) {
+      /*if (this.element.description_en) {
         fd.append("description_en", this.element.description_en);
-      }
+      }*/
+
 
       console.log(this.element.question);
+      console.log(this.element.description);
       /*if (this.element.active == true) {
         fd.append("active", 1);
       } else {
         fd.append("active", 0);
       }*/
 
-      /*axios({
+      axios({
         method: method,
         url: url,
-        data: fd,
-      })
-        .then((response) => {
-          this.requestSubmit = false;
-          Swal.fire({
-            title: response.data.title,
-            text: response.data.message,
-            type: "success",
-            confirmButtonText: "OK",
-            buttonsStyling: false,
-            customClass: {
-              confirmButton: "btn btn-inverse-primary",
-            },
-          });
-          this.restore();
-        })
-        .catch((error) => {
-          this.requestSubmit = false;
-          if (error.response.status === 422) {
-            this.errors = error.response.data.errors || {};
-            return;
+        data: fd
+      }).then(function (response) {
+        _this3.requestSubmit = false;
+        Swal.fire({
+          title: response.data.title,
+          text: response.data.message,
+          type: "success",
+          confirmButtonText: "OK",
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: "btn btn-inverse-primary"
           }
-          Swal.fire({
-            title: error.response.data.title,
-            text: error.response.data.message,
-            type: "error",
-            confirmButtonText: "OK",
-            buttonsStyling: false,
-            customClass: {
-              confirmButton: "btn btn-inverse-primary",
-            },
-          });
-          this.restoreEl();
-        });*/
+        });
+
+        _this3.restore();
+      })["catch"](function (error) {
+        _this3.requestSubmit = false;
+
+        if (error.response.status === 422) {
+          _this3.errors = error.response.data.errors || {};
+          return;
+        }
+
+        Swal.fire({
+          title: error.response.data.title,
+          text: error.response.data.message,
+          type: "error",
+          confirmButtonText: "OK",
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: "btn btn-inverse-primary"
+          }
+        });
+
+        _this3.restoreEl();
+      });
     },
 
     /* ==================================================== */
     restore: function restore() {
-      /*(this.element = {
-        active: true,
-      }),*/
-      this.modalCreateUpdate = this.modalDestroy = false;
+      this.element = {
+        active: true
+      }, this.modalCreateUpdate = this.modalDestroy = false;
       this.getEls();
       this.errors = {};
     },
@@ -563,28 +579,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.getEl(id);
     },
     restoreEl: function restoreEl() {
-      /*(this.element = {
-        active: true,
-      }),*/
-      this.modalCreateUpdate = this.modalDestroy = false;
+      this.element = {
+        active: true
+      }, this.modalCreateUpdate = this.modalDestroy = false;
       this.errors = {};
     },
     getEls: function getEls() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.loadingEls = true;
       axios.get(this.routeGetAll).then(function (response) {
-        _this3.elements = response.data;
-        _this3.loadingEls = false;
+        _this4.elements = response.data;
+        _this4.loadingEls = false;
       })["catch"](function (error) {});
     },
     getEl: function getEl(id) {
-      var _this4 = this;
+      var _this5 = this;
 
       this.loadingGet = true;
       axios.get(this.route + "/json/get/" + id).then(function (response) {
-        _this4.element = response.data;
-        _this4.loadingGet = false;
+        _this5.element = response.data;
+        _this5.loadingGet = false;
       })["catch"](function (error) {});
     }
   },
@@ -946,6 +961,17 @@ var render = function() {
                               _c("div", { staticClass: "card-body" }, [
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
+                                    "\n                Id:\n                "
+                                  ),
+                                  _c(
+                                    "span",
+                                    { staticClass: "font-weight-normal" },
+                                    [_vm._v(_vm._s(el.id))]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "mb-1" }, [
+                                  _vm._v(
                                     "\n                Pregunta:\n                "
                                   ),
                                   _c(
@@ -1106,8 +1132,26 @@ var render = function() {
                             _c("Input", {
                               attrs: {
                                 label: "Pregunta",
-                                variable: "title",
-                                errors: _vm.errors
+                                variable: "question",
+                                errors: _vm.errors,
+                                valueEs: _vm.element.question,
+                                valueEsParent: _vm.element.question
+                              },
+                              on: {
+                                "update:valueEs": function($event) {
+                                  return _vm.$set(
+                                    _vm.element,
+                                    "question",
+                                    $event
+                                  )
+                                },
+                                "update:value-es": function($event) {
+                                  return _vm.$set(
+                                    _vm.element,
+                                    "question",
+                                    $event
+                                  )
+                                }
                               }
                             })
                           ],
@@ -1125,7 +1169,25 @@ var render = function() {
                                 size: "md",
                                 label: "Descripción",
                                 variable: "description",
-                                errors: _vm.errors
+                                errors: _vm.errors,
+                                valueEs: _vm.element.description,
+                                valueEsParent: _vm.element.description
+                              },
+                              on: {
+                                "update:valueEs": function($event) {
+                                  return _vm.$set(
+                                    _vm.element,
+                                    "description",
+                                    $event
+                                  )
+                                },
+                                "update:value-es": function($event) {
+                                  return _vm.$set(
+                                    _vm.element,
+                                    "description",
+                                    $event
+                                  )
+                                }
                               }
                             })
                           ],

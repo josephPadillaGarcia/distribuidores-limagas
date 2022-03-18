@@ -43,8 +43,8 @@
     <file-upload
       extensions="jpg,jpeg,png"
       accept="image/png, image/jpeg, image/jpg"
-      class="d-none"
-      :drop="false"
+      class=""
+      :drop="true"
       :multiple="true"
       @input-filter="$uploadImageUploadComponent($event,$refs.ref_content,250000,'250kb',url)"
       ref="ref_content_f"
@@ -110,7 +110,7 @@ export default {
               [{ color: [] }, { background: [] }],
               [{ align: [] }],
               //['clean'],
-              ["link", "video", this.textImage],
+              ["link", "video", "image"],
             ],
           },
         },

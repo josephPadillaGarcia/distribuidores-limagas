@@ -6,6 +6,7 @@ use App\AppTracking;
 use App\Category;
 use App\ConfigQuantityPackage;
 use App\Customer;
+use App\Faq;
 use App\MasterLeadMedium;
 use App\Post;
 use App\Project;
@@ -204,8 +205,10 @@ class WebController extends Controller
 
     public function faq($locale = null){
         $page = $this->getSeoPage('services', $this->locale);
+        $faqs = Faq::get();
         $data = array(
             "page" => $page,
+            "faqs" => $faqs,
         );
 
         return view("web.pages.faq", compact('data'));

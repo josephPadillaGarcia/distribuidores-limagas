@@ -58,6 +58,11 @@
               <div class="card-body">
 
                 <h3 class="mb-1">
+                  Id:
+                  <span class="font-weight-normal">{{ el.id }}</span>
+                </h3>
+
+                <h3 class="mb-1">
                   Pregunta:
                   <span class="font-weight-normal">{{ el.question }}</span>
                 </h3>
@@ -139,8 +144,10 @@
               <div class="form-group">
                 <Input
                   label="Pregunta"
-                  variable="title"
+                  variable="question"
                   :errors="errors"
+                  :valueEs.sync="element.question"
+                  :valueEsParent="element.question"
                 />
               </div>
             </div>
@@ -152,6 +159,8 @@
                   label="Descripción"
                   variable="description"
                   :errors="errors"
+                  :valueEs.sync="element.description"
+                  :valueEsParent="element.description"
                 />
               </div>
             </div>
@@ -189,6 +198,7 @@ import vue2Dropzone from "vue2-dropzone";
 import Button from "../components/Button";
 import Input from "../components/form/Input";
 import { Skeleton } from "vue-loading-skeleton";
+import { quillEditor } from "vue-quill-editor";
 import Editor from "../components/form/Editor";
 import Destroy from "../components/modals/Destroy";
 import SkeletonForm from "../components/skeleton/form";
@@ -207,6 +217,7 @@ export default {
     Input,
     Editor,
     NoData,
+    quillEditor,
   },
   props: {
     route: String,
@@ -268,6 +279,7 @@ export default {
           });
         });
     },
+
     destroyConfirm() {
       this.requestSubmit = true;
       axios
@@ -300,10 +312,12 @@ export default {
           this.restoreEl();
         });
     },
+
     newEl() {
       this.title = "Nuevo";
       this.modalCreateUpdate = true;
     },
+
     editEl(id) {
       this.title = "Actualizar";
       this.modalCreateUpdate = true;
@@ -334,18 +348,18 @@ export default {
         fd.append("description", this.element.description);
       }
 
-      if (this.element.description_en) {
+      /*if (this.element.description_en) {
         fd.append("description_en", this.element.description_en);
-      }
-
+      }*/
       console.log(this.element.question);
+      console.log(this.element.description);
       /*if (this.element.active == true) {
         fd.append("active", 1);
       } else {
         fd.append("active", 0);
       }*/
 
-      /*axios({
+      axios({
         method: method,
         url: url,
         data: fd,
@@ -381,15 +395,15 @@ export default {
             },
           });
           this.restoreEl();
-        });*/
+        });
     },
     /* ==================================================== */
 
     
     restore() {
-      /*(this.element = {
+      (this.element = {
         active: true,
-      }),*/
+      }),
         (this.modalCreateUpdate = this.modalDestroy = false);
       this.getEls();
       this.errors = {};
@@ -399,9 +413,9 @@ export default {
       this.getEl(id);
     },
     restoreEl() {
-      /*(this.element = {
+      (this.element = {
         active: true,
-      }),*/
+      }),
         (this.modalCreateUpdate = this.modalDestroy = false);
       this.errors = {};
     },
