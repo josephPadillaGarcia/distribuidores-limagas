@@ -27,6 +27,8 @@
         </div>
       </div>
     </div>
+
+    
     <div class="container-fluid mt--6">
       <div class="row" v-if="loadingEls">
         <div class="col-12 col-md-6 col-lg-3 mb-4" v-for="i in 8" :key="i">

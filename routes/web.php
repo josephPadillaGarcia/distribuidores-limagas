@@ -75,6 +75,13 @@ Route::prefix('admin')->group(function() {
             Route::get('/json/get-all', 'IndexController@getAll')->name('get-all');
             Route::get('/json/get/{element}', 'IndexController@get')->name('get');
         });
+
+        Route::prefix('faqs')->name('faqs.')->group(function () {
+            Route::get('/', 'FaqController@index')->name('index');
+            Route::post('/', 'FaqController@store')->name('store');
+            Route::put('/order', 'FaqController@order')->name('order');
+            Route::get('/json/get-all', 'FaqController@getAll')->name('get-all');
+        });
     
         Route::namespace('Content')->prefix('contenido')->name('content.')->group(function () {
             Route::name('general-content.')->prefix('contenido-general')->group(function () {

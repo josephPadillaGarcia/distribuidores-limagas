@@ -36,6 +36,7 @@ const app = new Vue({
         'dashboard': () => import('./views/dashboard/Index.vue' /* webpackChunkName: "js/pages/admin/dashboard" */),
         'traditional': () => import('./views/lead/traditional.vue' /* webpackChunkName: "js/pages/admin/lead/traditional" */),
         'testimonials': () => import('./views/Testimonials.vue' /* webpackChunkName: "js/pages/admin/testimonials" */),
+        'faqs': () => import('./views/Faqs.vue' /* webpackChunkName: "js/pages/admin/faqs" */),
         'customers': () => import('./views/Customers.vue' /* webpackChunkName: "js/pages/admin/customers" */),
         'reset': () => import('./views/auth/Reset.vue' /* webpackChunkName: "js/pages/admin/reset" */),
         'configuration-general': () => import('./views/configuration/General/Index.vue' /* webpackChunkName: "js/pages/admin/configuration/general" */),

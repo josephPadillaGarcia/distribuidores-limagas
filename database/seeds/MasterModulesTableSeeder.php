@@ -103,6 +103,15 @@ class MasterModulesTableSeeder extends Seeder
                     'index'    => 5
                 ],
 
+            
+            [
+                'name' 	=> 'Faqs',
+                'slug' 		=> 'faqs',
+                'parent' 	=> NULL,
+                'icon' 		=> 'questionnaire',
+                'index'    => $position++
+            ],
+
             [
                 'name' 	=> 'Blog',
 				'slug' 		=> NULL,
