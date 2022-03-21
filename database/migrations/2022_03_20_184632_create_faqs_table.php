@@ -17,6 +17,8 @@ class CreateFaqsTable extends Migration
             $table->bigIncrements('id');
             $table->string('question');
             $table->text('description');
+            $table->bigInteger('like'); 
+            $table->bigInteger('dislike'); 
             $table->timestamps();
         });
     }

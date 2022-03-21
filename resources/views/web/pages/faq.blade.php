@@ -55,8 +55,19 @@ id="seccion_banner_global"
                         <div class="accordion__likes">
                             <p>¿Te ayudó esta información?</p>
                             <div class="accordion__likes__item">
-                                <a href="#!"><img data-src="/storage/web/img/like.png" class="lazyload" alt=""><span>0</span></a>
-                                <a href="#!"><img data-src="/storage/web/img/dislike.png" class="lazyload" alt=""><span>0</span></a>
+                                <!--a href="#!" id="like"><img data-src="/storage/web/img/like.png" class="lazyload" alt=""><span id="">{{ $faq["like"] }}</span></a-->
+                                <a href="#!" id="like{{ $faq["id"] }}" onclick="updatelikefaq('{{ $faq['id'] }}')">
+                                    <img data-src="/storage/web/img/like.png" class="lazyload" alt="">
+                                    <button class="" name="like" value="{{ $faq["like"] }}" id="button_like{{ $faq["id"] }}">
+                                        {{ $faq["like"] }}
+                                    </button>
+                                </a>
+                                <a href="#!" id="dislike{{ $faq["id"] }}">
+                                    <img data-src="/storage/web/img/dislike.png" class="lazyload" alt="">
+                                    <button class="" name="like" value="{{ $faq["dislike"] }}" id="button_dislike{{ $faq["id"] }}">
+                                        {{ $faq["dislike"] }}
+                                    </button>
+                                </a>
                             </div>
                         </div>  
                     </div>                
@@ -67,5 +78,52 @@ id="seccion_banner_global"
     </div>
 </section>
 
-    
 @endsection
+
+@push('scripts')
+    
+<script type="text/javascript">
+
+function updatelikefaq(id){
+    /*e.preventDefault();*/
+    $.ajaxSetup({headers:{'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')}  });
+
+    $('#button_like'+id).val(parseInt($('#button_like'+id).val()) + 1);
+
+    const type = "POST";
+    var formDatalike = {
+        id: id,
+        like: $('#button_like'+id).val(),
+    };
+
+    var url = "{ route('cms.faqs.updatelike', ['id' => '.id.']) }";
+
+    console.log(url);
+
+    /*$.ajax({
+        type: type,
+        url: "{{ route('cms.faqs.updatelike', "formDatalike") }}",
+        data: formDatalike,
+        dataType: 'json',
+        success: function (data){
+            if(data){
+                console.log("actualizado");
+            }
+            else{
+                console.log("LA CAGASTE");
+            }
+        },
+        error: function (data){
+            console.log(data);
+        }
+    });*/
+
+};
+
+$(document).ready(function(){
+
+});
+
+</script>
+
+@endpush

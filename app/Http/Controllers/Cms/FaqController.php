@@ -58,7 +58,7 @@ class FaqController extends Controller
 
     public function store(FaqRequest $request)
     {
-        $faq = request(["question", "description"]);
+        $faq = request(["question", "description", "like", "dislike"]);
         
         /*$testimonialIndex = $this->getMaxIndex(Testimonial::selectRaw('MAX(id),MAX(`index`) as "index"')->get());
 
@@ -95,9 +95,19 @@ class FaqController extends Controller
         }
     }
 
+    public function updateLike(FaqRequest $request, Faq $like)
+    {
+        $faq = request(["like"]);
+        try {
+            $like = Faq::UpdateOrCreate(["id" => $like->id], $faq);
+            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.update.success', ['name' => trans('custom.attribute.faqs')])], 200);
+        } catch (\Exception $e) {
+            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.update.error', ['name' => trans('custom.attribute.faqs')])], 500);
+        }
+    }
+
     public function destroy(Faq $element)
     {
-        $image = $element->image;
         try {
             $delete_element = $element->delete();
             /*if ($delete_element) {

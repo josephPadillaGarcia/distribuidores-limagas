@@ -489,11 +489,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     /* Envio de datos */
     submit: function submit() {
-      var _this3 = this;
-
       this.requestSubmit = true;
       var url;
       var method;
+      var like = 0;
+      var dislike = 0;
       var fd = new FormData();
 
       if (this.title == "Nuevo") {
@@ -512,58 +512,63 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.element.description) {
         fd.append("description", this.element.description);
       }
+
+      fd.append("like", like);
+      fd.append("dislike", dislike);
       /*if (this.element.description_en) {
         fd.append("description_en", this.element.description_en);
       }*/
 
+      console.log(url);
+      /*console.log(this.element.question);
+      console.log(this.element.description);      
+      console.log(like);
+      console.log(dislike);      
+      console.log(fd);*/
 
-      console.log(this.element.question);
-      console.log(this.element.description);
       /*if (this.element.active == true) {
         fd.append("active", 1);
       } else {
         fd.append("active", 0);
       }*/
 
-      axios({
+      /*axios({
         method: method,
         url: url,
-        data: fd
-      }).then(function (response) {
-        _this3.requestSubmit = false;
-        Swal.fire({
-          title: response.data.title,
-          text: response.data.message,
-          type: "success",
-          confirmButtonText: "OK",
-          buttonsStyling: false,
-          customClass: {
-            confirmButton: "btn btn-inverse-primary"
+        data: fd,
+      })
+        .then((response) => {
+          this.requestSubmit = false;
+            Swal.fire({
+            title: response.data.title,
+            text: response.data.message,
+            type: "success",
+            confirmButtonText: "OK",
+            buttonsStyling: false,
+            customClass: {
+              confirmButton: "btn btn-inverse-primary",
+            },
+          });
+          this.restore();
+        })
+        .catch((error) => {
+          this.requestSubmit = false;
+          if (error.response.status === 422) {
+            this.errors = error.response.data.errors || {};
+            return;
           }
-        });
-
-        _this3.restore();
-      })["catch"](function (error) {
-        _this3.requestSubmit = false;
-
-        if (error.response.status === 422) {
-          _this3.errors = error.response.data.errors || {};
-          return;
-        }
-
-        Swal.fire({
-          title: error.response.data.title,
-          text: error.response.data.message,
-          type: "error",
-          confirmButtonText: "OK",
-          buttonsStyling: false,
-          customClass: {
-            confirmButton: "btn btn-inverse-primary"
-          }
-        });
-
-        _this3.restoreEl();
-      });
+          Swal.fire({
+            title: error.response.data.title,
+            text: error.response.data.message,
+            type: "error",
+            confirmButtonText: "OK",
+            buttonsStyling: false,
+            customClass: {
+              confirmButton: "btn btn-inverse-primary",
+            },
+          });
+          this.restoreEl();
+        });*/
     },
 
     /* ==================================================== */
@@ -585,21 +590,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.errors = {};
     },
     getEls: function getEls() {
-      var _this4 = this;
+      var _this3 = this;
 
       this.loadingEls = true;
       axios.get(this.routeGetAll).then(function (response) {
-        _this4.elements = response.data;
-        _this4.loadingEls = false;
+        _this3.elements = response.data;
+        _this3.loadingEls = false;
       })["catch"](function (error) {});
     },
     getEl: function getEl(id) {
-      var _this5 = this;
+      var _this4 = this;
 
       this.loadingGet = true;
       axios.get(this.route + "/json/get/" + id).then(function (response) {
-        _this5.element = response.data;
-        _this5.loadingGet = false;
+        _this4.element = response.data;
+        _this4.loadingGet = false;
       })["catch"](function (error) {});
     }
   },

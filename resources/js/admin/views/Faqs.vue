@@ -330,6 +330,8 @@ export default {
       this.requestSubmit = true;
       let url;
       let method;
+      const like = 0;
+      const dislike = 0;
       const fd = new FormData();
 
       if (this.title == "Nuevo") {
@@ -348,11 +350,18 @@ export default {
         fd.append("description", this.element.description);
       }
 
+      fd.append("like", like);
+      fd.append("dislike", dislike);
+
       /*if (this.element.description_en) {
         fd.append("description_en", this.element.description_en);
       }*/
-      console.log(this.element.question);
-      console.log(this.element.description);
+      console.log(url);
+      /*console.log(this.element.question);
+      console.log(this.element.description);      
+      console.log(like);
+      console.log(dislike);      
+      console.log(fd);*/
       /*if (this.element.active == true) {
         fd.append("active", 1);
       } else {
@@ -366,6 +375,7 @@ export default {
       })
         .then((response) => {
           this.requestSubmit = false;
+
           Swal.fire({
             title: response.data.title,
             text: response.data.message,

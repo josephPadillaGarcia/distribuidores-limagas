@@ -212,7 +212,6 @@ class WebController extends Controller
         );
 
         return view("web.pages.faq", compact('data'));
-
     }
 
     public function encuesta(Request $request){

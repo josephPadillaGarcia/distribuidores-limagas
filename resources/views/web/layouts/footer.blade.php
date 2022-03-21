@@ -338,7 +338,7 @@ $routeLocale = $footer["routeLocale"];
                 $('.message_error').css("display", "block");
             }
         });
-
+        
         $(".btn_close").click(function(e){
             e.preventDefault();
             $(".encuesta").hide();
