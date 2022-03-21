@@ -352,11 +352,8 @@ export default {
 
       fd.append("like", like);
       fd.append("dislike", dislike);
-
-      /*if (this.element.description_en) {
-        fd.append("description_en", this.element.description_en);
-      }*/
-      console.log(url);
+      
+      //console.log(url);
       /*console.log(this.element.question);
       console.log(this.element.description);      
       console.log(like);

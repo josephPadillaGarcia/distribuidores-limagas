@@ -45,18 +45,17 @@ id="seccion_banner_global"
 
             @foreach ($faqs as $faq)
                 <div class="accordion__item">
-                    <h3 class="accordion__title js-title"><span class="text-acordeon">{{ $faq["question"] }}</span><span class="icono-acordeon flaticon-descargar"> </span></h3>
+                    <h3 class="accordion__title js-title"><span class="text-acordeon" id="question{{ $faq["id"] }}">{{ $faq["question"] }}</span><span class="icono-acordeon flaticon-descargar"> </span></h3>
                     <div class="accordion__copy js-copy ">
-                        <div class="editar">
-                            
-                            <p>{!! $faq["description"] !!}</p>
+                        <div class="editar" id="description{{ $faq["id"] }}">                            
+                            {!! $faq["description"] !!}
                         </div>
                         
                         <div class="accordion__likes">
                             <p>¿Te ayudó esta información?</p>
                             <div class="accordion__likes__item">
                                 <!--a href="#!" id="like"><img data-src="/storage/web/img/like.png" class="lazyload" alt=""><span id="">{{ $faq["like"] }}</span></a-->
-                                <a href="#!" id="like{{ $faq["id"] }}" onclick="updatelikefaq('{{ $faq['id'] }}')">
+                                <a href="#!" id="like{{ $faq["id"] }}" onclick="updatelikefaq('{{ $faq }}')">
                                     <img data-src="/storage/web/img/like.png" class="lazyload" alt="">
                                     <button class="" name="like" value="{{ $faq["like"] }}" id="button_like{{ $faq["id"] }}">
                                         {{ $faq["like"] }}
@@ -84,30 +83,46 @@ id="seccion_banner_global"
     
 <script type="text/javascript">
 
-function updatelikefaq(id){
+function updatelikefaq(faq){
     /*e.preventDefault();*/
     $.ajaxSetup({headers:{'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')}  });
 
-    $('#button_like'+id).val(parseInt($('#button_like'+id).val()) + 1);
+    /*const b_like = $('#button_like'+id).val(parseInt($('#button_like'+id).val()) + 1);
+    var b_like_s = b_like.toString();*/
 
     const type = "POST";
     var formDatalike = {
-        id: id,
-        like: $('#button_like'+id).val(),
+        _method: 'put',
+        id: faq.id,
+        question: $('#question'+faq.id).html(),
+        description: $('#description'+faq.id).html(),
+        dislike: $('#button_dislike'+faq.id).val(),
     };
 
-    var url = "{ route('cms.faqs.updatelike', ['id' => '.id.']) }";
+    var url = "{{route('cms.faqs.get','/3' )}}";
+
+    console.log(faq[question])
+
+    /*
+    
+    url= {{ route('cms.faqs.updatelike', $faq) }}
 
     console.log(url);
+    console.log(formDatalike._method);
+    console.log(formDatalike.id);
+    console.log(formDatalike.question);
+    console.log(formDatalike.description);
+    console.log(formDatalike.like);
+    console.log(isNaN(formDatalike.dislike));*/
 
     /*$.ajax({
         type: type,
-        url: "{{ route('cms.faqs.updatelike', "formDatalike") }}",
+        url: url,
         data: formDatalike,
         dataType: 'json',
         success: function (data){
             if(data){
-                console.log("actualizado");
+                console.log("like actualizado");
             }
             else{
                 console.log("LA CAGASTE");
