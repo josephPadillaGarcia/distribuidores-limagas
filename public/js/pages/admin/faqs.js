@@ -516,11 +516,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       fd.append("like", like);
-      fd.append("dislike", dislike);
-      /*if (this.element.description_en) {
-        fd.append("description_en", this.element.description_en);
-      }*/
-      //console.log(url);
+      fd.append("dislike", dislike); //console.log(url);
 
       /*console.log(this.element.question);
       console.log(this.element.description);      
@@ -935,16 +931,6 @@ var render = function() {
               "div",
               [
                 _vm.elements.length
-                  ? _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-12" }, [
-                        _c("i", { staticClass: "d-block mb-4" }, [
-                          _vm._v(_vm._s(_vm.messageOrder))
-                        ])
-                      ])
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.elements.length
                   ? _c(
                       "draggable",
                       {
@@ -968,17 +954,6 @@ var render = function() {
                           [
                             _c("div", { staticClass: "card" }, [
                               _c("div", { staticClass: "card-body" }, [
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Id:\n                "
-                                  ),
-                                  _c(
-                                    "span",
-                                    { staticClass: "font-weight-normal" },
-                                    [_vm._v(_vm._s(el.id))]
-                                  )
-                                ]),
-                                _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
                                     "\n                Pregunta:\n                "

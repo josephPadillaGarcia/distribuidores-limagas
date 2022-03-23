@@ -61,7 +61,7 @@ id="seccion_banner_global"
                                         {{ $faq["like"] }}
                                     </button>
                                 </a>
-                                <a href="#!" id="dislike{{ $faq["id"] }}">
+                                <a href="#!" id="dislike{{ $faq["id"] }}" onclick="updatedislikefaq('{{ $faq['id'] }}')">
                                     <img data-src="/storage/web/img/dislike.png" class="lazyload" alt="">
                                     <button class="" name="like" value="{{ $faq["dislike"] }}" id="button_dislike{{ $faq["id"] }}">
                                         {{ $faq["dislike"] }}
@@ -84,11 +84,7 @@ id="seccion_banner_global"
 <script type="text/javascript">
 
 function updatelikefaq(id){
-    /*e.preventDefault();*/
     $.ajaxSetup({headers:{'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')}  });
-
-    /*const b_like = $('#button_like'+id).val(parseInt($('#button_like'+id).val()) + 1);
-    var b_like_s = b_like.toString();*/
 
     const type = "POST";
     var formDatalike = {
@@ -102,14 +98,6 @@ function updatelikefaq(id){
 
     var url = "{{route('cms.faqs.update-like', '')}}"+"/"+id;
 
-    /*console.log(url);
-    console.log(formDatalike._method);
-    console.log(formDatalike.id);
-    console.log(formDatalike.question);
-    console.log(formDatalike.description);
-    console.log(isNaN(formDatalike.like));
-    console.log(isNaN(formDatalike.dislike));*/
-
     $.ajax({
         type: type,
         url: url,
@@ -118,6 +106,43 @@ function updatelikefaq(id){
         success: function (data){
             if(data){
                 console.log("like actualizado: " + JSON.stringify(data));
+                $('#button_like'+id).html(data.like);
+            }
+            else{
+                console.log("LA CAGASTE");
+            }
+        },
+        error: function (data){
+            console.log(JSON.stringify(data));
+        }
+    });
+
+};
+
+function updatedislikefaq(id){
+    $.ajaxSetup({headers:{'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')}  });
+
+    const type = "POST";
+    var formDatalike = {
+        _method: 'put',
+        id: id,
+        question: $('#question'+id).html(),
+        description: $('#description'+id).html(),
+        like: $('#button_like'+id).val(),
+        dislike: $('#button_dislike'+id).val(),
+    };
+
+    var url = "{{route('cms.faqs.update-dislike', '')}}"+"/"+id;
+
+    $.ajax({
+        type: type,
+        url: url,
+        data: formDatalike,
+        dataType: 'json',
+        success: function (data){
+            if(data){
+                console.log("like actualizado: " + data.dislike);
+                $('#button_dislike'+id).html(data.dislike);
             }
             else{
                 console.log("LA CAGASTE");

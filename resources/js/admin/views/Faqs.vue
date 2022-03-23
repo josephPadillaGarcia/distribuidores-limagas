@@ -36,11 +36,11 @@
         </div>
       </div>
       <div v-else>
-        <div class="row" v-if="elements.length">
+        <!--div class="row" v-if="elements.length">
           <div class="col-12">
             <i class="d-block mb-4">{{ messageOrder }}</i>
           </div>
-        </div>
+        </div-->
         <draggable
           class="row"
           v-if="elements.length"
@@ -57,10 +57,10 @@
             <div class="card">
               <div class="card-body">
 
-                <h3 class="mb-1">
+                <!--h3 class="mb-1">
                   Id:
                   <span class="font-weight-normal">{{ el.id }}</span>
-                </h3>
+                </h3-->
 
                 <h3 class="mb-1">
                   Pregunta:
