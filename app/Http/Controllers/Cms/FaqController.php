@@ -98,17 +98,15 @@ class FaqController extends Controller
     public function updateLike(Request $request , Faq $like)
     {
 
-        return $like->like + 1;
-        /*try {
-            $like->like = $request->like;
+            $new_like = $like->like+1;
+        try {
+            $like->$new_like = $request->$new_like;
+            $like->save();
 
-            //$like->save();
-            //return  response()->json($like, 200);
-
-            return $request;
+            return  response()->json($like, 200);
         } catch (\Exception $e) {
             return  response()->json('malo', 500);
-        }*/
+        }
 
     }
 

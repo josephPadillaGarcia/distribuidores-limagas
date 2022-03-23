@@ -55,7 +55,7 @@ id="seccion_banner_global"
                             <p>¿Te ayudó esta información?</p>
                             <div class="accordion__likes__item">
                                 <!--a href="#!" id="like"><img data-src="/storage/web/img/like.png" class="lazyload" alt=""><span id="">{{ $faq["like"] }}</span></a-->
-                                <a href="#!" id="like{{ $faq["id"] }}" onclick="updatelikefaq('{{ $faq }}')">
+                                <a href="#!" id="like{{ $faq["id"] }}" onclick="updatelikefaq('{{ $faq['id'] }}')">
                                     <img data-src="/storage/web/img/like.png" class="lazyload" alt="">
                                     <button class="" name="like" value="{{ $faq["like"] }}" id="button_like{{ $faq["id"] }}">
                                         {{ $faq["like"] }}
@@ -83,7 +83,7 @@ id="seccion_banner_global"
     
 <script type="text/javascript">
 
-function updatelikefaq(faq){
+function updatelikefaq(id){
     /*e.preventDefault();*/
     $.ajaxSetup({headers:{'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')}  });
 
@@ -93,45 +93,40 @@ function updatelikefaq(faq){
     const type = "POST";
     var formDatalike = {
         _method: 'put',
-        id: faq.id,
-        question: $('#question'+faq.id).html(),
-        description: $('#description'+faq.id).html(),
-        dislike: $('#button_dislike'+faq.id).val(),
+        id: id,
+        question: $('#question'+id).html(),
+        description: $('#description'+id).html(),
+        like: $('#button_like'+id).val(),
+        dislike: $('#button_dislike'+id).val(),
     };
 
-    var url = "{{route('cms.faqs.get','/3' )}}";
+    var url = "{{route('cms.faqs.update-like', '')}}"+"/"+id;
 
-    console.log(faq[question])
-
-    /*
-    
-    url= {{ route('cms.faqs.updatelike', $faq) }}
-
-    console.log(url);
+    /*console.log(url);
     console.log(formDatalike._method);
     console.log(formDatalike.id);
     console.log(formDatalike.question);
     console.log(formDatalike.description);
-    console.log(formDatalike.like);
+    console.log(isNaN(formDatalike.like));
     console.log(isNaN(formDatalike.dislike));*/
 
-    /*$.ajax({
+    $.ajax({
         type: type,
         url: url,
         data: formDatalike,
         dataType: 'json',
         success: function (data){
             if(data){
-                console.log("like actualizado");
+                console.log("like actualizado: " + JSON.stringify(data));
             }
             else{
                 console.log("LA CAGASTE");
             }
         },
         error: function (data){
-            console.log(data);
+            console.log(JSON.stringify(data));
         }
-    });*/
+    });
 
 };
 

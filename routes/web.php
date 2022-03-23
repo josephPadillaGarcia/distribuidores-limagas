@@ -82,7 +82,7 @@ Route::prefix('admin')->group(function() {
             Route::put('/order', 'FaqController@order')->name('order');
             Route::get('/json/get-all', 'FaqController@getAll')->name('get-all');
             Route::put('/{element}', 'FaqController@update')->name('update');
-            Route::put('/{like}', 'FaqController@updateLike')->name('updatelike');
+            Route::put('/update-like/{like}', 'FaqController@updateLike')->name('update-like');
             Route::get('/json/get/{element}', 'FaqController@get')->name('get');
             Route::delete('/{element}', 'FaqController@destroy')->name('destroy');
         });
