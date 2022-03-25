@@ -73,8 +73,14 @@ $routeLocale = $footer["routeLocale"];
                     <ul>
                         <li>
                             <a href="{{ route('web.faq') }}">
-                                <img class="lazyload" src="/storage/web/img/icon_libro.png" alt="Libro de reclamaciones" />
+                                <img class="lazyload" src="/storage/web/img/icon_libro.png" alt="Preguntas frecuentes" />
                                 Preguntas Frecuentes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('web.faq') }}">
+                                <img class="lazyload" src="/storage/web/img/icon_libro.png" alt="trabaja con nosotros" />
+                                Trabaja con nosotros
                             </a>
                         </li>
                         <li>

@@ -74,19 +74,6 @@ class FaqController extends Controller
     public function update(FaqRequest $request, Faq $element)
     {
         $faq = request(["question", "description"]);
-        /*if ($request->hasFile('image')) {
-            $image_name = $this->setFileName('t-', $request->file('image'));
-            $store_image = Storage::disk('public')->putFileAs('img/testimonials/', $request->file('image'), $image_name);
-            if (!$store_image) {
-                return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.errors.image')], 500);
-            }
-            $request_testimonial = array_merge($request_testimonial, ["image" => $image_name]);
-        } else {
-            $request_testimonial = array_merge($request_testimonial, ["image" => $element->image]);
-        }
-        if ($request->hasFile('image') && $element->image) {
-            Storage::disk('public')->delete('img/testimonials/' . $element->image);
-        }*/
         try {
             $element = Faq::UpdateOrCreate(["id" => $element->id], $faq);
             return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.update.success', ['name' => trans('custom.attribute.faqs')])], 200);
