@@ -8,6 +8,7 @@ use App\ConfigQuantityPackage;
 use App\Customer;
 use App\Faq;
 use App\MasterLeadMedium;
+use App\Puestos;
 use App\Post;
 use App\Project;
 use App\Service;
@@ -20,6 +21,7 @@ use Carbon\Carbon;
 use App\Encuesta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Puesto;
 use Illuminate\Support\Facades\App;
 
 class WebController extends Controller
@@ -204,11 +206,14 @@ class WebController extends Controller
     }
 
     public function faq($locale = null){
-        $page = $this->getSeoPage('services', $this->locale);
+        $page = $this->getSeoPage('faq', $this->locale);
         $faqs = Faq::get();
+        $content = $this->getContentPage('services');
         $data = array(
             "page" => $page,
             "faqs" => $faqs,
+            "locale" => $this->locale,
+            "content" => $content,
         );
 
         return view("web.pages.faq", compact('data'));
@@ -224,9 +229,17 @@ class WebController extends Controller
             return  response()->json($encuesta, 200);
         } catch (\Exception $e) {
             return  response()->json('malo', 500);
-        }
-        
+        }   
+    }
 
+    public function workwithUs($locale = null){
+        $page = $this->getSeoPage('work-with-us', $this->locale);
+        $workwus = Puesto::get();
+        $data = array(
+            "page" => $page,
+            "workwus" => $workwus,
+        );
+        return view("web.pages.work-with-us", compact('data'));
     }
 
 

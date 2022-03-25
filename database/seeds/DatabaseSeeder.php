@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MasterSectionsTableSeeder::class);
         $this->call(MasterFieldsTableSeeder::class);
         $this->call(FaqSeeder::class);
+        $this->call(PuestosSeeder::class);
     }
 }
