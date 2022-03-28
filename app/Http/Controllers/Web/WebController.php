@@ -24,9 +24,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Puesto;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Cms\WorkWithUsRequest;
+use App\Http\Traits\CmsTrait;
+
 
 class WebController extends Controller
 {
+    use CmsTrait;
     private $locale;
 
     public function __construct() {
@@ -243,12 +248,18 @@ class WebController extends Controller
         return view("web.pages.work-with-us", compact('data'));
     }
 
-    public function sendMessage(Request $request, WorkWithUsModal $workwithus ){
+    public function sendMessage(Request $request, WorkWithUsModal $workwithus){
+
         try {
+            $file_name = $this->setFileName('f-', $request->file('archivo'));
+            $store_file = Storage::disk('public')->putFileAs('files/', $request->file('archivo'), $file_name);
+
             $workwithus->name = $request->name;
             $workwithus->apellido = $request->apellido;
             $workwithus->email = $request->email;
             $workwithus->phone = $request->phone;
+            $workwithus->name_file = $file_name;
+            $workwithus->puesto = $request->puesto;
 
             $workwithus->save();
             return  response()->json($workwithus, 200);

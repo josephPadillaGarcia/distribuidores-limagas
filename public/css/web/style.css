@@ -932,14 +932,14 @@ ACORDEON FAQ
   font-weight: bold;
   color: #00224C;
 }
-.form-ww-us__group input[type="text"], .form-ww-us__group select{
+.form-ww-us__group input[type="text"], .form-ww-us__group input[type="email"], .form-ww-us__group select{
   height: 40px;
   border: 1.5px solid #ABABAB;
   border-radius: 4px;
   outline: none;
 }
 .form-ww-us__group .content-input{
-  height: 80px;
+  height: 100px;
   border: 1.5px solid #ABABAB;
   border-radius: 4px;
   display: grid;
@@ -948,8 +948,9 @@ ACORDEON FAQ
 }
 .form-ww-us__group .btn-file{
   position: relative;
-  width: 150px;
-  text-align: center;
+    width: 150px;
+    text-align: center;
+    margin: auto;
 }
 .form-ww-us__group .btn-file .mask-file{
   position: relative;
@@ -986,6 +987,13 @@ ACORDEON FAQ
   color: #ffffff;
   font-size: 14px;
 }
+.form-ww-us__group .content-input .name_file{
+  text-align: center;
+  padding-top: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 
 /*------------------------------------------*/
 /*========================================*/
@@ -2074,9 +2082,12 @@ section#error-404 {
   margin: 0;
   display: none;
 }
-.message_error--page{  
+.message_error--page, .message_error--checkbox, .message_error--text-name, .message_error--text-last-name, .message_error--num{  
   font-size: 14px !important;
   margin-top: 5px;
+  background: #ffdfdf;
+  padding: 10px 25px;
+  border-radius: 4px;
 }
 
 .encuesta__option input{
