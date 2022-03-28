@@ -857,8 +857,8 @@ ACORDEON FAQ
 .default__check[type=checkbox] ~ .custom__check {
   display: flex;
   align-items: center;
-  height: 16px;
-  border: 2px solid #000;
+  height: 20px;
+  border: 2px solid #f67706;
   position: relative;
   transition: all 0.4s ease;
   cursor: pointer;
@@ -871,7 +871,7 @@ ACORDEON FAQ
 }
 .default__check[type=checkbox]:not(.switchbox) ~ .custom__check {
   justify-content: center;
-  width: 16px;
+  width: 20px;
 }
 .default__check[type=checkbox]:not(.switchbox) ~ .custom__check:after {
   visibility: hidden;
@@ -894,18 +894,18 @@ ACORDEON FAQ
   cursor: not-allowed;
 }
 .default__check[type=checkbox]:checked ~ .custom__check{
-  background-color: #000;
+  background-color: #f67706;
 }
 .default__check[type=checkbox]:checked ~ .custom__check:after {
   visibility: visible;
 }
 
 .default__check[type=checkbox]:not(.switchbox) ~ .custom__check {
-  border-radius: 0.375rem;
+  border-radius: 4px;
 }
 .default__check[type=checkbox]:not(.switchbox) ~ .custom__check:after {
-  height: 7px;
-  width: 3px;
+  height: 9px;
+  width: 5px;
   margin-top: -1px;
   border-bottom: 2px solid #fff;
   border-right: 2px solid #fff;
@@ -950,7 +950,6 @@ ACORDEON FAQ
   position: relative;
   width: 150px;
   text-align: center;
-  margin: 20% auto;
 }
 .form-ww-us__group .btn-file .mask-file{
   position: relative;
@@ -960,9 +959,9 @@ ACORDEON FAQ
   background: #f67706;
   cursor: pointer;
   color: #fff;
-  padding: 10px 0;
-  text-transform:uppercase;
-  font-size:12px;
+  padding: 5px 0;
+  text-transform: uppercase;
+  font-size: 11px;
   border-radius: 4px;
 }
 .form-ww-us__group .btn-file input[type="file"]{
@@ -970,7 +969,7 @@ ACORDEON FAQ
   position: absolute;
   z-index: 1;
   width: 100%;
-  height: 50px;
+  /*height: 50px;*/
   top: 0;
   left: 0;
   opacity: 0;
@@ -2074,6 +2073,10 @@ section#error-404 {
   font-size: 11px !important;
   margin: 0;
   display: none;
+}
+.message_error--page{  
+  font-size: 14px !important;
+  margin-top: 5px;
 }
 
 .encuesta__option input{

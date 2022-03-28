@@ -19,6 +19,7 @@ use App\SocialNetwork;
 use App\Information;
 use Carbon\Carbon;
 use App\Encuesta;
+use App\WorkWithUsModal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Puesto;
@@ -240,6 +241,20 @@ class WebController extends Controller
             "workwus" => $workwus,
         );
         return view("web.pages.work-with-us", compact('data'));
+    }
+
+    public function sendMessage(Request $request, WorkWithUsModal $workwithus ){
+        try {
+            $workwithus->name = $request->name;
+            $workwithus->apellido = $request->apellido;
+            $workwithus->email = $request->email;
+            $workwithus->phone = $request->phone;
+
+            $workwithus->save();
+            return  response()->json($workwithus, 200);
+        } catch (\Exception $e) {
+            return  response()->json('malo', 500);
+        }
     }
 
 

@@ -37,19 +37,19 @@ id="seccion_banner_global"
 
             <div class="form-ww-us__group">
                 <label for="">Nombre:*</label>
-                <input type="text" name="nombre">
+                <input type="text" name="nombre" id="wwu-name">
             </div>
             <div class="form-ww-us__group">
                 <label for="">Apellido:*</label>
-                <input type="text" name="nombre">
+                <input type="text" name="apellido" id="wwu-last-name">
             </div>
             <div class="form-ww-us__group">
                 <label for="">Correo electrónico:*</label>
-                <input type="text" name="nombre">
+                <input type="email" name="email" id="wwu-email">
             </div>
             <div class="form-ww-us__group">
                 <label for="">Celular:*</label>
-                <input type="text" name="nombre">
+                <input type="text" name="phone" id="wwu-phone">
             </div>
             <div class="form-ww-us__group">
                 <label for="">CV:*</label>
@@ -71,16 +71,15 @@ id="seccion_banner_global"
                 </select>
             </div>
             <div class="form-ww-us__group--checkbox">
-                <input type="checkbox" id="accept" name="accept" value="">
-                <label for="accept"> Acepto las <a href="#!">politicas de privacidad web</a></label>
                 <label>
-                    <input type="checkbox" class="default__check">
+                    <input type="checkbox" class="default__check" id="btn-checkbox">
                     <span class="custom__check"></span>
-                    Checkbox
+                    Acepto las <a href="#!">politicas de privacidad web</a>
                 </label>
-            </div>
-            <button class="form-ww-us--btn-submit" type="submit">Enviar</button>
+                <p class="message_error message_error--page">Debes aceptar las politicas de privacidad</p>
+            </div>            
         </form>
+        <button class="form-ww-us--btn-submit" id="btn-submit-wwus">Enviar</button>
     </div>
 </section>
 
@@ -92,7 +91,44 @@ id="seccion_banner_global"
     
 <script type="text/javascript">
 
+    $('#btn-submit-wwus').click(function(){
+        $.ajaxSetup({headers:{'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')}  });
 
+        $('.message_error--page').css("display", "none");
+
+        var formData = {
+            name: $('#wwu-name').val(),
+            apellido: $('#wwu-last-name').val(),
+            email: $('#wwu-email').val(),
+            phone: $('#wwu-phone').val(),
+        }
+
+        var url = "{{ route('web.send') }}"
+        var type = "POST";
+
+        if($("#btn-checkbox").prop('checked')){
+            $.ajax({
+                type: type,
+                url: url,
+                data: formData,
+                dataType: 'json',
+                success: function (data){
+                    if(data){
+                        console.log("ENVIADO: " + JSON.stringify(data));
+                    }
+                    else{
+                        console.log("LA CAGASTE");
+                    }
+                },
+                error: function (data){
+                    console.log("No enviaste: " + data);
+                }
+            });
+        }else{
+            $('.message_error--page').css("display", "block");
+        }
+
+    });
 
 </script>
 
