@@ -249,20 +249,24 @@ class WebController extends Controller
     }
 
     public function sendMessage(Request $request, WorkWithUsModal $workwithus){
+        //$file_name = $this->setFileName('f-', $request->file('archivo'));
+        //$store_file = Storage::disk('public')->putFileAs('files/', $request->file('archivo'), $file_name);
 
         try {
-            $file_name = $this->setFileName('f-', $request->file('archivo'));
-            $store_file = Storage::disk('public')->putFileAs('files/', $request->file('archivo'), $file_name);
+            //$file_name = $this->setFileName('f-', $request->file('archivo'));
+            //$store_file = Storage::disk('public')->putFileAs('files/', $request->file('archivo'), $file_name);
 
-            $workwithus->name = $request->name;
+            //return $request->file('archivo')." + ".$file_name;
+
+            /*$workwithus->name = $request->name;
             $workwithus->apellido = $request->apellido;
             $workwithus->email = $request->email;
             $workwithus->phone = $request->phone;
-            $workwithus->name_file = $file_name;
+            $workwithus->name_file = $request->archivo;
             $workwithus->puesto = $request->puesto;
 
-            $workwithus->save();
-            return  response()->json($workwithus, 200);
+            $workwithus->save();*/
+            echo $request->apellido;
         } catch (\Exception $e) {
             return  response()->json('malo', 500);
         }

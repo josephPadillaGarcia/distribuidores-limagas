@@ -84,7 +84,7 @@ id="seccion_banner_global"
                 </label>
                 <p class="message_error message_error--checkbox">Debes aceptar las politicas de privacidad</p>
             </div> 
-            <!--button class="form-ww-us--btn-submit">Enviar</button-->           
+            <!--button class="form-ww-us--btn-submit">Enviar</button-->
         </form>
         <button class="form-ww-us--btn-submit" id="btn-submit-wwus">Enviar</button>
         <p class="message_error message_error--page">Por favor llenar todos los campos requeridos</p>
@@ -123,7 +123,6 @@ id="seccion_banner_global"
     });
 
     $('#wwu-phone').keyup(function() {
-        console.log(onlynum(this.value));
         if(onlynum(this.value) == true){
             $('.message_error--num').css("display", "block");
             $('.message_error--num').html('Solo números ');
@@ -144,9 +143,12 @@ id="seccion_banner_global"
         return regex.test(num);
     }
 
-    $('#file').change(function(){
+    $('#file').change(function(e){
         var filename = $('#file').val().replace(/.*(\/|\\)/, '');
+        var file = e.target.files[0].name;
         $('#name_file_selected').html(filename);
+        $('#name_file_selected').val(file);
+        console.log(file);
     });
 
     $('#btn-submit-wwus').click(function(){
@@ -158,7 +160,7 @@ id="seccion_banner_global"
         var apellido_wwu = $('#wwu-last-name').val();
         var email_wwu = $('#wwu-email').val();
         var phone_wwu = $('#wwu-phone').val();
-        var archivo_wwu = $('#file').val();
+        var archivo_wwu = $('#name_file_selected').val();
         var puesto_wwu = $("#puesto option:selected").val();
         var checkbox = $("#btn-checkbox").prop('checked');        
 
@@ -179,34 +181,37 @@ id="seccion_banner_global"
                 }else{
                     $('.message_error--checkbox').css("display", "none");
                     var formData = {
-                        name: name_wwu,
+                        /*name: name_wwu,
                         apellido: apellido_wwu,
                         email: email_wwu,
                         phone: phone_wwu,
+                        puesto: puesto_wwu,*/
                         archivo: archivo_wwu,
-                        puesto: puesto_wwu,
                     }
 
                     var url = "{{ route('web.send') }}"
                     var type = "POST";
 
-                    //console.log(JSON.stringify(formData));
+                    console.log(JSON.stringify(formData));
+
                     if($("#btn-checkbox").prop('checked')){
                         $.ajax({
                             type: type,
                             url: url,
                             data: formData,
                             dataType: 'json',
-                            success: function (data){
+                            success: function (xhr){
                                 $(location).attr('href',"{{ route('web.index') }}");
+                                console.log(xhr.responseText);
                             },
-                            error: function (data){
-                                console.log("No enviaste: " + data);
+                            error: function (xhr) {
+                                console.log(xhr.responseText);
                             }
                         });
                     }else{
                         $('.message_error--page').css("display", "block");
                     }
+                    
                 }
                 
                 

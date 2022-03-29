@@ -994,10 +994,66 @@ ACORDEON FAQ
   font-weight: bold;
 }
 
+/*------------------------------------------*/
+/*========================================*/
+/*
+* POP UP
+*/
+.allpopup {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: #0000005e;
+  z-index: 5000;
+  display: none;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /*box-shadow: 0px 0px 50px 2px #000;*/
+  box-shadow: 0px 2px 40px rgb(13 35 85 / 20%);
+  z-index: 5;
+  width: 40%;
+  background: #ffffff;
+}
+.popup img {
+  width: auto;
+  margin: auto;
+}
+.popup .panel-footer {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  border-radius: 50%;
+  box-shadow: 0px 2px 40px rgb(13 35 85 / 20%);
+}
+
+.popup .panel-footer .btn span i {
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.popup .panel-footer .btn {
+  background-color: #F67706;
+  border-radius: 50%;
+  border: none;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+}
+.popup .panel-footer .btn:active:focus, .popup .panel-footer .btn:focus {
+  box-shadow: none !important;
+}
+
 
 /*------------------------------------------*/
 /*========================================*/
-
 #section_acordion .accordion .accordion-item {
   margin-bottom: 12px !important;
   border: 1.5px solid #0D2355 !important;
@@ -2017,6 +2073,7 @@ section#error-404 {
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   /*display: none;*/
   transition: .5s;
+  display: none;
 }
 
 .encuesta--show{
@@ -2167,6 +2224,9 @@ section#error-404 {
 
   footer .pie .developer {
     justify-content: end;
+  }
+  .popup{
+    width: 55% !important;
   }
 }
 @media (max-width: 990px) {
@@ -2330,6 +2390,10 @@ section#error-404 {
     margin-right: auto;
     margin-left: auto;
   }
+  
+  .popup{
+    width: 72% !important;
+  }
 }
 @media (max-width: 765px) {
   .no_mobil {
@@ -2339,6 +2403,10 @@ section#error-404 {
   footer .menu_footer ul, footer .opciones_footer ul {
     padding: 0;
   }
+  
+  .popup{
+    width: 85% !important;
+  }
 }
 @media (max-width: 736px) {
   footer .pie .copyright {
@@ -2347,6 +2415,11 @@ section#error-404 {
   }
   footer .pie .developer {
     justify-content: center;
+  }
+}
+@media (max-width: 680px) {
+  .popup img {
+    width: 100% !important;
   }
 }
 @media (max-width: 600px) {

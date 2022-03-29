@@ -221,6 +221,22 @@ $routeLocale = $footer["routeLocale"];
     
 </form>
 
+<div class="allpopup">
+    <div id="popup" class="popup panel panel-primary">
+        
+        <!-- and here comes the image -->
+        <img data-src="/storage/web/img/comunicado2.png" class="lazyload" alt="popup">
+            
+            <!-- Now this is the button which closes the popup-->
+        <div class="panel-footer">
+            <button id="close" class="btn btn-lg btn-primary"><span><i class="flaticon-cancelar"></i></span></button>
+        </div>
+            
+            <!-- and finally we close the POPUP FRAME-->
+            <!-- everything on it will show up within the popup so you can add more things not just an image -->
+    </div>
+</div>
+
 </footer>
 
 @push('scripts')
@@ -258,6 +274,10 @@ $routeLocale = $footer["routeLocale"];
 
         /*--------------------------*/
         /*ENCUESTA*/
+
+        setTimeout(function(){
+            $('.encuesta').hide().fadeIn(1000);
+        }, 8000);
 
         $(".encuesta__option a").click(function(e){
             e.preventDefault();
@@ -382,6 +402,30 @@ $routeLocale = $footer["routeLocale"];
 
         /* ====================================================== */
 
+        /* ====================================================== */
+
+        /* 
+            POP UP 
+            *
+            ---------------------------------------------
+            *
+        */
+        setTimeout(function(){
+            $(".allpopup").hide().fadeIn(1000);
+            $("#popup").hide().fadeIn(1000);
+        }, 2000);
+
+        
+        //close the POPUP if the button with id="close" is clicked
+        $("#close").on("click", function (e) {
+            e.preventDefault();
+            $("#popup").fadeOut(300);
+            $(".allpopup").hide().fadeOut(300);
+        });
+
+        /* ====================================================== */
+
+        
     });
 </script>
 @endpush
