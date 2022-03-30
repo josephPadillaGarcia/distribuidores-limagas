@@ -133,7 +133,7 @@ function updatelikefaq(id){
                 $('#button_like'+id).html(data.like);
             }
             else{
-                console.log("LA CAGASTE");
+                console.log("error");
             }
         },
         error: function (data){

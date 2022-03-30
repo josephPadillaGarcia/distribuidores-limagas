@@ -413,7 +413,7 @@ export default {
       } else {
         fd.append("active", 0);
       }
-
+console.log(fd.image)
       axios({
         method: method,
         url: url,

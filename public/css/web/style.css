@@ -2139,7 +2139,7 @@ section#error-404 {
   margin: 0;
   display: none;
 }
-.message_error--page, .message_error--checkbox, .message_error--text-name, .message_error--text-last-name, .message_error--num{  
+.message_error--page, .message_error--checkbox, .message_error--text-name, .message_error--text-last-name, .message_error--num, .message_error--file{  
   font-size: 14px !important;
   margin-top: 5px;
   background: #ffdfdf;

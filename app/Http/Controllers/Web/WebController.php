@@ -22,6 +22,7 @@ use App\Encuesta;
 use App\WorkWithUsModal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Post\LeadRequest;
 use App\Puesto;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
@@ -249,12 +250,36 @@ class WebController extends Controller
     }
 
     public function sendMessage(Request $request, WorkWithUsModal $workwithus){
-        //$file_name = $this->setFileName('f-', $request->file('archivo'));
-        //$store_file = Storage::disk('public')->putFileAs('files/', $request->file('archivo'), $file_name);
-
+        //$el = request(['name', 'apellido','email','phone','name_file','puesto']);
         try {
-            //$file_name = $this->setFileName('f-', $request->file('archivo'));
-            //$store_file = Storage::disk('public')->putFileAs('files/', $request->file('archivo'), $file_name);
+            $file_name = $this->setFileName('f-', $request->file('archivo'));
+            $store_file = Storage::disk('private')->putFileAs('files/', $request->file('archivo'), $file_name);
+
+            //$el = WorkWithUsModal::UpdateOrCreate($el);
+
+            $workwithus->name = $request->nombre;
+            $workwithus->apellido = $request->apellido;
+            $workwithus->email = $request->email;
+            $workwithus->phone = $request->phone;
+            $workwithus->name_file = $file_name;
+            $workwithus->puesto = $request->puesto;
+
+            $workwithus->save();
+            
+            return  response()->json($workwithus, 200);
+        } catch (\Exception $e) {
+            return  response()->json('malo', 500);
+        }
+    }
+
+
+}
+
+
+//$file_name = $this->setFileName('f-', $request->file('archivo'));
+//$store_file = Storage::disk('public')->putFileAs('files/', $request->file('archivo'), $file_name);
+
+//$store_file = Storage::disk('public')->putFileAs('files/', $request->file('archivo'), $file_name);
 
             //return $request->file('archivo')." + ".$file_name;
 
@@ -266,11 +291,3 @@ class WebController extends Controller
             $workwithus->puesto = $request->puesto;
 
             $workwithus->save();*/
-            echo $request->apellido;
-        } catch (\Exception $e) {
-            return  response()->json('malo', 500);
-        }
-    }
-
-
-}

@@ -33,7 +33,7 @@ id="seccion_banner_global"
 
 <section class="form-ww-us">
     <div class="container_form">
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data" id="form-wwu">
 
             @csrf
 
@@ -66,7 +66,8 @@ id="seccion_banner_global"
                         <input class="file" type="file" name="archivo" id="file">
                     </div>
                     <span class="name_file" id="name_file_selected"></span>
-                </div>
+                </div>                
+                <p class="message_error message_error--file"></p>
             </div>
             <div class="form-ww-us__group">
                 <label for="">Puesto:*</label>
@@ -84,7 +85,7 @@ id="seccion_banner_global"
                 </label>
                 <p class="message_error message_error--checkbox">Debes aceptar las politicas de privacidad</p>
             </div> 
-            <!--button class="form-ww-us--btn-submit">Enviar</button-->
+            <!--button class="form-ww-us--btn-submit" id="btn-submit-wwus">Enviar</button-->
         </form>
         <button class="form-ww-us--btn-submit" id="btn-submit-wwus">Enviar</button>
         <p class="message_error message_error--page">Por favor llenar todos los campos requeridos</p>
@@ -129,8 +130,7 @@ id="seccion_banner_global"
             $('#wwu-phone').val("");
         }else{
             $('.message_error--num').css("display", "none");
-        }  
-        //$(this).val($(this).val().replace(/[^0-9]/g, ''));
+        } 
     });
 
     function onlytext(texto) {
@@ -144,100 +144,82 @@ id="seccion_banner_global"
     }
 
     $('#file').change(function(e){
-        var filename = $('#file').val().replace(/.*(\/|\\)/, '');
-        var file = e.target.files[0].name;
-        $('#name_file_selected').html(filename);
-        $('#name_file_selected').val(file);
-        console.log(file);
+        $('.message_error--file').css("display", "none");
+        var ext = $( this ).val().split('.').pop();
+        if(ext == "pdf"){
+            console.log("La extensión es: " + ext);
+            if($(this)[0].files[0].size > 2097152){
+                $('.message_error--file').css("display", "block");
+                $('.message_error--file').html("El peso maximo es de 2MB");
+                $('#name_file_selected').html("");
+            }else{
+                var filename = $('#file').val().replace(/.*(\/|\\)/, '');            
+                $('#name_file_selected').val(filename);
+                $('#name_file_selected').html(filename);
+            }    
+        }else{
+            $('#name_file_selected').html("");
+            $('.message_error--file').css("display", "block");
+            $('.message_error--file').html("Extensión " + ext + " no permitida, subir un formato PDF");
+            console.log("Extensión no permitida: " + ext);
+        }
     });
 
-    $('#btn-submit-wwus').click(function(){
+/*--------------------------------------------------------*/
+    /* ENCIO DE INDORMACION */
 
+    const formwwu =  $('#form-wwu');
+
+    $('#btn-submit-wwus').click(function(){
         $.ajaxSetup({headers:{'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')}  });
 
         $('.message_error--page').css("display", "none");
+
         var name_wwu = $('#wwu-name').val();
         var apellido_wwu = $('#wwu-last-name').val();
         var email_wwu = $('#wwu-email').val();
         var phone_wwu = $('#wwu-phone').val();
-        var archivo_wwu = $('#name_file_selected').val();
+        var file_name = $("#name_file_selected").val();
         var puesto_wwu = $("#puesto option:selected").val();
-        var checkbox = $("#btn-checkbox").prop('checked');        
+        var checkbox = $("#btn-checkbox").prop('checked');
 
-        if((!name_wwu || !apellido_wwu || !email_wwu || !phone_wwu) && checkbox == false){
+        if((!name_wwu || !apellido_wwu || !email_wwu || !phone_wwu || !file_name) && checkbox == false){
             $('.message_error--checkbox').css("display", "block");
             $('.message_error--page').css("display", "block");
-            console.log(checkbox);
         }else{
             
-            if((!name_wwu || !apellido_wwu || !email_wwu || !phone_wwu) && checkbox == true){            
+            if((!name_wwu || !apellido_wwu || !email_wwu || !phone_wwu || !file_name) && checkbox == true){            
                 $('.message_error--checkbox').css("display", "none");
                 $('.message_error--page').css("display", "block");
-                console.log(checkbox);
             }else{
 
                 if(checkbox == false){
                     $('.message_error--checkbox').css("display", "block");
                 }else{
                     $('.message_error--checkbox').css("display", "none");
-                    var formData = {
-                        /*name: name_wwu,
-                        apellido: apellido_wwu,
-                        email: email_wwu,
-                        phone: phone_wwu,
-                        puesto: puesto_wwu,*/
-                        archivo: archivo_wwu,
-                    }
 
-                    var url = "{{ route('web.send') }}"
+                    const formData = new FormData(formwwu[0]);
+                    var url = "{{ route('web.send') }}";
                     var type = "POST";
-
-                    console.log(JSON.stringify(formData));
-
-                    if($("#btn-checkbox").prop('checked')){
-                        $.ajax({
-                            type: type,
-                            url: url,
-                            data: formData,
-                            dataType: 'json',
-                            success: function (xhr){
-                                $(location).attr('href',"{{ route('web.index') }}");
-                                console.log(xhr.responseText);
-                            },
-                            error: function (xhr) {
-                                console.log(xhr.responseText);
-                            }
-                        });
-                    }else{
-                        $('.message_error--page').css("display", "block");
-                    }
-                    
-                }
-                
-                
-            }
-
-        }
-
-        
-        /*if($("#btn-checkbox").prop('checked')){
                     $.ajax({
                         type: type,
                         url: url,
                         data: formData,
                         dataType: 'json',
+                        processData: false,
+                        contentType: false,
                         success: function (data){
                             $(location).attr('href',"{{ route('web.index') }}");
                         },
-                        error: function (data){
-                            console.log("No enviaste: " + data);
+                        error: function (xhr){
+                            console.log(xhr.responseText);
                         }
-                    });
-                }else{
-                    $('.message_error--page').css("display", "block");
-                }*/
-
+                    });                    
+                }                
+            }
+        }
     });
+    /*=======================================================*/
 
 </script>
 

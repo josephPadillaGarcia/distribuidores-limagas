@@ -584,6 +584,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         fd.append("active", 0);
       }
 
+      console.log(fd.image);
       axios({
         method: method,
         url: url,
