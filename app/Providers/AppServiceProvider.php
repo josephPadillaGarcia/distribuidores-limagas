@@ -35,9 +35,9 @@ class AppServiceProvider extends ServiceProvider
         //Carbon::setLocale(config('app.locale'));
         view()->composer('admin.layouts.dashboard',function($view){
             $menu = [];
-            $modules = Module::where('name','!=','Blog')->get();
-            //$modules = Module::get();
-            foreach( $modules as $i => $module){
+            //$modules = Module::where('name','!=','Blog')->get();
+            $modules = Module::get();
+            foreach($modules as $i => $module){
                 if(!$module->parent){  
                     $menu[$i]["id"] = $module->id;
                     $menu[$i]["name"] = $module->name;

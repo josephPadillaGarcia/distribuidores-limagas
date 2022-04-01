@@ -57,11 +57,11 @@
             </div>
             <ul class="navbar-nav">
                 @foreach($menu as $module)
-                <li class="nav-item  ">
+                <li class="nav-item">
                     @isset($module["menu_secondary"])
                     <a class="nav-link position-relative d-inline-block w-100 py-3 {{ Request::segment(2) ==  $module["variable"] ? 'active' : ''   }}" v-b-toggle.{{$module["variable"]}}>
                     <span class="current-color mr-3 ri-lg ri-{{$module["icon"]}}-line"></span>
-                        <span class="nav-link__text">{{ $module["name"] }}</span>
+                        <span class="nav-link__text">{{ $module["name"] }}</span> 
                         <span class="arrow"><i class="menu-arrow">
                         <span class="current-color ri-arrow-right-line" data-with="16" data-height="16"></span>
                             </i></span>

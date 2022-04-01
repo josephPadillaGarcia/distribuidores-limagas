@@ -12,8 +12,8 @@ class MasterModulesTableSeeder extends Seeder
     public function run()
     {
         $pContenido = 6;
-        $pConfiguracion = 16;
-        $pBlog = 11;
+        $pConfiguracion = 17;
+        $pBlog = 13;
         $position = 1;
         DB::table('master_modules')->insert([
             [
@@ -113,34 +113,34 @@ class MasterModulesTableSeeder extends Seeder
             ],
 
             [
-                'name' 	=> 'Blog',
+                'name' 	=> 'Noticia',
 				'slug' 		=> NULL,
 				'parent' 	=> NULL,
 				'icon' 		=> 'article',
-                'index'    => $position++
+                'index'    => 13
             ],
                 [
                     'name' 	=> 'Posts',
-                    'slug' 		=> 'blog/posts',
+                    'slug' 		=> 'noticia/posts',
                     'parent' 	=> $pBlog,
                     'icon' 		=> NULL,
                     'index'    => 1
                 ],
                 [
                     'name' 	=> 'Categorías',
-                    'slug' 		=> 'blog/categorias',
+                    'slug' 		=> 'noticia/categorias',
                     'parent' 	=> $pBlog,
                     'icon' 		=> NULL,
                     'index'    => 2
                 ],
 
-                [
-                    'name' 	=> 'Leads',
-                    'slug' 		=> 'leads',
-                    'parent' 	=> NULL,
-                    'icon' 		=> 'database',
-                    'index'    => $position++
-                ],
+            [
+                'name' 	=> 'Leads',
+                'slug' 		=> 'leads',
+                'parent' 	=> NULL,
+                'icon' 		=> 'database',
+                'index'    => $position++
+            ],
                     
 
             [
@@ -148,7 +148,7 @@ class MasterModulesTableSeeder extends Seeder
 				'slug' 		=> NULL,
 				'parent' 	=> NULL,
 				'icon' 		=> 'settings-5',
-                'index'    => 99
+                'index'    => 17
             ],
                 [
                     'name' 	    => 'Configuración General',
@@ -164,6 +164,8 @@ class MasterModulesTableSeeder extends Seeder
                     'icon' 		=> NULL,
                     'index'    => 2
                 ],
+
+
         ]); 
     }
 }

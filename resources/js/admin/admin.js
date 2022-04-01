@@ -28,10 +28,6 @@ const app = new Vue({
         'content-general-information': () => import('./views/content/GeneralInformation.vue' /* webpackChunkName: "js/pages/admin/content/general-information" */),
         'content-social-networks': () => import('./views/content/SocialNetworks.vue' /* webpackChunkName: "js/pages/admin/content/social-networks" */),
         'content-seo': () => import('./views/content/Seo.vue' /* webpackChunkName: "js/pages/admin/content/seo" */),
-        //'category': () => import('./views/blog/Category.vue' /* webpackChunkName: "js/pages/admin/blog/category" */),
-        //'posts': () => import('./views/blog/post/Index.vue' /* webpackChunkName: "js/pages/admin/blog/post" */),
-        //'posts-create': () => import('./views/blog/post/Create.vue' /* webpackChunkName: "js/pages/admin/blog/post/create" */),
-        //'posts-edit': () => import('./views/blog/post/Edit.vue' /* webpackChunkName: "js/pages/admin/blog/post/create" */),
         'profile': () => import('./views/Profile.vue' /* webpackChunkName: "js/pages/admin/profile" */),
         'dashboard': () => import('./views/dashboard/Index.vue' /* webpackChunkName: "js/pages/admin/dashboard" */),
         'traditional': () => import('./views/lead/traditional.vue' /* webpackChunkName: "js/pages/admin/lead/traditional" */),
@@ -40,16 +36,24 @@ const app = new Vue({
         'customers': () => import('./views/Customers.vue' /* webpackChunkName: "js/pages/admin/customers" */),
         'reset': () => import('./views/auth/Reset.vue' /* webpackChunkName: "js/pages/admin/reset" */),
         'configuration-general': () => import('./views/configuration/General/Index.vue' /* webpackChunkName: "js/pages/admin/configuration/general" */),
-        "content-general-content": () =>
-        import(
-                "./views/content/GeneralContent.vue" /* webpackChunkName: "js/pages/admin/content/general-content" */
-                ),
-                'services-index': () => import('./views/services/Index.vue' /* webpackChunkName: "js/pages/admin/services/index" */),
-                'services-create': () => import('./views/services/Create.vue' /* webpackChunkName: "js/pages/admin/services/create" */),
-                'services-edit': () => import('./views/services/Edit.vue' /* webpackChunkName: "js/pages/admin/services/edit" */),
-                'services-read': () => import('./views/services/Read.vue' /* webpackChunkName: "js/pages/admin/services/read" */),
-                'app-tracking': () => import('./views/AppTracking.vue' /* webpackChunkName: "js/pages/admin/app-tracking" */),
-                'tutorials': () => import('./views/Tutorials.vue' /* webpackChunkName: "js/pages/admin/tutorials" */),
+        "content-general-content": () => import( "./views/content/GeneralContent.vue" /* webpackChunkName: "js/pages/admin/content/general-content" */),
+        'services-index': () => import('./views/services/Index.vue' /* webpackChunkName: "js/pages/admin/services/index" */),
+        'services-create': () => import('./views/services/Create.vue' /* webpackChunkName: "js/pages/admin/services/create" */),
+        'services-edit': () => import('./views/services/Edit.vue' /* webpackChunkName: "js/pages/admin/services/edit" */),
+        'services-read': () => import('./views/services/Read.vue' /* webpackChunkName: "js/pages/admin/services/read" */),
+        'app-tracking': () => import('./views/AppTracking.vue' /* webpackChunkName: "js/pages/admin/app-tracking" */),
+        'tutorials': () => import('./views/Tutorials.vue' /* webpackChunkName: "js/pages/admin/tutorials" */),
+
+        // Noticias
+        'posts': () => import('./views/noticia/post/Index.vue' /* webpackChunkName: "js/pages/admin/noticia/post" */),
+        'posts-create': () => import('./views/noticia/post/Create.vue' /* webpackChunkName: "js/pages/admin/noticia/post/create" */),
+        //'posts-edit': () => import('./views/noticia/post/Edit.vue' /* webpackChunkName: "js/pages/admin/noticia/post/edit" */),
+        'category': () => import('./views/noticia/Category.vue' /* webpackChunkName: "js/pages/admin/noticia/category" */),
+        /*-------------------------------------*/
+
+        //'noticia-index': () => import('./views/services/Index.vue' /* webpackChunkName: "js/pages/admin/services/index" */),
+
+
                 //'slider-index': () => import('./views/slider/Index.vue' /* webpackChunkName: "js/pages/admin/slider/index" */),
         //'slider-create': () => import('./views/slider/Create.vue' /* webpackChunkName: "js/pages/admin/slider/create" */),
         //'slider-edit': () => import('./views/slider/Edit.vue' /* webpackChunkName: "js/pages/admin/slider/edit" */),

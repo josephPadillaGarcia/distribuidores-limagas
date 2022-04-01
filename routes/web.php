@@ -89,6 +89,20 @@ Route::prefix('admin')->group(function() {
             Route::get('/json/get/{element}', 'FaqController@get')->name('get');
             Route::delete('/{element}', 'FaqController@destroy')->name('destroy');
         });
+
+        Route::namespace('noticia')->prefix('noticia')->name('noticia.')->group(function () {
+            Route::name('posts.')->prefix('posts')->group(function () {
+                Route::get('/', 'PostsController@index')->name('index');
+                Route::get('/nuevo', 'PostsController@create')->name('create');
+                Route::post('/', 'PostsController@store')->name('store');
+                Route::get('/editar/{element}', 'PostsController@edit')->name('edit');
+                Route::get('/json/get-all', 'PostsController@getAll')->name('get-all');
+            });
+            Route::name('categorias.')->prefix('categorias')->group(function () {
+                Route::get('/', 'CategoriesController@index')->name('index');
+                Route::get('/json/get-all', 'CategoriesController@getAll')->name('get-all');
+            });
+        });
     
         Route::namespace('Content')->prefix('contenido')->name('content.')->group(function () {
             Route::name('general-content.')->prefix('contenido-general')->group(function () {
