@@ -12,8 +12,9 @@ use Illuminate\Support\Str;
 
 class PostController extends BaseController
 {
+    private $captchaSecret = "6LdqIEwfAAAAALNXsaTc3k1kEAFfutd1sPIVLZs2";
     public function lead(LeadRequest $request){
-        $el = request(['name','email','mobile','business','service_id','quantity_packages']);
+        $el = request(['name','email','mobile','business','quantity_packages','service_id']);
 
         try {
             $el = Lead::UpdateOrCreate($el);
@@ -31,7 +32,26 @@ class PostController extends BaseController
                 $this->sendMessage($data);
             }
 
-            return $this->sendResponse([], trans('custom.title.success'), 200);;
+            $recaptcha = $request->g_recaptcha_response;
+            $url = 'https://www.google.com/recaptcha/api/siteverify';
+            $data = array(
+                'secret' => $this->captchaSecret,
+                'response' => $recaptcha
+            );
+            $options = array(
+                'http' => array(
+                    'method' => 'POST',
+                    'header'  => 'Content-type: application/x-www-form-urlencoded',
+                    'content' => http_build_query($data)
+                )
+            );
+            $context = stream_context_create($options);
+            $verify = file_get_contents($url, false, $context);
+            $captcha_success = json_decode($verify);
+            if($captcha_success){
+                return $this->sendResponse([], trans('custom.title.success'), 200);
+            }
+            
         } catch (\Exception $e) {
             return $this->sendError(trans('custom.title.error'), [], 500);
         }

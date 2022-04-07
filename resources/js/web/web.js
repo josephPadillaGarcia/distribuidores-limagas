@@ -14,6 +14,7 @@ try {
 import store from './store'
 
 import Mixins from './mixins'
+import Vue from 'vue';
 Vue.mixin(Mixins);
 
 const app = new Vue({

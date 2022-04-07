@@ -161,6 +161,20 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <vue-recaptcha 
+                    ref="recaptcha" 
+                    @verify="onVerify"
+                    :sitekey="sitekey" 
+                />
+                
+                <div class="message-error" v-if="errorCaptcha">
+                    {{ errorCaptcha }}
+                </div>
+                <div class="message-error" v-if="messageCaptcha">
+                    {{ messageCaptcha }}
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-12">
                     <button
@@ -176,7 +190,11 @@
     </transition>
 </template>
 <script>
+import { VueRecaptcha } from 'vue-recaptcha';
 export default {
+    components: {
+        VueRecaptcha,
+    },
     props: {
         quantity: Array,
         services: Array,
@@ -197,7 +215,19 @@ export default {
                 service_id: "",
                 accepted: true
             },
-            errors: {}
+            leadform: {
+                name:"",
+                email:"",
+                mobile: "",
+                business: "",
+                quantity_packages: "",
+                service_id: "",
+            },
+            errors: {},
+            sitekey: process.env.MIX_SITE_KEY,
+            messageCaptcha: "",
+            captchaPass: false,
+            errorCaptcha: "",
         };
     },
     methods: {
@@ -205,11 +235,16 @@ export default {
             return this.$t(name, this.locale);
         },
         submit() {
+            if (!this.captchaPass) {
+                this.errorCaptcha = "Debes completar el captcha.";
+                return false;
+            }
             this.request = true;
             this.form.isPage = this.showServices;
             if (!this.showServices) {
                 this.form.service_id = this.service.id;
             }
+
             axios
                 .post("/api/post/lead", this.form)
                 .then(response => {
@@ -223,12 +258,27 @@ export default {
                         return;
                     }
                 });
-        }
+        },
+
+        onVerify(response) {
+            if(response.length == 0){
+                this.messageCaptcha = "Por favor, completa el captcha.";
+                this.$refs.recaptcha.reset();
+            }
+            else{
+                this.messageCaptcha = "";
+                this.captchaPass = true;
+            }
+        },
+
     },
     watch: {
         success: function(newValue, oldValue) {
             this.$emit("update:successProp", Boolean(newValue));
         }
-    }
+    },  
+    /*mounted () {
+        this.sitekey = process.env.MIX_SITE_KEY;
+    }*/
 };
 </script>

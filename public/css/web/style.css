@@ -2657,3 +2657,14 @@ section#error-404 {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+/* mensaje de error recaptcha */
+
+.message-error{  
+  color: #c41c1c;
+  font-size: 13px;
+  display: block;
+  margin-top: 3px;
+}
+
+/*--------------------*/

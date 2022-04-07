@@ -33,7 +33,6 @@ class LeadRequest extends FormRequest
           'service_id.required' => 'Por favor ingrese un servicio.',
           'required' => 'Por favor ingrese su :attribute.',
           'mobile.required' => 'Por favor ingrese su celular.',
-          'datosvacios.required' => 'Por favor llenar todos los campos requeridos',
       ];  
   }
 
@@ -52,7 +51,6 @@ class LeadRequest extends FormRequest
           'service_id' => 'required',
           'quantity_packages' => 'required',
           'accepted' => 'accepted',
-          'datosvacios' => 'required',
         ];
     }
 }
