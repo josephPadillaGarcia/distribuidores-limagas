@@ -1253,14 +1253,12 @@ var render = function() {
                             { staticClass: "card-header border-0 pb-0" },
                             [
                               _c("h2", { staticClass: "mb-0 text-primary" }, [
-                                _vm._v(
-                                  "\n                    Emails de Destino\n                  "
-                                )
+                                _vm._v("Emails de Destino")
                               ]),
                               _vm._v(" "),
                               _c("p", { staticClass: "mb-0" }, [
                                 _vm._v(
-                                  "Indique los emails donde llegarán la notificación cuando una persona registre sus datos en la Web."
+                                  "\n                    Indique los emails donde llegarán la notificación cuando\n                    una persona registre sus datos en la Web.\n                  "
                                 )
                               ])
                             ]
@@ -1870,7 +1868,7 @@ var render = function() {
                       attrs: { type: "button" },
                       on: { click: _vm.restoreEl }
                     },
-                    [_vm._v("Cerrar")]
+                    [_vm._v("\n        Cerrar\n      ")]
                   )
                 ]
               }

@@ -16,55 +16,55 @@
       </div>
     </div>
 
-    <div class="row mb-4">
-      <div class="col-12 col-lg-3">
-        <h2>Cantidad estimada de paquetes mensuales</h2>
-        <p>
-          Registra la Cantidad estimada de paquetes mensuales que el Cliente
-          puede escoger al dejar sus datos en la página de <b>Servicios</b>.
-        </p>
-      </div>
-      <div class="col-12 col-lg-9">
-        <div class="text-right">
-          <button
-            type="button"
-            class="btn btn-icon btn-inverse-primary"
-            @click="openModalExport"
-            :disabled="elements.total == 0 ? true : false"
-            :style="elements.total == 0 ? 'opacity: 0.50' : ''"
-          >
-            <span class="btn-inner--icon">
-              <i class="ri-download-line current-color"></i>
-            </span>
-            <span class="btn-inner--text"
-              >Exportar {{ elements.total == 0 ? "(0 Leads)" : "" }}</span
-            >
-          </button>
+    <div class="container-fluid mt--6"> 
+      <div class="row mb-4">
+        <div class="col-12 col-lg-3">
+          <h2>Encuesta sobre la probabilidad de recomendar dinet a otro usuario </h2>
+          <p>
+            Registra la Cantidad estimada de paquetes mensuales que el Cliente
+            puede escoger al dejar sus datos en la página de <b>Servicios</b>.
+          </p>
         </div>
-        <DataTable
-          :object="elements"
-          placeholder="Nombre y Apellidos, Celular, Empresa"
-          :button-update="false"
-          :button-read="true"
-          :button-delete="true"
-          @get="getElements"
+        <div class="col-12 col-lg-9">
+          <div class="text-right">
+            <button
+              type="button"
+              class="btn btn-icon btn-inverse-primary"
+              @click="openModalExport"
+              :disabled="elements.total == 0 ? true : false"
+              :style="elements.total == 0 ? 'opacity: 0.50' : ''"
+            >
+              <span class="btn-inner--icon">
+                <i class="ri-download-line current-color"></i>
+              </span>
+              <span class="btn-inner--text"
+                >Exportar {{ elements.total == 0 ? "(0 Leads)" : "" }}</span
+              >
+            </button>
+          </div>
+          <DataTableDraggable
+          :object.sync="elements"
+          :buttonUpdate="false"
+          :buttonDelete="true"
+          :buttonDetail="false"
+          @drag="handleChange"
+          @edit="editEl"
           @delete="deleteEl"
-          @read="showLead"
-          :entries-prop.sync="elementsPerPage"
-          :messageCantDelete="messageCantDelete"
-        ></DataTable>
+          :message-order="messageOrder"
+        ></DataTableDraggable>
+        </div>
+
+
+
+        <destroy
+          element="elemento"
+          @cancel="restoreEl"
+          :open="modalDestroy"
+          @submit="destroyConfirm"
+          :loading-get="loadingGet"
+          :loading-submit="requestSubmit"
+        ></destroy>
       </div>
-
-
-
-      <destroy
-        element="elemento"
-        @cancel="restoreEl"
-        :open="modalDestroy"
-        @submit="destroyConfirm"
-        :loading-get="loadingGet"
-        :loading-submit="requestSubmit"
-      ></destroy>
     </div>
 
     <!--div class="container-fluid mt--6">
@@ -462,6 +462,7 @@
 import { Skeleton } from "vue-loading-skeleton";
 import BreadCrumb from "../../components/BreadCrumb";
 import DataTable from "../../components/DataTable";
+import DataTableDraggable from "../../components/DataTableDraggable";
 import Button from "../../components/Button";
 import InputSlug from "../../components/form/InputSlug";
 import SkeletonForm from "../../components/skeleton/form";
@@ -479,6 +480,7 @@ export default {
     SkeletonForm,
     InputArray,
     Destroy,
+    DataTableDraggable,
 
     DatePicker,
   },

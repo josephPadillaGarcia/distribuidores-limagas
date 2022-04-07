@@ -164,8 +164,8 @@ Route::prefix('admin')->group(function() {
 
         Route::namespace('Encuesta')->prefix('encuestas')->name('encuestas.')->group(function () {
             Route::get('/', 'EncuestasController@index')->name('index');
-            /*Route::get('/json/get-all', 'LeadTraditionalController@getAll')->name('get-all');
-            Route::delete('/{element}', 'LeadTraditionalController@destroy')->name('destroy');
+            Route::get('/json/get-all', 'EncuestasController@getAll')->name('get-all');
+            /*Route::delete('/{element}', 'LeadTraditionalController@destroy')->name('destroy');
             Route::get('/json/get/{element}', 'LeadTraditionalController@get')->name('get');
             Route::put('/', 'LeadTraditionalController@update')->name('update');
             Route::get('/get-email-destination', 'LeadTraditionalController@getEmailDestination')->name('get-email-destination');
