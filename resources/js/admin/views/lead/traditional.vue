@@ -5,13 +5,8 @@
         <div class="header-body">
           <div class="row align-items-center pt-0 pt-md-2 pb-4">
             <div class="col-6 col-md-7">
-              <BreadCrumb
-                title="Leads"
-                parent=""
-                active="Leads"
-              ></BreadCrumb>
+              <BreadCrumb title="Leads" parent="" active="Leads"></BreadCrumb>
             </div>
-            
           </div>
         </div>
       </div>
@@ -31,18 +26,20 @@
           title-item-class="pr-0 my-0"
         >
           <div class="row">
-              <div class="col-12 mb-4 text-right">
+            <div class="col-12 mb-4 text-right">
               <button
                 type="button"
                 class="btn btn-icon btn-inverse-primary"
                 @click="openModalExport"
-              :disabled="elements.total == 0 ? true : false"
+                :disabled="elements.total == 0 ? true : false"
                 :style="elements.total == 0 ? 'opacity: 0.50' : ''"
               >
                 <span class="btn-inner--icon">
                   <i class="ri-download-line current-color"></i>
                 </span>
-                <span class="btn-inner--text">Exportar {{ elements.total == 0 ? '(0 Leads)' : '' }}</span>
+                <span class="btn-inner--text"
+                  >Exportar {{ elements.total == 0 ? "(0 Leads)" : "" }}</span
+                >
               </button>
             </div>
             <div class="col-12">
@@ -71,10 +68,11 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header border-0 pb-0">
-                    <h2 class="mb-0 text-primary">
-                      Emails de Destino
-                    </h2>
-                    <p class="mb-0">Indique los emails donde llegarán la notificación cuando una persona registre sus datos en la Web.</p>
+                    <h2 class="mb-0 text-primary">Emails de Destino</h2>
+                    <p class="mb-0">
+                      Indique los emails donde llegarán la notificación cuando
+                      una persona registre sus datos en la Web.
+                    </p>
                   </div>
                   <div class="card-body">
                     <form @submit.prevent="updateEmail">
@@ -330,7 +328,6 @@
       </template>
     </b-modal>
 
-
     <b-modal
       v-model="modalView"
       @close="restoreEl"
@@ -383,7 +380,9 @@
           </div>
           <div class="col-12 col-md-12">
             <div class="form-group">
-              <label class="font-weight-bold">Cantidad estimada de paquetes mensuales:</label>
+              <label class="font-weight-bold"
+                >Cantidad estimada de paquetes mensuales:</label
+              >
               <p>{{ element.quantity_packages }}</p>
             </div>
           </div>
@@ -396,10 +395,11 @@
         </div>
       </div>
       <template v-slot:modal-footer="{ ok }">
-        <button type="button" class="btn btn-primary" @click="restoreEl">Cerrar</button>
+        <button type="button" class="btn btn-primary" @click="restoreEl">
+          Cerrar
+        </button>
       </template>
     </b-modal>
-
   </div>
 </template>
 <style>
@@ -454,7 +454,7 @@ export default {
 
       elements: {},
       element: {
-        service_rel: {}
+        service_rel: {},
       },
       loadingGet: false,
       title: "",
@@ -656,7 +656,7 @@ export default {
     restore() {
       this.errors = {};
       this.element = {
-        service_rel : {}
+        service_rel: {},
       };
       this.modalDestroy = false;
       this.getElements(1, this.elementsPerPage);
@@ -673,7 +673,7 @@ export default {
       this.modalView = false;
       this.errors = {};
       this.element = {
-        service_rel : {}
+        service_rel: {},
       };
       this.modalDestroy = false;
       this.modalExport = false;

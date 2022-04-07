@@ -239,6 +239,8 @@ $routeLocale = $footer["routeLocale"];
 
 </footer>
 
+
+
 @push('scripts')
 <script type="text/javascript">
     $(document).ready(function () {

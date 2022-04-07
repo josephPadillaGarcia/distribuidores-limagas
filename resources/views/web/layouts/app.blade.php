@@ -64,6 +64,10 @@ if(Route::currentRouteName() === 'web.service') {
     <script src="{{ asset('js/web/vendor.js') }}"></script>
     <script src="{{ asset('js/web/web.js') }}"></script>
     @stack('scripts')
+    
+    <!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/8096378.js"></script>
+<!-- End of HubSpot Embed Code -->
 </body>
 
 </html>

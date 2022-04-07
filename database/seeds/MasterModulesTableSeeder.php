@@ -165,6 +165,14 @@ class MasterModulesTableSeeder extends Seeder
                     'index'    => 2
                 ],
 
+            [
+                'name' 	=> 'encuestas',
+                'slug' 		=> 'encuestas',
+                'parent' 	=> NULL,
+                'icon' 		=> 'survey',
+                'index'    => $position++
+            ]
+
 
         ]); 
     }

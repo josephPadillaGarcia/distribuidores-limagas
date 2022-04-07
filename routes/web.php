@@ -161,6 +161,17 @@ Route::prefix('admin')->group(function() {
                 Route::get('/all-export', 'LeadTraditionalController@allExport')->name('all-export');
                 Route::post('/filter-export', 'LeadTraditionalController@filterExport')->name('filter-export');
         });
+
+        Route::namespace('Encuesta')->prefix('encuestas')->name('encuestas.')->group(function () {
+            Route::get('/', 'EncuestasController@index')->name('index');
+            /*Route::get('/json/get-all', 'LeadTraditionalController@getAll')->name('get-all');
+            Route::delete('/{element}', 'LeadTraditionalController@destroy')->name('destroy');
+            Route::get('/json/get/{element}', 'LeadTraditionalController@get')->name('get');
+            Route::put('/', 'LeadTraditionalController@update')->name('update');
+            Route::get('/get-email-destination', 'LeadTraditionalController@getEmailDestination')->name('get-email-destination');
+            Route::get('/all-export', 'LeadTraditionalController@allExport')->name('all-export');
+            Route::post('/filter-export', 'LeadTraditionalController@filterExport')->name('filter-export');*/
+    });
     
         Route::prefix('tutoriales')->name('tutorials.')->group(function () {
             Route::get('/', 'TutorialsController@index')->name('index');
