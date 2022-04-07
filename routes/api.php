@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 
 Route::namespace('Api')->group(function() { 
     Route::prefix('post')->group(function() { 
-        Route::post('lead', 'PostController@lead');
+        Route::post('lead', 'PostController@lead');        
+        Route::post('captchaverify', 'PostController@captchaverify');
     });
 });

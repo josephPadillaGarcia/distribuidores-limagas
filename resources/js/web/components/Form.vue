@@ -162,10 +162,12 @@
                 </div>
             </div>
             <div>
-                <vue-recaptcha 
+                <vue-recaptcha
                     ref="recaptcha" 
                     @verify="onVerify"
                     :sitekey="sitekey" 
+                    :loadRecaptchaScript="true"
+
                 />
                 
                 <div class="message-error" v-if="errorCaptcha">
@@ -192,9 +194,6 @@
 <script>
 import { VueRecaptcha } from 'vue-recaptcha';
 export default {
-    components: {
-        VueRecaptcha,
-    },
     props: {
         quantity: Array,
         services: Array,
@@ -261,14 +260,21 @@ export default {
         },
 
         onVerify(response) {
-            if(response.length == 0){
-                this.messageCaptcha = "Por favor, completa el captcha.";
-                this.$refs.recaptcha.reset();
-            }
-            else{
-                this.messageCaptcha = "";
-                this.captchaPass = true;
-            }
+            let data = {};
+            data.g_recaptcha_response = response;
+
+            console.log(data);
+
+            axios
+                .post("/api/post/captchaverify", data)
+                .then(() => {
+                    this.messageCaptcha = "";
+                    this.captchaPass = true;
+                })
+                .catch(error => {
+                    this.messageCaptcha = "Por favor, completa el captcha.";
+                    this.$refs.recaptcha.reset();
+                });
         },
 
     },
@@ -277,8 +283,8 @@ export default {
             this.$emit("update:successProp", Boolean(newValue));
         }
     },  
-    /*mounted () {
-        this.sitekey = process.env.MIX_SITE_KEY;
-    }*/
+    components: {
+        VueRecaptcha,
+    },
 };
 </script>

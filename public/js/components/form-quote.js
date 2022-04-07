@@ -201,11 +201,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    VueRecaptcha: vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__["VueRecaptcha"]
-  },
   props: {
     quantity: Array,
     services: Array,
@@ -253,6 +252,7 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
+      this.captchaPass = true;
       this.request = true;
       this.form.isPage = this.showServices;
 
@@ -273,24 +273,29 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     onVerify: function onVerify(response) {
-      if (response.length == 0) {
-        this.messageCaptcha = "Por favor, completa el captcha.";
-        this.$refs.recaptcha.reset();
-      } else {
-        this.messageCaptcha = "";
-        this.captchaPass = true;
-      }
+      var _this2 = this;
+
+      var data = {};
+      data.g_recaptcha_response = response;
+      console.log(data);
+      axios.post("/api/post/captchaverify", data).then(function () {
+        _this2.messageCaptcha = "";
+        _this2.captchaPass = true;
+      })["catch"](function (error) {
+        _this2.messageCaptcha = "Por favor, completa el captcha.";
+
+        _this2.$refs.recaptcha.reset();
+      });
     }
   },
   watch: {
     success: function success(newValue, oldValue) {
       this.$emit("update:successProp", Boolean(newValue));
     }
+  },
+  components: {
+    VueRecaptcha: vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__["VueRecaptcha"]
   }
-  /*mounted () {
-      this.sitekey = process.env.MIX_SITE_KEY;
-  }*/
-
 });
 
 /***/ }),
@@ -883,7 +888,7 @@ var render = function() {
               [
                 _c("vue-recaptcha", {
                   ref: "recaptcha",
-                  attrs: { sitekey: _vm.sitekey },
+                  attrs: { sitekey: _vm.sitekey, loadRecaptchaScript: true },
                   on: { verify: _vm.onVerify }
                 }),
                 _vm._v(" "),
