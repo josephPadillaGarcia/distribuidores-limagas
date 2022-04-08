@@ -165,12 +165,10 @@ Route::prefix('admin')->group(function() {
         Route::namespace('Encuesta')->prefix('encuestas')->name('encuestas.')->group(function () {
             Route::get('/', 'EncuestasController@index')->name('index');
             Route::get('/json/get-all', 'EncuestasController@getAll')->name('get-all');
-            /*Route::delete('/{element}', 'LeadTraditionalController@destroy')->name('destroy');
-            Route::get('/json/get/{element}', 'LeadTraditionalController@get')->name('get');
-            Route::put('/', 'LeadTraditionalController@update')->name('update');
-            Route::get('/get-email-destination', 'LeadTraditionalController@getEmailDestination')->name('get-email-destination');
-            Route::get('/all-export', 'LeadTraditionalController@allExport')->name('all-export');
-            Route::post('/filter-export', 'LeadTraditionalController@filterExport')->name('filter-export');*/
+            Route::delete('/{element}', 'EncuestasController@destroy')->name('destroy');
+            Route::get('/json/get/{element}', 'EncuestasController@get')->name('get');
+            Route::get('/all-export', 'EncuestasController@allExport')->name('all-export');
+            Route::post('/filter-export', 'EncuestasController@filterExport')->name('filter-export');
     });
     
         Route::prefix('tutoriales')->name('tutorials.')->group(function () {

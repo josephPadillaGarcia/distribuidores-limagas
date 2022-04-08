@@ -418,170 +418,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -608,9 +444,8 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     routeGetAll: String,
     route: String,
+    imagesUrl: String,
     messageCantDelete: String,
-    routeUpdate: String,
-    getEmailDestination: String,
     allExport: String,
     filterExport: String
   },
@@ -662,7 +497,7 @@ __webpack_require__.r(__webpack_exports__);
         var downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
         var link = document.createElement("a");
         link.href = downloadUrl;
-        link.setAttribute("download", "Dinet Leads.xlsx");
+        link.setAttribute("download", "Dinet Encuestas.xlsx");
         document.body.appendChild(link);
         link.click();
         link.remove();
@@ -703,7 +538,7 @@ __webpack_require__.r(__webpack_exports__);
         var downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
         var link = document.createElement("a");
         link.href = downloadUrl;
-        link.setAttribute("download", "Dinet Leads.xlsx");
+        link.setAttribute("download", "Dinet Encuestas.xlsx");
         document.body.appendChild(link);
         link.click();
         link.remove();
@@ -754,54 +589,14 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.getContactEmailDestination();
     },
-    updateEmail: function updateEmail() {
-      var _this4 = this;
-
-      this.requestServer = true;
-      axios.put(this.routeUpdate, this.information).then(function (response) {
-        _this4.requestServer = false;
-
-        _this4.restoreEmail();
-
-        Swal.fire({
-          title: response.data.title,
-          text: response.data.message,
-          type: "success",
-          confirmButtonText: "OK",
-          buttonsStyling: false,
-          customClass: {
-            confirmButton: "btn btn-inverse-primary"
-          }
-        });
-      })["catch"](function (error) {
-        _this4.requestServer = false;
-
-        if (error.response.status === 422) {
-          _this4.errors = error.response.data.errors || {};
-          return;
-        } //this.restorePage();
-
-
-        Swal.fire({
-          title: error.response.data.title,
-          text: error.response.data.message,
-          type: "error",
-          confirmButtonText: "OK",
-          buttonsStyling: false,
-          customClass: {
-            confirmButton: "btn btn-inverse-primary"
-          }
-        });
-      });
-    },
     destroyConfirm: function destroyConfirm() {
-      var _this5 = this;
+      var _this4 = this;
 
       this.requestSubmit = true;
       axios["delete"](this.route + "/" + this.element.id).then(function (response) {
-        _this5.requestSubmit = false;
+        _this4.requestSubmit = false;
 
-        _this5.restore();
+        _this4.restore();
 
         Swal.fire({
           title: response.data.title,
@@ -825,7 +620,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
 
-        _this5.restoreEl();
+        _this4.restoreEl();
       });
     },
     restore: function restore() {
@@ -856,7 +651,7 @@ __webpack_require__.r(__webpack_exports__);
       this.errors_form = {};
     },
     getElements: function getElements(page, itemsPerPage) {
-      var _this6 = this;
+      var _this5 = this;
 
       var q = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var url = this.routeGetAll + "?page=" + page + "&itemsPerPage=" + itemsPerPage;
@@ -866,16 +661,16 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       axios.get(url).then(function (response) {
-        _this6.elements = response.data;
+        _this5.elements = response.data;
       })["catch"](function (error) {});
     },
     getEl: function getEl(id) {
-      var _this7 = this;
+      var _this6 = this;
 
       this.loadingGet = true;
       axios.get(this.route + "/json/get/" + id).then(function (response) {
-        _this7.element = response.data;
-        _this7.loadingGet = false;
+        _this6.element = response.data;
+        _this6.loadingGet = false;
       })["catch"](function (error) {});
     }
   },
@@ -899,7 +694,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.nav-pills .nav-link.active {\r\n  border-left: 4px solid #1762e6 !important;\r\n  background-color: #fdfbfa !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.nav-pills .nav-link.active {\r\n  border-left: 4px solid #1762e6 !important;\r\n  background-color: #fdfbfa !important;\n}\n.list_face_encuesta{\r\n  padding: 0;\n}\n.list_face_encuesta li p {\r\n    margin: 0;\r\n    padding-left: 10px;\n}\n.list_face_encuesta li {\r\n    list-style: none;\r\n    display: grid;\r\n    grid-template-columns: auto 1fr;\r\n    align-items: center;\r\n    padding-top: 12px;\r\n    padding-bottom: 12px;\r\n    border-bottom: 1px solid #e3e3e3;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -1106,57 +901,101 @@ var render = function() {
         "div",
         { staticClass: "row mb-4" },
         [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "col-12 col-lg-9" },
-            [
-              _c("div", { staticClass: "text-right" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-icon btn-inverse-primary",
-                    style: _vm.elements.total == 0 ? "opacity: 0.50" : "",
-                    attrs: {
-                      type: "button",
-                      disabled: _vm.elements.total == 0 ? true : false
-                    },
-                    on: { click: _vm.openModalExport }
-                  },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "btn-inner--text" }, [
-                      _vm._v(
-                        "Exportar " +
-                          _vm._s(_vm.elements.total == 0 ? "(0 Leads)" : "")
-                      )
-                    ])
-                  ]
-                )
+          _c("div", { staticClass: "col-12 col-lg-3" }, [
+            _c("h2", [
+              _vm._v(
+                "\n          Encuesta sobre la probabilidad de recomendar dinet a otro usuario\n        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "list_face_encuesta" }, [
+              _c("li", [
+                _c("img", { attrs: { src: _vm.imagesUrl + "/face_5.png" } }),
+                _vm._v(" "),
+                _c("p", [_vm._v("Excelente (5)")])
               ]),
               _vm._v(" "),
-              _c("DataTableDraggable", {
-                attrs: {
-                  object: _vm.elements,
-                  buttonUpdate: false,
-                  buttonDelete: true,
-                  buttonDetail: false,
-                  "message-order": _vm.messageOrder
-                },
-                on: {
-                  "update:object": function($event) {
-                    _vm.elements = $event
+              _c("li", [
+                _c("img", { attrs: { src: _vm.imagesUrl + "/face_4.png" } }),
+                _vm._v(" "),
+                _c("p", [_vm._v("Bien (4)")])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("img", { attrs: { src: _vm.imagesUrl + "/face_3.png" } }),
+                _vm._v(" "),
+                _c("p", [_vm._v("Regular (3)")])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("img", { attrs: { src: _vm.imagesUrl + "/face_2.png" } }),
+                _vm._v(" "),
+                _c("p", [_vm._v("Malo (2)")])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c("img", { attrs: { src: _vm.imagesUrl + "/face_1.png" } }),
+                _vm._v(" "),
+                _c("p", [_vm._v("Pésimo (1)")])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12 col-lg-9" }, [
+            _c("div", { staticClass: "col-12 mb-4 text-right" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-icon btn-inverse-primary",
+                  style: _vm.elements.total == 0 ? "opacity: 0.50" : "",
+                  attrs: {
+                    type: "button",
+                    disabled: _vm.elements.total == 0 ? true : false
                   },
-                  drag: _vm.handleChange,
-                  edit: _vm.editEl,
-                  delete: _vm.deleteEl
-                }
-              })
-            ],
-            1
-          ),
+                  on: { click: _vm.openModalExport }
+                },
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "btn-inner--text" }, [
+                    _vm._v(
+                      "Exportar " +
+                        _vm._s(_vm.elements.total == 0 ? "(0 encuestas)" : "")
+                    )
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-12" },
+              [
+                _c("DataTable", {
+                  attrs: {
+                    object: _vm.elements,
+                    placeholder: "Num. Face y respuesta ",
+                    "button-update": false,
+                    "button-read": false,
+                    "button-delete": true,
+                    "entries-prop": _vm.elementsPerPage,
+                    messageCantDelete: _vm.messageCantDelete
+                  },
+                  on: {
+                    get: _vm.getElements,
+                    delete: _vm.deleteEl,
+                    "update:entriesProp": function($event) {
+                      _vm.elementsPerPage = $event
+                    },
+                    "update:entries-prop": function($event) {
+                      _vm.elementsPerPage = $event
+                    }
+                  }
+                })
+              ],
+              1
+            )
+          ]),
           _vm._v(" "),
           _c("destroy", {
             attrs: {
@@ -1166,7 +1005,369 @@ var render = function() {
               "loading-submit": _vm.requestSubmit
             },
             on: { cancel: _vm.restoreEl, submit: _vm.destroyConfirm }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "b-modal",
+            {
+              attrs: {
+                "no-close-on-esc": "",
+                "no-close-on-backdrop": "",
+                centered: "",
+                size: "md",
+                "footer-class": "border-0 pt-0",
+                "body-class": "pt-0"
+              },
+              on: { close: _vm.restoreEl },
+              scopedSlots: _vm._u([
+                {
+                  key: "modal-footer",
+                  fn: function(ref) {
+                    var ok = ref.ok
+                    return [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "button", disabled: _vm.request_todo },
+                          on: { click: _vm.allExportFunction }
+                        },
+                        [
+                          _vm.request_todo
+                            ? _c("span", [
+                                _vm._v(
+                                  "\n              Cargando\n              "
+                                ),
+                                _c(
+                                  "svg",
+                                  {
+                                    staticClass: "ml-1 loading-svg",
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      width: "20",
+                                      height: "20",
+                                      viewBox: "0 0 40 40"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "g",
+                                      {
+                                        attrs: {
+                                          fill: "none",
+                                          "fill-rule": "evenodd"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "g",
+                                          {
+                                            attrs: {
+                                              transform: "translate(1 1)",
+                                              "stroke-width": "3"
+                                            }
+                                          },
+                                          [
+                                            _c("circle", {
+                                              attrs: {
+                                                "stroke-opacity": "1",
+                                                cx: "0",
+                                                cy: "0",
+                                                r: "0"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "path",
+                                              {
+                                                attrs: {
+                                                  d:
+                                                    "M36 18c0-9.94-8.06-18-18-18",
+                                                  transform:
+                                                    "rotate(83.9974 18 18)"
+                                                }
+                                              },
+                                              [
+                                                _c("animateTransform", {
+                                                  attrs: {
+                                                    attributeName: "transform",
+                                                    type: "rotate",
+                                                    from: "0 18 18",
+                                                    to: "360 18 18",
+                                                    dur: "1s",
+                                                    repeatCount: "indefinite"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            : _c("span", [_vm._v("Todo")])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-inverse-primary",
+                          attrs: {
+                            type: "button",
+                            disabled: _vm.request_filter
+                          },
+                          on: { click: _vm.filterExportFunction }
+                        },
+                        [
+                          _vm.request_filter
+                            ? _c("span", [
+                                _vm._v(
+                                  "\n              Cargando\n              "
+                                ),
+                                _c(
+                                  "svg",
+                                  {
+                                    staticClass: "ml-1 loading-svg",
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      width: "20",
+                                      height: "20",
+                                      viewBox: "0 0 40 40"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "g",
+                                      {
+                                        attrs: {
+                                          fill: "none",
+                                          "fill-rule": "evenodd"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "g",
+                                          {
+                                            attrs: {
+                                              transform: "translate(1 1)",
+                                              "stroke-width": "3"
+                                            }
+                                          },
+                                          [
+                                            _c("circle", {
+                                              attrs: {
+                                                "stroke-opacity": "1",
+                                                cx: "0",
+                                                cy: "0",
+                                                r: "0"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "path",
+                                              {
+                                                attrs: {
+                                                  d:
+                                                    "M36 18c0-9.94-8.06-18-18-18",
+                                                  transform:
+                                                    "rotate(83.9974 18 18)"
+                                                }
+                                              },
+                                              [
+                                                _c("animateTransform", {
+                                                  attrs: {
+                                                    attributeName: "transform",
+                                                    type: "rotate",
+                                                    from: "0 18 18",
+                                                    to: "360 18 18",
+                                                    dur: "1s",
+                                                    repeatCount: "indefinite"
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            : _c("span", [_vm._v("Con Filtros")])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-secondary",
+                          attrs: { type: "button" },
+                          on: { click: _vm.restoreEl }
+                        },
+                        [_vm._v("\n            Cerrar\n          ")]
+                      )
+                    ]
+                  }
+                }
+              ]),
+              model: {
+                value: _vm.modalExport,
+                callback: function($$v) {
+                  _vm.modalExport = $$v
+                },
+                expression: "modalExport"
+              }
+            },
+            [
+              _c("template", { slot: "modal-title" }, [
+                _c("div", { staticClass: "text-primary h2" }, [
+                  _vm._v("Exportar Encuestas")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("template", { slot: "modal-header-close" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn p-0 bg-transparent",
+                    attrs: { type: "button" },
+                    on: { click: _vm.restoreEl }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "ri-close-line current-color ri-lg"
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-12" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "font-weight-bold",
+                          attrs: { for: "from" }
+                        },
+                        [_vm._v("Desde")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "date-picker",
+                        {
+                          attrs: {
+                            "input-attr": { id: "from" },
+                            "value-type": "format",
+                            format: "HH:mm DD-MM-YYYY",
+                            type: "datetime",
+                            "time-picker-options": {
+                              start: "00:00",
+                              step: "00:01",
+                              end: "23:59"
+                            },
+                            "first-day-of-week": 1,
+                            lang: "es",
+                            "input-class": "form-control",
+                            width: "100%"
+                          },
+                          model: {
+                            value: _vm.element_form.from,
+                            callback: function($$v) {
+                              _vm.$set(_vm.element_form, "from", $$v)
+                            },
+                            expression: "element_form.from"
+                          }
+                        },
+                        [_c("jam-calendar")],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm.errors_form && _vm.errors_form.from
+                        ? _c(
+                            "label",
+                            {
+                              staticClass: "mt-2 text-danger text-sm",
+                              attrs: { for: "from" }
+                            },
+                            [_vm._v(_vm._s(_vm.errors_form.from[0]))]
+                          )
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "font-weight-bold",
+                          attrs: { for: "to" }
+                        },
+                        [_vm._v("Hasta")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "date-picker",
+                        {
+                          attrs: {
+                            "input-attr": { id: "to" },
+                            "value-type": "format",
+                            format: "HH:mm DD-MM-YYYY",
+                            type: "datetime",
+                            "time-picker-options": {
+                              start: "00:00",
+                              step: "00:01",
+                              end: "23:59"
+                            },
+                            "first-day-of-week": 1,
+                            lang: "es",
+                            "input-class": "form-control",
+                            width: "100%"
+                          },
+                          model: {
+                            value: _vm.element_form.to,
+                            callback: function($$v) {
+                              _vm.$set(_vm.element_form, "to", $$v)
+                            },
+                            expression: "element_form.to"
+                          }
+                        },
+                        [_c("jam-calendar")],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm.errors_form && _vm.errors_form.to
+                        ? _c(
+                            "label",
+                            {
+                              staticClass: "mt-2 text-danger text-sm",
+                              attrs: { for: "to" }
+                            },
+                            [_vm._v(_vm._s(_vm.errors_form.to[0]))]
+                          )
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ],
+            2
+          )
         ],
         1
       )
@@ -1174,26 +1375,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 col-lg-3" }, [
-      _c("h2", [
-        _vm._v(
-          "Encuesta sobre la probabilidad de recomendar dinet a otro usuario "
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "\n          Registra la Cantidad estimada de paquetes mensuales que el Cliente\n          puede escoger al dejar sus datos en la página de "
-        ),
-        _c("b", [_vm._v("Servicios")]),
-        _vm._v(".\n        ")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

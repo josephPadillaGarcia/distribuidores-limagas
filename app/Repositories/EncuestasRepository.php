@@ -6,44 +6,35 @@ use App\Encuesta;
 
 class EncuestasRepository
 {
-    public function datatable($items_per_page)
+    public function datatable($items_per_page, $q = false)
     {
-        /*if ($q) {
-            $leads = Encuesta::select("*")
+        if ($q) {
+            $encuestas = Encuesta::select("*")
             ->where(function($query) use ($q){
-                return $query->where('name', 'like', '%' . $q . '%')
-                ->orWhere('mobile', 'like', '%' . $q . '%')
-                ->orWhere('business', 'like', '%' . $q . '%')
-                ->orWhereHas('serviceRel', function ($q2) use ($q){
-                    $q2->where('title_es', 'like', '%' . $q . '%');
-                });
+                return $query->where('num_face', 'like', '%' . $q . '%')
+                ->orWhere('respuesta', 'like', '%' . $q . '%');
             })
-            ->with('serviceRel')
             ->orderBy('created_at', 'desc')
             ->paginate($items_per_page);
         } else {
-            $leads = Encuesta::select("*")
-            ->with('serviceRel')
+            $encuestas = Encuesta::select("*")
             ->orderBy('created_at', 'desc')
             ->paginate($items_per_page);
-        }*/
+        }
 
-        $leads = Encuesta::select("*")
-            ->orderBy('created_at', 'desc')
-            ->paginate($items_per_page);
-        foreach ($leads as $lead) {
+        foreach ($encuestas as $encuesta) {
             $data[] = array(
-                "id" => $lead["id"],
-                "num_face" => $lead['num_face'],
-                "respuesta" => $lead["respuesta"],
-                "created_at" => $lead["created_at_format"],
+                "id" => $encuesta["id"],
+                "num_face" => $encuesta['num_face'],
+                "respuesta" => $encuesta["respuesta"],
+                "created_at" => $encuesta["created_at_format"],
             );
         }
-        $leads = $leads->toArray();
+        $encuestas = $encuestas->toArray();
         if (isset($data)) {
-            $leads["data"] = '';
-            $leads["data"] = $data;
+            $encuestas["data"] = '';
+            $encuestas["data"] = $data;
         }
-        return $leads;
+        return $encuestas;
     }
 }

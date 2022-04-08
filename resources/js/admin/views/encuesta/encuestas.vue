@@ -16,17 +16,52 @@
       </div>
     </div>
 
-    <div class="container-fluid mt--6"> 
+    <div class="container-fluid mt--6">
       <div class="row mb-4">
         <div class="col-12 col-lg-3">
-          <h2>Encuesta sobre la probabilidad de recomendar dinet a otro usuario </h2>
-          <p>
-            Registra la Cantidad estimada de paquetes mensuales que el Cliente
-            puede escoger al dejar sus datos en la página de <b>Servicios</b>.
-          </p>
+          <h2>
+            Encuesta sobre la probabilidad de recomendar dinet a otro usuario
+          </h2>
+          <ul class="list_face_encuesta">
+            <li>
+              <img
+                  :src="imagesUrl + '/face_5.png' "
+                />
+                <p>Excelente (5)</p>
+            </li>
+            
+            <li>
+              <img
+                  :src="imagesUrl + '/face_4.png' "
+                />                
+                <p>Bien (4)</p>
+            </li>
+            
+            <li>
+              <img
+                  :src="imagesUrl + '/face_3.png' "
+                />
+                <p>Regular (3)</p>
+            </li>
+            
+            <li>
+              <img
+                  :src="imagesUrl + '/face_2.png' "
+                />
+                <p>Malo (2)</p>
+            </li>
+            
+            <li>
+              <img
+                  :src="imagesUrl + '/face_1.png' "
+                />
+                <p>Pésimo (1)</p>
+            </li>
+
+          </ul>
         </div>
         <div class="col-12 col-lg-9">
-          <div class="text-right">
+          <div class="col-12 mb-4 text-right">
             <button
               type="button"
               class="btn btn-icon btn-inverse-primary"
@@ -38,23 +73,24 @@
                 <i class="ri-download-line current-color"></i>
               </span>
               <span class="btn-inner--text"
-                >Exportar {{ elements.total == 0 ? "(0 Leads)" : "" }}</span
+                >Exportar {{ elements.total == 0 ? "(0 encuestas)" : "" }}</span
               >
             </button>
           </div>
-          <DataTableDraggable
-          :object.sync="elements"
-          :buttonUpdate="false"
-          :buttonDelete="true"
-          :buttonDetail="false"
-          @drag="handleChange"
-          @edit="editEl"
-          @delete="deleteEl"
-          :message-order="messageOrder"
-        ></DataTableDraggable>
+          <div class="col-12">
+            <DataTable
+              :object="elements"
+              placeholder="Num. Face y respuesta "
+              :button-update="false"
+              :button-read="false"
+              :button-delete="true"
+              @get="getElements"
+              @delete="deleteEl"
+              :entries-prop.sync="elementsPerPage"
+              :messageCantDelete="messageCantDelete"
+            ></DataTable>
+          </div>
         </div>
-
-
 
         <destroy
           element="elemento"
@@ -64,392 +100,174 @@
           :loading-get="loadingGet"
           :loading-submit="requestSubmit"
         ></destroy>
-      </div>
-    </div>
 
-    <!--div class="container-fluid mt--6">
-      <b-tabs
-        pills
-        vertical
-        nav-wrapper-class="col-12 col-lg-3 col-xl-2 mb-4 mb-lg-0"
-        nav-class="border bg-white py-2"
-        content-class="col-12 col-lg-9 col-xl-10"
-      >
-        <b-tab
-          title="Leads"
-          active
-          title-link-class="border-0 shadow-none bg-white py-3"
-          title-item-class="pr-0 my-0"
+        <b-modal
+          v-model="modalExport"
+          @close="restoreEl"
+          no-close-on-esc
+          no-close-on-backdrop
+          centered
+          size="md"
+          footer-class="border-0 pt-0"
+          body-class="pt-0"
         >
+          <template slot="modal-title">
+            <div class="text-primary h2">Exportar Encuestas</div>
+          </template>
+          <template slot="modal-header-close">
+            <button
+              type="button"
+              class="btn p-0 bg-transparent"
+              @click="restoreEl"
+            >
+              <i class="ri-close-line current-color ri-lg"></i>
+            </button>
+          </template>
           <div class="row">
-              <div class="col-12 mb-4 text-right">
-              <button
-                type="button"
-                class="btn btn-icon btn-inverse-primary"
-                @click="openModalExport"
-              :disabled="elements.total == 0 ? true : false"
-                :style="elements.total == 0 ? 'opacity: 0.50' : ''"
-              >
-                <span class="btn-inner--icon">
-                  <i class="ri-download-line current-color"></i>
-                </span>
-                <span class="btn-inner--text">Exportar {{ elements.total == 0 ? '(0 Leads)' : '' }}</span>
-              </button>
-            </div>
             <div class="col-12">
-              <DataTable
-                :object="elements"
-                placeholder="Nombre y Apellidos, Celular, Empresa"
-                :button-update="false"
-                :button-read="true"
-                :button-delete="true"
-                @get="getElements"
-                @delete="deleteEl"
-                @read="showLead"
-                :entries-prop.sync="elementsPerPage"
-                :messageCantDelete="messageCantDelete"
-              ></DataTable>
+              <div class="form-group">
+                <label class="font-weight-bold" for="from">Desde</label>
+                <date-picker
+                  :input-attr="{ id: 'from' }"
+                  value-type="format"
+                  v-model="element_form.from"
+                  format="HH:mm DD-MM-YYYY"
+                  type="datetime"
+                  :time-picker-options="{
+                    start: '00:00',
+                    step: '00:01',
+                    end: '23:59',
+                  }"
+                  :first-day-of-week="1"
+                  lang="es"
+                  input-class="form-control"
+                  width="100%"
+                >
+                  <jam-calendar></jam-calendar>
+                </date-picker>
+                <label
+                  v-if="errors_form && errors_form.from"
+                  class="mt-2 text-danger text-sm"
+                  for="from"
+                  >{{ errors_form.from[0] }}</label
+                >
+              </div>
             </div>
-          </div>
-        </b-tab>
-        <b-tab
-          title="Emails Destino"
-          title-link-class="border-0 shadow-none bg-white py-3"
-          title-item-class="my-0"
-        >
-          <div class="col-12">
-            <div class="row">
-              <div class="col-12">
-                <div class="card">
-                  <div class="card-header border-0 pb-0">
-                    <h2 class="mb-0 text-primary">
-                      Emails de Destino
-                    </h2>
-                    <p class="mb-0">Indique los emails donde llegarán la notificación cuando una persona registre sus datos en la Web.</p>
-                  </div>
-                  <div class="card-body">
-                    <form @submit.prevent="updateEmail">
-                      <div class="row">
-                        <div class="col-12">
-                          <div class="form-group">
-                            <label class="font-weight-bold">Emails</label>
-                            <div v-show="editEmailBlock">
-                              <InputArray
-                                :arreglo.sync="information.email_destination"
-                                :arreglo-editar="
-                                  information.email_destination_leads_traditional_formatted
-                                "
-                              ></InputArray>
-                              <label
-                                for="id_email_destination_leads_traditional"
-                                v-if="errors && Object.keys(errors).length"
-                                class="mt-2 mb-0 text-danger text-sm"
-                                >Los campos correo(s) electrónico(s) destino
-                                deben ser una dirección de correo válida.</label
-                              >
-                            </div>
-                            <div v-if="!editEmailBlock">
-                              <div v-if="loadingEmails">
-                                <Skeleton height="100px"></Skeleton>
-                              </div>
-                              <div v-else>
-                                <div
-                                  v-if="
-                                    information.email_destination &&
-                                    information.email_destination.length > 0
-                                  "
-                                >
-                                  <p
-                                    class="d-block mb-1"
-                                    v-for="(
-                                      element, index
-                                    ) in information.email_destination_leads_traditional_formatted"
-                                    :key="index"
-                                  >
-                                    {{ element }}
-                                  </p>
-                                </div>
-                                <p v-else>No registrado</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="text-right" v-if="!loadingEmails">
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-inverse-primary"
-                          v-if="!editEmailBlock"
-                          @click.prevent="editEmailDestination"
-                        >
-                          Editar
-                        </button>
 
-                        <Button
-                          v-if="editEmailBlock"
-                          :text="'Actualizar'"
-                          :classes="['btn-inverse-primary', 'mr-2']"
-                          :request-server="requestServer"
-                          º
-                        ></Button>
-                        <button
-                          v-if="editEmailBlock"
-                          type="button"
-                          class="btn btn-secondary"
-                          @click.prevent="restoreEmail"
-                        >
-                          Cancelar
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
+            <div class="col-12">
+              <div class="form-group">
+                <label class="font-weight-bold" for="to">Hasta</label>
+                <date-picker
+                  :input-attr="{ id: 'to' }"
+                  value-type="format"
+                  v-model="element_form.to"
+                  format="HH:mm DD-MM-YYYY"
+                  type="datetime"
+                  :time-picker-options="{
+                    start: '00:00',
+                    step: '00:01',
+                    end: '23:59',
+                  }"
+                  :first-day-of-week="1"
+                  lang="es"
+                  input-class="form-control"
+                  width="100%"
+                >
+                  <jam-calendar></jam-calendar>
+                </date-picker>
+                <label
+                  v-if="errors_form && errors_form.to"
+                  class="mt-2 text-danger text-sm"
+                  for="to"
+                  >{{ errors_form.to[0] }}</label
+                >
               </div>
             </div>
           </div>
-        </b-tab>
-      </b-tabs>
+          <template v-slot:modal-footer="{ ok }">
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="allExportFunction"
+              :disabled="request_todo"
+            >
+              <span v-if="request_todo">
+                Cargando
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 40 40"
+                  class="ml-1 loading-svg"
+                >
+                  <g fill="none" fill-rule="evenodd">
+                    <g transform="translate(1 1)" stroke-width="3">
+                      <circle stroke-opacity="1" cx="0" cy="0" r="0" />
+                      <path
+                        d="M36 18c0-9.94-8.06-18-18-18"
+                        transform="rotate(83.9974 18 18)"
+                      >
+                        <animateTransform
+                          attributeName="transform"
+                          type="rotate"
+                          from="0 18 18"
+                          to="360 18 18"
+                          dur="1s"
+                          repeatCount="indefinite"
+                        />
+                      </path>
+                    </g>
+                  </g>
+                </svg>
+              </span>
+              <span v-else>Todo</span>
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-inverse-primary"
+              @click="filterExportFunction"
+              :disabled="request_filter"
+            >
+              <span v-if="request_filter">
+                Cargando
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 40 40"
+                  class="ml-1 loading-svg"
+                >
+                  <g fill="none" fill-rule="evenodd">
+                    <g transform="translate(1 1)" stroke-width="3">
+                      <circle stroke-opacity="1" cx="0" cy="0" r="0" />
+                      <path
+                        d="M36 18c0-9.94-8.06-18-18-18"
+                        transform="rotate(83.9974 18 18)"
+                      >
+                        <animateTransform
+                          attributeName="transform"
+                          type="rotate"
+                          from="0 18 18"
+                          to="360 18 18"
+                          dur="1s"
+                          repeatCount="indefinite"
+                        />
+                      </path>
+                    </g>
+                  </g>
+                </svg>
+              </span>
+              <span v-else>Con Filtros</span>
+            </button>
+
+            <button type="button" class="btn btn-secondary" @click="restoreEl">
+              Cerrar
+            </button>
+          </template>
+        </b-modal>
+      </div>
     </div>
-    <destroy
-      element="lead"
-      @cancel="restoreEl"
-      :open="modalDestroy"
-      @submit="destroyConfirm"
-      :loading-get="loadingGet"
-      :loading-submit="requestSubmit"
-    ></destroy>
-
-    <b-modal
-      v-model="modalExport"
-      @close="restoreEl"
-      no-close-on-esc
-      no-close-on-backdrop
-      centered
-      size="md"
-      footer-class="border-0 pt-0"
-      body-class="pt-0"
-    >
-      <template slot="modal-title">
-        <div class="text-primary h2">Exportar Leads</div>
-      </template>
-      <template slot="modal-header-close">
-        <button type="button" class="btn p-0 bg-transparent" @click="restoreEl">
-          <i class="ri-close-line current-color ri-lg"></i>
-        </button>
-      </template>
-      <div class="row">
-        <div class="col-12">
-          <div class="form-group">
-            <label class="font-weight-bold" for="from">Desde</label>
-            <date-picker
-              :input-attr="{ id: 'from' }"
-              value-type="format"
-              v-model="element_form.from"
-              format="HH:mm DD-MM-YYYY"
-              type="datetime"
-              :time-picker-options="{
-                start: '00:00',
-                step: '00:01',
-                end: '23:59',
-              }"
-              :first-day-of-week="1"
-              lang="es"
-              input-class="form-control"
-              width="100%"
-            >
-              <jam-calendar></jam-calendar>
-            </date-picker>
-            <label
-              v-if="errors_form && errors_form.from"
-              class="mt-2 text-danger text-sm"
-              for="from"
-              >{{ errors_form.from[0] }}</label
-            >
-          </div>
-        </div>
-
-        <div class="col-12">
-          <div class="form-group">
-            <label class="font-weight-bold" for="to">Hasta</label>
-            <date-picker
-              :input-attr="{ id: 'to' }"
-              value-type="format"
-              v-model="element_form.to"
-              format="HH:mm DD-MM-YYYY"
-              type="datetime"
-              :time-picker-options="{
-                start: '00:00',
-                step: '00:01',
-                end: '23:59',
-              }"
-              :first-day-of-week="1"
-              lang="es"
-              input-class="form-control"
-              width="100%"
-            >
-              <jam-calendar></jam-calendar>
-            </date-picker>
-            <label
-              v-if="errors_form && errors_form.to"
-              class="mt-2 text-danger text-sm"
-              for="to"
-              >{{ errors_form.to[0] }}</label
-            >
-          </div>
-        </div>
-      </div>
-      <template v-slot:modal-footer="{ ok }">
-        <button
-          type="button"
-          class="btn btn-primary"
-          @click="allExportFunction"
-          :disabled="request_todo"
-        >
-          <span v-if="request_todo">
-            Cargando
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 40 40"
-              class="ml-1 loading-svg"
-            >
-              <g fill="none" fill-rule="evenodd">
-                <g transform="translate(1 1)" stroke-width="3">
-                  <circle stroke-opacity="1" cx="0" cy="0" r="0" />
-                  <path
-                    d="M36 18c0-9.94-8.06-18-18-18"
-                    transform="rotate(83.9974 18 18)"
-                  >
-                    <animateTransform
-                      attributeName="transform"
-                      type="rotate"
-                      from="0 18 18"
-                      to="360 18 18"
-                      dur="1s"
-                      repeatCount="indefinite"
-                    />
-                  </path>
-                </g>
-              </g>
-            </svg>
-          </span>
-          <span v-else>Todo</span>
-        </button>
-
-        <button
-          type="button"
-          class="btn btn-inverse-primary"
-          @click="filterExportFunction"
-          :disabled="request_filter"
-        >
-          <span v-if="request_filter">
-            Cargando
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 40 40"
-              class="ml-1 loading-svg"
-            >
-              <g fill="none" fill-rule="evenodd">
-                <g transform="translate(1 1)" stroke-width="3">
-                  <circle stroke-opacity="1" cx="0" cy="0" r="0" />
-                  <path
-                    d="M36 18c0-9.94-8.06-18-18-18"
-                    transform="rotate(83.9974 18 18)"
-                  >
-                    <animateTransform
-                      attributeName="transform"
-                      type="rotate"
-                      from="0 18 18"
-                      to="360 18 18"
-                      dur="1s"
-                      repeatCount="indefinite"
-                    />
-                  </path>
-                </g>
-              </g>
-            </svg>
-          </span>
-          <span v-else>Con Filtros</span>
-        </button>
-
-        <button type="button" class="btn btn-secondary" @click="restoreEl">
-          Cerrar
-        </button>
-      </template>
-    </b-modal>
-
-
-    <b-modal
-      v-model="modalView"
-      @close="restoreEl"
-      no-close-on-esc
-      no-close-on-backdrop
-      centered
-      footer-class="border-0 pt-0"
-      body-class="pt-0"
-    >
-      <template slot="modal-title">
-        <div class="text-primary h2">Detalle Lead</div>
-      </template>
-      <template slot="modal-header-close">
-        <button type="button" class="btn p-0 bg-transparent" @click="restoreEl">
-          <i class="ri-close-line ri-lg"></i>
-        </button>
-      </template>
-      <div v-if="loadingGet">
-        <SkeletonForm></SkeletonForm>
-      </div>
-      <div v-else>
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <div class="form-group">
-              <label class="font-weight-bold">Nombre:</label>
-
-              <p>{{ element.name }}</p>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="form-group">
-              <label class="font-weight-bold">Teléfono:</label>
-
-              <p>{{ element.mobile_format }}</p>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="form-group">
-              <label class="font-weight-bold">Email:</label>
-
-              <p>{{ element.email }}</p>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="form-group">
-              <label class="font-weight-bold">Empresa:</label>
-
-              <p>{{ element.business }}</p>
-            </div>
-          </div>
-          <div class="col-12 col-md-12">
-            <div class="form-group">
-              <label class="font-weight-bold">Cantidad estimada de paquetes mensuales:</label>
-              <p>{{ element.quantity_packages }}</p>
-            </div>
-          </div>
-          <div class="col-12 col-md-12">
-            <div class="form-group">
-              <label class="font-weight-bold">Servicio:</label>
-              <p>{{ element.service_rel.title_es }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <template v-slot:modal-footer="{ ok }">
-        <button type="button" class="btn btn-primary" @click="restoreEl">Cerrar</button>
-      </template>
-    </b-modal-->
   </div>
 </template>
 <style>
@@ -457,6 +275,24 @@
   border-left: 4px solid #1762e6 !important;
   background-color: #fdfbfa !important;
 }
+
+.list_face_encuesta{
+  padding: 0;
+}
+.list_face_encuesta li p {
+    margin: 0;
+    padding-left: 10px;
+}
+.list_face_encuesta li {
+    list-style: none;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
 </style>
 <script>
 import { Skeleton } from "vue-loading-skeleton";
@@ -487,10 +323,8 @@ export default {
   props: {
     routeGetAll: String,
     route: String,
+    imagesUrl: String,
     messageCantDelete: String,
-
-    routeUpdate: String,
-    getEmailDestination: String,
 
     allExport: String,
     filterExport: String,
@@ -544,7 +378,7 @@ export default {
           );
           const link = document.createElement("a");
           link.href = downloadUrl;
-          link.setAttribute("download", "Dinet Leads.xlsx");
+          link.setAttribute("download", "Dinet Encuestas.xlsx");
           document.body.appendChild(link);
           link.click();
           link.remove();
@@ -582,7 +416,7 @@ export default {
           );
           const link = document.createElement("a");
           link.href = downloadUrl;
-          link.setAttribute("download", "Dinet Leads.xlsx");
+          link.setAttribute("download", "Dinet Encuestas.xlsx");
           document.body.appendChild(link);
           link.click();
           link.remove();
@@ -635,43 +469,6 @@ export default {
         email_destination_leads_traditional_formatted: [""],
       };
       this.getContactEmailDestination();
-    },
-    updateEmail() {
-      this.requestServer = true;
-      axios
-        .put(this.routeUpdate, this.information)
-        .then((response) => {
-          this.requestServer = false;
-          this.restoreEmail();
-          Swal.fire({
-            title: response.data.title,
-            text: response.data.message,
-            type: "success",
-            confirmButtonText: "OK",
-            buttonsStyling: false,
-            customClass: {
-              confirmButton: "btn btn-inverse-primary",
-            },
-          });
-        })
-        .catch((error) => {
-          this.requestServer = false;
-          if (error.response.status === 422) {
-            this.errors = error.response.data.errors || {};
-            return;
-          }
-          //this.restorePage();
-          Swal.fire({
-            title: error.response.data.title,
-            text: error.response.data.message,
-            type: "error",
-            confirmButtonText: "OK",
-            buttonsStyling: false,
-            customClass: {
-              confirmButton: "btn btn-inverse-primary",
-            },
-          });
-        });
     },
     destroyConfirm() {
       this.requestSubmit = true;
