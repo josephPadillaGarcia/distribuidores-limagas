@@ -23,6 +23,7 @@ class CreateInformationTable extends Migration
             $table->string('whatsapp_number',15)->nullable();
             $table->string('name_api')->nullable();
             $table->text('api_link')->nullable();
+            $table->text('customer_service_link')->nullable();
             $table->timestamps();
         });
     }

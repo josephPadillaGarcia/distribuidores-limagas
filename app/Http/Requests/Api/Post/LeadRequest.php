@@ -28,6 +28,7 @@ class LeadRequest extends FormRequest
     public function messages(){
       return [
           'accepted.accepted' => 'Debe aceptar nuestra política de privacidad.',
+          'acceptedtc.accepted' => 'Debe aceptar los terminos y condiciones.',
           'email.email' => 'Por favor ingrese un :attribute válido.',
           'name.required' => 'Por favor ingrese su nombre y apellidos.',
           'service_id.required' => 'Por favor ingrese un servicio.',
@@ -51,6 +52,7 @@ class LeadRequest extends FormRequest
           'service_id' => 'required',
           'quantity_packages' => 'required',
           'accepted' => 'accepted',
+          'acceptedtc' => 'accepted',
         ];
     }
 }

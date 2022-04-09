@@ -25,7 +25,7 @@ class GeneralInformationController extends Controller
 
     public function store(GeneralInformationRequest $request)
     {
-        $request_information = request(["direction", "whatsapp_number", "name_api", "api_link",'customers_link','book_link','contact_number','api_url_tracking']);
+        $request_information = request(["direction", "whatsapp_number", "name_api", "api_link",'customers_link','book_link','contact_number','api_url_tracking', 'customer_service_link']);
         $information_registered = Information::first();
         try {
             if ($information_registered) {

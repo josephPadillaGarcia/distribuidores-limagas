@@ -161,6 +161,32 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="grupo-form">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            v-model="form.acceptedtc"
+                            id="acceptedtc"
+                            checked
+                        />
+                        <label class="form-check-label" for="acceptedtc">
+                            {{ t("Aceptar los") }}
+                            <a href="#!">
+                                {{ t("Terminos y Condiciones") }}
+                            </a> </label
+                        ><span
+                            class="error error-red"
+                            v-if="errors && errors.acceptedtc"
+                            for="acceptedtc"
+                        >
+                            {{ t(errors.acceptedtc[0]) }}
+                        </span>
+                    </div>
+                </div>
+            </div>
             <div>
                 <vue-recaptcha
                     ref="recaptcha" 
@@ -212,15 +238,8 @@ export default {
                 name: "",
                 quantity_packages: "",
                 service_id: "",
-                accepted: true
-            },
-            leadform: {
-                name:"",
-                email:"",
-                mobile: "",
-                business: "",
-                quantity_packages: "",
-                service_id: "",
+                accepted: true,
+                acceptedtc: true,
             },
             errors: {},
             sitekey: process.env.MIX_SITE_KEY,

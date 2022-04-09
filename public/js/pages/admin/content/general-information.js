@@ -491,6 +491,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -550,7 +576,8 @@ quill__WEBPACK_IMPORTED_MODULE_4___default.a.register("modules/clipboard", _func
         name_api: "",
         whatsapp_number: "",
         customers_link: "",
-        api_link: ""
+        api_link: "",
+        customer_service_link: ""
       },
       errors: {},
       requestSubmit: false,
@@ -564,6 +591,7 @@ quill__WEBPACK_IMPORTED_MODULE_4___default.a.register("modules/clipboard", _func
       var _this = this;
 
       this.requestSubmit = true;
+      console.log(this.el);
       axios.post(this.routeUpdate, this.el).then(function (response) {
         _this.requestSubmit = false;
 
@@ -607,7 +635,8 @@ quill__WEBPACK_IMPORTED_MODULE_4___default.a.register("modules/clipboard", _func
         name_api: "",
         whatsapp_number: "",
         customers_link: "",
-        api_link: ""
+        api_link: "",
+        customer_service_link: ""
       };
       this.errors = {};
       this.startBlock = true, this.editBlock = false;
@@ -1316,6 +1345,28 @@ var render = function() {
                             )
                           : _c("p", [_vm._v("No registrado")])
                       ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { staticClass: "font-weight-bold" }, [
+                          _vm._v("Link de Servicios al Cliente")
+                        ]),
+                        _vm._v(" "),
+                        _vm.el.customer_service_link
+                          ? _c(
+                              "div",
+                              {
+                                domProps: {
+                                  innerHTML: _vm._s(
+                                    _vm.el.customer_service_link
+                                  )
+                                }
+                              },
+                              [_vm._v(_vm._s(_vm.el.customer_service_link))]
+                            )
+                          : _c("p", [_vm._v("No registrado")])
+                      ])
                     ])
                   ])
                 ])
@@ -1766,6 +1817,60 @@ var render = function() {
                                 attrs: { for: "api_url_tracking" }
                               },
                               [_vm._v(_vm._s(_vm.errors.api_url_tracking[0]))]
+                            )
+                          : _vm._e()
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "font-weight-bold",
+                            attrs: { for: "book_link" }
+                          },
+                          [_vm._v("Link de Servicios al Cliente")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.el.customer_service_link,
+                              expression: "el.customer_service_link"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", id: "customer_service_link" },
+                          domProps: { value: _vm.el.customer_service_link },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.el,
+                                "customer_service_link",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.errors && _vm.errors.customer_service_link
+                          ? _c(
+                              "label",
+                              {
+                                staticClass: "mt-2 text-danger text-sm",
+                                attrs: { for: "customer_service_link" }
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(_vm.errors.customer_service_link[0])
+                                )
+                              ]
                             )
                           : _vm._e()
                       ])

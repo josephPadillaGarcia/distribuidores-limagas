@@ -203,6 +203,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -223,15 +249,8 @@ __webpack_require__.r(__webpack_exports__);
         name: "",
         quantity_packages: "",
         service_id: "",
-        accepted: true
-      },
-      leadform: {
-        name: "",
-        email: "",
-        mobile: "",
-        business: "",
-        quantity_packages: "",
-        service_id: ""
+        accepted: true,
+        acceptedtc: true
       },
       errors: {},
       sitekey: "6LdqIEwfAAAAACkzCcJ50HqOviM2Zdz71sT-VLfG",
@@ -873,6 +892,96 @@ var render = function() {
                           _vm._v(
                             "\n                        " +
                               _vm._s(_vm.t(_vm.errors.accepted[0])) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    : _vm._e()
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-lg-12" }, [
+                _c("div", { staticClass: "grupo-form" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.acceptedtc,
+                        expression: "form.acceptedtc"
+                      }
+                    ],
+                    staticClass: "form-check-input",
+                    attrs: { type: "checkbox", id: "acceptedtc", checked: "" },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.acceptedtc)
+                        ? _vm._i(_vm.form.acceptedtc, null) > -1
+                        : _vm.form.acceptedtc
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.acceptedtc,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.form,
+                                "acceptedtc",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "acceptedtc",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "acceptedtc", $$c)
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "form-check-label",
+                      attrs: { for: "acceptedtc" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.t("Aceptar los")) +
+                          "\n                        "
+                      ),
+                      _c("a", { attrs: { href: "#!" } }, [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.t("Terminos y Condiciones")) +
+                            "\n                        "
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm.errors && _vm.errors.acceptedtc
+                    ? _c(
+                        "span",
+                        {
+                          staticClass: "error error-red",
+                          attrs: { for: "acceptedtc" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.t(_vm.errors.acceptedtc[0])) +
                               "\n                    "
                           )
                         ]

@@ -88,6 +88,16 @@
                 <p v-else>No registrado</p>
               </div>
             </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="form-group">
+                <label class="font-weight-bold">Link de Servicios al Cliente</label>
+                <div v-if="el.customer_service_link" v-html="el.customer_service_link">{{ el.customer_service_link }}</div>
+                <p v-else>No registrado</p>
+              </div>
+            </div>
+
+
           </div>
         </div>
         <div class="card-body" v-else>
@@ -103,6 +113,8 @@
           </div>
         </div>
       </div>
+
+      <!-- Editor de Información General -->
       <div class="card mb-4" v-if="editBlock">
         <div class="card-body">
           <form @submit.prevent="update">
@@ -210,6 +222,36 @@
                 </div>
               </div>
 
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="form-group">
+                  <label class="font-weight-bold" for="book_link">Link de Servicios al Cliente</label>
+                  <input type="text" class="form-control" v-model="el.customer_service_link" id="customer_service_link" />
+                  <label
+                    v-if="errors && errors.customer_service_link"
+                    class="mt-2 text-danger text-sm"
+                    for="customer_service_link"
+                  >{{ errors.customer_service_link[0] }}</label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                    <div class="form-group">
+                      <small class="d-block mb-0 lh-1"
+                        >Resolución recomendada: 1920×969px</small
+                      >
+                      <small class="d-block mb-0 lh-1">Formato: JPG</small>
+                      <small class="d-block mb-1 lh-1"
+                        >Tamaño recomendado: No mayor a 300KB</small
+                      >
+                      <ImageForm
+                        label="Imagen"
+                        variable="image"
+                        :errors="errors"
+                        :value.sync="element.image"
+                      ></ImageForm>
+                    </div>
+                  </div>
+
               
 
               <div class="col-12 text-right">
@@ -224,6 +266,8 @@
           </form>
         </div>
       </div>
+      <!-- *********************************************** -->
+
     </div>
   </div>
 </template>
@@ -278,6 +322,7 @@ export default {
         whatsapp_number: "",
         customers_link: "",
         api_link: "",
+        customer_service_link: "",
       },
       errors: {},
       requestSubmit: false,
@@ -289,6 +334,9 @@ export default {
   methods: {
     update() {
       this.requestSubmit = true;
+
+      console.log(this.el);
+
       axios
         .post(this.routeUpdate, this.el)
         .then((response) => {
@@ -331,6 +379,7 @@ export default {
         whatsapp_number: "",
         customers_link: "",
         api_link: "",
+        customer_service_link: "",
       };
       this.errors = {};
       (this.startBlock = true), (this.editBlock = false);

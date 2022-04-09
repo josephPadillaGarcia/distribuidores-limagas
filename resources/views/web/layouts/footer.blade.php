@@ -131,6 +131,20 @@ $routeLocale = $footer["routeLocale"];
         </ul>
     </div>
     @endif
+
+
+    @if($information['customer_service_link'])
+        <div class="enlace">
+            <ul>
+                <li class="bot">
+                    <a href="{{ $information['customer_service_link'] }}" class="customer_service" target="_blank">
+                        <img data-src="/storage/web/img/bot.png" class="lazyload" alt="" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    @endif
+
 <form class="encuesta" action="" method="post" if="formencuesta">
 
     <div class="encuesta--show" id="options">
@@ -257,6 +271,14 @@ $routeLocale = $footer["routeLocale"];
             
             window.open(link, "_blank");
         });
+
+        /*$(".customer_service").click(function(e) {
+            e.preventDefault();
+
+            let link = @php echo($information['customer_service_link']) @endphp
+            
+            window.open(link, "_blank");
+        });*/
 
         /*--------------------------*/
         /*ENCUESTA*/

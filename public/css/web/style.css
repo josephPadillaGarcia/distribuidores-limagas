@@ -1992,6 +1992,18 @@ section#error-404 {
   margin-top: 35px;
 }
 
+/*========================================*/
+/*
+    Enlace servicio cliente
+*/
+.enlace {
+  position: fixed;
+  bottom: 35px;
+  right: 120px;
+  z-index: 5;
+  transition: .5s;
+}
+
 
 /*========================================*/
 /*
