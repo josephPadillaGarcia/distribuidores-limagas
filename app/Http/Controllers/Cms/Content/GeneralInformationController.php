@@ -29,12 +29,61 @@ class GeneralInformationController extends Controller
       
         $information_registered = Information::first();
 
-        if ($request->hasFile('customer_service_img')) {
-            $fileName2 = $this->setFileName('cs-', $request->file('customer_service_img'));
-            $storeFile2 = Storage::disk('public')->putFileAs('img/', $request->file('customer_service_img'), $fileName2);
+        if ($request->hasFile('customer_service_img_update')) {
+            $fileName2 = $this->setFileName('cs-', $request->file('customer_service_img_update'));
+            $storeFile2 = Storage::disk('public')->putFileAs('img/', $request->file('customer_service_img_update'), $fileName2);
             $request_information = array_merge($request_information, ["customer_service_img" => $fileName2]);
-        } else {
+        } 
+        /*else {
             $request_information = array_merge($request_information, ["customer_service_img" => null]);
+        }*/
+        if($request->contact_number){
+            $request_information = array_merge($request_information, ["contact_number" => $request->contact_number]);
+        }
+        else{
+            $request_information = array_merge($request_information, ["contact_number" => NULL]);
+        }
+
+        if($request->customer_service_link){
+            $request_information = array_merge($request_information, ["customer_service_link" => $request->customer_service_link]);
+        }
+        else{
+            $request_information = array_merge($request_information, ["customer_service_link" => NULL]);
+        }
+
+        if($request->whatsapp_number){
+            $request_information = array_merge($request_information, ["whatsapp_number" => $request->whatsapp_number]);
+        }
+        else{
+            $request_information = array_merge($request_information, ["whatsapp_number" => NULL]);
+        }
+
+        if($request->api_link){
+            $request_information = array_merge($request_information, ["api_link" => $request->api_link]);
+        }
+        else{
+            $request_information = array_merge($request_information, ["api_link" => NULL]);
+        }
+
+        if($request->name_api){
+            $request_information = array_merge($request_information, ["name_api" => $request->name_api]);
+        }
+        else{
+            $request_information = array_merge($request_information, ["name_api" => NULL]);
+        }
+
+        if($request->book_link){
+            $request_information = array_merge($request_information, ["book_link" => $request->book_link]);
+        }
+        else{
+            $request_information = array_merge($request_information, ["book_link" => NULL]);
+        }
+
+        if($request->customers_link){
+            $request_information = array_merge($request_information, ["customers_link" => $request->customers_link]);
+        }
+        else{
+            $request_information = array_merge($request_information, ["customers_link" => NULL]);
         }
         
         try {

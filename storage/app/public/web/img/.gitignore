@@ -1,2 +1,4 @@
-!comunicado2.png
+!*.png
+!*.jpg
+!*.svg
 !.gitignore

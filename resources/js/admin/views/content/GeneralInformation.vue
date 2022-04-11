@@ -104,7 +104,8 @@
                   <img
                     :src="imagesUrl + '/' + el.customer_service_img"
                     :alt="el.name"
-                    class="img-fluid d-block mb-2 mx-auto"
+                    height="54"
+                    class="d-block mb-2 mx-auto"
                   />
                 </div>
                 <p v-else>No registrado</p>
@@ -262,13 +263,14 @@
                         <img
                           :src="imagesUrl + '/' + el.customer_service_img"
                           :alt="el.name"
-                          class="img-fluid d-block mb-2 mx-auto"
+                          height="54"
+                          class="d-block mb-2 mx-auto"
                         />
                       </div>
                       <ImageForm
                         label="Imagen"
-                        variable="customer_service_img"
-                        :value.sync="el.customer_service_img"
+                        variable="customer_service_img_update"
+                        :value.sync="el.customer_service_img_update"
                       ></ImageForm>
                     </div>
                   </div>
@@ -396,8 +398,8 @@ export default {
         fd.append("customer_service_link", this.el.customer_service_link);
       }
       
-      if (this.el.customer_service_img) {
-        fd.append("customer_service_img", this.el.customer_service_img);
+      if (this.el.customer_service_img_update) {
+        fd.append("customer_service_img_update", this.el.customer_service_img_update);
       }
 
       axios

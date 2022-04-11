@@ -141,14 +141,14 @@ $routeLocale = $footer["routeLocale"];
             <ul>
                 <li class="bot">
                     <a href="{{ $information['customer_service_link'] }}" class="customer_service" target="_blank">
-                        <img data-src="/storage/img/{{ $information['customer_service_img'] }}" class="lazyload" alt="" />
+                        <img height="54" width="54" data-src="/storage/img/{{ $information['customer_service_img'] }}" class="lazyload" alt="" />
                     </a>
                 </li>
             </ul>
         </div>
     @endif
 
-<form class="encuesta" action="" method="post" if="formencuesta">
+<form class="encuesta" method="post" id="formencuesta">
 
     <div class="encuesta--show" id="options">
 
@@ -262,11 +262,12 @@ $routeLocale = $footer["routeLocale"];
                         .fadeOut(500);
                 }
             );
-
+        
+        @if($information['whatsapp_number'])
         $(".chatbot-wsp").click(function(e) {
             e.preventDefault();
 
-            let number = @php echo($information['whatsapp_number']) @endphp
+            let number =  @php echo($information['whatsapp_number']) @endphp
 
             let link = `https://wa.me/+51${number}?text=${encodeURIComponent(
                 "Hola quisiera información del servicio"
@@ -274,6 +275,7 @@ $routeLocale = $footer["routeLocale"];
             
             window.open(link, "_blank");
         });
+        @endif
 
         /*$(".customer_service").click(function(e) {
             e.preventDefault();

@@ -502,6 +502,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -617,8 +619,8 @@ quill__WEBPACK_IMPORTED_MODULE_4___default.a.register("modules/clipboard", _func
         fd.append("customer_service_link", this.el.customer_service_link);
       }
 
-      if (this.el.customer_service_img) {
-        fd.append("customer_service_img", this.el.customer_service_img);
+      if (this.el.customer_service_img_update) {
+        fd.append("customer_service_img_update", this.el.customer_service_img_update);
       }
 
       axios.post(this.routeUpdate, fd).then(function (response) {
@@ -1278,13 +1280,14 @@ var render = function() {
                         _vm.el.customer_service_img
                           ? _c("div", [
                               _c("img", {
-                                staticClass: "img-fluid d-block mb-2 mx-auto",
+                                staticClass: "d-block mb-2 mx-auto",
                                 attrs: {
                                   src:
                                     _vm.imagesUrl +
                                     "/" +
                                     _vm.el.customer_service_img,
-                                  alt: _vm.el.name
+                                  alt: _vm.el.name,
+                                  height: "54"
                                 }
                               })
                             ])
@@ -1828,13 +1831,14 @@ var render = function() {
                           _vm.el.customer_service_img
                             ? _c("div", [
                                 _c("img", {
-                                  staticClass: "img-fluid d-block mb-2 mx-auto",
+                                  staticClass: "d-block mb-2 mx-auto",
                                   attrs: {
                                     src:
                                       _vm.imagesUrl +
                                       "/" +
                                       _vm.el.customer_service_img,
-                                    alt: _vm.el.name
+                                    alt: _vm.el.name,
+                                    height: "54"
                                   }
                                 })
                               ])
@@ -1843,14 +1847,14 @@ var render = function() {
                           _c("ImageForm", {
                             attrs: {
                               label: "Imagen",
-                              variable: "customer_service_img",
-                              value: _vm.el.customer_service_img
+                              variable: "customer_service_img_update",
+                              value: _vm.el.customer_service_img_update
                             },
                             on: {
                               "update:value": function($event) {
                                 return _vm.$set(
                                   _vm.el,
-                                  "customer_service_img",
+                                  "customer_service_img_update",
                                   $event
                                 )
                               }
