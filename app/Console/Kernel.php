@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        'App\Console\Commands\SumaEnvios',
     ];
 
     /**
@@ -23,6 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule
+            ->command('envios:sumar')->everyMinute();
     }
 
     /**
