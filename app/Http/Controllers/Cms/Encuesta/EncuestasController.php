@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\CMS\Encuesta;
+namespace App\Http\Controllers\Cms\Encuesta;
 
 use Illuminate\Http\Request;
 use App\Http\Traits\CmsTrait;
