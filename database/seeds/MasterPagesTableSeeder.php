@@ -41,11 +41,11 @@ class MasterPagesTableSeeder extends Seeder
             ],
 
             [
-                'name' 		=> 'Blog',
-                'slug_es'     => 'blog',
-                'title_es'     => 'Blog',
-                'slug_en'     => 'blog',
-                'title_en'     => 'Blog',
+                'name' 		=> 'Noticias',
+                'slug_es'     => 'noticias',
+                'title_es'     => 'Noticias',
+                'slug_en'     => 'news',
+                'title_en'     => 'News',
                 'index' => $position++
             ],
 

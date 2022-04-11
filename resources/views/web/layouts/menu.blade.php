@@ -70,6 +70,11 @@ $routeLocale = $menu["routeLocale"];
                         </div>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{!! Helper::getCustomRoute('web.news', $routeLocale) !!}">
+                            {{ __("Noticias") }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{!! Helper::getCustomRoute('web.quotations', $routeLocale) !!}">
                             {{ __("Cotizaciones") }}
                         </a>

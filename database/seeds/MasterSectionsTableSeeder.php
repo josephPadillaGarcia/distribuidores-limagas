@@ -42,6 +42,7 @@ class MasterSectionsTableSeeder extends Seeder
                 'name' 		=> 'Contamos con cuatro DARK STORE en lima para atender el e-commerce',
                 'master_page_id'     => MasterPage::where('name','Home')->first()->id,
             ],
+
             #Nosotros
             [
                 'name' 		=> 'Banner',
@@ -66,6 +67,12 @@ class MasterSectionsTableSeeder extends Seeder
                 'master_page_id'     => MasterPage::where('name','Servicios')->first()->id,
             ],
 
+            #Noticias
+            [
+                'name' 		=> 'Banner',
+                'master_page_id'     => MasterPage::where('name','Noticias')->first()->id,
+            ],
+
             #Cotizaciones
             [
                 'name' 		=> 'Banner',
@@ -77,6 +84,7 @@ class MasterSectionsTableSeeder extends Seeder
                 'master_page_id'     => MasterPage::where('name','Cotizaciones')->first()->id,
             ],
 
+            #Politica de Privacidad
             [
                 'name' 		=> 'Banner',
                 'master_page_id'     => MasterPage::where('name','Políticas de Privacidad')->first()->id,

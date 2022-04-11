@@ -65,6 +65,12 @@ $routeLocale = $footer["routeLocale"];
                                 {{ __("Cotizaciones") }}
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('web.faq') }}">
+                                <img class="lazyload" src="/storage/web/img/icon_list.png" alt="Preguntas frecuentes" />
+                                Preguntas Frecuentes
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -72,14 +78,8 @@ $routeLocale = $footer["routeLocale"];
                 <div class="opciones_footer">
                     <ul>
                         <li>
-                            <a href="{{ route('web.faq') }}">
-                                <img class="lazyload" src="/storage/web/img/icon_libro.png" alt="Preguntas frecuentes" />
-                                Preguntas Frecuentes
-                            </a>
-                        </li>
-                        <li>
                             <a href="{{ route('web.workwithus') }}">
-                                <img class="lazyload" src="/storage/web/img/icon_libro.png" alt="trabaja con nosotros" />
+                                <img class="lazyload" src="/storage/web/img/maletin.png" alt="trabaja con nosotros" />
                                 Trabaja con nosotros
                             </a>
                         </li>
