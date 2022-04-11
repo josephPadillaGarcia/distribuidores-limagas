@@ -414,6 +414,7 @@ export default {
       if (this.element.url_video) {
         fd.append("url_video", this.element.url_video);
       }
+      
       axios
         .post(this.routeStore, fd)
         .then((response) => {

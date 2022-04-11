@@ -103,6 +103,9 @@ $routeLocale = $footer["routeLocale"];
                             </a>
                             @endif
                         </li>
+                        <li>
+                            <img class="lazyload" src="/storage/web/img/logo-capece-peru.png">
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -138,7 +141,7 @@ $routeLocale = $footer["routeLocale"];
             <ul>
                 <li class="bot">
                     <a href="{{ $information['customer_service_link'] }}" class="customer_service" target="_blank">
-                        <img data-src="/storage/web/img/bot.png" class="lazyload" alt="" />
+                        <img data-src="/storage/img/{{ $information['customer_service_img'] }}" class="lazyload" alt="" />
                     </a>
                 </li>
             </ul>

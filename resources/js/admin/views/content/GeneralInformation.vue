@@ -77,7 +77,7 @@
             <div class="col-12 col-md-6 col-lg-4">
               <div class="form-group">
                 <label class="font-weight-bold">Número de Contacto Asesores</label>
-                <div v-if="el.contact_number">{{ el.contact_number_format }}</div>
+                <div v-if="el.contact_number">{{ el.contact_number }}</div>
                 <p v-else>No registrado</p>
               </div>
             </div>
@@ -85,6 +85,20 @@
               <div class="form-group">
                 <label class="font-weight-bold">Link Envio Cliente Número Tracking (Link que se usará para enviar al cliente a la Plataforma para revisar el estado de su pedido)</label>
                 <div v-if="el.api_url_tracking" v-html="el.api_url_tracking">{{ el.api_url_tracking }}</div>
+                <p v-else>No registrado</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="form-group">
+                <label class="font-weight-bold">Imagen de Servicios al Cliente</label>
+                <div v-if="el.customer_service_img">
+                  <img
+                    :src="imagesUrl + '/' + el.customer_service_img"
+                    :alt="el.name"
+                    class="img-fluid d-block mb-2 mx-auto"
+                  />
+                </div>
                 <p v-else>No registrado</p>
               </div>
             </div>
@@ -234,20 +248,27 @@
                 </div>
               </div>
 
-              <div class="col-12">
+              <div class="col-12 col-md-6 col-lg-4">
                     <div class="form-group">
+                    <label class="font-weight-bold" for="book_link">Imagen de Servicios al Cliente</label>
                       <small class="d-block mb-0 lh-1"
-                        >Resolución recomendada: 1920×969px</small
+                        >Resolución recomendada: 54×54px</small
                       >
                       <small class="d-block mb-0 lh-1">Formato: JPG</small>
                       <small class="d-block mb-1 lh-1"
-                        >Tamaño recomendado: No mayor a 300KB</small
+                        >Tamaño recomendado: No mayor a 5KB</small
                       >
+                      <div v-if="el.customer_service_img">
+                        <img
+                          :src="imagesUrl + '/' + el.customer_service_img"
+                          :alt="el.name"
+                          class="img-fluid d-block mb-2 mx-auto"
+                        />
+                      </div>
                       <ImageForm
                         label="Imagen"
-                        variable="image"
-                        :errors="errors"
-                        :value.sync="element.image"
+                        variable="customer_service_img"
+                        :value.sync="el.customer_service_img"
                       ></ImageForm>
                     </div>
                   </div>
@@ -280,11 +301,13 @@ import Quill from "quill";
 import PlainClipboard from "../../functions/PlainClipboard";
 Quill.register("modules/clipboard", PlainClipboard, true);
 import { quillEditor } from "vue-quill-editor";
+import ImageForm from "../../components/form/Image";
 export default {
   props: {
     routeGet: String,
     routeUpdate: String,
-    departments: Array
+    departments: Array,
+    imagesUrl: String,
   },
   components: {
     Button,
@@ -292,6 +315,7 @@ export default {
     Skeleton,
     InputSelectArray,
     quillEditor,
+    ImageForm,
   },
   data() {
     return {
@@ -334,11 +358,50 @@ export default {
   methods: {
     update() {
       this.requestSubmit = true;
+      const fd = new FormData();
+      
+      if (this.el.direction) {
+        fd.append("direction", this.el.direction);
+      }
 
-      console.log(this.el);
+      if (this.el.whatsapp_number) {
+        fd.append("whatsapp_number", this.el.whatsapp_number);
+      }
+
+      if (this.el.customers_link) {
+        fd.append("customers_link", this.el.customers_link);
+      }
+
+      if (this.el.name_api) {
+        fd.append("name_api", this.el.name_api);
+      }
+
+      if (this.el.api_link) {
+        fd.append("api_link", this.el.api_link);
+      }
+
+      if (this.el.contact_number) {
+        fd.append("contact_number", this.el.contact_number);
+      }
+
+      if (this.el.book_link) {
+        fd.append("book_link", this.el.book_link);
+      }
+
+      if (this.el.api_url_tracking) {
+        fd.append("api_url_tracking", this.el.api_url_tracking);
+      }
+
+      if (this.el.customer_service_link) {
+        fd.append("customer_service_link", this.el.customer_service_link);
+      }
+      
+      if (this.el.customer_service_img) {
+        fd.append("customer_service_img", this.el.customer_service_img);
+      }
 
       axios
-        .post(this.routeUpdate, this.el)
+        .post(this.routeUpdate, fd)
         .then((response) => {
           this.requestSubmit = false;
           this.restore();
