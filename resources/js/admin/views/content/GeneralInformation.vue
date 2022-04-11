@@ -91,6 +91,14 @@
 
             <div class="col-12 col-md-6 col-lg-4">
               <div class="form-group">
+                <label class="font-weight-bold">Link de Servicios al Cliente</label>
+                <div v-if="el.customer_service_link" v-html="el.customer_service_link">{{ el.customer_service_link }}</div>
+                <p v-else>No registrado</p>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="form-group">
                 <label class="font-weight-bold">Imagen de Servicios al Cliente</label>
                 <div v-if="el.customer_service_img">
                   <img
@@ -99,14 +107,6 @@
                     class="img-fluid d-block mb-2 mx-auto"
                   />
                 </div>
-                <p v-else>No registrado</p>
-              </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-4">
-              <div class="form-group">
-                <label class="font-weight-bold">Link de Servicios al Cliente</label>
-                <div v-if="el.customer_service_link" v-html="el.customer_service_link">{{ el.customer_service_link }}</div>
                 <p v-else>No registrado</p>
               </div>
             </div>

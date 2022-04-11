@@ -43,19 +43,16 @@ const app = new Vue({
         'services-read': () => import('./views/services/Read.vue' /* webpackChunkName: "js/pages/admin/services/read" */),
         'app-tracking': () => import('./views/AppTracking.vue' /* webpackChunkName: "js/pages/admin/app-tracking" */),
         'tutorials': () => import('./views/Tutorials.vue' /* webpackChunkName: "js/pages/admin/tutorials" */),
-        'encuestas': () => import('./views/encuesta/encuestas.vue' /* webpackChunkName: "js/pages/admin/encuesta/encuestas" */),
+        'encuestas': () => import('./views/encuesta/Encuestas.vue' /* webpackChunkName: "js/pages/admin/encuesta" */),
 
         // Noticias
-        'posts': () => import('./views/noticia/post/Index.vue' /* webpackChunkName: "js/pages/admin/noticia/post" */),
-        //'posts-create': () => import('./views/noticia/post/Create.vue' /* webpackChunkName: "js/pages/admin/noticia/post/create" */),
-        //'posts-edit': () => import('./views/noticia/post/Edit.vue' /* webpackChunkName: "js/pages/admin/noticia/post/edit" */),
-        'category': () => import('./views/noticia/Category.vue' /* webpackChunkName: "js/pages/admin/noticia/category" */),
+        'posts-index': () => import('./views/noticia/post/Index.vue' /* webpackChunkName: "js/pages/admin/blog/post/index" */),
+        'posts-create': () => import('./views/noticia/post/Create.vue' /* webpackChunkName: "js/pages/admin/blog/post/create" */),
+        'posts-edit': () => import('./views/noticia/post/Edit.vue' /* webpackChunkName: "js/pages/admin/blog/post/edit" */),
+        'posts-category': () => import('./views/noticia/Category.vue' /* webpackChunkName: "js/pages/admin/blog/category" */),
         /*-------------------------------------*/
 
-        //'noticia-index': () => import('./views/services/Index.vue' /* webpackChunkName: "js/pages/admin/services/index" */),
-
-
-                //'slider-index': () => import('./views/slider/Index.vue' /* webpackChunkName: "js/pages/admin/slider/index" */),
+        //'slider-index': () => import('./views/slider/Index.vue' /* webpackChunkName: "js/pages/admin/slider/index" */),
         //'slider-create': () => import('./views/slider/Create.vue' /* webpackChunkName: "js/pages/admin/slider/create" */),
         //'slider-edit': () => import('./views/slider/Edit.vue' /* webpackChunkName: "js/pages/admin/slider/edit" */),
     }

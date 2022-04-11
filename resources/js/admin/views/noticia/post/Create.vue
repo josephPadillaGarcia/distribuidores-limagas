@@ -6,7 +6,7 @@
           <div class="header-body">
             <div class="row align-items-center pt-0 pt-md-2 pb-4">
               <div class="col-6 col-md-7">
-                <BreadCrumb title="Crear Post" parent="Noticia" active="Posts"></BreadCrumb>
+                <BreadCrumb title="Crear Post" parent="Blog" active="Posts"></BreadCrumb>
               </div>
               <div class="col-6 col-md text-right">
                 <Button
@@ -234,7 +234,6 @@ import DatePicker from "vue2-datepicker";
 import NoData from "../../../components/NoData";
 import vue2Dropzone from "vue2-dropzone";
 import BreadCrumb from "../../../components/BreadCrumb";
-import Features from "../../../components/form/Features";
 import Input from "../../../components/form/Input";
 import Textarea from "../../../components/form/Textarea";
 import Button from "../../../components/Button";
@@ -251,7 +250,6 @@ export default {
     Input,
     Textarea,
     Button,
-    Features,
     InputSlug,
     InputArray,
     ModelListSelect,

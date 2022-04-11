@@ -113,26 +113,27 @@ class MasterModulesTableSeeder extends Seeder
             ],
 
             [
-                'name' 	=> 'Noticia',
+                'name' 	=> 'Blog',
 				'slug' 		=> NULL,
 				'parent' 	=> NULL,
 				'icon' 		=> 'article',
                 'index'    => 13
             ],
                 [
-                    'name' 	=> 'Posts',
-                    'slug' 		=> 'noticia/posts',
+                    'name' 	=> 'Categorías',
+                    'slug' 		=> 'blog/categorias',
                     'parent' 	=> $pBlog,
                     'icon' 		=> NULL,
                     'index'    => 1
                 ],
                 [
-                    'name' 	=> 'Categorías',
-                    'slug' 		=> 'noticia/categorias',
+                    'name' 	=> 'Posts',
+                    'slug' 		=> 'blog/posts',
                     'parent' 	=> $pBlog,
                     'icon' 		=> NULL,
                     'index'    => 2
                 ],
+                
 
             [
                 'name' 	=> 'Leads',
@@ -164,15 +165,6 @@ class MasterModulesTableSeeder extends Seeder
                     'icon' 		=> NULL,
                     'index'    => 2
                 ],
-
-            [
-                'name' 	=> 'encuestas',
-                'slug' 		=> 'encuestas',
-                'parent' 	=> NULL,
-                'icon' 		=> 'survey',
-                'index'    => $position++
-            ]
-
 
         ]); 
     }

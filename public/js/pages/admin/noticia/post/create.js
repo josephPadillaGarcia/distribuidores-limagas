@@ -163,15 +163,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue2_dropzone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-dropzone */ "./node_modules/vue2-dropzone/dist/vue2Dropzone.js");
 /* harmony import */ var vue2_dropzone__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue2_dropzone__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_BreadCrumb__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/BreadCrumb */ "./resources/js/admin/components/BreadCrumb.vue");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '../../../components/form/Features'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-/* harmony import */ var _components_form_Input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/form/Input */ "./resources/js/admin/components/form/Input.vue");
-/* harmony import */ var _components_form_Textarea__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../components/form/Textarea */ "./resources/js/admin/components/form/Textarea.vue");
-/* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../components/Button */ "./resources/js/admin/components/Button.vue");
-/* harmony import */ var _components_form_Editor__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../components/form/Editor */ "./resources/js/admin/components/form/Editor.vue");
-/* harmony import */ var _components_form_InputSlug__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../components/form/InputSlug */ "./resources/js/admin/components/form/InputSlug.vue");
-/* harmony import */ var _components_form_InputArray2__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../components/form/InputArray2 */ "./resources/js/admin/components/form/InputArray2.vue");
-/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-search-select */ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js");
-/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(vue_search_select__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _components_form_Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/form/Input */ "./resources/js/admin/components/form/Input.vue");
+/* harmony import */ var _components_form_Textarea__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/form/Textarea */ "./resources/js/admin/components/form/Textarea.vue");
+/* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../components/Button */ "./resources/js/admin/components/Button.vue");
+/* harmony import */ var _components_form_Editor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../components/form/Editor */ "./resources/js/admin/components/form/Editor.vue");
+/* harmony import */ var _components_form_InputSlug__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../components/form/InputSlug */ "./resources/js/admin/components/form/InputSlug.vue");
+/* harmony import */ var _components_form_InputArray2__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../components/form/InputArray2 */ "./resources/js/admin/components/form/InputArray2.vue");
+/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-search-select */ "./node_modules/vue-search-select/dist/VueSearchSelect.common.js");
+/* harmony import */ var vue_search_select__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(vue_search_select__WEBPACK_IMPORTED_MODULE_10__);
 //
 //
 //
@@ -403,7 +402,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 
 
@@ -419,15 +417,14 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     DatePicker: vue2_datepicker__WEBPACK_IMPORTED_MODULE_0___default.a,
     BreadCrumb: _components_BreadCrumb__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Editor: _components_form_Editor__WEBPACK_IMPORTED_MODULE_8__["default"],
+    Editor: _components_form_Editor__WEBPACK_IMPORTED_MODULE_7__["default"],
     vueDropzone: vue2_dropzone__WEBPACK_IMPORTED_MODULE_2___default.a,
-    Input: _components_form_Input__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Textarea: _components_form_Textarea__WEBPACK_IMPORTED_MODULE_6__["default"],
-    Button: _components_Button__WEBPACK_IMPORTED_MODULE_7__["default"],
-    Features: !(function webpackMissingModule() { var e = new Error("Cannot find module '../../../components/form/Features'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
-    InputSlug: _components_form_InputSlug__WEBPACK_IMPORTED_MODULE_9__["default"],
-    InputArray: _components_form_InputArray2__WEBPACK_IMPORTED_MODULE_10__["default"],
-    ModelListSelect: vue_search_select__WEBPACK_IMPORTED_MODULE_11__["ModelListSelect"],
+    Input: _components_form_Input__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Textarea: _components_form_Textarea__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Button: _components_Button__WEBPACK_IMPORTED_MODULE_6__["default"],
+    InputSlug: _components_form_InputSlug__WEBPACK_IMPORTED_MODULE_8__["default"],
+    InputArray: _components_form_InputArray2__WEBPACK_IMPORTED_MODULE_9__["default"],
+    ModelListSelect: vue_search_select__WEBPACK_IMPORTED_MODULE_10__["ModelListSelect"],
     NoData: _components_NoData__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
@@ -792,7 +789,7 @@ var render = function() {
                       _c("BreadCrumb", {
                         attrs: {
                           title: "Crear Post",
-                          parent: "Noticia",
+                          parent: "Blog",
                           active: "Posts"
                         }
                       })

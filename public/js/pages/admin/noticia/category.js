@@ -439,7 +439,7 @@ var render = function() {
                     _c("BreadCrumb", {
                       attrs: {
                         title: "Categorías",
-                        parent: "Noticia",
+                        parent: "Blog",
                         active: "Categorías"
                       }
                     })
