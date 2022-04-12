@@ -135,7 +135,7 @@
                   </div>
                   <div class="col-12">
                     <Textarea
-                      label="Descripción"
+                      label="Descripción corta"
                       variable="excerpt"
                       :errors="errors"
                       :valueEn.sync="element.excerpt_en"
@@ -282,7 +282,7 @@ export default {
   methods: {
     getCategories() {
       axios
-        .get("/json/select/categories")
+        .get("/admin/json/select/categories")
         .then((response) => {
           this.categories = response.data;
         })

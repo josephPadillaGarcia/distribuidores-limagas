@@ -95,12 +95,22 @@ Route::prefix('admin')->group(function() {
                 Route::get('/', 'PostsController@index')->name('index');
                 Route::get('/nuevo', 'PostsController@create')->name('create');
                 Route::post('/', 'PostsController@store')->name('store');
+                Route::put('/{element}', 'PostsController@update')->name('update');
+                Route::delete('/{element}', 'PostsController@destroy')->name('destroy');
                 Route::get('/editar/{element}', 'PostsController@edit')->name('edit');
                 Route::get('/json/get-all', 'PostsController@getAll')->name('get-all');
+                Route::get('/json/get/{element}', 'PostsController@get')->name('get');
+            Route::post('/posts/image', 'PostsController@storeImage')->name('store-image');
             });
             Route::name('categorias.')->prefix('categorias')->group(function () {
+                /*Route::get('/', 'CategoriesController@index')->name('index');
+                Route::get('/json/get-all', 'CategoriesController@getAll')->name('get-all');*/
                 Route::get('/', 'CategoriesController@index')->name('index');
+                Route::post('/', 'CategoriesController@store')->name('store');
+                Route::put('/{element}', 'CategoriesController@update')->name('update');
+                Route::delete('/{element}', 'CategoriesController@destroy')->name('destroy');
                 Route::get('/json/get-all', 'CategoriesController@getAll')->name('get-all');
+                Route::get('/json/get/{element}', 'CategoriesController@get')->name('get');
             });
         });
     
@@ -169,7 +179,7 @@ Route::prefix('admin')->group(function() {
             Route::get('/json/get/{element}', 'EncuestasController@get')->name('get');
             Route::get('/all-export', 'EncuestasController@allExport')->name('all-export');
             Route::post('/filter-export', 'EncuestasController@filterExport')->name('filter-export');
-    });
+        });
     
         Route::prefix('tutoriales')->name('tutorials.')->group(function () {
             Route::get('/', 'TutorialsController@index')->name('index');

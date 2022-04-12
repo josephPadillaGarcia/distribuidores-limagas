@@ -10,7 +10,6 @@
             <div class="col-6 col-md-5 text-right">
               <a href="#" class="btn btn-icon btn-inverse-primary" @click.prevent="newEl">
                 <span class="btn-inner--icon">
-                  <jam-newspaper class="current-color" />
                 </span>
                 <span class="btn-inner--text">Nueva Categoría</span>
               </a>
@@ -22,7 +21,7 @@
     <div class="container-fluid mt--6">
       <DataTable
         :object="elements"
-        placeholder="Nombre ES, Nombre EN"
+        placeholder="Nombre"
         :button-update="true"
         :button-read="false"
         :button-delete="true"
@@ -48,7 +47,7 @@
       </template>
       <template slot="modal-header-close">
         <button type="button" class="btn p-0 bg-transparent" @click="restoreEl">
-          <jam-close></jam-close>
+          <i class="ri-close-line ri-lg"></i>
         </button>
       </template>
       <div v-if="loadingGet">

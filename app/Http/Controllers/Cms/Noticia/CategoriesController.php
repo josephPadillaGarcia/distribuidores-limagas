@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
-use App\Http\Requests\Cms\Noticia\CategoryRequest;
 use App\Repositories\CategoriesRepository;
 use App\Category;
+use App\Http\Requests\Cms\Blog\CategoryRequest;
 
 class CategoriesController extends Controller
 {
@@ -26,7 +26,7 @@ class CategoriesController extends Controller
     public function getAll(Request $request, CategoriesRepository $repo)
     {
         $q = $request->q;
-        $headers = ["Id", "Nombre ES", "Etiqueta ES", "Nombre EN", "Etiqueta EN"];
+        $headers = ["Id", "Nombre", "Slug URL"];
         if ($q) {
             $elements = $repo->datatable($request->itemsPerPage, $q);
         } else {

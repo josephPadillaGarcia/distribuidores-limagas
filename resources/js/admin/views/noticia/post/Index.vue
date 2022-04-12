@@ -10,7 +10,6 @@
             <div class="col-6 col-md-5 text-right">
               <a :href="routeCreate" class="btn btn-icon btn-inverse-primary">
                 <span class="btn-inner--icon">
-                  <jam-newspaper class="current-color" />
                 </span>
                 <span class="btn-inner--text">Nuevo Post</span>
               </a>
@@ -23,7 +22,7 @@
     <div class="container-fluid mt--6">
       <DataTable
         :object="elements"
-        placeholder="Título ES, Título EN"
+        placeholder="Título"
         :button-update="true"
         :button-read="true"
         :button-delete="true"
@@ -51,7 +50,7 @@
       </template>
       <template slot="modal-header-close">
         <button type="button" class="btn p-0 bg-transparent" @click="restoreEl">
-          <jam-close></jam-close>
+          <i class="ri-close-line ri-lg"></i>
         </button>
       </template>
       <div v-if="loadingGet">
@@ -63,16 +62,16 @@
             <div class="row">
               <div class="col-12 col-md-6">
                 <div class="form-group">
-                  <label class="font-weight-bold">Título ES:</label>
+                  <label class="font-weight-bold">Título:</label>
                   <p>{{ element.title_es }}</p>
                 </div>
               </div>
-              <div class="col-12 col-md-6">
+              <!--<div class="col-12 col-md-6">
                 <div class="form-group">
                   <label class="font-weight-bold">Título EN:</label>
                   <p>{{ element.title_en }}</p>
                 </div>
-              </div>
+              </div>-->
               <div class="col-12">
                 <div class="form-group">
                   <label class="font-weight-bold">Publicado:</label>
@@ -81,82 +80,60 @@
               </div>
               <div class="col-12 col-md-6">
                 <div class="form-group">
-                  <label class="font-weight-bold">Seo Keywords ES:</label>
+                  <label class="font-weight-bold">Seo Keywords:</label>
                   <p v-if="element.seo_keywords_es">{{ element.seo_keywords_es }}</p>
-                  <p v-else>No registrado Seo Keywords ES</p>
+                  <p v-else>No registrado Seo Keywords</p>
                 </div>
               </div>
-              <div class="col-12 col-md-6">
+              <!--<div class="col-12 col-md-6">
                 <div class="form-group">
                   <label class="font-weight-bold">Seo Keywords EN:</label>
                   <p v-if="element.seo_keywords_en">{{ element.seo_keywords_en }}</p>
                   <p v-else>No registrado Seo Keywords EN</p>
                 </div>
-              </div>
-              <!--<div class="col-12 col-md-6">
-                <div class="form-group">
-                  <label class="font-weight-bold">Tags ES:</label>
-                  <p>
-                    <template v-for="(tag,i) in element.tags">
-                      <template v-if="i==element.tags.length-1">{{ tag.name_es }}</template>
-                      <template v-else>{{ tag.name_es }},</template>
-                    </template>
-                  </p>
-                </div>
-              </div>
-              <div class="col-12 col-md-6">
-                <div class="form-group">
-                  <label class="font-weight-bold">Tags EN:</label>
-                  <p>
-                    <template v-for="(tag,i) in element.tags">
-                      <template v-if="i==element.tags.length-1">{{ tag.name_en }}</template>
-                      <template v-else>{{ tag.name_en }},</template>
-                    </template>
-                  </p>
-                </div>
               </div>-->
 
               <div class="col-12 col-md-6">
                 <div class="form-group">
-                  <label class="font-weight-bold">Categoría ES:</label>
+                  <label class="font-weight-bold">Categoría:</label>
                   <template v-if="element.category">
                     <p>{{ element.category.name_es }}</p>
                   </template>
                 </div>
               </div>
-              <div class="col-12 col-md-6">
+              <!--<div class="col-12 col-md-6">
                 <div class="form-group">
                   <label class="font-weight-bold">Categoría EN:</label>
                   <template v-if="element.category">
                     <p>{{ element.category.name_en }}</p>
                   </template>
                 </div>
-              </div>
-              <div class="col-12 col-md-6">
+              </div>-->
+              <div class="col-12">
                 <div class="form-group">
-                  <label class="font-weight-bold">Descripción ES:</label>
+                  <label class="font-weight-bold">Descripción:</label>
                   <p>{{ element.excerpt_es }}</p>
                 </div>
               </div>
-              <div class="col-12 col-md-6">
+              <!--<div class="col-12 col-md-6">
                 <div class="form-group">
                   <label class="font-weight-bold">Descripción EN:</label>
                   <p>{{ element.excerpt_en }}</p>
                 </div>
-              </div>
+              </div>-->
 
-              <div class="col-12 col-md-6">
+              <div class="col-12">
                 <div class="form-group">
-                  <label class="font-weight-bold">Contenido ES:</label>
+                  <label class="font-weight-bold">Contenido:</label>
                   <p v-html="element.content_es"></p>
                 </div>
               </div>
-              <div class="col-12 col-md-6">
+              <!--<div class="col-12 col-md-6">
                 <div class="form-group">
                   <label class="font-weight-bold">Contenido EN:</label>
                   <p v-html="element.content_en"></p>
                 </div>
-              </div>
+              </div>-->
             </div>
           </div>
           <div class="col-12 col-lg-4 col-md-4">

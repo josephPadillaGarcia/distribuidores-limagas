@@ -168,7 +168,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -461,12 +460,7 @@ var render = function() {
                       }
                     },
                     [
-                      _c(
-                        "span",
-                        { staticClass: "btn-inner--icon" },
-                        [_c("jam-newspaper", { staticClass: "current-color" })],
-                        1
-                      ),
+                      _c("span", { staticClass: "btn-inner--icon" }),
                       _vm._v(" "),
                       _c("span", { staticClass: "btn-inner--text" }, [
                         _vm._v("Nueva Categoría")
@@ -487,7 +481,7 @@ var render = function() {
           _c("DataTable", {
             attrs: {
               object: _vm.elements,
-              placeholder: "Nombre ES, Nombre EN",
+              placeholder: "Nombre",
               "button-update": true,
               "button-read": false,
               "button-delete": true,
@@ -572,8 +566,7 @@ var render = function() {
                 attrs: { type: "button" },
                 on: { click: _vm.restoreEl }
               },
-              [_c("jam-close")],
-              1
+              [_c("i", { staticClass: "ri-close-line ri-lg" })]
             )
           ]),
           _vm._v(" "),

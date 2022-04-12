@@ -246,29 +246,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -474,12 +451,7 @@ var render = function() {
                       attrs: { href: _vm.routeCreate }
                     },
                     [
-                      _c(
-                        "span",
-                        { staticClass: "btn-inner--icon" },
-                        [_c("jam-newspaper", { staticClass: "current-color" })],
-                        1
-                      ),
+                      _c("span", { staticClass: "btn-inner--icon" }),
                       _vm._v(" "),
                       _c("span", { staticClass: "btn-inner--text" }, [
                         _vm._v("Nuevo Post")
@@ -500,7 +472,7 @@ var render = function() {
           _c("DataTable", {
             attrs: {
               object: _vm.elements,
-              placeholder: "Título ES, Título EN",
+              placeholder: "Título",
               "button-update": true,
               "button-read": true,
               "button-delete": true,
@@ -576,8 +548,7 @@ var render = function() {
                 attrs: { type: "button" },
                 on: { click: _vm.restoreEl }
               },
-              [_c("jam-close")],
-              1
+              [_c("i", { staticClass: "ri-close-line ri-lg" })]
             )
           ]),
           _vm._v(" "),
@@ -590,20 +561,10 @@ var render = function() {
                       _c("div", { staticClass: "col-12 col-md-6" }, [
                         _c("div", { staticClass: "form-group" }, [
                           _c("label", { staticClass: "font-weight-bold" }, [
-                            _vm._v("Título ES:")
+                            _vm._v("Título:")
                           ]),
                           _vm._v(" "),
                           _c("p", [_vm._v(_vm._s(_vm.element.title_es))])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-12 col-md-6" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", { staticClass: "font-weight-bold" }, [
-                            _vm._v("Título EN:")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [_vm._v(_vm._s(_vm.element.title_en))])
                         ])
                       ]),
                       _vm._v(" "),
@@ -622,28 +583,14 @@ var render = function() {
                       _c("div", { staticClass: "col-12 col-md-6" }, [
                         _c("div", { staticClass: "form-group" }, [
                           _c("label", { staticClass: "font-weight-bold" }, [
-                            _vm._v("Seo Keywords ES:")
+                            _vm._v("Seo Keywords:")
                           ]),
                           _vm._v(" "),
                           _vm.element.seo_keywords_es
                             ? _c("p", [
                                 _vm._v(_vm._s(_vm.element.seo_keywords_es))
                               ])
-                            : _c("p", [_vm._v("No registrado Seo Keywords ES")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-12 col-md-6" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", { staticClass: "font-weight-bold" }, [
-                            _vm._v("Seo Keywords EN:")
-                          ]),
-                          _vm._v(" "),
-                          _vm.element.seo_keywords_en
-                            ? _c("p", [
-                                _vm._v(_vm._s(_vm.element.seo_keywords_en))
-                              ])
-                            : _c("p", [_vm._v("No registrado Seo Keywords EN")])
+                            : _c("p", [_vm._v("No registrado Seo Keywords")])
                         ])
                       ]),
                       _vm._v(" "),
@@ -653,7 +600,7 @@ var render = function() {
                           { staticClass: "form-group" },
                           [
                             _c("label", { staticClass: "font-weight-bold" }, [
-                              _vm._v("Categoría ES:")
+                              _vm._v("Categoría:")
                             ]),
                             _vm._v(" "),
                             _vm.element.category
@@ -668,70 +615,25 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-12 col-md-6" }, [
-                        _c(
-                          "div",
-                          { staticClass: "form-group" },
-                          [
-                            _c("label", { staticClass: "font-weight-bold" }, [
-                              _vm._v("Categoría EN:")
-                            ]),
-                            _vm._v(" "),
-                            _vm.element.category
-                              ? [
-                                  _c("p", [
-                                    _vm._v(_vm._s(_vm.element.category.name_en))
-                                  ])
-                                ]
-                              : _vm._e()
-                          ],
-                          2
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-12 col-md-6" }, [
+                      _c("div", { staticClass: "col-12" }, [
                         _c("div", { staticClass: "form-group" }, [
                           _c("label", { staticClass: "font-weight-bold" }, [
-                            _vm._v("Descripción ES:")
+                            _vm._v("Descripción:")
                           ]),
                           _vm._v(" "),
                           _c("p", [_vm._v(_vm._s(_vm.element.excerpt_es))])
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-12 col-md-6" }, [
+                      _c("div", { staticClass: "col-12" }, [
                         _c("div", { staticClass: "form-group" }, [
                           _c("label", { staticClass: "font-weight-bold" }, [
-                            _vm._v("Descripción EN:")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", [_vm._v(_vm._s(_vm.element.excerpt_en))])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-12 col-md-6" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", { staticClass: "font-weight-bold" }, [
-                            _vm._v("Contenido ES:")
+                            _vm._v("Contenido:")
                           ]),
                           _vm._v(" "),
                           _c("p", {
                             domProps: {
                               innerHTML: _vm._s(_vm.element.content_es)
-                            }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-12 col-md-6" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", { staticClass: "font-weight-bold" }, [
-                            _vm._v("Contenido EN:")
-                          ]),
-                          _vm._v(" "),
-                          _c("p", {
-                            domProps: {
-                              innerHTML: _vm._s(_vm.element.content_en)
                             }
                           })
                         ])

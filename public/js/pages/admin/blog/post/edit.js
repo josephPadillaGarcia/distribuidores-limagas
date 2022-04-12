@@ -504,7 +504,7 @@ __webpack_require__.r(__webpack_exports__);
     getCategories: function getCategories() {
       var _this = this;
 
-      axios.get("/json/select/categories").then(function (response) {
+      axios.get("/admin/json/select/categories").then(function (response) {
         _this.categories = response.data;
       })["catch"](function (err) {});
     },
@@ -1244,7 +1244,7 @@ var render = function() {
                       [
                         _c("Textarea", {
                           attrs: {
-                            label: "Descripción",
+                            label: "Descripción corta",
                             variable: "excerpt",
                             errors: _vm.errors,
                             valueEn: _vm.element.excerpt_en,

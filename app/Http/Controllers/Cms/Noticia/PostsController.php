@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Cms\Noticia;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Cms\Blog\PostRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-
-use App\Http\Requests\Cms\Noticia\PostRequest;
 
 use App\Post;
 use App\Repositories\PostRepository;
@@ -52,7 +51,7 @@ class PostsController extends Controller
     {
         $q = $request->q;
          
-        $headers = ["Id", "Título ES", "Título EN","Url","Categoría Es", "Categoría En", "Publicado","Registrado el"];
+        $headers = ["Id", "Título","Url","Categoría", "Publicado","Registrado el"];
         if ($q) {
             $elements = $repo->datatable($request->itemsPerPage, $q);
         } else {
