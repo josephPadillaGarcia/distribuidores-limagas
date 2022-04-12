@@ -52,6 +52,7 @@ if(Route::currentRouteName() === 'web.service') {
     <meta name="twitter:description" content="{{ $page['seo_description_' . $locale] ? $page['seo_description_' . $locale] : '' }}">
     <meta name="twitter:image" content="{{ $page['seo_image'] ? $storageUrl . '/img/pages/' . $page['seo_image'] : '' }}">
     <meta name="robots" content="index,nofollow">
+    <meta property="fb:app_id" content="308191064775859" />
 </head>
 
 <body>
