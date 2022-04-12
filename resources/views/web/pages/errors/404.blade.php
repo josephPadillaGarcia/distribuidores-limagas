@@ -56,7 +56,7 @@ $routeLocale = $locale == 'es' ? '' : $locale;
                     </div>
                     <div class="col-md-6 col-12">                    
                         <div class="img-error">
-                            <img class="lazyload" data-src="storage/web/img/error-404.png" alt="">
+                            <img class="lazyload" data-src="/storage/web/img/error-404.png" alt="">
                         </div>
                     </div>
                 </div>

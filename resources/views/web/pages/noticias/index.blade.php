@@ -4,11 +4,35 @@
 
 @php
     $page = $data["page"];
+    $categories = $data["categories"];
+    $news = $data["news"];
+    $storageUrl = config('services.storage_url');
+    $content = $data["content"];
+    $locale = "es";
+    $routeLocale = $data["routeLocale"];
 @endphp
 
+<main>
+
+    @php
+    $index_banner = array_search("Banner", array_column($content, 'name'));
+            $banner = $content[$index_banner];
+
+            $image_banner = "";
+            if(in_array("image", $banner["content_formatted"])) {
+              $index = array_search("image", array_column($banner["content"], 'field'));
+              $image_banner = $storageUrl . '/img/content/' . $banner["content"][$index]["value"];
+            }
+
+            $title_banner = "";
+            if(in_array("title", $banner["content_formatted"])) {
+              $index = array_search("title", array_column($banner["content"], 'field'));
+              $title_banner = $banner["content"][$index]["value_" . $locale];
+            }
+    @endphp
 <section
 class="lazyload position-relative bottom_section section_bannerNosotros"
-data-bg=""
+data-bg="{{ $image_banner }}"
 id="seccion_banner_global"
 >
     <div class="mb-4 rounded ">
@@ -16,7 +40,7 @@ id="seccion_banner_global"
             <div class="row justify-content-center">
                 <div class="col-md-12 px-0">
                     <div class="content_banner">
-                        <h1 class="titulo text-center titulo_banner">Noticias</h1>
+                        <h1 class="titulo text-center titulo_banner">{{ $title_banner }}</h1>
                     </div>
                 </div>
             </div>
@@ -27,8 +51,11 @@ id="seccion_banner_global"
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="search position-relative">
-                    <input type="text" class="form-control" placeholder="Que estas buscando">
-                    <i class="flaticon-lupa-1 position-absolute"></i>
+                    <form action="{!! Helper::getCustomRoute('web.news', $routeLocale) !!}" method="GET">
+                        <input type="text" value="{{ request('q') }}" name="q" class="form-control" placeholder="Que estas buscando">
+                        <i class="flaticon-lupa-1 position-absolute"></i>
+                        <button type="submit" style="display:none;">Search</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -40,152 +67,56 @@ id="seccion_banner_global"
     <div class="container">
         <div class="row">
             <div class="list-tabs">
-                <p>Categorias: </p>
+                <p>Categorías: </p>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active btn_tab" data-bs-toggle="tab" data-bs-target="#todos"
-                            type="button">Todos</button>
+                        <a class="nav-link @if(Request::is('noticias')) active @endif btn_tab"
+                            href="{!! Helper::getCustomRoute('web.news', $routeLocale) !!}">Todos</a>
                     </li>
+                    @foreach($categories as $value)
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#life"
-                            type="button">Life
-                            style</button>
+                        <a class="nav-link btn_tab
+                        @if($value['slug_' . $locale] == Request::route('slug') ) active @endif
+                        "
+                            href="{!! Helper::getCustomRoute('web.newcategory', $routeLocale, ['slug' => $value['slug_' . $locale] ? $value['slug_' . $locale] : $value['slug_es']]) !!}">{{ $value["name_" . $locale] }}</a>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#inversion"
-                            type="button">Inversión</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tips"
-                            type="button">Tips</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#eventos"
-                            type="button">Eventos</button>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="todos">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="tabs">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <div class="content_noticia">
-                                <img src="/storage/posts/post.png" alt="">
-                                <p class="fecha">Agosto 12, 2021</p>
-                                <a href="#!"><b>Dinet incorpora a seis mujeres para conducir volquetes en socavón de
-                                        empresa minera. - 2019</b></a>
-                                <a href="single-blog.html"><span>+</span></a>
+                        @if(count($news) > 0)
+                            @foreach($news as $key => $value)
+                            <div class="@if($key == 0 || $key == 1) col-lg-6 @else col-lg-4 @endif" >
+                                <div class="content_noticia">
+                                    <a href="{!! Helper::getCustomRoute('web.singlenews', $routeLocale, ['slug' => $value['category']['slug_' . $locale] ? $value['category']['slug_' . $locale] : $value['category']['slug_es'],
+                                            'post' => $value['slug_' . $locale] ? $value['slug_' . $locale] : $value['slug_es'] ]) !!}">
+                                        <img class="lazyload" 
+                                        src="{{ $storageUrl . '/img/posts/' . $value['thumbnail'] }}" alt="">
+                                    </a>
+                                    <p class="fecha">{{ $value['date_format'] }}</p>
+                                    <a href="{!! Helper::getCustomRoute('web.singlenews', $routeLocale, ['slug' => $value['category']['slug_' . $locale] ? $value['category']['slug_' . $locale] : $value['category']['slug_es'],
+                                        'post' => $value['slug_' . $locale] ? $value['slug_' . $locale] : $value['slug_es'] ]) !!}"><b>{{ $value["title_" . $locale] }}</b></a>
+                                    <p>{{ $value["excerpt_" . $locale] }}</p>
+                                    <a href="{!! Helper::getCustomRoute('web.singlenews', $routeLocale, ['slug' => $value['category']['slug_' . $locale] ? $value['category']['slug_' . $locale] : $value['category']['slug_es'],
+                                        'post' => $value['slug_' . $locale] ? $value['slug_' . $locale] : $value['slug_es'] ]) !!}"><span>+</span></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="content_noticia">
-                                <img src="/storage/posts/post.png" alt="">
-                                <p class="fecha">Agosto 12, 2021</p>
-                                <a href="#!"><b>Dinet incorpora a seis mujeres para conducir volquetes en socavón de
-                                        empresa minera. - 2019</b></a>
-                                <a href="single-blog.html"><span>+</span></a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div class="content_noticia">
-                                <img src="/storage/posts/post.png" alt="">
-                                <p class="fecha">Junio 16, 2021</p>
-                                <a href="#!"><b>Primera tienda oscura de Dinet en San Borja ha logrado reducir los tiempos de
-                                        entrega de productos hasta en un día y medio.</b></a>
-                                <p>Al cierre del 2021, las tiendas oscuras representarán el 10% de las ventas del negocio de
-                                    e-commerce de la empresa de logística Dinet.</p>
-                                <a href="#!"><span>+</span></a>
-                            </div>
-                        </div>
-        
-                        <div class="col-lg-4">
-                            <div class="content_noticia">
-                                <img src="/storage/posts/post.png" alt="">
-                                <p class="fecha">Junio 16, 2021</p>
-                                <a href="#!"><b>Primera tienda oscura de Dinet en San Borja ha logrado reducir los tiempos de
-                                        entrega de productos hasta en un día y medio.</b></a>
-                                <p>Al cierre del 2021, las tiendas oscuras representarán el 10% de las ventas del negocio de
-                                    e-commerce de la empresa de logística Dinet.</p>
-                                <a href="#!"><span>+</span></a>
-                            </div>
-                        </div>
-        
-                        <div class="col-lg-4">
-                            <div class="content_noticia">
-                                <img src="/storage/posts/post.png" alt="">
-                                <p class="fecha">Junio 16, 2021</p>
-                                <a href="#!"><b>Primera tienda oscura de Dinet en San Borja ha logrado reducir los tiempos de
-                                        entrega de productos hasta en un día y medio.</b></a>
-                                <p>Al cierre del 2021, las tiendas oscuras representarán el 10% de las ventas del negocio de
-                                    e-commerce de la empresa de logística Dinet.</p>
-                                <a href="#!"><span>+</span></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="content_noticia">
-                                <img src="/storage/posts/post.png" alt="">
-                                <p class="fecha">Junio 16, 2021</p>
-                                <a href="#!"><b>Primera tienda oscura de Dinet en San Borja ha logrado reducir los tiempos de
-                                        entrega de productos hasta en un día y medio.</b></a>
-                                <p>Al cierre del 2021, las tiendas oscuras representarán el 10% de las ventas del negocio de
-                                    e-commerce de la empresa de logística Dinet.</p>
-                                <a href="#!"><span>+</span></a>
-                            </div>
-                        </div>
-        
-                        <div class="col-lg-4">
-                            <div class="content_noticia">
-                                <img src="/storage/posts/post.png" alt="">
-                                <p class="fecha">Junio 16, 2021</p>
-                                <a href="#!"><b>Primera tienda oscura de Dinet en San Borja ha logrado reducir los tiempos de
-                                        entrega de productos hasta en un día y medio.</b></a>
-                                <p>Al cierre del 2021, las tiendas oscuras representarán el 10% de las ventas del negocio de
-                                    e-commerce de la empresa de logística Dinet.</p>
-                                <a href="#!"><span>+</span></a>
-                            </div>
-                        </div>
-        
-                        <div class="col-lg-4">
-                            <div class="content_noticia">
-                                <img src="/storage/posts/post.png" alt="">
-                                <p class="fecha">Junio 16, 2021</p>
-                                <a href="#!"><b>Primera tienda oscura de Dinet en San Borja ha logrado reducir los tiempos de
-                                        entrega de productos hasta en un día y medio.</b></a>
-                                <p>Al cierre del 2021, las tiendas oscuras representarán el 10% de las ventas del negocio de
-                                    e-commerce de la empresa de logística Dinet.</p>
-                                <a href="#!"><span>+</span></a>
-                            </div>
-                        </div>
-
+                            @endforeach
+                        @else
+                        <div class="text-center my-5">No se encontraron resultados.</div>
+                        @endif
                     </div>
 
-                    
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item">
-                                <a class="page-link prev" href="#" aria-label="Previous">
-                                    <span aria-hidden="true"><i class="flaticon-atras"></i></span>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link next" href="#" aria-label="Next">
-                                    <span aria-hidden="true"><i class="flaticon-proximo"></i></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
+                    {{ $news->appends(request()->query())->links() }}
                 </div>
-                
-                
                 
             </div>
         </div>
     </div>
 </section>
+
+</main>
 
 @endsection

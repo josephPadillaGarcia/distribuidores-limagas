@@ -11,7 +11,8 @@ Route::namespace('Web')->name('web.')->group(function() {
     Route::get('/trabaja-con-nosotros', 'WebController@workwithUs')->name('workwithus');
     Route::post('/send-message', 'WebController@sendMessage')->name('send');
     Route::get('/noticias', 'WebController@news')->name('news');
-    Route::get('/noticias/single', 'WebController@singleNews')->name('singlenews');
+    Route::get('/noticias/categoria/{slug}', 'WebController@newsCategory')->name('newcategory');
+    Route::get('/noticias/categoria/{slug}/{post}', 'WebController@singleNews')->name('singlenews');
 });
 
 Route::prefix('admin')->group(function() {

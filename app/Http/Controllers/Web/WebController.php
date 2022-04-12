@@ -187,7 +187,7 @@ class WebController extends Controller
         // $service = Service::where('slug_' . "es", $slug)->where('active', true)->first();
 
         if (!$service) {
-            return $this->sendError("");
+            return Abort(404);
         }
         $page = $this->getSeoPage('services', $this->locale);
         // $page = $this->getSeoPage('services', "es");
@@ -273,25 +273,70 @@ class WebController extends Controller
         }
     }
 
-    public function news($locale = null){
+    public function news(Request $request, $locale = null){
         $page = $this->getSeoPage('news', $this->locale);
-        $news = Post::get();
-        $categories = Category::get();
+        $news = Post::with('category')->where('published',1);
+        if($request->q){
+            $news = $news->where('title_' . $this->locale, 'like', '%'.$request->q.'%');
+        }
+        $news = $news->orderBy('created_at','desc')->paginate(8);
+        $content = $this->getContentPage('news');
+        $categories = Category::has('post')->orderBy('name_es')->get();
         $data = array(
             "page" => $page,
             "news" => $news,
             "categories" => $categories,
+            "content" => $content,
+            "locale" => $this->locale,
+            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.noticias.index", compact('data'));
     }
 
-    public function singleNews($locale = null){
+    public function newsCategory(Request $request, $locale = null){
+        $category = Category::where('slug_' . $this->locale, $request->slug)->first();
+        if(!$category){
+            return Abort(404);
+        }
         $page = $this->getSeoPage('news', $this->locale);
-        $news = Post::get();
+        $news = Post::with('category')->where('published',1)
+        ->where('category_id',$category->id)
+        ->orderBy('created_at','desc')->paginate(3);
+        $content = $this->getContentPage('news');
+        $categories = Category::has('post')->orderBy('name_es')->get();
         $data = array(
             "page" => $page,
             "news" => $news,
+            "categories" => $categories,
+            "content" => $content,
+            "locale" => $this->locale,
+            "routeLocale" => $this->locale === "es" ? "" : $this->locale
+        );
+
+        return view("web.pages.noticias.index", compact('data'));
+    }
+
+    public function singleNews(Request $request, $locale = null){
+        $category = Category::select('id', 'name_' . $this->locale, 'slug_es', 'slug_en')->where('slug_' . $this->locale, $request->slug)->first();
+        if (!$category) {
+            return Abort(404);
+        }
+        $post = Post::where('slug_' . $this->locale, $request->post)->where('category_id', $category->id)->where('published', 1)->first();
+        if (!$post) {
+            return Abort(404);
+        }
+        $page = $this->getSeoPage('news', $this->locale);
+        $categories = Category::has('post')->orderBy('name_es')->get();
+        $news = Post::where('published', 1)->where('id', '!=', $post->id)->with('category:id,name_' . $this->locale . ',slug_' . $this->locale)->inRandomOrder()->take(3)->get();
+        $content = $this->getContentPage('news');
+        $data = array(
+            "page" => $page,
+            "new" => $post,
+            "news" => $news,
+            "categories" => $categories,
+            "content" => $content,
+            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.noticias.singlenews", compact('data'));

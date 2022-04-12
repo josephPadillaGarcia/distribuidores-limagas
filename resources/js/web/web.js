@@ -15,7 +15,12 @@ import store from './store'
 
 import Mixins from './mixins'
 import Vue from 'vue';
+
 Vue.mixin(Mixins);
+
+import VueSocialSharing from 'vue-social-sharing'
+Vue.use(VueSocialSharing);
+//Vue.component('SocialSharing', VueSocialSharing)
 
 const app = new Vue({
     el: '#app',
