@@ -20,6 +20,7 @@ use App\Information;
 use Carbon\Carbon;
 use App\Encuesta;
 use App\WorkWithUsModal;
+use App\NewsModal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Post\LeadRequest;
@@ -272,22 +273,29 @@ class WebController extends Controller
         }
     }
 
+    public function news($locale = null){
+        $page = $this->getSeoPage('news', $this->locale);
+        $news = Post::get();
+        $categories = Category::get();
+        $data = array(
+            "page" => $page,
+            "news" => $news,
+            "categories" => $categories,
+        );
+
+        return view("web.pages.noticias.index", compact('data'));
+    }
+
+    public function singleNews($locale = null){
+        $page = $this->getSeoPage('news', $this->locale);
+        $news = Post::get();
+        $data = array(
+            "page" => $page,
+            "news" => $news,
+        );
+
+        return view("web.pages.noticias.singlenews", compact('data'));
+    }
+
 
 }
-
-
-//$file_name = $this->setFileName('f-', $request->file('archivo'));
-//$store_file = Storage::disk('public')->putFileAs('files/', $request->file('archivo'), $file_name);
-
-//$store_file = Storage::disk('public')->putFileAs('files/', $request->file('archivo'), $file_name);
-
-            //return $request->file('archivo')." + ".$file_name;
-
-            /*$workwithus->name = $request->name;
-            $workwithus->apellido = $request->apellido;
-            $workwithus->email = $request->email;
-            $workwithus->phone = $request->phone;
-            $workwithus->name_file = $request->archivo;
-            $workwithus->puesto = $request->puesto;
-
-            $workwithus->save();*/

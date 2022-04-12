@@ -25,35 +25,35 @@
           <ul class="list_face_encuesta">
             <li>
               <img
-                  :src="imagesUrl + '/face_5.png' "
+                  :src="'/storage/web/img/face_5.png' "
                 />
                 <p>Excelente (5)</p>
             </li>
             
             <li>
               <img
-                  :src="imagesUrl + '/face_4.png' "
+                  :src="'/storage/web/img/face_4.png' "
                 />                
                 <p>Bien (4)</p>
             </li>
             
             <li>
               <img
-                  :src="imagesUrl + '/face_3.png' "
+                  :src="'/storage/web/img/face_3.png' "
                 />
                 <p>Regular (3)</p>
             </li>
             
             <li>
               <img
-                  :src="imagesUrl + '/face_2.png' "
+                  :src="'/storage/web/img/face_2.png' "
                 />
                 <p>Malo (2)</p>
             </li>
             
             <li>
               <img
-                  :src="imagesUrl + '/face_1.png' "
+                  :src="'/storage/web/img/face_1.png' "
                 />
                 <p>Pésimo (1)</p>
             </li>

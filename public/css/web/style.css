@@ -261,6 +261,7 @@ footer .pie .developer .img-dev img.litt {
   padding: 195px 50px 65px;
   background-size: cover;
   background-position: top;
+  overflow: initial !important;
 }
 #seccion_banner_global.section_bannerNosotros header nav .navbar-nav .nav-item .codigo_envio input {
   border: 2px solid #F67706;
@@ -1042,8 +1043,8 @@ ACORDEON FAQ
 }
 
 .search {
-  margin-top: -20px;
-  margin-bottom: 40px;
+  /*margin-top: -20px;
+  margin-bottom: 40px;*/
 }
 .search input {
   font-size: 14px;
@@ -1051,6 +1052,14 @@ ACORDEON FAQ
   padding: 12px 25px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+.search input:focus{
+  border-color: #ced4da !important;
+  outline: 0;
+  box-shadow: none !important;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+}
+
 .search i {
   top: 50%;
   right: 22px;
@@ -2610,6 +2619,13 @@ section#error-404 {
 
 /*# sourceMappingURL=style.css.map */
 
+/*===============================================================*/
+/*
+--------------------------------------------------------------
+** ESTILOS AGREGADOS
+----------------------------------------------------------
+*/
+
 /* mensaje de error recaptcha */
 
 .message-error{  
@@ -2620,3 +2636,60 @@ section#error-404 {
 }
 
 /*--------------------*/
+/*======================*/
+/*
+  PAGINA NOTICIAS
+*/
+
+.nav-tabs li button{
+  width: 120px;
+  margin-top: 0px !important;
+}
+.search_news {
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  transform: translate(50%, 10px);
+}
+
+#section_noticias .content_noticia img, #seccion_tabs .content_noticia img, #section-pagination .content_noticia img, #section_single_blog .content_noticia img {
+  border-radius: 10px;
+}
+
+#section_single_blog .list-tabs ul {
+  grid-gap: 10px;
+}
+
+#section_single_blog .list-tabs ul li {
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 990px){
+  .nav-tabs li button{
+    margin-top: 10px !important;
+  }
+  .nav-tabs_single li button{
+    margin-top: 0px !important;
+  }
+}
+
+@media (max-width: 530px){
+  #seccion_tabs .list-tabs, #section_single_blog .list-tabs{
+    display: block !important;
+  }
+}
+
+@media (max-width: 430px){
+  .nav-tabs li button{
+    width: auto !important;
+  }
+  
+  .nav-tabs_single li button{
+    width: 100% !important;
+  }
+}
+
+/*--------------------*/
+/*======================*/
+

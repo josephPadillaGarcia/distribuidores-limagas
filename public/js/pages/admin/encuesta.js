@@ -910,31 +910,31 @@ var render = function() {
             _vm._v(" "),
             _c("ul", { staticClass: "list_face_encuesta" }, [
               _c("li", [
-                _c("img", { attrs: { src: _vm.imagesUrl + "/face_5.png" } }),
+                _c("img", { attrs: { src: "/storage/web/img/face_5.png" } }),
                 _vm._v(" "),
                 _c("p", [_vm._v("Excelente (5)")])
               ]),
               _vm._v(" "),
               _c("li", [
-                _c("img", { attrs: { src: _vm.imagesUrl + "/face_4.png" } }),
+                _c("img", { attrs: { src: "/storage/web/img/face_4.png" } }),
                 _vm._v(" "),
                 _c("p", [_vm._v("Bien (4)")])
               ]),
               _vm._v(" "),
               _c("li", [
-                _c("img", { attrs: { src: _vm.imagesUrl + "/face_3.png" } }),
+                _c("img", { attrs: { src: "/storage/web/img/face_3.png" } }),
                 _vm._v(" "),
                 _c("p", [_vm._v("Regular (3)")])
               ]),
               _vm._v(" "),
               _c("li", [
-                _c("img", { attrs: { src: _vm.imagesUrl + "/face_2.png" } }),
+                _c("img", { attrs: { src: "/storage/web/img/face_2.png" } }),
                 _vm._v(" "),
                 _c("p", [_vm._v("Malo (2)")])
               ]),
               _vm._v(" "),
               _c("li", [
-                _c("img", { attrs: { src: _vm.imagesUrl + "/face_1.png" } }),
+                _c("img", { attrs: { src: "/storage/web/img/face_1.png" } }),
                 _vm._v(" "),
                 _c("p", [_vm._v("Pésimo (1)")])
               ])

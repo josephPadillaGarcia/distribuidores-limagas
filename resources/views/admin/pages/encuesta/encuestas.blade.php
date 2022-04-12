@@ -4,7 +4,7 @@
 <encuestas
 route="{{ route('cms.encuestas.index') }}" 
 route-get-all="{{ route('cms.encuestas.get-all') }}"
-images-url="{{ config('encuestas.images_url') }}"
+images-url="{{ config('services.images_url') }}"
 
 all-export="{{ route('cms.encuestas.all-export')}}" 
   filter-export="{{ route('cms.encuestas.filter-export')}}" 
