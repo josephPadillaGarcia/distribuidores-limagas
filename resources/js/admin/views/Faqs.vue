@@ -36,11 +36,11 @@
         </div>
       </div>
       <div v-else>
-        <!--div class="row" v-if="elements.length">
+        <div class="row" v-if="elements.length">
           <div class="col-12">
-            <i class="d-block mb-4">{{ messageOrder }}</i>
+            <i class="d-block mb-4">Arrastre los elementos en el orden que desee mostrarlos</i>
           </div>
-        </div-->
+        </div>
         <draggable
           class="row"
           v-if="elements.length"
@@ -48,7 +48,7 @@
           @change="handleChange"
         >
           <div
-            class="col-12 col-md-6 col-lg-3 mb-4"
+            class="col-12 col-md-6 col-lg-4 mb-4"
             v-for="(el, i) in elements"
             :key="el.id"
           >
@@ -67,10 +67,30 @@
                   <span class="font-weight-normal">{{ el.question }}</span>
                 </h3>
 
-                <h3 class="mb-1">
+                <!--<h3 class="mb-1">
                   <span class="">Descripción:</span>
                   <div v-html="el.description" class="content-editor-value"></div>
-                </h3>
+                </h3>-->
+
+                <div v-show="el.seen" class="mb-4">
+                          <h3 class="d-block"
+                            >Respuesta:</h3
+                          >
+                          <div
+                            class="content-body"
+                            v-if="el.description"
+                            v-html="el.description"
+                          ></div>
+                        </div>
+                        <div>
+                          <button
+                            class="btn btn-link text-primary"
+                            style="padding: 0; text-decoration: underline"
+                            @click="el.seen = !el.seen"
+                          >
+                            {{ el.seen ? "Ocultar" : "Mostrar" }} Respuesta
+                          </button>
+                        </div>
 
                 <!--h3 class="mb-1">
                   <span class="">Mostrar en la Web:</span>
@@ -161,6 +181,8 @@
                   :errors="errors"
                   :valueEs.sync="element.description"
                   :valueEsParent="element.description"
+                  :url="'faqs/faqs'"
+                  :text-image="'image'"
                 />
               </div>
             </div>

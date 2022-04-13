@@ -7,9 +7,9 @@ Route::namespace('Web')->name('web.')->group(function() {
     Route::get('/servicios', 'WebController@services')->name('services');
     Route::get('/servicios/{slug}', 'WebController@service')->name('service');
     Route::post('/encuesta','WebController@encuesta')->name('encuesta');
-    Route::get('/faq', 'WebController@faq')->name('faq');
-    Route::get('/trabaja-con-nosotros', 'WebController@workwithUs')->name('workwithus');
-    Route::post('/send-message', 'WebController@sendMessage')->name('send');
+    Route::get('/preguntas-frecuentes', 'WebController@faq')->name('faq');
+    //Route::get('/trabaja-con-nosotros', 'WebController@workwithUs')->name('workwithus');
+    //Route::post('/send-message', 'WebController@sendMessage')->name('send');
     Route::get('/noticias', 'WebController@news')->name('news');
     Route::get('/noticias/categoria/{slug}', 'WebController@newsCategory')->name('newcategory');
     Route::get('/noticias/categoria/{slug}/{post}', 'WebController@singleNews')->name('singlenews');
@@ -85,10 +85,9 @@ Route::prefix('admin')->group(function() {
             Route::get('/', 'FaqController@index')->name('index');
             Route::post('/', 'FaqController@store')->name('store');
             Route::put('/order', 'FaqController@order')->name('order');
+            Route::post('/faqs/image', 'FaqController@storeImage')->name('store-image');
             Route::get('/json/get-all', 'FaqController@getAll')->name('get-all');
-            Route::put('/{element}', 'FaqController@update')->name('update');
-            Route::put('/update-like/{like}', 'FaqController@updateLike')->name('update-like');
-            Route::put('/update-dislike/{like}', 'FaqController@updateDislike')->name('update-dislike');
+            Route::put('/{element}', 'FaqController@update')->name('update');            
             Route::get('/json/get/{element}', 'FaqController@get')->name('get');
             Route::delete('/{element}', 'FaqController@destroy')->name('destroy');
         });

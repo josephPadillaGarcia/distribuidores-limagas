@@ -34,6 +34,11 @@
             margin-bottom: 10px;
         }
 
+        .content-editor-value img{
+            max-width: 100%;
+            height: auto;
+        }
+
         .content-pre {
             width: 100%;
             font-family: inherit;

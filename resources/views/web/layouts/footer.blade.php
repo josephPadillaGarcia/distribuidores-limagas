@@ -78,7 +78,7 @@ $routeLocale = $footer["routeLocale"];
                 <div class="opciones_footer">
                     <ul>
                         <li>
-                            <a href="{{ route('web.workwithus') }}">
+                            <a href="">
                                 <img class="lazyload" src="/storage/web/img/maletin.png" alt="trabaja con nosotros" />
                                 Trabaja con nosotros
                             </a>

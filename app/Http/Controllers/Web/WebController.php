@@ -216,7 +216,7 @@ class WebController extends Controller
     public function faq($locale = null){
         $page = $this->getSeoPage('faq', $this->locale);
         $faqs = Faq::get();
-        $content = $this->getContentPage('services');
+        $content = $this->getContentPage('faq');
         $data = array(
             "page" => $page,
             "faqs" => $faqs,

@@ -11,4 +11,9 @@ class Faq extends Model
         'active' => 'boolean'
     ];
     protected $guarded = [];
+    protected $appends = ['seen'];
+
+    public function getSeenAttribute() {
+        return false;
+    }
 }

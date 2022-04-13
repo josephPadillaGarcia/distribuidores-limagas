@@ -48,18 +48,6 @@ id="seccion_banner_global"
 </section>
 <!-- End Banner -->
 
-<!--section id="mensaje" class="mensajetext">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="content_mensaje">
-                  <p>Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section-->
-
 <section class="section__acordion">
     <div class="container">
 
@@ -76,7 +64,6 @@ id="seccion_banner_global"
                         <div class="accordion__likes">
                             <p>¿Te ayudó esta información?</p>
                             <div class="accordion__likes__item">
-                                <!--a href="#!" id="like"><img data-src="/storage/web/img/like.png" class="lazyload" alt=""><span id="">{{ $faq["like"] }}</span></a-->
                                 <a href="#!" id="like{{ $faq["id"] }}" onclick="updatelikefaq('{{ $faq['id'] }}')">
                                     <img data-src="/storage/web/img/like.png" class="lazyload" alt="">
                                     <button class="" name="like" value="{{ $faq["like"] }}" id="button_like{{ $faq["id"] }}">
@@ -120,7 +107,7 @@ function updatelikefaq(id){
         dislike: $('#button_dislike'+id).val(),
     };
 
-    var url = "{{route('cms.faqs.update-like', '')}}"+"/"+id;
+    var url = "{{route('api.post.update-like', '')}}"+"/"+id;
 
     $.ajax({
         type: type,
@@ -129,15 +116,12 @@ function updatelikefaq(id){
         dataType: 'json',
         success: function (data){
             if(data){
-                console.log("like actualizado: " + JSON.stringify(data));
                 $('#button_like'+id).html(data.like);
             }
             else{
-                console.log("error");
             }
         },
         error: function (data){
-            console.log(JSON.stringify(data));
         }
     });
 
@@ -156,7 +140,7 @@ function updatedislikefaq(id){
         dislike: $('#button_dislike'+id).val(),
     };
 
-    var url = "{{route('cms.faqs.update-dislike', '')}}"+"/"+id;
+    var url = "{{route('api.post.update-dislike', '')}}"+"/"+id;
 
     $.ajax({
         type: type,
@@ -165,23 +149,16 @@ function updatedislikefaq(id){
         dataType: 'json',
         success: function (data){
             if(data){
-                console.log("like actualizado: " + data.dislike);
                 $('#button_dislike'+id).html(data.dislike);
             }
             else{
-                console.log("LA CAGASTE");
             }
         },
         error: function (data){
             console.log(JSON.stringify(data));
         }
     });
-
 };
-
-$(document).ready(function(){
-
-});
 
 </script>
 

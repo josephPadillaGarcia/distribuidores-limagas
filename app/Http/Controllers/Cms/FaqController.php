@@ -8,6 +8,7 @@ use App\Http\Traits\CmsTrait;
 use App\Faq;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FaqController extends Controller
 {
@@ -20,7 +21,7 @@ class FaqController extends Controller
     /* OBTENER LOS DATOS REGISTRADOS DE LA TABLA FAQ */
     public function getAll(Request $request)
     {
-        $faqs = Faq::get();
+        $faqs = Faq::orderBy('index')->get();
         return response()->json($faqs);
     }
     /*----------------------------------------------------*/
@@ -60,9 +61,9 @@ class FaqController extends Controller
     {
         $faq = request(["question", "description", "like", "dislike"]);
         
-        /*$testimonialIndex = $this->getMaxIndex(Testimonial::selectRaw('MAX(id),MAX(`index`) as "index"')->get());
+        $faqIndex = $this->getMaxIndex(Faq::selectRaw('MAX(id),MAX(`index`) as "index"')->get());
 
-        $testimonial = array_merge($testimonial, ["index" => $testimonialIndex]);*/
+        $faq = array_merge($faq, ["index" => $faqIndex]);
         try {
             $faq = Faq::UpdateOrCreate($faq);
             return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.create.success', ['name' => trans('custom.attribute.faqs')])], 200);
@@ -80,48 +81,27 @@ class FaqController extends Controller
         } catch (\Exception $e) {
             return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.update.error', ['name' => trans('custom.attribute.faqs')])], 500);
         }
-    }
-
-    public function updateLike(Request $request , Faq $like)
-    {
-
-        try {
-            $like->increment('like');
-
-            return  response()->json($like, 200);
-        } catch (\Exception $e) {
-            return  response()->json('malo', 500);
-        }
-
-    }
-
-    public function updateDislike(Request $request , Faq $like)
-    {
-
-        try {
-            $like->increment('dislike');
-
-            return  response()->json($like, 200);
-        } catch (\Exception $e) {
-            return  response()->json('malo', 500);
-        }
-
-    }
+    }    
 
     public function destroy(Faq $element)
     {
         try {
             $delete_element = $element->delete();
-            /*if ($delete_element) {
-                if ($image) {
-                    Storage::disk('public')->delete('img/testimonials/' . $image);
-                }
-            }*/
             return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.delete.success', ['name' => trans('custom.attribute.faqs')])], 200);
         } catch (\Exception $e) {
             return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.delete.error', ['name' => trans('custom.attribute.faqs')])], 500);
         }
     }
 
+    public function storeImage(Request $request)
+    {
+        $file_name = $this->setFileName('fi-', $request->file('image'));
+        try {
+            $store_image = Storage::disk('public')->putFileAs('img/faqs/', $request->file('image'), $file_name);
+            return response()->json(['image'=>Storage::disk('public')->url('img/faqs/'.$file_name)]);
+        } catch (\Exception $e) {
+            return response()->json(['title'=> trans('custom.title.error'), 'message'=> trans('custom.errors.image') ], 500);
+        }
+    }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\EmailDestination;
+use App\Faq;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\Api\Post\LeadRequest;
@@ -13,6 +14,32 @@ use Illuminate\Support\Str;
 class PostController extends BaseController
 {
     private $captchaSecret = "6LdqIEwfAAAAALNXsaTc3k1kEAFfutd1sPIVLZs2";
+
+    public function updateLike(Request $request , Faq $like)
+    {
+
+        try {
+            $like->increment('like');
+
+            return  response()->json($like, 200);
+        } catch (\Exception $e) {
+            return  response()->json('malo', 500);
+        }
+
+    }
+
+    public function updateDislike(Request $request , Faq $like)
+    {
+
+        try {
+            $like->increment('dislike');
+
+            return  response()->json($like, 200);
+        } catch (\Exception $e) {
+            return  response()->json('malo', 500);
+        }
+
+    }
 
     public function lead(LeadRequest $request){
         $el = request(['name','email','mobile','business','quantity_packages','service_id']);
