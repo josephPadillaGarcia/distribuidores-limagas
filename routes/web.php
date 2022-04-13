@@ -93,7 +93,7 @@ Route::prefix('admin')->group(function() {
             Route::delete('/{element}', 'FaqController@destroy')->name('destroy');
         });
 
-        Route::namespace('noticia')->prefix('blog')->name('noticia.')->group(function () {
+        Route::namespace('Noticia')->prefix('blog')->name('noticia.')->group(function () {
             Route::name('posts.')->prefix('posts')->group(function () {
                 Route::get('/', 'PostsController@index')->name('index');
                 Route::get('/nuevo', 'PostsController@create')->name('create');
