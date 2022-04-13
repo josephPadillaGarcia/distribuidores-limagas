@@ -2702,3 +2702,10 @@ section#error-404 {
 /*--------------------*/
 /*======================*/
 
+#section_clientes .carousel_clientes .owl-stage .item img{
+  width: auto !important;
+  margin: auto;
+  max-height: 59px;
+  height: 100%;
+  max-width: 100%;
+}
