@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 Route::namespace('Api')->name('api.')->group(function() { 
     Route::prefix('post')->name('post.')->group(function() { 
         Route::post('lead', 'PostController@lead');        
-        //Route::post('captchaverify', 'PostController@captchaverify');
+        Route::post('captchaverify', 'PostController@captchaverify');
         Route::put('/update-like/{like}', 'PostController@updateLike')->name('update-like');
         Route::put('/update-dislike/{like}', 'PostController@updateDislike')->name('update-dislike');
     });
