@@ -1963,9 +1963,9 @@ li.nav-item.boton a {
     CHAT - BOT
 */
 .chat-bot {
-  position: fixed;
+  /*position: fixed;
   bottom: 35px;
-  right: 35px;
+  right: 35px;*/
   z-index: 5;
   transition: .5s;
 }
@@ -2006,9 +2006,9 @@ section#error-404 {
     Enlace servicio cliente
 */
 .enlace {
-  position: fixed;
+  /*position: fixed;
   bottom: 35px;
-  right: 120px;
+  right: 120px;*/
   z-index: 5;
   transition: .5s;
 }
@@ -2627,6 +2627,15 @@ section#error-404 {
 */
 
 /* mensaje de error recaptcha */
+
+.enlaces_flotantes{
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  z-index: 5;
+  display: grid;
+  grid-auto-flow: column;
+}
 
 .message-error{  
   color: #c41c1c;

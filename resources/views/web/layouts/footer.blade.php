@@ -123,30 +123,35 @@ $routeLocale = $footer["routeLocale"];
         </div>
     </div>
 
-    @if($information['whatsapp_number'])
-    <div class="chat-bot chat-bot--mobil">
-        <ul>
-            <li class="bot">
-                <a class="chatbot-wsp" target="_blank">
-                    <img data-src="/storage/web/img/bot.png" class="lazyload" alt="" />
-                </a>
-            </li>
-        </ul>
-    </div>
-    @endif
-
-
-    @if($information['customer_service_link'])
-        <div class="enlace">
+    <div class="enlaces_flotantes">
+        @if($information['whatsapp_number'])
+        <div class="chat-bot chat-bot--mobil">
             <ul>
                 <li class="bot">
-                    <a href="{{ $information['customer_service_link'] }}" class="customer_service" target="_blank">
-                        <img height="54" width="54" data-src="/storage/img/{{ $information['customer_service_img'] }}" class="lazyload" alt="" />
+                    <a class="chatbot-wsp" target="_blank">
+                        <img data-src="/storage/web/img/bot.png" class="lazyload" alt="" />
                     </a>
                 </li>
             </ul>
         </div>
-    @endif
+        @endif
+
+
+        @if($information['customer_service_link'])
+            <div class="enlace">
+                <ul>
+                    <li class="bot">
+                        <a href="{{ $information['customer_service_link'] }}" class="customer_service" target="_blank">
+                            <img height="54" width="54" data-src="/storage/img/{{ $information['customer_service_img'] }}" class="lazyload" alt="" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        @endif
+    </div>
+
+
+    
 
 <form class="encuesta" method="post" id="formencuesta">
 
