@@ -67,7 +67,7 @@ if(Route::currentRouteName() === 'web.service') {
     @stack('scripts')
     
     <!-- Start of HubSpot Embed Code -->
-<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/8096378.js"></script>
+<script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/8096378.js"></script>
 <!-- End of HubSpot Embed Code -->
 </body>
 
