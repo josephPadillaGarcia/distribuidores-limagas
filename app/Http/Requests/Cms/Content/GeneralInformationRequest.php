@@ -24,6 +24,7 @@ class GeneralInformationRequest extends FormRequest
                 'phone_numbers.*.department' => 'departamento',
                 'whatsapp_numbers.*.department' => 'departamento',*/
                 'whatsapp_number' => 'número whatsapp',
+                'link_work_with_us' => 'link únete a nuestro equipo',
                 'api_url_tracking' => 'link envio cliente número tracking'
             ];
     }
@@ -43,6 +44,7 @@ class GeneralInformationRequest extends FormRequest
             'api_link' => 'nullable|sometimes|url',
             'customers_link' => 'nullable|sometimes|url',
             'whatsapp_number' => 'nullable|digits:9',
+            'link_work_with_us' => 'nullable|sometimes|url',
         ];
     }
 }

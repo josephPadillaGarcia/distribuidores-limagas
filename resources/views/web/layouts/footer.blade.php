@@ -19,14 +19,6 @@ $routeLocale = $footer["routeLocale"];
                         {!! $information['direction'] !!}
                     </div>
                     @endif
-                    <p>
-                        <b>Chatbot Whatssapp:</b>
-                        @if($information['whatsapp_number'])
-                        <a class="chatbot-wsp">+51
-                            {{ $information['whatsapp_number'] }}
-                        </a>
-                        @endif
-                    </p>
                     <div class="redes">
                         @if(count($social_networks))
                         <ul class="grid align-center">
@@ -78,14 +70,16 @@ $routeLocale = $footer["routeLocale"];
                 <div class="opciones_footer">
                     <ul>
                         <li>
-                            <a href="">
+                            @if($information['link_work_with_us'])
+                            <a href="{{ $information['link_work_with_us'] }}" target="_link">
                                 <img class="lazyload" src="/storage/web/img/maletin.png" alt="trabaja con nosotros" />
                                 Trabaja con nosotros
                             </a>
+                            @endif
                         </li>
                         <li>
                             @if($information['book_link'])
-                            <a href="{{ $information['book_link'] }}">
+                            <a href="{{ $information['book_link'] }}" target="_link">
                                 <img class="lazyload" src="/storage/web/img/icon_libro.png" alt="Libro de reclamaciones" />
                                 {{ __("Libro de reclamaciones") }}
                             </a>
@@ -93,7 +87,7 @@ $routeLocale = $footer["routeLocale"];
                         </li>
                         <li>
                             @if($information['api_link'])
-                            <a href="{{ $information['api_link'] }}">
+                            <a href="{{ $information['api_link'] }}" target="_link">
                                 <span>
                                     <i class="flaticon-settings"></i>
                                 </span>

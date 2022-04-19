@@ -96,6 +96,14 @@
                 <p v-else>No registrado</p>
               </div>
             </div>
+            
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="form-group">
+                <label class="font-weight-bold">Footer Link Únete a nuestro equipo</label>
+                <p v-if="el.link_work_with_us"><a style="text-decoration: underline;" :href="el.link_work_with_us" target="_blank">{{ el.link_work_with_us }}</a></p>
+                <p v-else>No registrado</p>
+              </div>
+            </div>
 
             <div class="col-12 col-md-6 col-lg-4">
               <div class="form-group">
@@ -250,6 +258,18 @@
               </div>
 
               <div class="col-12 col-md-6 col-lg-4">
+                <div class="form-group">
+                  <label class="font-weight-bold" for="link_work_with_us">Footer Link Únete a nuestro equipo</label>
+                  <input type="text" class="form-control" v-model="el.link_work_with_us" id="link_work_with_us" />
+                  <label
+                    v-if="errors && errors.link_work_with_us"
+                    class="mt-2 text-danger text-sm"
+                    for="link_work_with_us"
+                  >{{ errors.link_work_with_us[0] }}</label>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6 col-lg-4">
                     <div class="form-group">
                     <label class="font-weight-bold" for="book_link">Imagen de Servicios al Cliente</label>
                       <small class="d-block mb-0 lh-1"
@@ -396,6 +416,10 @@ export default {
 
       if (this.el.customer_service_link) {
         fd.append("customer_service_link", this.el.customer_service_link);
+      }
+
+      if (this.el.link_work_with_us) {
+        fd.append("link_work_with_us", this.el.link_work_with_us);
       }
       
       if (this.el.customer_service_img_update) {

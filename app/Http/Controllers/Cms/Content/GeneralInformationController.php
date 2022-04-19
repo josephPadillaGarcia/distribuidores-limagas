@@ -85,6 +85,13 @@ class GeneralInformationController extends Controller
         else{
             $request_information = array_merge($request_information, ["customers_link" => NULL]);
         }
+
+        if($request->link_work_with_us){
+            $request_information = array_merge($request_information, ["link_work_with_us" => $request->link_work_with_us]);
+        }
+        else{
+            $request_information = array_merge($request_information, ["link_work_with_us" => NULL]);
+        }
         
         try {
             if ($information_registered) {
