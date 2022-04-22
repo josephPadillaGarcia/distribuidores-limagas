@@ -109,7 +109,7 @@ $routeLocale = $data["routeLocale"];
                 <div class="col-lg-4">
                     <div class="search position-relative">
                         <form action="{!! Helper::getCustomRoute('web.news', $routeLocale) !!}" method="GET">
-                            <input type="text" name="q" class="form-control" placeholder="Que estas buscando">
+                            <input type="text" name="q" class="form-control" placeholder="¿Qué estás buscando?">
                             <i class="flaticon-lupa-1 position-absolute"></i>
                             <button type="submit" style="display:none;">Search</button>
                         </form>
