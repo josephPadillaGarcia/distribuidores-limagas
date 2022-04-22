@@ -139,7 +139,7 @@
                       :valueEs.sync="element.content_es"
                       :valueEnParent="element.content_en"
                       :valueEsParent="element.content_es"
-                      :url="'posts'"
+                      :url="'/admin/blog/posts/posts'"
                       :text-image="'image'"
                     />
                   </div>
