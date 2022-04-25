@@ -109,7 +109,7 @@ $routeLocale = $data["routeLocale"];
                 <div class="col-lg-4">
                     <div class="search position-relative">
                         <form action="{!! Helper::getCustomRoute('web.news', $routeLocale) !!}" method="GET">
-                            <input type="text" name="q" class="form-control" placeholder="¿Qué estás buscando?">
+                            <input type="text" name="q" class="form-control" placeholder="¿{{ __('Qué estás buscando') }}?">
                             <i class="flaticon-lupa-1 position-absolute"></i>
                             <button type="submit" style="display:none;">Search</button>
                         </form>
@@ -118,7 +118,7 @@ $routeLocale = $data["routeLocale"];
                         <p>Categorias: </p>
                         <ul class="nav nav-tabs nav-tabs_single" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" href="{!! Helper::getCustomRoute('web.news', $routeLocale) !!}">Todos</a>
+                                <a class="nav-link" href="{!! Helper::getCustomRoute('web.news', $routeLocale) !!}">{{ __("Todos") }}</a>
                             </li>
                             @foreach($categories as $value)
                             <li class="nav-item" role="presentation">

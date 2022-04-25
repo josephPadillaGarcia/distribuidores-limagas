@@ -22,12 +22,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get(LaravelLocalization::transRoute('routes.privacy_policies'), 'Web\WebController@privacyPolicies')->name('privacyPolicies');
     Route::get(LaravelLocalization::transRoute('routes.quotations'), 'Web\WebController@quotations')->name('quotations');
     Route::get(LaravelLocalization::transRoute('routes.services'), 'Web\WebController@services')->name('services');
-    //Route::get('/servicios/{slug}', 'Web\WebController@service')->name('service');
     Route::get(LaravelLocalization::transRoute('routes.service'), 'Web\WebController@service')->name('service');
     Route::get(LaravelLocalization::transRoute('routes.faq'), 'Web\WebController@faq')->name('faq');
     Route::get(LaravelLocalization::transRoute('routes.news'), 'Web\WebController@news')->name('news');
-    Route::get('/noticias/categoria/{slug}', 'Web\WebController@newsCategory')->name('newcategory');
-    Route::get('/noticias/categoria/{slug}/{post}', 'Web\WebController@singleNews')->name('singlenews');
+    Route::get(LaravelLocalization::transRoute('routes.news-category'), 'Web\WebController@newsCategory')->name('news');
+    Route::get(LaravelLocalization::transRoute('routes.news-category-post'), 'Web\WebController@singleNews')->name('news');
+    //Route::get('/noticias/categoria/{slug}', 'Web\WebController@newsCategory')->name('newcategory');
+    //Route::get('/noticias/categoria/{slug}/{post}', 'Web\WebController@singleNews')->name('singlenews');
     Route::get(LaravelLocalization::transRoute('routes.branch-offices'), 'Web\WebController@branchoffice')->name('branch-office');
 
 });

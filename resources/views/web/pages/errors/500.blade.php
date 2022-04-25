@@ -48,7 +48,7 @@ $routeLocale = $locale == 'es' ? '' : $locale;
                     <div class="col-md-6 col-12 grid align-center">
                         <div class="text-error">
                             <h3 class="">{{ __('Algo salió mal')}}!</h3>
-                            <p class="">{{ __('La página que estabas buscando no existe o ha cambiado') }}.</p>
+                            <p class="">{{ __('Error de servidor') }}.</p>
                             <div class="content_boton">
                                 <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="b_boton text-white text-center btn_global">{{ __('Volver al inicio')}}</a>
                             </div>

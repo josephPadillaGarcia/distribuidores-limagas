@@ -8,8 +8,7 @@
     $news = $data["news"];
     $storageUrl = config('services.storage_url');
     $content = $data["content"];
-    $locale = "es";
-    $routeLocale = $data["routeLocale"];
+    $locale = Config::get('app.locale');
 @endphp
 
 <main>
@@ -51,8 +50,8 @@ id="seccion_banner_global"
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="search position-relative">
-                    <form action="{!! Helper::getCustomRoute('web.news', $routeLocale) !!}" method="GET">
-                        <input type="text" value="{{ request('q') }}" name="q" class="form-control" placeholder="¿Qué estás buscando?">
+                    <form action="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.news') }}" method="GET">
+                        <input type="text" value="{{ request('q') }}" name="q" class="form-control" placeholder="¿{{ __('Qué estás buscando') }}?">
                         <i class="flaticon-lupa-1 position-absolute"></i>
                         <button type="submit" style="display:none;">Search</button>
                     </form>
@@ -71,14 +70,14 @@ id="seccion_banner_global"
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <a class="nav-link @if(Request::is('noticias')) active @endif btn_tab"
-                            href="{!! Helper::getCustomRoute('web.news', $routeLocale) !!}">Todos</a>
+                            href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.news') }}">{{ __("Todos") }}</a>
                     </li>
                     @foreach($categories as $value)
                     <li class="nav-item" role="presentation">
                         <a class="nav-link btn_tab
                         @if($value['slug_' . $locale] == Request::route('slug') ) active @endif
                         "
-                            href="{!! Helper::getCustomRoute('web.newcategory', $routeLocale, ['slug' => $value['slug_' . $locale] ? $value['slug_' . $locale] : $value['slug_es']]) !!}">{{ $value["name_" . $locale] }}</a>
+                            href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.news-category', [ 'slug' => $value['slug_'.Config::get('app.locale')] ] ) }}">{{ $value["name_" . $locale] }}</a>
                     </li>
                     @endforeach
                 </ul>
@@ -90,17 +89,17 @@ id="seccion_banner_global"
                             @foreach($news as $key => $value)
                             <div class="@if($key == 0 || $key == 1) col-lg-6 @else col-lg-4 @endif" >
                                 <div class="content_noticia">
-                                    <a href="{!! Helper::getCustomRoute('web.singlenews', $routeLocale, ['slug' => $value['category']['slug_' . $locale] ? $value['category']['slug_' . $locale] : $value['category']['slug_es'],
-                                            'post' => $value['slug_' . $locale] ? $value['slug_' . $locale] : $value['slug_es'] ]) !!}">
+                                    <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 
+                                        'routes.news-category-post', [ 'slug' => $value['category']['slug_' . $locale], 'post' =>  $value['slug_' . $locale] ] ) }}">
                                         <img class="lazyload" 
                                         src="{{ $storageUrl . '/img/posts/' . $value['thumbnail'] }}" alt="">
                                     </a>
                                     <p class="fecha">{{ $value['date_format'] }}</p>
-                                    <a href="{!! Helper::getCustomRoute('web.singlenews', $routeLocale, ['slug' => $value['category']['slug_' . $locale] ? $value['category']['slug_' . $locale] : $value['category']['slug_es'],
-                                        'post' => $value['slug_' . $locale] ? $value['slug_' . $locale] : $value['slug_es'] ]) !!}"><b>{{ $value["title_" . $locale] }}</b></a>
+                                    <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 
+                                        'routes.news-category-post', [ 'slug' => $value['category']['slug_' . $locale], 'post' =>  $value['slug_' . $locale] ] ) }}"><b>{{ $value["title_" . $locale] }}</b></a>
                                     <p>{{ $value["excerpt_" . $locale] }}</p>
-                                    <a href="{!! Helper::getCustomRoute('web.singlenews', $routeLocale, ['slug' => $value['category']['slug_' . $locale] ? $value['category']['slug_' . $locale] : $value['category']['slug_es'],
-                                        'post' => $value['slug_' . $locale] ? $value['slug_' . $locale] : $value['slug_es'] ]) !!}"><span>+</span></a>
+                                    <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 
+                                        'routes.news-category-post', [ 'slug' => $value['category']['slug_' . $locale], 'post' =>  $value['slug_' . $locale] ] ) }}"><span>+</span></a>
                                 </div>
                             </div>
                             @endforeach

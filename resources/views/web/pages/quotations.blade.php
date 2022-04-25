@@ -7,8 +7,7 @@
     $services = $data["services"];
     $quantity = $data["quantity"];
     $page = $data["page"];
-    $locale = $data["locale"];
-    $routeLocale = $data["routeLocale"];
+    $locale = Config::get('app.locale');
 @endphp
 
 <main>

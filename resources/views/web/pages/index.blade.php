@@ -9,8 +9,7 @@
     $tutos = $data["tutos"];
     $customers = $data["customers"];
     $footer = $data["footer"];
-    $locale = $data["locale"];
-    $routeLocale = $data["routeLocale"];
+    $locale = Config::get('app.locale');
     $page = $data["page"];
 @endphp
   <main>

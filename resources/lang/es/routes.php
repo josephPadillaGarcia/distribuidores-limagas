@@ -9,4 +9,6 @@ return [
     "faq" => "preguntas-frecuentes",
     "privacy_policies" => "politicas-privacidad",
     "service"  =>  "servicios/{slug}",
+    "news-category"  =>  "noticias/categorias/{slug}",
+    "news-category-post" =>  "noticias/categorias/{slug}/{post}",
 ];

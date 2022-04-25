@@ -8,7 +8,7 @@
     $appTracking = $data["appTracking"];
     $customers = $data["customers"];
     $page = $data["page"];
-    $locale = "es";
+    $locale = Config::get('app.locale');
 @endphp
     <main>
       @php

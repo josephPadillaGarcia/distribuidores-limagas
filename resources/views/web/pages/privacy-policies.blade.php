@@ -5,8 +5,7 @@
     $storageUrl = config('services.storage_url');
     $content = $data["content"];
     $page = $data["page"];
-    $locale = $data["locale"];
-    $routeLocale = $data["routeLocale"];
+    $locale = Config::get('app.locale');
 @endphp
     <main class="main_page">
       @php

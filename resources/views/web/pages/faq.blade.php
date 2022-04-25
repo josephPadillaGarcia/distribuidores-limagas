@@ -6,7 +6,7 @@
     $faqs = $data["faqs"];
     $storageUrl = config('services.storage_url');
     $content = $data["content"];
-    $locale = $data["locale"];
+    $locale = Config::get('app.locale');
 @endphp
 
 <main>

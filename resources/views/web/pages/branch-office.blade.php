@@ -3,6 +3,7 @@
 @section('content')
 @php
     $page = $data["page"];
+    $locale = Config::get('app.locale');
 @endphp
 
 <main>
