@@ -40,7 +40,7 @@ class WebController extends Controller
         $this->locale = App::getLocale();
     }
 
-    public function validateLocale($locale){
+    /*public function validateLocale($locale){
         if(!in_array($locale, ['en'])){
             App::setLocale('es');
             $this->locale = App::getLocale();
@@ -48,7 +48,7 @@ class WebController extends Controller
             App::setLocale($locale);
             $this->locale = App::getLocale();
         }
-    }
+    }*/
 
     public function getSeoPage($slug, $lang){
         $page = MasterPage::select('id','title_'.$lang,'seo_description_'.$lang,'seo_keywords_'.$lang,'seo_image','slug_'.$lang)->where('slug_en',$slug)->first()->toArray();
@@ -62,7 +62,7 @@ class WebController extends Controller
 
     public function index($locale = null)
     {
-        $this->validateLocale($locale);
+        //$this->validateLocale($locale);
         $page = $this->getSeoPage(NULL, $this->locale);
         $services = Service::where('active', 1)->orderBy('index')->get();
         $tutos = Tutorial::orderBy('index')->get();
@@ -103,7 +103,7 @@ class WebController extends Controller
 
     public function aboutUs($locale = null) 
     {
-        $this->validateLocale($locale);
+        //$this->validateLocale($locale);
         $page = $this->getSeoPage('about-dinet', $this->locale);
         // $page = $this->getSeoPage('about-dinet', "es");
         $testimonials = Testimonial::where('active', 1)->orderBy('index')->get();
@@ -126,7 +126,7 @@ class WebController extends Controller
 
     public function privacyPolicies($locale = null) 
     {
-        $this->validateLocale($locale);
+        //$this->validateLocale($locale);
         $page = $this->getSeoPage('privacy-policies', $this->locale);
         // $page = $this->getSeoPage('privacy-policies', 'es');
         $content = $this->getContentPage('privacy-policies');
@@ -142,7 +142,7 @@ class WebController extends Controller
 
     public function quotations($locale = null) 
     {
-        $this->validateLocale($locale);
+        //$this->validateLocale($locale);
         $page = $this->getSeoPage('quotes', $this->locale);
         // $page = $this->getSeoPage('quotes', "es");
         $content = $this->getContentPage('quotes');
@@ -162,7 +162,7 @@ class WebController extends Controller
 
     public function services($locale = null) 
     {
-        $this->validateLocale($locale);
+        //$this->validateLocale($locale);
         $page = $this->getSeoPage('services', $this->locale);
         // $page = $this->getSeoPage('services', "es");
         $services = Service::where('active', 1)->orderBy('index')->get();
@@ -182,7 +182,7 @@ class WebController extends Controller
 
     public function service(Request $request, $slug, $locale = null) 
     {
-        $this->validateLocale($locale);
+        //$this->validateLocale($locale);
         $service = Service::where('slug_' . $this->locale, $slug)->where('active',true)->first();
         // $service = Service::where('slug_' . "es", $slug)->where('active', true)->first();
 

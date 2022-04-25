@@ -11,8 +11,7 @@
     $quantity = $data["quantity"];
     $appTracking = $data["appTracking"];
     $page = $data["page"];
-    $locale = $data["locale"];
-    $routeLocale = $data["routeLocale"];
+    $locale = Config::get('app.locale');
 @endphp
     <main>
       @php
@@ -154,7 +153,7 @@
                           @foreach($services as $serv)
                             <!-- ItemService -->
                             <div class="item">
-                                    <a href="{!! Helper::getCustomRoute('web.service', $routeLocale, ['slug' => $service['slug_' . $locale] ? $service['slug_' . $locale] : $service['slug_es']]) !!}">
+                                    <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.service', [ 'slug' => $service['slug_'.Config::get('app.locale')] ] ) }}">
                                       @if($serv["image"])
                                         <img class="lazyload" src="{{ $storageUrl . '/img/services/' . $serv['image'] }}" alt="{{ 'Imagen ' . $serv['title_' . $locale ]}}" />
                                       @endif
@@ -167,7 +166,7 @@
                                         </span>
                                         <b class="text-center">{{ $serv["title_" . $locale] }}</b>
                                         <p class="text-center">{{ $serv["excerpt_" . $locale] }}</p>
-                                        <a href="{!! Helper::getCustomRoute('web.service', $routeLocale, ['slug' => $service['slug_' . $locale] ? $service['slug_' . $locale] : $service['slug_es']]) !!}" class="btn_global btn_border text-center btn_color_text">
+                                        <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.service', [ 'slug' => $service['slug_'.Config::get('app.locale')] ] ) }}" class="btn_global btn_border text-center btn_color_text">
                                             <!-- $t("Conoce más") -->
                                             Conoce más
                                         </a>

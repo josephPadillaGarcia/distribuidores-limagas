@@ -40,27 +40,27 @@ $routeLocale = $footer["routeLocale"];
                 <div class="menu_footer">
                     <ul>
                         <li>
-                            <a href="{!! Helper::getCustomRoute('web.aboutUs', $routeLocale) !!}">
+                            <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.about') }}">
                                 <img class="lazyload" src="/storage/web/img/icon_list.png" alt="Sobre Dinet" />
                                 {{ __("Sobre Dinet") }}
                             </a>
                         </li>
                         <li>
-                            <a href="{!! Helper::getCustomRoute('web.services', $routeLocale) !!}">
+                            <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.services') }}">
                                 <img class="lazyload" src="/storage/web/img/icon_list.png" alt="Servicios" />
                                 {{ __("Servicios") }}
                             </a>
                         </li>
                         <li>
-                            <a href="{!! Helper::getCustomRoute('web.quotations', $routeLocale) !!}">
+                            <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.quotations') }}">
                                 <img class="lazyload" src="/storage/web/img/icon_list.png" alt="Cotizaciones" />
                                 {{ __("Cotizaciones") }}
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('web.faq') }}">
+                            <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.faq') }}">
                                 <img class="lazyload" src="/storage/web/img/icon_list.png" alt="Preguntas frecuentes" />
-                                Preguntas Frecuentes
+                                {{ __("Preguntas Frecuentes") }}
                             </a>
                         </li>
                     </ul>
@@ -153,7 +153,7 @@ $routeLocale = $footer["routeLocale"];
 
         <div class="encuesta__container">
             <div class="encuesta__head">
-                <p>¿Cuán probable es que recomiendes Dinet a un conocido?</p>
+                <p> {{ __("¿Cuán probable es que recomiendes Dinet a un conocido?") }}</p>
                 <button class="btn_close" type="button">
                     <span>
                         <i class="flaticon-cancelar"></i>
@@ -183,7 +183,7 @@ $routeLocale = $footer["routeLocale"];
             </div>
             <div class="encuesta__action">
                 <a href="#!" class="b_boton text-white text-center btn_global" id="btn_encuesta">
-                    Siguiente
+                {{ __("Siguiente") }}
                 </a>
             </div>
         </div>
@@ -192,7 +192,7 @@ $routeLocale = $footer["routeLocale"];
     <div class="encuesta--hide" id="respuesta">
         <div class="encuesta__container">
             <div class="encuesta__head">
-                <p>Cuentanos los motivos de tu respuesta</p>
+                <p>{{ __("Cuéntanos los motivos de tu respuesta") }}</p>
                 <button class="btn_close" type="button">
                     <span>
                         <i class="flaticon-cancelar"></i>
@@ -212,7 +212,7 @@ $routeLocale = $footer["routeLocale"];
                     id="enviar"
                     value="enviar"
                 >
-                    Enviar
+                {{ __("Enviar") }}
                 </a>
             </div>
         </div>

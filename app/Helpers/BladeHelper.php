@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 class BladeHelper
 {
-    public static function getCustomRoute($name, $locale, $params = null)
+    /*public static function getCustomRoute($name, $locale, $params = null)
     {
         if($locale) {
             // return Route($name, [...$params, 'locale' => $locale]);
@@ -15,5 +15,5 @@ class BladeHelper
         } else {
             return Route($name, $params);
         }
-    }
+    }*/
 }
