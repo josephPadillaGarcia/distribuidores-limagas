@@ -30,6 +30,7 @@ if(Route::currentRouteName() === 'web.service') {
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ asset('storage/img/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
+    <link href="{{ asset('css/web/remixicon.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/web/fonts.css') }}" rel="stylesheet">
     <link href="{{ asset('css/web/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/web/bootstrap.min.css') }}" rel="stylesheet">

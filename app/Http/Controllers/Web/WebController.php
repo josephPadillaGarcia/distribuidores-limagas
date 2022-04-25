@@ -342,5 +342,12 @@ class WebController extends Controller
         return view("web.pages.noticias.singlenews", compact('data'));
     }
 
+    public function branchoffice($locale = null){
+        $page = $this->getSeoPage('branch-offices', $this->locale);
+        $data = array(
+            "page" => $page,
+        );
+        return view("web.pages.branch-office", compact('data'));
+    }
 
 }

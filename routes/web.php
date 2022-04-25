@@ -13,6 +13,7 @@ Route::namespace('Web')->name('web.')->group(function() {
     Route::get('/noticias', 'WebController@news')->name('news');
     Route::get('/noticias/categoria/{slug}', 'WebController@newsCategory')->name('newcategory');
     Route::get('/noticias/categoria/{slug}/{post}', 'WebController@singleNews')->name('singlenews');
+    Route::get('/sucursales', 'WebController@branchoffice')->name('branch-office');
 });
 
 Route::prefix('admin')->group(function() {

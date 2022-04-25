@@ -70,6 +70,11 @@ $routeLocale = $menu["routeLocale"];
                         </div>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{!! Helper::getCustomRoute('web.branch-office', $routeLocale) !!}">
+                            {{ __("Sucursales") }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{!! Helper::getCustomRoute('web.news', $routeLocale) !!}">
                             {{ __("Noticias") }}
                         </a>
@@ -89,6 +94,19 @@ $routeLocale = $menu["routeLocale"];
                         </a>
                     </li>
                     @endif
+                    <li class="nav-item">
+                        <div class="dropdown drop-idioma">
+                            <button id="dropdown-idioma" class="btn dropdown-toggle drop-idioma-select" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="drop-idioma-view">
+                                Es <img src="{{ $storageUrl . '/web/img/bandera-es.png' }}"/>
+                            </div>
+                            </button>
+                            <ul id="drop-idioma-options" class="dropdown-menu drop-idioma-option" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#">En <img src="{{ $storageUrl . '/web/img/bandera-eeuu.png'}}"/></a></li>
+                            </ul>
+                        </div>
+                    </li>
+
                 </ul>
             </div>
         </div>

@@ -23,7 +23,7 @@ class GeneralContentController extends Controller
     }
 
     public function getAllPages(){
-        $pages = MasterPage::with('sections')->has('sections')->withCount('sections')->get();
+        $pages = MasterPage::with('sections')->has('sections')->withCount('sections')->orderBy('index')->get();
         return response()->json($pages);
     }
 
