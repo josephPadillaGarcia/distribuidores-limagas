@@ -65,7 +65,7 @@ export default {
       required: false,
     },
     showEnglish: {
-      default: false,
+      default: true,
       type: Boolean
     },
     urlEn: {

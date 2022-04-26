@@ -40,15 +40,26 @@
             </div>
               <div class="col-12 col-lg-6">
               <div class="form-group">
-                <label class="font-weight-bold">Título</label>
+                <label class="font-weight-bold">Título ES</label>
                 <p v-if="el.title_es" v-html="el.title_es" class="content-editor-value"></p>
+                <p v-else>No registrado</p>
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold">Título EN</label>
+                <p v-if="el.title_en" v-html="el.title_en" class="content-editor-value"></p>
                 <p v-else>No registrado</p>
               </div>
             </div>
             <div class="col-12 col-lg-6">
               <div class="form-group">
-                <label class="font-weight-bold">Descripción</label>
+                <label class="font-weight-bold">Descripción ES</label>
                 <div v-if="el.description_es" class="content-editor-value" v-html="el.description_es">{{ el.description_es }}</div>
+                <p v-else>No registrado</p>
+              </div>
+
+               <div class="form-group">
+                <label class="font-weight-bold">Descripción EN</label>
+                <div v-if="el.description_en" class="content-editor-value" v-html="el.description_en">{{ el.description_en }}</div>
                 <p v-else>No registrado</p>
               </div>
             </div>

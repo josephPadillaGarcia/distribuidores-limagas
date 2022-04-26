@@ -86,8 +86,6 @@ class WebController extends Controller
             "customers" => $customers,
             "appTracking" => $appTracking,
             "footer" => $footer,
-            "locale" => $this->locale,
-            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         //dd($request->all());
@@ -117,8 +115,6 @@ class WebController extends Controller
             "customers" => $customers,
             "testimonials" => $testimonials,
             "appTracking" => $appTracking,
-            "locale" => $this->locale,
-            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.about-us", compact('data'));
@@ -133,8 +129,6 @@ class WebController extends Controller
         $data = array(
             "page" => $page,
             "content" => $content,
-            "locale" => $this->locale,
-            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.privacy-policies", compact('data'));
@@ -153,8 +147,6 @@ class WebController extends Controller
             "content" => $content,
             "services" => $services,
             "quantity" => $quantityPackages,
-            "locale" => $this->locale,
-            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.quotations", compact('data'));
@@ -173,8 +165,6 @@ class WebController extends Controller
             "services" => $services,
             "content" => $content,
             "appTracking" => $appTracking,
-            "locale" => $this->locale,
-            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.services", compact('data'));
@@ -206,8 +196,6 @@ class WebController extends Controller
             "service" => $service,
             "content" => $content,
             "contentQuotes" => $contentQuotes,
-            "locale" => $this->locale,
-            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.service", compact('data'));
@@ -220,7 +208,6 @@ class WebController extends Controller
         $data = array(
             "page" => $page,
             "faqs" => $faqs,
-            "locale" => $this->locale,
             "content" => $content,
         );
 
@@ -287,8 +274,6 @@ class WebController extends Controller
             "news" => $news,
             "categories" => $categories,
             "content" => $content,
-            "locale" => $this->locale,
-            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.noticias.index", compact('data'));
@@ -310,8 +295,6 @@ class WebController extends Controller
             "news" => $news,
             "categories" => $categories,
             "content" => $content,
-            "locale" => $this->locale,
-            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.noticias.index", compact('data'));
@@ -336,7 +319,6 @@ class WebController extends Controller
             "news" => $news,
             "categories" => $categories,
             "content" => $content,
-            "routeLocale" => $this->locale === "es" ? "" : $this->locale
         );
 
         return view("web.pages.noticias.singlenews", compact('data'));
@@ -344,8 +326,10 @@ class WebController extends Controller
 
     public function branchoffice(){
         $page = $this->getSeoPage('branch-offices', $this->locale);
+        $content = $this->getContentPage('branch-offices');
         $data = array(
             "page" => $page,
+            "content" => $content,
         );
         return view("web.pages.branch-office", compact('data'));
     }

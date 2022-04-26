@@ -59,8 +59,12 @@
                   />
                 </div>
                 <h3 class="mb-1">
-                  Título:
+                  Título ES:
                   <span class="font-weight-normal">{{ el.title_es }}</span>
+                </h3>
+                <h3 class="mb-1">
+                  Título EN:
+                  <span class="font-weight-normal">{{ el.title_en ? el.title_en : 'No registrado' }}</span>
                 </h3>
                 <h3 class="mb-1">
                   Video Youtube:
@@ -383,9 +387,9 @@ export default {
       if (this.element.link) {
         fd.append("link", this.element.link);
       }
-      /*if (this.element.title_en) {
+      if (this.element.title_en) {
         fd.append("title_en", this.element.title_en);
-      }*/
+      }
 
       if (this.$refs.ref_image.dropzone.files[0]) {
         fd.append("image", this.$refs.ref_image.dropzone.files[0]);

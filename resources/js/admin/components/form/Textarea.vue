@@ -39,7 +39,7 @@
 export default {
   props: {
     showEnglish: {
-      default: false,
+      default: true,
       type: Boolean
     },
     label: String,

@@ -27,7 +27,7 @@ class SeoRequest extends FormRequest
             'seo_image' => 'sometimes|required',
             'title_es' => 'required|max:60',
             //'title_en' => 'required|max:60',
-            'seo_keywords_es' => 'required',
+            //'seo_keywords_es' => 'required',
             //'seo_keywords_en' => 'required',
             'seo_description_es' => 'required|max:160',
             //'seo_description_en' => 'required|max:160'

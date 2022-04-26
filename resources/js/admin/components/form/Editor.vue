@@ -75,7 +75,7 @@ export default {
     valueEnParent: String,
     valueEsParent: String,
     showEnglish: {
-      default: false,
+      default: true,
       type: Boolean
     },
     url: {

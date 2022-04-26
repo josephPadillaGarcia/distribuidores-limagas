@@ -68,13 +68,13 @@
                   
                       <div class="text-right" v-if="!editBlock">
                         <a style="text-decoration: underline;" target="_blank" rel="noopener noreferrer" :href="webUrl+(page.slug_es ? '/' + page.slug_es : '' )" class="d-inline-block">{{ webUrl }}<small v-if="page.slug_es">/{{ page.slug_es }}</small></a> <br>
-                        <!--<a style="text-decoration: underline;" target="_blank" rel="noopener noreferrer" :href="webUrl+(page.slug_en ? '/en/' +page.slug_en : '/en' )" class="d-inline-block">{{ webUrl }}<small v-if="page.slug_en">/en/{{ page.slug_en }}</small ><small v-else>/en</small></a>-->
+                        <a style="text-decoration: underline;" target="_blank" rel="noopener noreferrer" :href="webUrl+(page.slug_en ? '/en/' +page.slug_en : '/en' )" class="d-inline-block">{{ webUrl }}<small v-if="page.slug_en">/en/{{ page.slug_en }}</small ><small v-else>/en</small></a>
                       </div>
                       <h4
                         class="mb-3 font-weight-bold"
                         v-if="pageSelected != page.id"
-                      >Título: {{ page.title_es }}
-                      <!-- <br> Título EN: {{ page.title_en }}--></h4>
+                      >Título ES: {{ page.title_es }}
+                      <br> Título EN: {{ page.title_en }}</h4>
                       <div class="form-group" v-if="editBlock && pageSelected == page.id">
                         <Input
                           label="Título"
@@ -90,13 +90,13 @@
                         <div v-if="pageSelected != page.id">
                           <p class="mb-0 text-primary font-weight-bold">Descripción SEO</p>
                           <div>
-                            <p class="project-description mb-0" v-if="page.seo_description_es">{{ page.seo_description_es }}</p>
-                            <p class="mb-0" v-else>No registrado</p>
-                          </div>
-                          <!--<div>
-                            <p class="project-description mb-0" v-if="page.seo_description_en">EN: {{ page.seo_description_en }}</p>
+                            <p class="project-description mb-0" v-if="page.seo_description_es">ES: {{ page.seo_description_es }}</p>
                             <p class="mb-0" v-else>ES: No registrado</p>
-                          </div>-->
+                          </div>
+                          <div>
+                            <p class="project-description mb-0" v-if="page.seo_description_en">EN: {{ page.seo_description_en }}</p>
+                            <p class="mb-0" v-else>EN: No registrado</p>
+                          </div>
                         </div>
                         <div
                           class="form-group"
@@ -117,13 +117,13 @@
                         <div v-if="pageSelected != page.id">
                           <p class="mb-0 text-primary font-weight-bold">Keywords SEO</p>
                           <div>
-                            <p class="mb-0" v-if="page.seo_keywords_es">{{ page.seo_keywords_es }}</p>
+                            <p class="mb-0" v-if="page.seo_keywords_es">ES: {{ page.seo_keywords_es }}</p>
                             <p class="mb-0" v-else>ES: No registrado</p>
                           </div>
-                          <!--<div>
+                          <div>
                             <p class="mb-0" v-if="page.seo_keywords_en">EN: {{ page.seo_keywords_en }}</p>
                             <p class="mb-0" v-else>EN: No registrado</p>
-                          </div>-->
+                          </div>
                         </div>
                         <div
                           class="form-group"
