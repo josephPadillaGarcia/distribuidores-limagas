@@ -27,8 +27,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get(LaravelLocalization::transRoute('routes.news'), 'Web\WebController@news')->name('news');
     Route::get(LaravelLocalization::transRoute('routes.news-category'), 'Web\WebController@newsCategory')->name('news');
     Route::get(LaravelLocalization::transRoute('routes.news-category-post'), 'Web\WebController@singleNews')->name('news');
-    //Route::get('/noticias/categoria/{slug}', 'Web\WebController@newsCategory')->name('newcategory');
-    //Route::get('/noticias/categoria/{slug}/{post}', 'Web\WebController@singleNews')->name('singlenews');
     Route::get(LaravelLocalization::transRoute('routes.branch-offices'), 'Web\WebController@branchoffice')->name('branch-office');
 
 });

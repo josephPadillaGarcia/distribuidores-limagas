@@ -25,13 +25,13 @@ class TestimonialRequest extends FormRequest
     {
         $rules = [
             'title_es' => 'required|max:100',
-            //'title_en' => 'required|max:100',
+            'title_en' => 'required|max:100',
         ];
         $rules = array_merge(
             $rules,
             [
                 'description_es' => 'required',
-                //'description_en' => 'required'
+                'description_en' => 'required'
             ]
         );
         switch ($this->method()) {

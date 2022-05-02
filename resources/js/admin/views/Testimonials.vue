@@ -62,21 +62,21 @@
                   />
                 </div>
                 <h3 class="mb-1">
-                  Título:
+                  Título ES:
                   <span class="font-weight-normal">{{ el.title_es }}</span>
                 </h3>
-                <!--<h3 class="mb-1">
-                  <span class="font-weight-normal">Título EN:</span>
-                  {{ el.title_en }}
-                </h3>-->
                 <h3 class="mb-1">
-                  <span class="">Descripción:</span>
+                  Título EN:
+                  <span class="font-weight-normal">{{ el.title_en ? el.title_en : 'No registrado' }}</span>
+                </h3>
+                <h3 class="mb-1">
+                  <span class="font-weight-normal">Descripción ES:</span>
                   <div v-html="el.description_es" class="content-editor-value"></div>
                 </h3>
-                <!--<h3 class="mb-1">
+                <h3 class="mb-1">
                   <span class="font-weight-normal">Descripción EN:</span>
-                  <div v-html="el.description_en"></div>
-                </h3>-->
+                  <div v-html="el.description_en" v-if="el.description_en" class="content-editor-value"></div><div class="font-weight-normal" v-else>No registrado</div>
+                </h3>
                 <h3 class="mb-1">
                   <span class="">Mostrar en la Web:</span>
                   <span class="font-weight-normal">{{ el.active ? 'Sí' : 'No' }}</span>
@@ -394,9 +394,9 @@ export default {
       if (this.element.title_es) {
         fd.append("title_es", this.element.title_es);
       }
-      /*if (this.element.title_en) {
+      if (this.element.title_en) {
         fd.append("title_en", this.element.title_en);
-      }*/
+      }
 
       if (this.$refs.ref_image.dropzone.files[0]) {
         fd.append("image", this.$refs.ref_image.dropzone.files[0]);

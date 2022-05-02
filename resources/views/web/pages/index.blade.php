@@ -103,7 +103,7 @@
                             <div>
                                 <!-- ItemService -->
                                 <div class="item">
-                                    <a href="">
+                                    <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.service', [ 'slug' => $service['slug_'.Config::get('app.locale')] ] ) }}">
                                       @if($service["image"])
                                         <img class="lazyload" src="{{ $storageUrl . '/img/services/' . $service['image'] }}" alt="{{ 'Imagen ' . $service['title_' . $locale ]}}" />
                                       @endif
@@ -116,7 +116,7 @@
                                         </span>
                                         <b class="text-center">{{ $service["title_" . $locale] }}</b>
                                         <p class="text-center">{{ $service["excerpt_" . $locale] }}</p>
-                                        <a href="" class="btn_global btn_border text-center btn_color_text">
+                                        <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.service', [ 'slug' => $service['slug_'.Config::get('app.locale')] ] ) }}" class="btn_global btn_border text-center btn_color_text">
                                             {{ __("Conoce más") }}
                                         </a>
                                     </div>

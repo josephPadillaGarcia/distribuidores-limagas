@@ -53,13 +53,13 @@ class PostRequest extends FormRequest
         ];*/
         $rules = [
             'title_es' => 'required|max:100',
-            //'title_en' => 'required|max:100',
-            'excerpt_es' => 'sometimes|nullable|max:200',
-            //'excerpt_en' => 'sometimes|nullable|max:200',
+            'title_en' => 'required|max:100',
+            'excerpt_es' => 'required|max:200',
+            'excerpt_en' => 'required|max:200',
             'slug_es' => ['required',Rule::unique('posts')->ignore($this->id)],
-            //'slug_en' => ['required',Rule::unique('posts')->ignore($this->id)],
+            'slug_en' => ['required',Rule::unique('posts')->ignore($this->id)],
             'content_es' => 'required',
-            //'content_en' => 'required',
+            'content_en' => 'required',
             'published' => 'required',
             'category_id' => 'required',
             'tags.*.tag_es' => 'required',

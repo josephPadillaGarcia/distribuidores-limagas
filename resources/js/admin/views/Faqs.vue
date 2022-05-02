@@ -63,8 +63,12 @@
                 </h3-->
 
                 <h3 class="mb-1">
-                  Pregunta:
+                  Pregunta ES:
                   <span class="font-weight-normal">{{ el.question }}</span>
+                </h3>
+                <h3 class="mb-1">
+                  Pregunta EN:
+                  <span class="font-weight-normal">{{ el.question_en ? el.question_en : 'No registrado' }}</span>
                 </h3>
 
                 <!--<h3 class="mb-1">
@@ -74,13 +78,22 @@
 
                 <div v-show="el.seen" class="mb-4">
                           <h3 class="d-block"
-                            >Respuesta:</h3
+                            >Respuesta ES:</h3
                           >
                           <div
                             class="content-body"
                             v-if="el.description"
                             v-html="el.description"
                           ></div>
+
+                          <h3 class="d-block"
+                            >Respuesta EN:</h3
+                          >
+                          <div
+                            class="content-body"
+                            v-if="el.description_en"
+                            v-html="el.description_en"
+                          ></div><div v-else>No registrado</div>
                         </div>
                         <div>
                           <button
@@ -168,6 +181,8 @@
                   :errors="errors"
                   :valueEs.sync="element.question"
                   :valueEsParent="element.question"
+                  :valueEn.sync="element.question_en"
+                  :valueEnParent="element.question_en"
                 />
               </div>
             </div>
@@ -181,6 +196,8 @@
                   :errors="errors"
                   :valueEs.sync="element.description"
                   :valueEsParent="element.description"
+                  :valueEn.sync="element.description_en"
+                  :valueEnParent="element.description_en"
                   :url="'faqs/faqs'"
                   :text-image="'image'"
                 />
@@ -370,6 +387,22 @@ export default {
 
       if (this.element.description) {
         fd.append("description", this.element.description);
+      }
+
+      if (this.element.question) {
+        fd.append("question_es", this.element.question);
+      }
+
+      if (this.element.description) {
+        fd.append("description_es", this.element.description);
+      }
+
+      if (this.element.question_en) {
+        fd.append("question_en", this.element.question_en);
+      }
+
+      if (this.element.description_en) {
+        fd.append("description_en", this.element.description_en);
       }
 
       fd.append("like", like);

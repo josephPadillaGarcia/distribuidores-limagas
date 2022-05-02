@@ -175,16 +175,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -550,33 +540,93 @@ var render = function() {
                                   _c("div", { staticClass: "row" }, [
                                     _c("div", { staticClass: "col-12" }, [
                                       _c("div", { staticClass: "row" }, [
-                                        _c("div", { staticClass: "col-12" }, [
-                                          _c(
-                                            "label",
-                                            {
-                                              staticClass:
-                                                "font-weight-bold d-block"
-                                            },
-                                            [_vm._v("Título ")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("p", [_vm._v(_vm._s(el.title_es))])
-                                        ]),
+                                        _c(
+                                          "div",
+                                          { staticClass: "col-12 col-lg-6" },
+                                          [
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "font-weight-bold d-block"
+                                              },
+                                              [_vm._v("Título ES")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("p", [
+                                              _vm._v(_vm._s(el.title_es))
+                                            ])
+                                          ]
+                                        ),
                                         _vm._v(" "),
-                                        _c("div", { staticClass: "col-12" }, [
-                                          _c(
-                                            "label",
-                                            {
-                                              staticClass:
-                                                "font-weight-bold d-block"
-                                            },
-                                            [_vm._v("Descripción Corta ")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("p", [
-                                            _vm._v(_vm._s(el.excerpt_es))
-                                          ])
-                                        ]),
+                                        _c(
+                                          "div",
+                                          { staticClass: "col-12 col-lg-6" },
+                                          [
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "font-weight-bold d-block"
+                                              },
+                                              [_vm._v("Título EN")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("p", [
+                                              _vm._v(
+                                                _vm._s(
+                                                  el.title_en
+                                                    ? el.title_en
+                                                    : "No registrado"
+                                                )
+                                              )
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "col-12 col-lg-6" },
+                                          [
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "font-weight-bold d-block"
+                                              },
+                                              [_vm._v("Descripción Corta ES")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("p", [
+                                              _vm._v(_vm._s(el.excerpt_es))
+                                            ])
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "col-12 col-lg-6" },
+                                          [
+                                            _c(
+                                              "label",
+                                              {
+                                                staticClass:
+                                                  "font-weight-bold d-block"
+                                              },
+                                              [_vm._v("Descripción Corta ES")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c("p", [
+                                              _vm._v(
+                                                _vm._s(
+                                                  el.excerpt_en
+                                                    ? el.excerpt_en
+                                                    : "No registrado"
+                                                )
+                                              )
+                                            ])
+                                          ]
+                                        ),
                                         _vm._v(" "),
                                         _c("div", { staticClass: "col-12" }, [
                                           _c(

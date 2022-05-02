@@ -59,7 +59,7 @@ class FaqController extends Controller
 
     public function store(FaqRequest $request)
     {
-        $faq = request(["question", "description", "like", "dislike"]);
+        $faq = request(["question", "description", "question_en", "description_en", "like", "dislike"]);
         
         $faqIndex = $this->getMaxIndex(Faq::selectRaw('MAX(id),MAX(`index`) as "index"')->get());
 
@@ -74,7 +74,7 @@ class FaqController extends Controller
 
     public function update(FaqRequest $request, Faq $element)
     {
-        $faq = request(["question", "description"]);
+        $faq = request(["question", "description", "question_en", "description_en"]);
         try {
             $element = Faq::UpdateOrCreate(["id" => $element->id], $faq);
             return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.update.success', ['name' => trans('custom.attribute.faqs')])], 200);

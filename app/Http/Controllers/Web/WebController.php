@@ -170,20 +170,18 @@ class WebController extends Controller
         return view("web.pages.services", compact('data'));
     }
 
-    public function service(Request $request, $slug, $locale = null) 
+    public function service(Request $request, Service $slug) 
     {
-        //$this->validateLocale($locale);
-        $service = Service::where('slug_' . $this->locale, $slug)->where('active',true)->first();
-        // $service = Service::where('slug_' . "es", $slug)->where('active', true)->first();
+        //$service = Service::where('slug_' . $this->locale, $slug)->where('active',true)->first();
 
-        if (!$service) {
+        /*if (!$service) {
             return Abort(404);
-        }
+        }*/
         $page = $this->getSeoPage('services', $this->locale);
         // $page = $this->getSeoPage('services', "es");
         $privacy = $this->getContentPage('privacy-policies');
         $appTracking = AppTracking::first();
-        $services = Service::where('active',true)->where('id', '!=', $service->id)->inRandomOrder()->take(3)->get();
+        $services = Service::where('active',true)->where('id', '!=', $slug->id)->inRandomOrder()->take(3)->get();
         $quantityPackages = ConfigQuantityPackage::where('active', 1)->orderBy('index')->get();
         $content = $this->getContentPage('services');
         $contentQuotes = $this->getContentPage('quotes');
@@ -193,10 +191,11 @@ class WebController extends Controller
             "appTracking" => $appTracking,
             "services" => $services,
             "quantity" => $quantityPackages,
-            "service" => $service,
+            "service" => $slug,
             "content" => $content,
             "contentQuotes" => $contentQuotes,
         );
+        //dd($data);
 
         return view("web.pages.service", compact('data'));
     }

@@ -95,7 +95,7 @@
                                 v-for="el in quantity"
                                 :key="el.id"
                             >
-                                {{ el["name_" + locale] }}
+                                {{ el["name_" + locale] ? el["name_" + locale] : el["name_es"]  }}
                             </option>
                         </select>
                         <span

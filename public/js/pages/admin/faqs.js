@@ -294,6 +294,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -449,6 +466,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (this.element.description) {
         fd.append("description", this.element.description);
+      }
+
+      if (this.element.question) {
+        fd.append("question_es", this.element.question);
+      }
+
+      if (this.element.description) {
+        fd.append("description_es", this.element.description);
+      }
+
+      if (this.element.question_en) {
+        fd.append("question_en", this.element.question_en);
+      }
+
+      if (this.element.description_en) {
+        fd.append("description_en", this.element.description_en);
       }
 
       fd.append("like", like);
@@ -707,12 +740,31 @@ var render = function() {
                               _c("div", { staticClass: "card-body" }, [
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
-                                    "\n                Pregunta:\n                "
+                                    "\n                Pregunta ES:\n                "
                                   ),
                                   _c(
                                     "span",
                                     { staticClass: "font-weight-normal" },
                                     [_vm._v(_vm._s(el.question))]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "mb-1" }, [
+                                  _vm._v(
+                                    "\n                Pregunta EN:\n                "
+                                  ),
+                                  _c(
+                                    "span",
+                                    { staticClass: "font-weight-normal" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          el.question_en
+                                            ? el.question_en
+                                            : "No registrado"
+                                        )
+                                      )
+                                    ]
                                   )
                                 ]),
                                 _vm._v(" "),
@@ -731,7 +783,7 @@ var render = function() {
                                   },
                                   [
                                     _c("h3", { staticClass: "d-block" }, [
-                                      _vm._v("Respuesta:")
+                                      _vm._v("Respuesta ES:")
                                     ]),
                                     _vm._v(" "),
                                     el.description
@@ -741,7 +793,20 @@ var render = function() {
                                             innerHTML: _vm._s(el.description)
                                           }
                                         })
-                                      : _vm._e()
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c("h3", { staticClass: "d-block" }, [
+                                      _vm._v("Respuesta EN:")
+                                    ]),
+                                    _vm._v(" "),
+                                    el.description_en
+                                      ? _c("div", {
+                                          staticClass: "content-body",
+                                          domProps: {
+                                            innerHTML: _vm._s(el.description_en)
+                                          }
+                                        })
+                                      : _c("div", [_vm._v("No registrado")])
                                   ]
                                 ),
                                 _vm._v(" "),
@@ -915,7 +980,9 @@ var render = function() {
                                 variable: "question",
                                 errors: _vm.errors,
                                 valueEs: _vm.element.question,
-                                valueEsParent: _vm.element.question
+                                valueEsParent: _vm.element.question,
+                                valueEn: _vm.element.question_en,
+                                valueEnParent: _vm.element.question_en
                               },
                               on: {
                                 "update:valueEs": function($event) {
@@ -929,6 +996,20 @@ var render = function() {
                                   return _vm.$set(
                                     _vm.element,
                                     "question",
+                                    $event
+                                  )
+                                },
+                                "update:valueEn": function($event) {
+                                  return _vm.$set(
+                                    _vm.element,
+                                    "question_en",
+                                    $event
+                                  )
+                                },
+                                "update:value-en": function($event) {
+                                  return _vm.$set(
+                                    _vm.element,
+                                    "question_en",
                                     $event
                                   )
                                 }
@@ -952,6 +1033,8 @@ var render = function() {
                                 errors: _vm.errors,
                                 valueEs: _vm.element.description,
                                 valueEsParent: _vm.element.description,
+                                valueEn: _vm.element.description_en,
+                                valueEnParent: _vm.element.description_en,
                                 url: "faqs/faqs",
                                 "text-image": "image"
                               },
@@ -967,6 +1050,20 @@ var render = function() {
                                   return _vm.$set(
                                     _vm.element,
                                     "description",
+                                    $event
+                                  )
+                                },
+                                "update:valueEn": function($event) {
+                                  return _vm.$set(
+                                    _vm.element,
+                                    "description_en",
+                                    $event
+                                  )
+                                },
+                                "update:value-en": function($event) {
+                                  return _vm.$set(
+                                    _vm.element,
+                                    "description_en",
                                     $event
                                   )
                                 }

@@ -26,7 +26,7 @@ class CategoriesController extends Controller
     public function getAll(Request $request, CategoriesRepository $repo)
     {
         $q = $request->q;
-        $headers = ["Id", "Nombre", "Slug URL"];
+        $headers = ["Id", "Nombre ES", "Nombre EN", "Slug URL ES", "Slug URL EN"];
         if ($q) {
             $elements = $repo->datatable($request->itemsPerPage, $q);
         } else {

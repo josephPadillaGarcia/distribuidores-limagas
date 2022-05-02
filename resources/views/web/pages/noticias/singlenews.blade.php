@@ -9,8 +9,7 @@ $news = $data["news"];
 $new = $data["new"];
 $storageUrl = config('services.storage_url');
 $content = $data["content"];
-$locale = "es";
-$routeLocale = $data["routeLocale"];
+$locale = Config::get('app.locale');
 @endphp
 
 <main>
@@ -94,7 +93,7 @@ $routeLocale = $data["routeLocale"];
                             </ul>
                         </div>
                         <div class="comentarios">
-                            <b>Comentarios:</b>
+                            <b>{{ __("Comentarios") }}:</b>
                             <div
                                 class="fb-comments"
                                 data-href="{{ Request::url() }}"
@@ -108,21 +107,21 @@ $routeLocale = $data["routeLocale"];
                 </div>
                 <div class="col-lg-4">
                     <div class="search position-relative">
-                        <form action="{!! Helper::getCustomRoute('web.news', $routeLocale) !!}" method="GET">
+                        <form action="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.news') }}" method="GET">
                             <input type="text" name="q" class="form-control" placeholder="¿{{ __('Qué estás buscando') }}?">
                             <i class="flaticon-lupa-1 position-absolute"></i>
                             <button type="submit" style="display:none;">Search</button>
                         </form>
                     </div>
                     <div class="list-tabs">
-                        <p>Categorias: </p>
+                        <p>{{ __("Categorías") }}: </p>
                         <ul class="nav nav-tabs nav-tabs_single" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" href="{!! Helper::getCustomRoute('web.news', $routeLocale) !!}">{{ __("Todos") }}</a>
+                                <a class="nav-link" href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.news') }}">{{ __("Todos") }}</a>
                             </li>
                             @foreach($categories as $value)
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" href="{!! Helper::getCustomRoute('web.newcategory', $routeLocale, ['slug' => $value['slug_' . $locale] ? $value['slug_' . $locale] : $value['slug_es']]) !!}">{{ $value["name_" . $locale] }}</a>
+                                <a class="nav-link"  href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.news-category', [ 'slug' => $value['slug_'.Config::get('app.locale')] ] ) }}">{{ $value["name_" . $locale] }}</a>
                             </li>
                             @endforeach
                         </ul>

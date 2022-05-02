@@ -55,14 +55,18 @@ id="seccion_banner_global"
 
             @foreach ($faqs as $faq)
                 <div class="accordion__item">
-                    <h3 class="accordion__title js-title"><span class="text-acordeon" id="question{{ $faq["id"] }}">{{ $faq["question"] }}</span><span class="icono-acordeon flaticon-descargar"> </span></h3>
+                    <h3 class="accordion__title js-title"><span class="text-acordeon" id="question{{ $faq["id"] }}">{{ $locale == 'en' ? $faq["question_en"] : $faq["question"] }}</span><span class="icono-acordeon flaticon-descargar"> </span></h3>
                     <div class="accordion__copy js-copy ">
                         <div class="editar" id="description{{ $faq["id"] }}">                            
-                            {!! $faq["description"] !!}
+                            @if($locale == 'en')
+                                {!! $faq["description_en"] !!}
+                            @else
+                                {!! $faq["description"] !!}
+                            @endif
                         </div>
                         
                         <div class="accordion__likes">
-                            <p>¿Te ayudó esta información?</p>
+                            <p>¿{{ __("Te ayudó esta información") }}?</p>
                             <div class="accordion__likes__item">
                                 <a href="#!" id="like{{ $faq["id"] }}" onclick="updatelikefaq('{{ $faq['id'] }}')">
                                     <img data-src="/storage/web/img/like.png" class="lazyload" alt="">

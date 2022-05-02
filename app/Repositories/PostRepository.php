@@ -37,11 +37,10 @@ class PostRepository
             $url = config('services.web_url');
             $data[] = array(
                 "id" => $post["post_id"],
-                "title_es" => $post["title_es"],
-                //"title_en" => $post["title_en"],
-                /*"url" => "<a style='text-decoration: underline;' href=".$url."/blog/categoria/".$post["category_slug_es"] .'/'.$post["slug_es"]." target='_blank'>".$url.'/blog/categoria/'.$post["category_slug_es"] .'/'.$post["slug_es"]."</a>
-                <br><a style='text-decoration: underline;' href=".$url."/en/blog/category/".$post["category_slug_en"] .'/'.$post["slug_en"]." target='_blank'>".$url.'/en/blog/category/'.$post["category_slug_en"] .'/'.$post["slug_en"]."</a>",*/
-                "url" => "<a style='text-decoration: underline;' href=".$url."/blog/categoria/".$post["category_slug_es"] .'/'.$post["slug_es"]." target='_blank'>".'blog/categoria/'.$post["category_slug_es"] .'/'.$post["slug_es"]."</a>",
+                "title_es" => 'ES: '.$post["title_es"].'<br>EN: '.($post["title_en"] ? $post["title_en"] : 'No registrado'),
+                "url" => "<a style='text-decoration: underline;' href=".$url."/noticias/categorias/".$post["category_slug_es"] .'/'.$post["slug_es"]." target='_blank'>".'/noticias/categorias/'.$post["category_slug_es"] .'/'.$post["slug_es"]."</a>
+                <br><a style='text-decoration: underline;' href="."/en/news/category/".$post["category_slug_en"] .'/'.$post["slug_en"]." target='_blank'>".'/en/news/category/'.$post["category_slug_en"] .'/'.$post["slug_en"]."</a>",
+                //"url" => "<a style='text-decoration: unne;' href=".$url."/blog/categoria/".$post["category_slug_es"] .'/'.$post["slug_es"]." target='_blank'>".'blog/categoria/'.$post["category_slug_es"] .'/'.$post["slug_es"]."</a>",
                 "category_es" => '<span class="badge badge-pill badge-info badge-lg">'.$post["category_name_es"].'</span>',
                 //"category_en" => '<span class="badge badge-pill badge-info badge-lg">'.$post["category_name_en"].'</span>',
                 "status" => $status,

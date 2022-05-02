@@ -61,16 +61,16 @@
                     <div class="form-group">
                       <InputSlug
                         :urlEs="appUrl + '/servicios/'"
-                        :urlEn="appUrl + '/en/'"
+                        :urlEn="appUrl + '/en/services/'"
                         label="Título"
                         variable="title"
                         type="Ruta"
                         :errors="errors"
-                        :valueEn.sync="element.title_es"
+                        :valueEn.sync="element.title_en"
                         :valueEs.sync="element.title_es"
                         :slugEn.sync="element.slug_en"
                         :slugEs.sync="element.slug_es"
-                        :valueEnParent="element.title_es"
+                        :valueEnParent="element.title_en"
                         :valueEsParent="element.title_es"
                         :slugEnParent="element.slug_en"
                         :slugEsParent="element.slug_es"
@@ -413,6 +413,19 @@ export default {
 
       if (this.element.url_video) {
         fd.append("url_video", this.element.url_video);
+      }
+
+      if (this.element.description_en) {
+        fd.append("description_en", this.element.description_en);
+      }
+      if (this.element.title_en) {
+        fd.append("title_en", this.element.title_en);
+      }
+      if (this.element.excerpt_en) {
+        fd.append("excerpt_en", this.element.excerpt_en);
+      }
+      if (this.element.slug_en) {
+        fd.append("slug_en", this.element.slug_en);
       }
       
       axios

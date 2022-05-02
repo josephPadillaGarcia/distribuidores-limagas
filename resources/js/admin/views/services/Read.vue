@@ -49,19 +49,19 @@
                   <div class="col-12">
                     <div class="form-group">
                       <h3 class="mb-0 font-weight-normal">
-                        <span class="d-block font-weight-bold">Título:</span>
+                        <span class="d-block font-weight-bold">Título ES:</span>
                         {{ element.title_es }}
                       </h3>
-                      <!--<h3 class="font-weight-normal">
+                      <h3 class="font-weight-normal">
                       <span class="d-block font-weight-bold"
-                        >Nombre del Proyecto EN:</span
+                        >Título EN:</span
                       >
-                      {{ element.title_en }}
-                    </h3>-->
+                      {{ element.title_en ? element.title_en : 'No registrado' }}
+                    </h3>
                       <h3 class="mb-1 font-weight-normal">
-                        <!--<span class="d-block font-weight-bold"
-                        >URL del Servicio:</span
-                      >-->
+                        <span class="d-block font-weight-bold"
+                        >URL del Proyecto ES:</span
+                      >
                         <a
                           target="_blank"
                           style="text-decoration: underline"
@@ -69,17 +69,19 @@
                           >{{ appUrl }}/servicios/{{ element.slug_es }}</a
                         >
                       </h3>
-                      <!--<h3 class="font-weight-normal">
+                      <h3 class="font-weight-normal">
                       <span class="d-block font-weight-bold"
                         >URL del Proyecto EN:</span
                       >
                       <a
                         target="_blank"
+                        v-if="element.slug_en"
                         style="text-decoration: underline"
-                        :href="appUrl + '/en/' + element.slug_en"
-                        >{{ appUrl }}/en/{{ element.slug_en }}</a
+                        :href="appUrl + '/en/services/' + element.slug_en"
+                        >{{ appUrl }}/en/services/{{ element.slug_en }}</a
                       >
-                    </h3>-->
+                      <span v-else>No registrado</span>
+                    </h3>
                     </div>
                   </div>
                   <div class="col-12">
@@ -149,18 +151,34 @@
                     </div>
                   </div>
 
-                  <div class="col-12">
+                  <div class="col-12 col-lg-6">
                     <div class="form-group">
                       <label
                         for="id_icon_color"
                         class="d-block font-weight-bold mb-0"
-                        >Descripción</label
+                        >Descripción ES</label
                       >
                       <div
                         v-if="element.description_es"
                         v-html="element.description_es" class="content-editor-value"
                       >
                         {{ element.description_es }}
+                      </div>
+                      <div v-else>No registrado</div>
+                    </div>
+                  </div>
+                  <div class="col-12  col-lg-6">
+                    <div class="form-group">
+                      <label
+                        for="id_icon_color"
+                        class="d-block font-weight-bold mb-0"
+                        >Descripción EN</label
+                      >
+                      <div
+                        v-if="element.description_en"
+                        v-html="element.description_en" class="content-editor-value"
+                      >
+                        {{ element.description_en }}
                       </div>
                       <div v-else>No registrado</div>
                     </div>
@@ -194,25 +212,41 @@
                     <p v-else class="mb-0">No registrado</p>
                   </div>
                   <div class="col-12">
-                    <h3 class="mb-2 font-weight-normal">
-                      <span class="d-block font-weight-bold">Título SEO:</span>
-                      {{ element.seo_title_es }}
+                    <h3 class="font-weight-normal mb-0">
+                      <span class="d-block font-weight-bold">Título SEO ES:</span>
+                      {{ element.seo_title_es ? element.seo_title_es : 'No registrado' }}
+                    </h3>
+                    <h3 class="font-weight-normal">
+                      <span class="d-block font-weight-bold">Título SEO EN:</span>
+                      {{ element.seo_title_en ? element.seo_title_en : 'No registrado' }}
                     </h3>
                   </div>
                   <div class="col-12 col-lg-6">
-                    <h3 class="mb-2 font-weight-normal">
+                    <h3 class="mb-0 font-weight-normal">
                       <span class="d-block font-weight-bold"
-                        >Descripción SEO:</span
+                        >Descripción SEO ES:</span
                       >
-                      {{ element.seo_description_es }}
+                      {{ element.seo_description_es ? element.seo_description_es : 'No registrado' }}
+                    </h3>
+                    <h3 class="font-weight-normal">
+                      <span class="d-block font-weight-bold"
+                        >Descripción SEO EN:</span
+                      >
+                      {{ element.seo_description_en ? element.seo_description_en : 'No registrado' }}
                     </h3>
                   </div>
                   <div class="col-12 col-lg-6">
-                    <h3 class="mb-2 font-weight-normal">
+                    <h3 class="mb-0 font-weight-normal">
                       <span class="d-block font-weight-bold"
-                        >Keywords SEO:</span
+                        >Keywords SEO ES:</span
                       >
-                      {{ element.seo_keywords_es }}
+                      {{ element.seo_keywords_es ? element.seo_keywords_es : 'No registrado' }}
+                    </h3>
+                    <h3 class="mb-0 font-weight-normal">
+                      <span class="d-block font-weight-bold"
+                        >Keywords SEO EN:</span
+                      >
+                      {{ element.seo_keywords_en ? element.seo_keywords_en : 'No registrado' }}
                     </h3>
                   </div>
                 </div>

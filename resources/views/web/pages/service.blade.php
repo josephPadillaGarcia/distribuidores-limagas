@@ -142,10 +142,8 @@
             <div class="container">
                 <div class="row">
                     <div class="titulo_global">
-                        <!-- <b> $t("Servicios") </b> -->
-                        <b>Servicios</b>
-                        <!-- <h2 class=""> $t("Otras soluciones") </h2> -->
-                        <h2 class="">Otras soluciones</h2>
+                        <b> {{ $t("Servicios") }}</b>
+                        <h2 class="">{{ $t("Otras soluciones") }} </h2>
                     </div>
 
                     <div class="col-lg-12">

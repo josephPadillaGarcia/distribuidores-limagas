@@ -13,6 +13,7 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
+    'app_url' => env('APP_URL', 'http://127.0.0.1:8000'),
     'web_url' => env('WEB_URL', 'http://127.0.0.1:8000'),
     'admin_url' => env('ADMIN_URL', 'http://127.0.0.1:8000/admin'),
     'storage_url' => env('STORAGE_URL', 'http://127.0.0.1:8000/storage'),

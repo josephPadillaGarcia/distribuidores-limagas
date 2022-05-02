@@ -449,6 +449,22 @@ __webpack_require__.r(__webpack_exports__);
         fd.append("url_video", this.element.url_video);
       }
 
+      if (this.element.description_en) {
+        fd.append("description_en", this.element.description_en);
+      }
+
+      if (this.element.title_en) {
+        fd.append("title_en", this.element.title_en);
+      }
+
+      if (this.element.excerpt_en) {
+        fd.append("excerpt_en", this.element.excerpt_en);
+      }
+
+      if (this.element.slug_en) {
+        fd.append("slug_en", this.element.slug_en);
+      }
+
       axios.post(this.routeStore, fd).then(function (response) {
         _this.requestServer = false;
         document.location.href = response.data.route;
@@ -648,26 +664,26 @@ var render = function() {
                           _c("InputSlug", {
                             attrs: {
                               urlEs: _vm.appUrl + "/servicios/",
-                              urlEn: _vm.appUrl + "/en/",
+                              urlEn: _vm.appUrl + "/en/services/",
                               label: "Título",
                               variable: "title",
                               type: "Ruta",
                               errors: _vm.errors,
-                              valueEn: _vm.element.title_es,
+                              valueEn: _vm.element.title_en,
                               valueEs: _vm.element.title_es,
                               slugEn: _vm.element.slug_en,
                               slugEs: _vm.element.slug_es,
-                              valueEnParent: _vm.element.title_es,
+                              valueEnParent: _vm.element.title_en,
                               valueEsParent: _vm.element.title_es,
                               slugEnParent: _vm.element.slug_en,
                               slugEsParent: _vm.element.slug_es
                             },
                             on: {
                               "update:valueEn": function($event) {
-                                return _vm.$set(_vm.element, "title_es", $event)
+                                return _vm.$set(_vm.element, "title_en", $event)
                               },
                               "update:value-en": function($event) {
-                                return _vm.$set(_vm.element, "title_es", $event)
+                                return _vm.$set(_vm.element, "title_en", $event)
                               },
                               "update:valueEs": function($event) {
                                 return _vm.$set(_vm.element, "title_es", $event)

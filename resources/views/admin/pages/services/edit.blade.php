@@ -2,7 +2,7 @@
 @section('content')
 <services-edit
     files-url="{{ config('services.files_url') }}" 
-    app-url="{{ config('services.app_url') }}/admin" 
+    app-url="{{ config('services.app_url') }}" 
     images-url="{{ config('services.images_url') }}" 
     route-update="{{ route('cms.services.store') }}" 
     route-return="{{ route('cms.services.index') }}"

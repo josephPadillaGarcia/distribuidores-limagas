@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use \Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable;
 
-class Service extends Model
+class Service extends Model implements \Mcamara\LaravelLocalization\Interfaces\LocalizedUrlRoutable
 {
     protected $table = 'services';
     protected $guarded = [];
@@ -32,5 +33,15 @@ class Service extends Model
                 return $desired_output;
             }
         }
+    }
+
+    public function getLocalizedRouteKey($locale)
+    {
+        return $this->{'slug_'.$locale};
+    }
+
+    public function resolveRouteBinding($slug)
+    {
+        return static::where('slug_'.config('app.locale'),'=',$slug)->first() ?? abort(404);
     }
 }

@@ -91,13 +91,21 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="row">
-                      <div class="col-12">
-                        <label class="font-weight-bold d-block">Título </label>
+                      <div class="col-12 col-lg-6">
+                        <label class="font-weight-bold d-block">Título ES</label>
                         <p>{{ el.title_es }}</p>
                       </div>
-                      <div class="col-12">
-                        <label class="font-weight-bold d-block">Descripción Corta </label>
+                      <div class="col-12 col-lg-6">
+                        <label class="font-weight-bold d-block">Título EN</label>
+                        <p>{{ el.title_en ? el.title_en : 'No registrado' }}</p>
+                      </div>
+                      <div class="col-12 col-lg-6">
+                        <label class="font-weight-bold d-block">Descripción Corta ES</label>
                         <p>{{ el.excerpt_es }}</p>
+                      </div>
+                       <div class="col-12 col-lg-6">
+                        <label class="font-weight-bold d-block">Descripción Corta ES</label>
+                        <p>{{ el.excerpt_en ? el.excerpt_en : 'No registrado' }}</p>
                       </div>
                       <div class="col-12">
                         <label class="font-weight-bold d-block"
@@ -105,24 +113,6 @@
                         </label>
                         <p>{{ el.active ? "Sí" : "No" }}</p>
                       </div>
-                      <!--<div class="col-12 mb-4">
-                        <button
-                          class="btn btn-link text-primary"
-                          style="padding: 0; text-decoration: underline"
-                          @click="el.seen = !el.seen"
-                        >
-                          {{ el.seen ? "Ocultar" : "Mostrar" }} Descripción
-                        </button>
-                        <template v-if="el.seen">
-                          <label class="font-weight-bold d-block mt-2"
-                            >Descripción
-                          </label>
-                          <pre
-                            class="content-pre"
-                            v-html="el.description_es"
-                          ></pre>
-                        </template>
-                      </div>-->
                     </div>
                   </div>
                 </div>

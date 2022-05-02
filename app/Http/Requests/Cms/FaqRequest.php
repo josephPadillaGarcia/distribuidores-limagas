@@ -25,11 +25,15 @@ class FaqRequest extends FormRequest
     {
         $rules = [
             'question' => 'required',
+            'question_es' => 'required',
+            'question_en' => 'required',
         ];
         $rules = array_merge(
             $rules,
             [
                 'description' => 'required',
+                'description_es' => 'required',
+                'description_en' => 'required',
             ]
         );
 

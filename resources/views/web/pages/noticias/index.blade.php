@@ -66,7 +66,7 @@ id="seccion_banner_global"
     <div class="container">
         <div class="row">
             <div class="list-tabs">
-                <p>Categorías: </p>
+                <p>{{ __("Categorías") }}: </p>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <a class="nav-link @if(Request::is('noticias')) active @endif btn_tab"

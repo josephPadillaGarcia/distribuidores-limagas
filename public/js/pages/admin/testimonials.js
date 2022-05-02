@@ -475,10 +475,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.element.title_es) {
         fd.append("title_es", this.element.title_es);
       }
-      /*if (this.element.title_en) {
-        fd.append("title_en", this.element.title_en);
-      }*/
 
+      if (this.element.title_en) {
+        fd.append("title_en", this.element.title_en);
+      }
 
       if (this.$refs.ref_image.dropzone.files[0]) {
         fd.append("image", this.$refs.ref_image.dropzone.files[0]);
@@ -764,7 +764,7 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
-                                    "\n                Título:\n                "
+                                    "\n                Título ES:\n                "
                                   ),
                                   _c(
                                     "span",
@@ -774,7 +774,30 @@ var render = function() {
                                 ]),
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
-                                  _c("span", {}, [_vm._v("Descripción:")]),
+                                  _vm._v(
+                                    "\n                Título EN:\n                "
+                                  ),
+                                  _c(
+                                    "span",
+                                    { staticClass: "font-weight-normal" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          el.title_en
+                                            ? el.title_en
+                                            : "No registrado"
+                                        )
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "mb-1" }, [
+                                  _c(
+                                    "span",
+                                    { staticClass: "font-weight-normal" },
+                                    [_vm._v("Descripción ES:")]
+                                  ),
                                   _vm._v(" "),
                                   _c("div", {
                                     staticClass: "content-editor-value",
@@ -782,6 +805,27 @@ var render = function() {
                                       innerHTML: _vm._s(el.description_es)
                                     }
                                   })
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "mb-1" }, [
+                                  _c(
+                                    "span",
+                                    { staticClass: "font-weight-normal" },
+                                    [_vm._v("Descripción EN:")]
+                                  ),
+                                  _vm._v(" "),
+                                  el.description_en
+                                    ? _c("div", {
+                                        staticClass: "content-editor-value",
+                                        domProps: {
+                                          innerHTML: _vm._s(el.description_en)
+                                        }
+                                      })
+                                    : _c(
+                                        "div",
+                                        { staticClass: "font-weight-normal" },
+                                        [_vm._v("No registrado")]
+                                      )
                                 ]),
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
