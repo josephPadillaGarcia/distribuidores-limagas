@@ -1,17 +1,6 @@
 <?php
 Route::namespace('Web')->name('web.')->group(function() {
     Route::post('/encuesta','WebController@encuesta')->name('encuesta');
-    /*Route::get('/', 'WebController@index')->name('index');
-    Route::get('/sobre-dinet', 'WebController@aboutUs')->name('aboutUs');
-    Route::get('/politicas-privacidad', 'WebController@privacyPolicies')->name('privacyPolicies');
-    Route::get('/cotizaciones', 'WebController@quotations')->name('quotations');
-    Route::get('/servicios', 'WebController@services')->name('services');
-    Route::get('/servicios/{slug}', 'WebController@service')->name('service');
-    Route::get('/preguntas-frecuentes', 'WebController@faq')->name('faq');
-    Route::get('/noticias', 'WebController@news')->name('news');
-    Route::get('/noticias/categoria/{slug}', 'WebController@newsCategory')->name('newcategory');
-    Route::get('/noticias/categoria/{slug}/{post}', 'WebController@singleNews')->name('singlenews');
-    Route::get('/sucursales', 'WebController@branchoffice')->name('branch-office');*/
 });
 
 Route::group(['prefix' => LaravelLocalization::setLocale(),
@@ -25,28 +14,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get(LaravelLocalization::transRoute('routes.service'), 'Web\WebController@service')->name('service');
     Route::get(LaravelLocalization::transRoute('routes.faq'), 'Web\WebController@faq')->name('faq');
     Route::get(LaravelLocalization::transRoute('routes.news'), 'Web\WebController@news')->name('news');
-    Route::get(LaravelLocalization::transRoute('routes.news-category'), 'Web\WebController@newsCategory')->name('news');
-    Route::get(LaravelLocalization::transRoute('routes.news-category-post'), 'Web\WebController@singleNews')->name('news');
+    Route::get(LaravelLocalization::transRoute('routes.news-category'), 'Web\WebController@newsCategory')->name('news-categories');
+    Route::get(LaravelLocalization::transRoute('routes.news-category-post'), 'Web\WebController@singleNews')->name('new');
     Route::get(LaravelLocalization::transRoute('routes.branch-offices'), 'Web\WebController@branchoffice')->name('branch-office');
 
 });
-
-/*Route::group(['prefix' => '{locale?}', 'where' => ['locale' => '[a-zA-Z]{2}']], function() {
-    Route::namespace('Web')->name('web.')->group(function() {
-        Route::get('/', 'WebController@index')->name('index');
-        Route::get('/about-dinet', 'WebController@aboutUs')->name('aboutUs');
-        Route::get('/privacy-policies', 'WebController@privacyPolicies')->name('privacyPolicies');
-        Route::get('/quotations', 'WebController@quotations')->name('quotations');
-        Route::get('/services', 'WebController@services')->name('services');
-        Route::get('/services/{slug}', 'WebController@service')->name('service');
-        
-        Route::get('/faq', 'WebController@faq')->name('faq');
-        Route::get('/noticias', 'WebController@news')->name('news');
-        Route::get('/noticias/categoria/{slug}', 'WebController@newsCategory')->name('newcategory');
-        Route::get('/noticias/categoria/{slug}/{post}', 'WebController@singleNews')->name('singlenews');
-        Route::get('/sucursales', 'WebController@branchoffice')->name('branch-office');
-    });
-});*/
 
 Route::prefix('admin')->group(function() {
     Route::get('/', 'Cms\Auth\LoginController@showLoginForm')->name('login');

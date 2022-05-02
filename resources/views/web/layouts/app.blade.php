@@ -2,8 +2,20 @@
 $webUrl = config('services.web_url');
 $storageUrl = config('services.storage_url');
 $locale = App::getLocale();
-if(Route::currentRouteName() === 'web.service') {
+if(Route::currentRouteName() == 'service') {
     $page["title_" . $locale] = $service["seo_title_" . $locale];
+    $page["seo_description_" . $locale] = $service["seo_description_" . $locale];
+    $page["seo_keywords_" . $locale] = $service["seo_keywords_" . $locale];
+    $page["seo_image"] = $service["seo_image"];
+}
+if(Route::currentRouteName() == 'news-categories') {
+    $page["title_" . $locale] = $page["title_" . $locale].' '.$category["name_" . $locale];
+}
+if(Route::currentRouteName() == 'new') {
+    $page["title_" . $locale] = $data["new"]["title_" . $locale];
+    $page["seo_description_" . $locale] = $data["new"]["excerpt_" . $locale];
+    $page["seo_keywords_" . $locale] = $data["new"]["seo_keywords_" . $locale];
+    $page["seo_image"] = $data["new"]["thumbnail"];
 }
 @endphp
 <!doctype html>
@@ -41,18 +53,31 @@ if(Route::currentRouteName() === 'web.service') {
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="{{ $page['seo_description_' . $locale] ? $page['seo_description_' . $locale] : '' }}">
     <meta name="name" content="{{ $page['title_' . $locale] ? $page['title_' . $locale] : '' }}">
+
+    @if(Route::currentRouteName() == 'new')
+    <meta name="image" content="{{ $page['seo_image'] ? $storageUrl . '/img/posts/' . $page['seo_image'] : '' }}">
+    <meta name="og:image" content="{{ $page['seo_image'] ? $storageUrl . '/img/posts/' . $page['seo_image'] : '' }}">
+    <meta name="twitter:image" content="{{ $page['seo_image'] ? $storageUrl . '/img/posts/' . $page['seo_image'] : '' }}">
+    @elseif(Route::currentRouteName() == 'service')
+    <meta name="image" content="{{ $page['seo_image'] ? $storageUrl . '/img/services/' . $page['seo_image'] : '' }}">
+    <meta name="og:image" content="{{ $page['seo_image'] ? $storageUrl . '/img/services/' . $page['seo_image'] : '' }}">
+    <meta name="twitter:image" content="{{ $page['seo_image'] ? $storageUrl . '/img/services/' . $page['seo_image'] : '' }}">
+    @else
     <meta name="image" content="{{ $page['seo_image'] ? $storageUrl . '/img/pages/' . $page['seo_image'] : '' }}">
+    <meta name="og:image" content="{{ $page['seo_image'] ? $storageUrl . '/img/pages/' . $page['seo_image'] : '' }}">
+    <meta name="twitter:image" content="{{ $page['seo_image'] ? $storageUrl . '/img/pages/' . $page['seo_image'] : '' }}">
+    @endif
+
     <meta name="keywords" content="{{ $page['seo_keywords_' . $locale] ? $page['seo_keywords_' . $locale] : '' }}">
     <meta name="og:url" content="{{ config('app.url') }}">
     <meta name="og:type" content="website">
     <meta name="og:title" content="{{ $page['title_' . $locale] ? $page['title_' . $locale] : '' }}">
     <meta name="og:description" content="{{ $page['seo_description_' . $locale] ? $page['seo_description_' . $locale] : '' }}">
-    <meta name="og:image" content="{{ $page['seo_image'] ? $storageUrl . '/img/pages/' . $page['seo_image'] : '' }}">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $page['title_' . $locale] ? $page['title_' . $locale] : '' }}">
     <meta name="twitter:description" content="{{ $page['seo_description_' . $locale] ? $page['seo_description_' . $locale] : '' }}">
-    <meta name="twitter:image" content="{{ $page['seo_image'] ? $storageUrl . '/img/pages/' . $page['seo_image'] : '' }}">
-    <meta name="robots" content="index,nofollow">
+    
     <meta property="fb:app_id" content="308191064775859" />
 </head>
 

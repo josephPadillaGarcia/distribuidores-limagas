@@ -291,12 +291,13 @@ class WebController extends Controller
         $categories = Category::has('post')->orderBy('name_es')->get();
         $data = array(
             "page" => $page,
+            "category" => $category,
             "news" => $news,
             "categories" => $categories,
             "content" => $content,
         );
 
-        return view("web.pages.noticias.index", compact('data'));
+        return view("web.pages.noticias.index", compact('data','category'));
     }
 
     public function singleNews(Request $request, $locale = null){

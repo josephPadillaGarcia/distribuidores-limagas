@@ -80,6 +80,8 @@ $information = $menu["information"];
                     </li>
                     @endif
 
+                    @if(Route::currentRouteName() == 'service' || Route::currentRouteName() == 'news-categories' || Route::currentRouteName() == 'new')
+                    @else
                     <li class="nav-item">
                         <div class="dropdown drop-idioma">
                             <button id="dropdown-idioma" class="btn dropdown-toggle drop-idioma-select" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -103,21 +105,6 @@ $information = $menu["information"];
                                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                     @if(LaravelLocalization::getCurrentLocale() != $localeCode )
                                     <li>
-                                        @if(Route::currentRouteName() == 'service')
-                                            @if(LaravelLocalization::getCurrentLocale() == 'en')
-                                                @if(isset($data))
-                                                <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" 
-                                                    href="{{ LaravelLocalization::getURLFromRouteNameTranslated( 'es' , 'routes.service', [ 'slug' => $data['service']['slug_es'] ] ) }}">
-                                                    ES <img src="{{ $storageUrl . '/web/img/bandera-es.png'}}" /></a>
-                                                @endif
-                                            @else
-                                                @if(isset($data))
-                                                <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" 
-                                                href="{{ LaravelLocalization::getURLFromRouteNameTranslated( 'en' , 'routes.service', [ 'slug' => $data['service']['slug_en'] ] ) }}">
-                                                    EN <img src="{{ $storageUrl . '/web/img/bandera-en.png'}}" /></a>
-                                                @endif
-                                            @endif
-                                        @else
                                             @if(LaravelLocalization::getCurrentLocale() == 'en')
                                                 <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" 
                                                 href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
@@ -127,13 +114,13 @@ $information = $menu["information"];
                                                 href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                                                     EN <img src="{{ $storageUrl . '/web/img/bandera-en.png'}}" /></a>
                                             @endif
-                                        @endif
                                     </li>
                                     @endif
                                 @endforeach
                             </ul>
                         </div>
                     </li>
+                    @endif
                 </ul>
             </div>
         </div>
