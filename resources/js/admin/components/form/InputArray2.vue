@@ -34,18 +34,18 @@
       </div>
       <div class="mb-2 mt-2 mt-lg-0 actions d-flex align-items-end col-lg-2" v-if="!disableEdit">
         <button
-          class="btn btn-sm btn-icon-only rounded-circle btn-inverse-info"
+          class="btn btn-sm btn-icon-only rounded-circle btn-inverse-primary"
           @click.prevent="addEl(i)"
           v-if="(array.length - 1) == i"
         >
-          <jam-plus class="current-color" />
+          <i class="ri ri-add-line"></i>
         </button>
         <button
           class="btn btn-sm btn-icon-only rounded-circle btn-inverse-danger"
           @click.prevent="deleteEl(i)"
           v-if="i != 0"
         >
-          <jam-trash-alt class="current-color" />
+           <i class="ri ri-delete-bin-line"></i>
         </button>
       </div>
     </div>

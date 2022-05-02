@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row mb-2" v-for="(el, i) in array.length" :key="'tr'+i">
-      <div v-for="(el, j) in headers" class="col-lg-5" :key="'td'+j">
+      <div v-for="(el, j) in headers" :class="j == 0 ? 'col-8' : 'col-8'" :key="'td'+j">
         <label
           class="font-weight-bold"
           :for="el.variable"
@@ -13,7 +13,8 @@
           :id="el.variable"
           v-model="array[i][el.variable]"
         />
-        <select class="form-control" name :id="el.variable" v-else v-model="array[i][el.variable]">
+        <!--<select :class="['form-control', hideDepartment ? 'd-none' : '']"  :id="el.variable" v-else v-model="array[i][el.variable]">-->
+        <select :class="['form-control']"  :id="el.variable" v-else v-model="array[i][el.variable]">
           <option
             :value="el2.code_department"
             v-for="(el2,i) in selectItems"
@@ -25,20 +26,20 @@
           v-if="errors && errors[fieldName+'.'+i+'.'+el.variable]"
         >{{ errors[fieldName+'.'+i+'.'+el.variable][0] }}</label>
       </div>
-      <div class="mb-2 mt-2 mt-lg-0 actions d-flex align-items-end col-lg-2" v-if="!disableEdit">
+      <div class="mb-2 mt-2 mt-0 actions d-flex align-items-end col" v-if="!disableEdit">
         <button
-          class="btn btn-sm btn-icon-only rounded-circle btn-inverse-info"
+          class="btn btn-sm btn-icon-only rounded-circle btn-inverse-primary"
           @click.prevent="addEl(i)"
           v-if="(array.length - 1) == i"
         >
-          <jam-plus class="current-color" />
+          <i class="ri-add-line text-lg current-color" />
         </button>
         <button
           class="btn btn-sm btn-icon-only rounded-circle btn-inverse-danger"
           @click.prevent="deleteEl(i)"
           v-if="i != 0"
         >
-          <jam-trash-alt class="current-color" />
+          <i class="ri-delete-bin-line text-lg current-color" />
         </button>
       </div>
     </div>
@@ -47,7 +48,10 @@
 <script>
 export default {
   props: {
-    /*disableMessageEdit: String,*/
+    /*hideDepartment: {
+      default: false,
+      type: Boolean
+    },*/
     disableEdit: {
       default: false,
       type: Boolean,

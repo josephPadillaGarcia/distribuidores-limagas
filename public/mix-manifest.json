@@ -47,5 +47,16 @@
     "/vendors~js/pages/admin/blog/post/create~js/pages/admin/blog/post/edit.js": "/vendors~js/pages/admin/blog/post/create~js/pages/admin/blog/post/edit.js",
     "/vendors~js/pages/admin/blog/post/create~js/pages/admin/blog/post/edit~js/pages/admin/dashboard~js/pa~500bcb7c.js": "/vendors~js/pages/admin/blog/post/create~js/pages/admin/blog/post/edit~js/pages/admin/dashboard~js/pa~500bcb7c.js",
     "/vendors~js/pages/admin/configuration/general~js/pages/admin/content/social-networks~js/pages/admin/c~1ed7e5c6.js": "/vendors~js/pages/admin/configuration/general~js/pages/admin/content/social-networks~js/pages/admin/c~1ed7e5c6.js",
-    "/vendors~js/pages/admin/dashboard.js": "/vendors~js/pages/admin/dashboard.js"
+    "/vendors~js/pages/admin/dashboard.js": "/vendors~js/pages/admin/dashboard.js",
+    "/js/pages/admin/app-tracking~js/pages/admin/blog/post/create~js/pages/admin/blog/post/edit~js/pages/a~12af0bf4.js": "/js/pages/admin/app-tracking~js/pages/admin/blog/post/create~js/pages/admin/blog/post/edit~js/pages/a~12af0bf4.js",
+    "/js/pages/admin/blog/category~js/pages/admin/blog/post/create~js/pages/admin/blog/post/index~js/pages~3689c3b4.js": "/js/pages/admin/blog/category~js/pages/admin/blog/post/create~js/pages/admin/blog/post/index~js/pages~3689c3b4.js",
+    "/js/pages/admin/blog/category~js/pages/admin/blog/post/index~js/pages/admin/configuration/general~js/~d5c29e09.js": "/js/pages/admin/blog/category~js/pages/admin/blog/post/index~js/pages/admin/configuration/general~js/~d5c29e09.js",
+    "/js/pages/admin/sucursales.js": "/js/pages/admin/sucursales.js",
+    "/vendors~js/pages/admin/app-tracking~js/pages/admin/blog/category~js/pages/admin/blog/post/create~js/~fbf0feef.js": "/vendors~js/pages/admin/app-tracking~js/pages/admin/blog/category~js/pages/admin/blog/post/create~js/~fbf0feef.js",
+    "/vendors~js/pages/admin/app-tracking~js/pages/admin/blog/category~js/pages/admin/blog/post/index~js/p~d5fbef94.js": "/vendors~js/pages/admin/app-tracking~js/pages/admin/blog/category~js/pages/admin/blog/post/index~js/p~d5fbef94.js",
+    "/vendors~js/pages/admin/app-tracking~js/pages/admin/blog/post/create~js/pages/admin/blog/post/edit~js~250156e5.js": "/vendors~js/pages/admin/app-tracking~js/pages/admin/blog/post/create~js/pages/admin/blog/post/edit~js~250156e5.js",
+    "/vendors~js/pages/admin/app-tracking~js/pages/admin/blog/post/create~js/pages/admin/blog/post/edit~js~aaa3a9eb.js": "/vendors~js/pages/admin/app-tracking~js/pages/admin/blog/post/create~js/pages/admin/blog/post/edit~js~aaa3a9eb.js",
+    "/vendors~js/pages/admin/app-tracking~js/pages/admin/blog/post/create~js/pages/admin/blog/post/edit~js~c21ed78c.js": "/vendors~js/pages/admin/app-tracking~js/pages/admin/blog/post/create~js/pages/admin/blog/post/edit~js~c21ed78c.js",
+    "/vendors~js/pages/admin/configuration/general~js/pages/admin/content/social-networks~js/pages/admin/c~3062200a.js": "/vendors~js/pages/admin/configuration/general~js/pages/admin/content/social-networks~js/pages/admin/c~3062200a.js",
+    "/js/pages/admin/content/general-information~js/pages/admin/sucursales.js": "/js/pages/admin/content/general-information~js/pages/admin/sucursales.js"
 }

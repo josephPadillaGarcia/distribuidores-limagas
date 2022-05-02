@@ -52,6 +52,8 @@ const app = new Vue({
         'posts-category': () => import('./views/noticia/Category.vue' /* webpackChunkName: "js/pages/admin/blog/category" */),
         /*-------------------------------------*/
 
+        'sucursales': () => import('./views/Sucursales.vue' /* webpackChunkName: "js/pages/admin/sucursales" */),
+
         //'slider-index': () => import('./views/slider/Index.vue' /* webpackChunkName: "js/pages/admin/slider/index" */),
         //'slider-create': () => import('./views/slider/Create.vue' /* webpackChunkName: "js/pages/admin/slider/create" */),
         //'slider-edit': () => import('./views/slider/Edit.vue' /* webpackChunkName: "js/pages/admin/slider/edit" */),

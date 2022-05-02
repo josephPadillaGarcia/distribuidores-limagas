@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         //$this->call(MasterPagesFaqSeeder::class);
         #Update 2 
         $this->call(MasterPagesTableSeederSucursales::class);
+        $this->call(MasterModules4TableSeeder::class);
     }
 }

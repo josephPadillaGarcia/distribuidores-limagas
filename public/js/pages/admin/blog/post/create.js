@@ -696,7 +696,7 @@ var render = function() {
                           "button",
                           {
                             staticClass:
-                              "btn btn-sm btn-icon-only rounded-circle btn-inverse-info",
+                              "btn btn-sm btn-icon-only rounded-circle btn-inverse-primary",
                             on: {
                               click: function($event) {
                                 $event.preventDefault()
@@ -704,8 +704,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_c("jam-plus", { staticClass: "current-color" })],
-                          1
+                          [_c("i", { staticClass: "ri ri-add-line" })]
                         )
                       : _vm._e(),
                     _vm._v(" "),
@@ -722,12 +721,7 @@ var render = function() {
                               }
                             }
                           },
-                          [
-                            _c("jam-trash-alt", {
-                              staticClass: "current-color"
-                            })
-                          ],
-                          1
+                          [_c("i", { staticClass: "ri ri-delete-bin-line" })]
                         )
                       : _vm._e()
                   ]

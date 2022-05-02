@@ -203,9 +203,22 @@ Route::prefix('admin')->group(function() {
             Route::post('/', 'AppTrackingController@store')->name('store');
             Route::get('/json/get', 'AppTrackingController@get')->name('get');
         });
+
+        Route::prefix('sucursales')->name('sucursales.')->group(function () {
+            Route::get('/', 'SucursalesController@index')->name('index');
+            Route::post('/', 'SucursalesController@store')->name('store');
+            Route::put('/order', 'SucursalesController@order')->name('order');
+            Route::put('/{element}', 'SucursalesController@update')->name('update');
+            Route::delete('/{element}', 'SucursalesController@destroy')->name('destroy');
+            Route::get('/json/get-all', 'SucursalesController@getAll')->name('get-all');
+            Route::get('/json/get/{element}', 'SucursalesController@get')->name('get');
+        });
     
         #Misc
         Route::get('json/select/categories', 'CmsController@getCategories')->name('json.get-categories');
+        Route::get('json/get-departments', 'CmsController@getDepartmentsParent')->name('json.get-departments');
+        Route::get('json/get-provinces', 'CmsController@getProvincesParent')->name('json.get-provinces');
+        Route::get('json/get-districts', 'CmsController@getDistrictsParent')->name('json.get-districts');
     });
 });
 
