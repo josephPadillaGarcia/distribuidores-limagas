@@ -7,6 +7,7 @@
     $content = $data["content"];
     $offices = $data["offices"];
     $departments = $data["departments"];
+    $storageUrl = config('services.storage_url');
 @endphp
 
 <main>
