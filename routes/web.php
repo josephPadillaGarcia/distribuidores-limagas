@@ -1,4 +1,7 @@
 <?php
+
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 Route::namespace('Web')->name('web.')->group(function() {
     Route::post('/encuesta','WebController@encuesta')->name('encuesta');
     Route::get('ubigeo/provinces', 'WebController@getProvinces')->name('provinces');        
