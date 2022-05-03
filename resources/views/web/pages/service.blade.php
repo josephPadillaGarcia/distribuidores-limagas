@@ -142,8 +142,8 @@
             <div class="container">
                 <div class="row">
                     <div class="titulo_global">
-                        <b> {{ $t("Servicios") }}</b>
-                        <h2 class="">{{ $t("Otras soluciones") }} </h2>
+                        <b> {{ __("Servicios") }}</b>
+                        <h2 class="">{{ __("Otras soluciones") }} </h2>
                     </div>
 
                     <div class="col-lg-12">
@@ -165,8 +165,7 @@
                                         <b class="text-center">{{ $serv["title_" . $locale] }}</b>
                                         <p class="text-center">{{ $serv["excerpt_" . $locale] }}</p>
                                         <a href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.service', [ 'slug' => $service['slug_'.Config::get('app.locale')] ] ) }}" class="btn_global btn_border text-center btn_color_text">
-                                            <!-- $t("Conoce más") -->
-                                            Conoce más
+                                            {{__("Conoce más") }}
                                         </a>
                                     </div>
                                 </div>
