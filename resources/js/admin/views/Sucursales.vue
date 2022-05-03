@@ -46,21 +46,58 @@
           @change="handleChange"
         >
           <div
-            class="col-12 col-md-6 col-lg-3 mb-4"
+            class="col-12 col-md-6 col-lg-4 mb-4"
             v-for="(el, i) in elements"
             :key="el.id"
           >
             <div class="card">
               <div class="card-body">
-                <div class="text-center mb-2">
-                  <img
-                    :src="imagesUrl + '/tutorials/' + el.image"
-                    class="img-fluid d-block mb-2 mx-auto"
-                  />
-                </div>
                 <h3 class="mb-1">
-                  Nombre:
+                  Nombre: <br>
                   <span class="font-weight-normal">{{ el.name }}</span>
+                </h3>
+                <h3 class="mb-1">
+                  Dirección: <br>
+                  <span class="font-weight-normal"><pre class="mb-0" style="font-family: inherit;white-space: pre-wrap;font-size: inherit;">{{ el.direction ? el.direction : 'No registrado'}}</pre></span>
+                </h3>
+                <h3 class="mb-1">
+                  Ubigeo: <br>
+                  <span class="font-weight-normal">{{ el.ubigeo_rel.district }} - {{ el.ubigeo_rel.province }} - {{ el.ubigeo_rel.department }} </span>
+                </h3>
+                <h3 class="mb-1">
+                  Email: <br>
+                  <span class="font-weight-normal" v-if="el.emails">
+                    <template v-for="(e,i) in el.emails">
+                      <span class="d-block" :key="i+'emi'">
+                      {{ e.name }} 
+                        </span>  
+                    </template>
+                  </span>
+                  <span class="font-weight-normal" v-else>
+                    No registrado
+                  </span>
+                </h3>
+                <h3 class="mb-1">
+                  Teléfono: <br>
+                  <span class="font-weight-normal" v-if="el.phone_numbers">
+                    <template v-for="(e,i) in el.phone_numbers">
+                      <a target="_blank" style="text-decoration: underline;" :href="'tel:'+e.number" class="d-block" :key="i+'pn'">
+                      {{ e.number }} 
+                        </a>  
+                    </template>
+                  </span>
+                  <span class="font-weight-normal" v-else>
+                    No registrado
+                  </span>
+                </h3>
+                <h3 class="mb-1">
+                  Horario: <br>
+                  <span class="font-weight-normal"><pre class="mb-0" style="font-family: inherit;white-space: pre-wrap;font-size: inherit;">{{ el.schedule ? el.schedule : 'No registrado'}}</pre></span>
+                </h3>
+                <h3 class="mb-1">
+                  Iframe: <br>
+                  <span class="font-weight-normal" v-if="!el.iframe">No registrado</span>
+                  <div v-else v-html="el.iframe" class="parent-iframe"></div>
                 </h3>
                 <div class="mt-4 text-center">
                   <button
@@ -150,6 +187,7 @@
                 :codeDepartment.sync="element.department"
                 :codeProvince.sync="element.province"
                 :codeDistrict.sync="element.district"
+                :codeUbigeoParent="element.code_ubigeo"
               />
             </div>
             <div class="col-6">
@@ -169,6 +207,7 @@
                 :array.sync="element.phone_numbers"
                 :array-prop="element.phone_numbers"
               />
+              <small class="">Formatos recomendados: <br> Fijos: (054) 444444, Móviles: 9 dígitos</small>
             </div>
             <div class="col-12">
               <div class="form-group">
@@ -219,7 +258,7 @@
       </template>
     </b-modal>
     <destroy
-      element="tutorial"
+      element="sucursal"
       @cancel="restoreEl"
       :open="modalDestroy"
       @submit="destroyConfirm"

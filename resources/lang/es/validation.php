@@ -189,7 +189,7 @@ return [
         'location_es' => 'dirección',
         'direction' => 'dirección',
         'department' => 'departmento',
-        'provincia' => 'provincia',
+        'province' => 'provincia',
         //'iframe_map' => 'mapa iframe',
         'iframe_map' => 'mapa',
         'financial_entities' => 'entidades financieras',

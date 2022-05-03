@@ -29,6 +29,7 @@ const app = new Vue({
         FormIndex: () => import('./components/FormIndex.vue' /* webpackChunkName: "js/components/form-index" */),
         FormHeader: () => import('./components/FormHeader.vue' /* webpackChunkName: "js/components/form-header" */),
         FormQuote: () => import('./components/FormQuote.vue' /* webpackChunkName: "js/components/form-quote" */),
+        UbigeoFilter: () => import('./components/UbigeoFilter.vue' /* webpackChunkName: "js/components/ubigeo-filter" */),
     },
     store,
     i18n: {

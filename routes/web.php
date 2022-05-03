@@ -1,6 +1,8 @@
 <?php
 Route::namespace('Web')->name('web.')->group(function() {
     Route::post('/encuesta','WebController@encuesta')->name('encuesta');
+    Route::get('ubigeo/provinces', 'WebController@getProvinces')->name('provinces');        
+    Route::get('ubigeo/districts', 'WebController@getDistricts')->name('districts');        
 });
 
 Route::group(['prefix' => LaravelLocalization::setLocale(),

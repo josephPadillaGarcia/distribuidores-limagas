@@ -175,7 +175,7 @@
                         <label class="form-check-label" for="acceptedtc">
                             {{ t("Aceptar los") }}
                             <a href="#!">
-                                {{ t("Terminos y Condiciones") }}
+                                {{ t("Términos y Condiciones") }}
                             </a> </label
                         ><span
                             class="error error-red"

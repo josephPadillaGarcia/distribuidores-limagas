@@ -358,10 +358,8 @@ $routeLocale = $footer["routeLocale"];
                     dataType: 'json',
                     success: function (data){
                         if(data){
-                            console.log("MENSAJE ENVIADO");
                         }
                         else{
-                            console.log("LA CAGASTE");
                         }
                     },
                     error: function (data){

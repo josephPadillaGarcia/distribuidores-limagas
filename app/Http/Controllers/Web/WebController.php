@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\AppTracking;
+use App\BranchOffice;
 use App\Category;
 use App\ConfigQuantityPackage;
 use App\Customer;
@@ -29,14 +30,15 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Cms\WorkWithUsRequest;
 use App\Http\Traits\CmsTrait;
-
+use App\Ubigeo;
 
 class WebController extends Controller
 {
     use CmsTrait;
     private $locale;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->locale = App::getLocale();
     }
 
@@ -50,13 +52,15 @@ class WebController extends Controller
         }
     }*/
 
-    public function getSeoPage($slug, $lang){
-        $page = MasterPage::select('id','title_'.$lang,'seo_description_'.$lang,'seo_keywords_'.$lang,'seo_image','slug_'.$lang)->where('slug_en',$slug)->first()->toArray();
+    public function getSeoPage($slug, $lang)
+    {
+        $page = MasterPage::select('id', 'title_' . $lang, 'seo_description_' . $lang, 'seo_keywords_' . $lang, 'seo_image', 'slug_' . $lang)->where('slug_en', $slug)->first()->toArray();
         return $page;
     }
 
-    public function getContentPage($slug){
-        $content = MasterPage::where('slug_en',$slug)->first()->load('sections:id,name,master_page_id','sections.content:id,master_section_id,field,value,value_en,value_es')->sections->toArray();
+    public function getContentPage($slug)
+    {
+        $content = MasterPage::where('slug_en', $slug)->first()->load('sections:id,name,master_page_id', 'sections.content:id,master_section_id,field,value,value_en,value_es')->sections->toArray();
         return $content;
     }
 
@@ -70,7 +74,7 @@ class WebController extends Controller
         $customers = Customer::where('active', 1)->orderBy('index')->get();
         $appTracking = AppTracking::first();
 
-        $social_networks = SocialNetwork::select('id','url','master_social_network_id')->with('master_social_networks:id,icon,name')->orderBy('index','asc')->get();  
+        $social_networks = SocialNetwork::select('id', 'url', 'master_social_network_id')->with('master_social_networks:id,icon,name')->orderBy('index', 'asc')->get();
         $information = Information::first();
 
         $footer = array(
@@ -90,7 +94,7 @@ class WebController extends Controller
 
         //dd($request->all());
 
-       /* $encuesta= new Encuesta();
+        /* $encuesta= new Encuesta();
         $encuesta->num_face = $request->num_face;
         $encuesta->respuesta = $request->respuesta;
 
@@ -99,7 +103,7 @@ class WebController extends Controller
         return view("web.pages.index", compact('data'));
     }
 
-    public function aboutUs($locale = null) 
+    public function aboutUs($locale = null)
     {
         //$this->validateLocale($locale);
         $page = $this->getSeoPage('about-dinet', $this->locale);
@@ -120,7 +124,7 @@ class WebController extends Controller
         return view("web.pages.about-us", compact('data'));
     }
 
-    public function privacyPolicies($locale = null) 
+    public function privacyPolicies($locale = null)
     {
         //$this->validateLocale($locale);
         $page = $this->getSeoPage('privacy-policies', $this->locale);
@@ -134,7 +138,7 @@ class WebController extends Controller
         return view("web.pages.privacy-policies", compact('data'));
     }
 
-    public function quotations($locale = null) 
+    public function quotations($locale = null)
     {
         //$this->validateLocale($locale);
         $page = $this->getSeoPage('quotes', $this->locale);
@@ -152,7 +156,7 @@ class WebController extends Controller
         return view("web.pages.quotations", compact('data'));
     }
 
-    public function services($locale = null) 
+    public function services($locale = null)
     {
         //$this->validateLocale($locale);
         $page = $this->getSeoPage('services', $this->locale);
@@ -170,7 +174,7 @@ class WebController extends Controller
         return view("web.pages.services", compact('data'));
     }
 
-    public function service(Request $request, Service $slug) 
+    public function service(Request $request, Service $slug)
     {
         //$service = Service::where('slug_' . $this->locale, $slug)->where('active',true)->first();
 
@@ -181,12 +185,12 @@ class WebController extends Controller
         // $page = $this->getSeoPage('services', "es");
         $privacy = $this->getContentPage('privacy-policies');
         $appTracking = AppTracking::first();
-        $services = Service::where('active',true)->where('id', '!=', $slug->id)->inRandomOrder()->take(3)->get();
+        $services = Service::where('active', true)->where('id', '!=', $slug->id)->inRandomOrder()->take(3)->get();
         $quantityPackages = ConfigQuantityPackage::where('active', 1)->orderBy('index')->get();
         $content = $this->getContentPage('services');
         $contentQuotes = $this->getContentPage('quotes');
         $data = array(
-            "page" => $page,            
+            "page" => $page,
             'privacy' => $privacy,
             "appTracking" => $appTracking,
             "services" => $services,
@@ -200,7 +204,8 @@ class WebController extends Controller
         return view("web.pages.service", compact('data'));
     }
 
-    public function faq($locale = null){
+    public function faq($locale = null)
+    {
         $page = $this->getSeoPage('faq', $this->locale);
         $faqs = Faq::orderBy('index')->get();
         $content = $this->getContentPage('faq');
@@ -213,9 +218,10 @@ class WebController extends Controller
         return view("web.pages.faq", compact('data'));
     }
 
-    public function encuesta(Request $request){
+    public function encuesta(Request $request)
+    {
         try {
-            $encuesta= new Encuesta();
+            $encuesta = new Encuesta();
             $encuesta->num_face = $request->num_face;
             $encuesta->respuesta = $request->respuesta;
 
@@ -223,10 +229,11 @@ class WebController extends Controller
             return  response()->json($encuesta, 200);
         } catch (\Exception $e) {
             return  response()->json('malo', 500);
-        }   
+        }
     }
 
-    public function workwithUs($locale = null){
+    public function workwithUs($locale = null)
+    {
         $page = $this->getSeoPage('work-with-us', $this->locale);
         $workwus = Puesto::get();
         $data = array(
@@ -236,7 +243,8 @@ class WebController extends Controller
         return view("web.pages.work-with-us", compact('data'));
     }
 
-    public function sendMessage(Request $request, WorkWithUsModal $workwithus){
+    public function sendMessage(Request $request, WorkWithUsModal $workwithus)
+    {
         //$el = request(['name', 'apellido','email','phone','name_file','puesto']);
         try {
             $file_name = $this->setFileName('f-', $request->file('archivo'));
@@ -252,20 +260,21 @@ class WebController extends Controller
             $workwithus->puesto = $request->puesto;
 
             $workwithus->save();
-            
+
             return  response()->json($workwithus, 200);
         } catch (\Exception $e) {
             return  response()->json('malo', 500);
         }
     }
 
-    public function news(Request $request, $locale = null){
+    public function news(Request $request, $locale = null)
+    {
         $page = $this->getSeoPage('news', $this->locale);
-        $news = Post::with('category')->where('published',1);
-        if($request->q){
-            $news = $news->where('title_' . $this->locale, 'like', '%'.$request->q.'%');
+        $news = Post::with('category')->where('published', 1);
+        if ($request->q) {
+            $news = $news->where('title_' . $this->locale, 'like', '%' . $request->q . '%');
         }
-        $news = $news->orderBy('created_at','desc')->paginate(8);
+        $news = $news->orderBy('created_at', 'desc')->paginate(8);
         $content = $this->getContentPage('news');
         $categories = Category::has('post')->orderBy('name_es')->get();
         $data = array(
@@ -278,15 +287,16 @@ class WebController extends Controller
         return view("web.pages.noticias.index", compact('data'));
     }
 
-    public function newsCategory(Request $request, $locale = null){
+    public function newsCategory(Request $request, $locale = null)
+    {
         $category = Category::where('slug_' . $this->locale, $request->slug)->first();
-        if(!$category){
+        if (!$category) {
             return Abort(404);
         }
         $page = $this->getSeoPage('news', $this->locale);
-        $news = Post::with('category')->where('published',1)
-        ->where('category_id',$category->id)
-        ->orderBy('created_at','desc')->paginate(3);
+        $news = Post::with('category')->where('published', 1)
+            ->where('category_id', $category->id)
+            ->orderBy('created_at', 'desc')->paginate(3);
         $content = $this->getContentPage('news');
         $categories = Category::has('post')->orderBy('name_es')->get();
         $data = array(
@@ -297,10 +307,11 @@ class WebController extends Controller
             "content" => $content,
         );
 
-        return view("web.pages.noticias.index", compact('data','category'));
+        return view("web.pages.noticias.index", compact('data', 'category'));
     }
 
-    public function singleNews(Request $request, $locale = null){
+    public function singleNews(Request $request, $locale = null)
+    {
         $category = Category::select('id', 'name_' . $this->locale, 'slug_es', 'slug_en')->where('slug_' . $this->locale, $request->slug)->first();
         if (!$category) {
             return Abort(404);
@@ -324,14 +335,72 @@ class WebController extends Controller
         return view("web.pages.noticias.singlenews", compact('data'));
     }
 
-    public function branchoffice(){
+    public function branchoffice(Request $request)
+    {
         $page = $this->getSeoPage('branch-offices', $this->locale);
         $content = $this->getContentPage('branch-offices');
+        $offices = BranchOffice::with('ubigeoRel');
+        $department = $province = $district = NULL;
+        if($request->department){
+            $department = Ubigeo::where('department', $request->department)->first();
+        }
+        if($request->province){
+            $province = Ubigeo::where('province', $request->province)->where('department', $request->department)->first();
+        }
+        if($request->district){
+            $district = Ubigeo::where('district', $request->district)->where('department', $request->department)->where('province', $request->province)->first();
+        }
+        if($department && !$province && !$district){
+            $offices = $offices->whereHas('ubigeoRel', function ($q) use ($department) {
+                $q->where('code_department',$department->code_department);
+            });
+        }
+        if($department && $province && !$district){
+            $offices = $offices->whereHas('ubigeoRel', function ($q) use ($department, $province) {
+                $q->where('code_department',$department->code_department)->where('code_province',$province->code_province);
+            });
+        }
+        if($department && $province && $district){
+            $offices = $offices->whereHas('ubigeoRel', function ($q) use ($department, $province, $district) {
+                $q->where('code_department',$department->code_department)->where('code_province',$province->code_province)->where('code_district',$district->code_district);
+            });
+        }
+        $offices = $offices->orderBy('index')->get();
+        $departments = Ubigeo::whereHas('branchOfficeRel')->orderBy('code_ubigeo', 'DESC')->groupBy('code_department')->get();
         $data = array(
             "page" => $page,
             "content" => $content,
+            "offices" => $offices,
+            "departments" => $departments
         );
-        return view("web.pages.branch-office", compact('data'));
+        return view("web.pages.branch-office", compact('data'))->with(
+            ['province' => $request->province, 'department' => $request->department,'district' => $request->district]
+        );
     }
 
+    public function getProvinces(Request $request)
+    {
+        $department = Ubigeo::where('department', $request->department)->first();
+        $provinces =  Ubigeo::select( 'code_province', 'province')->distinct()->where('code_department', $department->code_department)
+            ->whereHas('branchOfficeRel', function ($query) {
+                //$query->where('active', 1);
+                return true;
+            })
+            ->where('code_province', '!=', '00')->orderBy('province')->get();
+        return response()->json($provinces, 200);
+    }
+
+    public function getDistricts(Request $request)
+    {
+        $department = Ubigeo::where('department', $request->department)->first();
+        $province = Ubigeo::where('province', $request->province)->first();
+        $districts =  Ubigeo::distinct()->where('code_department', $department->code_department)
+            ->where('code_province', $province->code_province)
+            ->whereHas('branchOfficeRel', function ($query) {
+                //$query->where('active', 1);
+                return true;
+            })
+            ->where('code_district', '!=', '00')->orderBy('district')->get();
+        return response()->json($districts, 200);
+    }
 }

@@ -16,6 +16,14 @@ class BranchOfficeRequest extends FormRequest
         return true;
     }
 
+    public function attributes()
+    {
+        return [
+                'emails.*.name' => 'email',
+                'phone_numbers.*.number' => 'teléfono',
+            ];
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -29,6 +37,10 @@ class BranchOfficeRequest extends FormRequest
             'district'              => 'required',
             'department'            => 'required',
             'province'              => 'required',
+            'emails.*.name' => 'required|email',
+            'emails.*' => 'nullable|sometimes',
+            'phone_numbers.*.number' => 'required',
+            'phone_numbers.*' => 'nullable|sometimes',
         ];
         return $rules;
     }

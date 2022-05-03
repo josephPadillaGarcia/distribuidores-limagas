@@ -33,7 +33,8 @@ return [
         'customer' => 'El cliente',
         'service' => 'El servicio',
         'app_tracking' => 'App de rastreo',
-        'tutorial' => 'El tutorial'
+        'tutorial' => 'El tutorial',
+        'sucursal' => 'La sucursal',
     ],
     'title' => [
         'error' => 'Error',

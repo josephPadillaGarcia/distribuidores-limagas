@@ -26,7 +26,7 @@
     "Conoce más": "Learn more",
     "Empresa": "Business",
     "Celular": "Mobile",
-    "Cantidad estimada de paquetes mensuales": "Cantidad estimada de paquetes mensuales",
+    "Cantidad estimada de paquetes mensuales": "Estimated number of monthly packages",
     "Correo electrónico": "Email",
     "Nombre y Apellidos": "Fullname",
     "Acepto las": "I accept the",
@@ -46,5 +46,12 @@
     "Excelente": "Excellent",
     "Hemos registrado tus datos con éxito. Pronto nos pondremos contacto contigo.": "We have successfully registered your data. We will contact you soon.",
     "Gracias por solicitar información": "Thank you for requesting information",
-    "politicas-privacidad": "privacy-policies"
+    "politicas-privacidad": "privacy-policies",
+    "Aceptar los": "I accept the",
+    "Términos y Condiciones": "terms",
+    "Provincia": "Province",
+    "Distrito": "District",
+    "Departamento": "Department",
+    "Filtrar": "Search",
+    "Limpiar Filtros": "Clear Filters"
 }

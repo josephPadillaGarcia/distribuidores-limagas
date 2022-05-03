@@ -29,6 +29,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('head')
     <style>
+        .parent-iframe iframe{
+            height: 300px;
+            width: 100%;
+        }
         .content-editor-value p {
             line-height: 1.15;
             margin-bottom: 10px;

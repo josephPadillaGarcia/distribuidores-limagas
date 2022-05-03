@@ -1081,7 +1081,8 @@ ACORDEON FAQ
   font-weight: bold;
   color: #F67706 !important;
   border-radius: 50px;
-  margin-top: 10px;
+  margin-
+  : 10px;
 }
 #seccion_tabs .list-tabs ul li .nav-link.active, #section_single_blog .list-tabs ul li .nav-link.active {
   color: #ffffff !important;
@@ -2736,7 +2737,7 @@ section#error-404 {
   height: 100%;
 }
 
-.sucursales__form form .btn-form button{
+.sucursales__form form .btn-form .btn-form__main{
   width: 100%;
   border: none;
   height: 40px;
@@ -2776,6 +2777,13 @@ section#error-404 {
 .sucursales__body ul{
   padding: 0;
 }
+
+.sucursales__body pre{
+  font-family: inherit;
+  white-space: pre-wrap;
+  font-size: 0.9rem;
+}
+
 .sucursales__body ul li{
   display: grid;
   grid-template-columns: auto 1fr;
@@ -2798,6 +2806,7 @@ section#error-404 {
 
 .sucursales__footer iframe {
   border-bottom-left-radius: 10px;
+  height: 250px;
   border-bottom-right-radius: 10px;
 }
 

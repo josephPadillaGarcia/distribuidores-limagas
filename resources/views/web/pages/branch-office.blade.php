@@ -5,6 +5,8 @@
     $page = $data["page"];
     $locale = Config::get('app.locale');
     $content = $data["content"];
+    $offices = $data["offices"];
+    $departments = $data["departments"];
 @endphp
 
 <main>
@@ -43,240 +45,77 @@
             </div>
         </div>
     </section>
-
     <section class="sucursales bottom_section">
         <div class="sucursales__form">
             <div class="container">
                 <div class="row">
-                    <form action="" class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <div class="grupo-form">
-                                    <label for="">
-                                        {{ __("Departamento") }}
-                                    </label>
-                                    <select class="form-select">
-                                        <option value="">lima</option>
-                                        <option value="">Callao</option>
-                                        <option value="">Ica</option>
-                                    </select>
-                                </div>
-                            </div>
-        
-                            <div class="col-lg-3">
-                                <div class="grupo-form">
-                                    <label for="">
-                                        {{ __("Provincia") }}
-                                    </label>
-                                    <select class="form-select">
-                                        <option value="">lima</option>
-                                        <option value="">Callao</option>
-                                        <option value="">Ica</option>
-                                    </select>
-                                </div>
-                            </div>
-        
-                            <div class="col-lg-3">
-                                <div class="grupo-form">
-                                    <label for="">
-                                        {{ __("Distrito") }}
-                                    </label>
-                                    <select class="form-select">
-                                        <option value="">lima</option>
-                                        <option value="">Callao</option>
-                                        <option value="">Ica</option>
-                                    </select>
-                                </div>
-                            </div>
-        
-                            <div class="col-lg-3">
-                                <div class="btn-form">
-                                    <button type="submit">
-                                        Filtrar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    <ubigeo-filter locale="{{ $locale }}"
+                    department-parent="{{ $department }}"
+                    province-parent="{{ $province }}"
+                    district-parent="{{ $district }}"
+                    route-search="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.branch-offices') }}" :departments="{{ $departments }}" route-get-prov="{{ route('web.provinces')}}"
+                    route-get-dis="{{ route('web.districts')}}"/>
                 </div>
             </div>
         </div>
 
         <div class="sucursales__list">
             <div class="container">
-                <div class="row">
+                <div class="row">   
+                    @foreach($offices as $office)
                     <div class="col-lg-4 col-md-6">
                         <div class="sucursales__card">
                             <div class="sucursales__head">
                                 <div class="sucursales__header">
-                                    <b>Lima</b>
+                                    <b>{{ $office->name }}</b>
                                 </div>
                                 <div class="sucursales__body">
                                     <ul>
                                         <li>
                                             <span class="ri-lg ri-map-pin-2-fill"></span>
                                             <p>
-                                                San Borja - Jr. Domenico Morelli 110 Torre 1 Piso 6 San Borja.
+                                                {!! $office->direction !!}
                                             </p>
                                         </li>
-                                        
+                                        @if($office->emails)
                                         <li>
                                             <span class="ri-lg ri-mail-fill"></span>
                                             <p>
-                                                dinet@gmail.com
+                                                @foreach($office->emails as $em)
+                                                <a href="to:{{ $em['name'] }}" target="_blank">  {{ $em['name'] }}</a> <br>
+                                                @endforeach
                                             </p>
                                         </li>
-    
+                                        @endif
+
+                                        @if($office->phone_numbers)
                                         <li>
                                             <span class="ri-lg ri-phone-fill"></span>
                                             <p>
-                                                963258741
+                                                @foreach($office->phone_numbers as $ph)
+                                                    <a href="tel:{{ $ph['number'] }}" target="_blank"> {{ $ph['number'] }}</a>
+                                                @endforeach
                                             </p>
                                         </li>
-    
-                                        <li>
-                                            <span class="ri-lg ri-time-fill"></span>
-                                            <p>
-                                                L- V: 9:00 am - 6:00 pm
-                                            </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="sucursales__footer">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62421.440974056524!2d-77.03938102089843!3d-12.088856299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c7d3f3ae31c3%3A0x1636c7478bc8b1e6!2sDinet%20S.A!5e0!3m2!1ses-419!2spe!4v1650562579009!5m2!1ses-419!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="sucursales__card">
-                            <div class="sucursales__head">
-                                <div class="sucursales__header">
-                                    <b>Lima</b>
-                                </div>
-                                <div class="sucursales__body">
-                                    <ul>
-                                        <li>
-                                            <span class="ri-lg ri-map-pin-2-fill"></span>
-                                            <p>
-                                                San Borja - Jr. Domenico Morelli 110 Torre 1 Piso 6 San Borja.
-                                            </p>
-                                        </li>
+                                        @endif
                                         
-                                        <li>
-                                            <span class="ri-lg ri-mail-fill"></span>
-                                            <p>
-                                                dinet@gmail.com
-                                            </p>
-                                        </li>
-    
-                                        <li>
-                                            <span class="ri-lg ri-phone-fill"></span>
-                                            <p>
-                                                963258741
-                                            </p>
-                                        </li>
-    
+                                        @if($office->direction)
                                         <li>
                                             <span class="ri-lg ri-time-fill"></span>
-                                            <p>
-                                                L- V: 9:00 am - 6:00 pm
-                                            </p>
+                                                <pre>{!! $office->schedule !!}</pre>
                                         </li>
+                                        @endif
                                     </ul>
                                 </div>
                             </div>
+                            @if($office->iframe)
                             <div class="sucursales__footer">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62421.440974056524!2d-77.03938102089843!3d-12.088856299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c7d3f3ae31c3%3A0x1636c7478bc8b1e6!2sDinet%20S.A!5e0!3m2!1ses-419!2spe!4v1650562579009!5m2!1ses-419!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                {!! $office->iframe !!}
                             </div>
+                            @endif
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="sucursales__card">
-                            <div class="sucursales__head">
-                                <div class="sucursales__header">
-                                    <b>Lima</b>
-                                </div>
-                                <div class="sucursales__body">
-                                    <ul>
-                                        <li>
-                                            <span class="ri-lg ri-map-pin-2-fill"></span>
-                                            <p>
-                                                San Borja - Jr. Domenico Morelli 110 Torre 1 Piso 6 San Borja.
-                                            </p>
-                                        </li>
-                                        
-                                        <li>
-                                            <span class="ri-lg ri-mail-fill"></span>
-                                            <p>
-                                                dinet@gmail.com
-                                            </p>
-                                        </li>
-    
-                                        <li>
-                                            <span class="ri-lg ri-phone-fill"></span>
-                                            <p>
-                                                963258741
-                                            </p>
-                                        </li>
-    
-                                        <li>
-                                            <span class="ri-lg ri-time-fill"></span>
-                                            <p>
-                                                L- V: 9:00 am - 6:00 pm
-                                            </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="sucursales__footer">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62421.440974056524!2d-77.03938102089843!3d-12.088856299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c7d3f3ae31c3%3A0x1636c7478bc8b1e6!2sDinet%20S.A!5e0!3m2!1ses-419!2spe!4v1650562579009!5m2!1ses-419!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="sucursales__card">
-                            <div class="sucursales__head">
-                                <div class="sucursales__header">
-                                    <b>Lima</b>
-                                </div>
-                                <div class="sucursales__body">
-                                    <ul>
-                                        <li>
-                                            <span class="ri-lg ri-map-pin-2-fill"></span>
-                                            <p>
-                                                San Borja - Jr. Domenico Morelli 110 Torre 1 Piso 6 San Borja.
-                                            </p>
-                                        </li>
-                                        
-                                        <li>
-                                            <span class="ri-lg ri-mail-fill"></span>
-                                            <p>
-                                                dinet@gmail.com
-                                            </p>
-                                        </li>
-    
-                                        <li>
-                                            <span class="ri-lg ri-phone-fill"></span>
-                                            <p>
-                                                963258741
-                                            </p>
-                                        </li>
-    
-                                        <li>
-                                            <span class="ri-lg ri-time-fill"></span>
-                                            <p>
-                                                L- V: 9:00 am - 6:00 pm
-                                            </p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="sucursales__footer">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62421.440974056524!2d-77.03938102089843!3d-12.088856299999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c7d3f3ae31c3%3A0x1636c7478bc8b1e6!2sDinet%20S.A!5e0!3m2!1ses-419!2spe!4v1650562579009!5m2!1ses-419!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -285,3 +124,15 @@
 </main>
 
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+    function getPr(e){
+        let value = document.getElementById("department").value;
+        console.log(value);
+        fetch('{{ route("web.provinces", array("department" => ":value") ) }}')
+        .then(response => response.json())
+        .then(data => console.log(data));
+    }
+</script>
+@endpush
