@@ -270,6 +270,12 @@ export default {
       if (this.el.title_es) {
         fd.append("title_es", this.el.title_es);
       }
+      if (this.el.description_en) {
+        fd.append("description_en", this.el.description_en);
+      }
+      if (this.el.title_en) {
+        fd.append("title_en", this.el.title_en);
+      }
       if (this.el.image) {
         fd.append("image", this.el.image);
       }

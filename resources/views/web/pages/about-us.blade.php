@@ -93,7 +93,7 @@
                         $video_somos = "";
                         if(in_array("url_video", $somos["content_formatted"])) {
                           $index = array_search("url_video", array_column($somos["content"], 'field'));
-                          $video_somos = $storageUrl . '/img/content/' . $somos["content"][$index]["value_" . $locale];
+                          $video_somos = $somos["content"][$index]["value_es"];
                         }
                       @endphp
                         <div class="video_nosotros position-relative">

@@ -93,8 +93,8 @@
                         $uploadImageUploadComponent(
                           $event,
                           $refs.ref_content[0],
-                          250000,
-                          '500kb',
+                          300000,
+                          '250kb',
                           'pages'
                         )
                       "
@@ -112,6 +112,7 @@
                                 :errors="errors"
                                 :label="field.name"
                                     variable="value"
+                                    :showEnglish="field.variable == 'url_tutos' || field.variable == 'url_video' ? false : true"
                                     :valueEn.sync="fields[index].value_en"
                                     :valueEs.sync="fields[index].value_es"
                                     :valueEnParent="fields[index].value_en"

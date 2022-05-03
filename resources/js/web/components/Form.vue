@@ -148,7 +148,7 @@
                         />
                         <label class="form-check-label" for="accepted">
                             {{ t("Acepto las") }}
-                            <a :href="localePath('politicas-privacidad', locale)">
+                            <a :href="'/'+localePath('politicas-privacidad', locale)">
                                 {{ t("políticas de privacidad web") }}
                             </a> </label
                         ><span

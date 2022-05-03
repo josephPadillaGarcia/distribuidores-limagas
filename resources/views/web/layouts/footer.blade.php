@@ -73,7 +73,7 @@ $routeLocale = $footer["routeLocale"];
                             @if($information['link_work_with_us'])
                             <a href="{{ $information['link_work_with_us'] }}" target="_link">
                                 <img class="lazyload" src="/storage/web/img/maletin.png" alt="trabaja con nosotros" />
-                                Trabaja con nosotros
+                                {{ __("Trabaja con nosotros") }}
                             </a>
                             @endif
                         </li>
