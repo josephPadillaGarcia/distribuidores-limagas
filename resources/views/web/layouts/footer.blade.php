@@ -228,7 +228,7 @@ $routeLocale = $footer["routeLocale"];
                 </button>
             </div>
             <div class="encuesta__body">
-                <p><strong>Gracias por tu opinión</strong></p>
+                <p><strong>{{ __("Gracias por tu opinión") }}</strong></p>
             </div>
             <div class="encuesta__action">
             </div>
