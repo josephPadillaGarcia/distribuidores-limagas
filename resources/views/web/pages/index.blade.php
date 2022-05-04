@@ -265,7 +265,7 @@
           $count_a_experience = "";
           if(in_array('count_1', $experience["content_formatted"])) {
             $index = array_search("count_1", array_column($experience["content"], 'field'));
-            $count_a_experience = $experience["content"][$index]["value_" . $locale];
+            $count_a_experience = $experience["content"][$index]["value_es"];
           }
 
           $feature_a_experience = "";
@@ -283,7 +283,7 @@
           $count_b_experience = "";
           if(in_array('count_2', $experience["content_formatted"])) {
             $index = array_search("count_2", array_column($experience["content"], 'field'));
-            $count_b_experience = $experience["content"][$index]["value_" . $locale];
+            $count_b_experience = $experience["content"][$index]["value_es"];
           }
 
           $feature_b_experience = "";
@@ -301,7 +301,7 @@
           $count_c_experience = "";
           if(in_array('count_3', $experience["content_formatted"])) {
             $index = array_search("count_3", array_column($experience["content"], 'field'));
-            $count_c_experience = $experience["content"][$index]["value_" . $locale];
+            $count_c_experience = $experience["content"][$index]["value_es"];
           }
 
           $feature_c_experience = "";

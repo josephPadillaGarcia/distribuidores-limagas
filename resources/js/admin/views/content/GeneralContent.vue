@@ -112,7 +112,7 @@
                                 :errors="errors"
                                 :label="field.name"
                                     variable="value"
-                                    :showEnglish="field.variable == 'url_tutos' || field.variable == 'url_video' ? false : true"
+                                    :showEnglish="field.variable == 'url_tutos' || field.variable == 'url_video' || field.variable == 'count_1' || field.variable == 'count_2' || field.variable == 'count_3' ? false : true"
                                     :valueEn.sync="fields[index].value_en"
                                     :valueEs.sync="fields[index].value_es"
                                     :valueEnParent="fields[index].value_en"
