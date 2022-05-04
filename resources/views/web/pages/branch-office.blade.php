@@ -94,13 +94,13 @@
                                             <span class="ri-lg ri-phone-fill"></span>
                                             <p>
                                                 @foreach($office->phone_numbers as $ph)
-                                                    <a href="tel:{{ $ph['number'] }}" target="_blank"> {{ $ph['number'] }}</a>
+                                                    <a href="tel:{{ $ph['number'] }}" target="_blank"> {{ $ph['number'] }}</a> <br>
                                                 @endforeach
                                             </p>
                                         </li>
                                         @endif
                                         
-                                        @if($office->direction)
+                                        @if($office->schedule)
                                         <li>
                                             <span class="ri-lg ri-time-fill"></span>
                                                 <pre>{!! $office->schedule !!}</pre>
