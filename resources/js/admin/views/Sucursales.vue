@@ -35,68 +35,116 @@
       </div>
       <div v-else>
         <div class="row" v-if="elements.length">
+          <div class="col-12 col-md-6 mb-4">
+            <div class="input-group input-group-merge">
+              <div class="input-group-prepend bg-white">
+                <span id="search" class="input-group-text bg-white"
+                  ><i class="current-color ri-search-line"></i
+                ></span>
+              </div>
+              <input
+                v-model="q"
+                type="search"
+                placeholder="Buscar por Nombre Sucursal"
+                aria-label="search"
+                aria-describedby="search"
+                class="form-control bg-white"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row" v-if="elements.length">
           <div class="col-12">
-            <i class="d-block mb-4">{{ messageOrder }}</i>
+            <i class="d-block mb-4" v-if="!q">{{ messageOrder }}</i>
           </div>
         </div>
         <draggable
           class="row"
-          v-if="elements.length"
+          v-if="filteredElements.length"
           v-model="elements"
           @change="handleChange"
+          :move="handleMove"
         >
           <div
             class="col-12 col-md-6 col-lg-4 mb-4"
-            v-for="(el, i) in elements"
+            v-for="(el, i) in filteredElements"
             :key="el.id"
           >
             <div class="card">
               <div class="card-body">
                 <h3 class="mb-1">
-                  Nombre: <br>
+                  Nombre: <br />
                   <span class="font-weight-normal">{{ el.name }}</span>
                 </h3>
                 <h3 class="mb-1">
-                  Dirección: <br>
-                  <span class="font-weight-normal"><pre class="mb-0" style="font-family: inherit;white-space: pre-wrap;font-size: inherit;">{{ el.direction ? el.direction : 'No registrado'}}</pre></span>
+                  Dirección: <br />
+                  <span class="font-weight-normal">
+                    <pre
+                      class="mb-0"
+                      style="
+                        font-family: inherit;
+                        white-space: pre-wrap;
+                        font-size: inherit;
+                      "
+                      >{{ el.direction ? el.direction : "No registrado" }}</pre
+                    >
+                  </span>
                 </h3>
                 <h3 class="mb-1">
-                  Ubigeo: <br>
-                  <span class="font-weight-normal">{{ el.ubigeo_rel.district }} - {{ el.ubigeo_rel.province }} - {{ el.ubigeo_rel.department }} </span>
+                  Ubigeo: <br />
+                  <span class="font-weight-normal"
+                    >{{ el.ubigeo_rel.district }} -
+                    {{ el.ubigeo_rel.province }} -
+                    {{ el.ubigeo_rel.department }}
+                  </span>
                 </h3>
                 <h3 class="mb-1">
-                  Email: <br>
+                  Email: <br />
                   <span class="font-weight-normal" v-if="el.emails">
-                    <template v-for="(e,i) in el.emails">
-                      <span class="d-block" :key="i+'emi'">
-                      {{ e.name }} 
-                        </span>  
+                    <template v-for="(e, i) in el.emails">
+                      <span class="d-block" :key="i + 'emi'">
+                        {{ e.name }}
+                      </span>
                     </template>
                   </span>
-                  <span class="font-weight-normal" v-else>
-                    No registrado
-                  </span>
+                  <span class="font-weight-normal" v-else> No registrado </span>
                 </h3>
                 <h3 class="mb-1">
-                  Teléfono: <br>
+                  Teléfono: <br />
                   <span class="font-weight-normal" v-if="el.phone_numbers">
-                    <template v-for="(e,i) in el.phone_numbers">
-                      <a target="_blank" style="text-decoration: underline;" :href="'tel:'+e.number" class="d-block" :key="i+'pn'">
-                      {{ e.number }} 
-                        </a>  
+                    <template v-for="(e, i) in el.phone_numbers">
+                      <a
+                        target="_blank"
+                        style="text-decoration: underline"
+                        :href="'tel:' + e.number"
+                        class="d-block"
+                        :key="i + 'pn'"
+                      >
+                        {{ e.number }}
+                      </a>
                     </template>
                   </span>
-                  <span class="font-weight-normal" v-else>
-                    No registrado
+                  <span class="font-weight-normal" v-else> No registrado </span>
+                </h3>
+                <h3 class="mb-1">
+                  Horario: <br />
+                  <span class="font-weight-normal">
+                    <pre
+                      class="mb-0"
+                      style="
+                        font-family: inherit;
+                        white-space: pre-wrap;
+                        font-size: inherit;
+                      "
+                      >{{ el.schedule ? el.schedule : "No registrado" }}</pre
+                    >
                   </span>
                 </h3>
                 <h3 class="mb-1">
-                  Horario: <br>
-                  <span class="font-weight-normal"><pre class="mb-0" style="font-family: inherit;white-space: pre-wrap;font-size: inherit;">{{ el.schedule ? el.schedule : 'No registrado'}}</pre></span>
-                </h3>
-                <h3 class="mb-1">
-                  Iframe: <br>
-                  <span class="font-weight-normal" v-if="!el.iframe">No registrado</span>
+                  Iframe: <br />
+                  <span class="font-weight-normal" v-if="!el.iframe"
+                    >No registrado</span
+                  >
                   <div v-else v-html="el.iframe" class="parent-iframe"></div>
                 </h3>
                 <div class="mt-4 text-center">
@@ -203,11 +251,16 @@
               <InputSelectArray
                 fieldName="phone_numbers"
                 :errorsProp.sync="errors"
-                :headers="[{ variable: 'number', label: 'Teléfonos (Opcional)' }]"
+                :headers="[
+                  { variable: 'number', label: 'Teléfonos (Opcional)' },
+                ]"
                 :array.sync="element.phone_numbers"
                 :array-prop="element.phone_numbers"
               />
-              <small class="">Formatos recomendados: <br> Fijos: (054) 444444, Móviles: 9 dígitos</small>
+              <small class=""
+                >Formatos recomendados: <br />
+                Fijos: (054) 444444, Móviles: 9 dígitos</small
+              >
             </div>
             <div class="col-12">
               <div class="form-group">
@@ -227,7 +280,9 @@
             </div>
             <div class="col-12">
               <div class="form-group">
-                <label class="font-weight-bold" for="">Iframe Mapa(Opcional)</label>
+                <label class="font-weight-bold" for=""
+                  >Iframe Mapa(Opcional)</label
+                >
                 <textarea
                   cols="6"
                   class="form-control"
@@ -323,6 +378,7 @@ export default {
         image: "",
         active: true,
       },
+      q: "",
       dropzoneOptions: {
         url: "/",
         maxFiles: 1,
@@ -335,7 +391,16 @@ export default {
     };
   },
   methods: {
+    handleMove(){
+      if(this.q){
+        return false;
+      }
+      return true;
+    },
     handleChange() {
+      if(this.q){
+        return false;
+      }
       axios
         .put(this.routeOrder, this.elements)
         .then((response) => {
@@ -499,5 +564,25 @@ export default {
   created() {
     this.getEls();
   },
+  /*watch: {
+    // whenever question changes, this function will run
+    q(newValue, oldValue) {
+      if (newQuestion.indexOf('?') > -1) {
+        this.getAnswer()
+      }
+    }
+  },*/
+  computed: {
+    filteredElements: function() {
+      let filtered = this.elements;
+      if (this.q) {
+        filtered = this.elements.filter(
+          e =>
+            e.name.toUpperCase().includes(this.q.toUpperCase()) == true
+        );
+      }
+      return filtered;
+    },
+  }
 };
 </script>
