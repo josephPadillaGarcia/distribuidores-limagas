@@ -237,6 +237,20 @@ $routeLocale = $footer["routeLocale"];
     
 </form>
 
+<div class="aviso-cookies" id="aviso-cookies">
+    <div class="aviso-cookies-content">
+        <div class="aviso-cookies-body">
+            <!--h3 class="titulo">Cookies</h3-->
+            <p class="parrafo">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley, acepta nuestra <a class="enlace" href="{{ route('privacyPolicies') }}">Políticas de privacidad web</a>.</p>
+        </div>
+        <div class="aviso-cookies-buttons">
+            <button class="boton" id="btn-aceptar-cookies">De acuerdo</button>
+            <a class="enlace" href="#!" id="close-cookies">Rechazar cokkies</a>
+        </div>
+    </div>
+</div>
+<div class="fondo-aviso-cookies" id="fondo-aviso-cookies"></div>
+
 </footer>
 
 
@@ -411,6 +425,37 @@ $routeLocale = $footer["routeLocale"];
         });
 
         /* ====================================================== */
+        /* Cookies */
+
+        var $botonAceptarCookies = $('#btn-aceptar-cookies');
+        var $avisoCookies = $('#aviso-cookies');
+        var $fondoAvisoCookies = $('#fondo-aviso-cookies');
+        var $close = $('#close-cookies');
+
+        dataLayer = [];
+
+        if(!localStorage.getItem('cookies-aceptadas')){
+            $avisoCookies.addClass('activo');
+            $fondoAvisoCookies.addClass('activo');
+        } else {
+            dataLayer.push({'event': 'cookies-aceptadas'});
+        }
+
+        $botonAceptarCookies.click(function(){
+            $avisoCookies.removeClass('activo');
+            $fondoAvisoCookies.removeClass('activo');
+
+            localStorage.setItem('cookies-aceptadas', true);
+
+            dataLayer.push({'event': 'cookies-aceptadas'});
+        });
+
+        $close.click(function(){
+            $avisoCookies.removeClass('activo');
+            $fondoAvisoCookies.removeClass('activo');
+        });
+
+        /*-----------------------------*/
 
         
     });

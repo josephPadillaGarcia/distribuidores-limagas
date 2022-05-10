@@ -2862,3 +2862,121 @@ section#error-404 {
   grid-template-columns: auto auto;
   align-items: center;
 }
+
+/*--------------------------------*/
+/* ESTILOS DE COOKIES */
+
+.aviso-cookies {
+	display: none;
+    background: #fff;
+    padding: 20px 40px;
+    width: 100%;
+    max-width: 100%;
+    line-height: 150%;
+    border-radius: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10000;
+    box-shadow: none;
+}
+
+.aviso-cookies.activo {
+	display: block;
+}
+
+.aviso-cookies .galleta {
+	max-width: 100px;
+	position: absolute;
+	top: -50px;
+	left: calc(50% - 50px);
+}
+
+.aviso-cookies .titulo,
+.aviso-cookies .parrafo {
+	margin-bottom: 0;
+    color: #343434;
+}
+
+.aviso-cookies .boton {
+	width: 200px;
+	background: #f67706;
+	border: none;
+	color: #fff;
+	text-align: center;
+	padding: 15px 20px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: .3s ease all;
+	border-radius: 50px;
+	margin-bottom: 0;
+	font-size: 14px;
+}
+
+/*.aviso-cookies .boton:hover {
+	background: #000;
+}*/
+
+.aviso-cookies .enlace {
+	color: #f67706;
+	font-size: 14px;  
+  text-align: center;
+}
+
+.aviso-cookies .enlace:hover {
+	text-decoration: underline !important;
+}
+
+.fondo-aviso-cookies {
+	display: none;
+	background: rgba(0,0,0,.20);
+	position: fixed;
+	z-index: 9900;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+}
+
+.fondo-aviso-cookies.activo {
+	display: block;
+}
+
+.aviso-cookies-content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 22px;
+}
+
+.aviso-cookies-buttons {
+  display: grid;
+  grid-template-columns: 1fr auto;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 18px;
+}
+
+@media (max-width: 1000px) {
+  .aviso-cookies .boton {
+    width: 200px !important;
+  }
+  .aviso-cookies-content {
+    display: block !important;
+  }
+  .aviso-cookies-buttons {
+    grid-template-columns: repeat(3, auto);
+    margin-top: 15px;
+    justify-content: start;
+  }
+}
+
+@media (max-width: 500px) {
+  .aviso-cookies .boton {
+    width: 100% !important;
+  }
+  .aviso-cookies-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*=================================*/
