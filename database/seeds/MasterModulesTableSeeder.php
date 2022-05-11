@@ -166,6 +166,14 @@ class MasterModulesTableSeeder extends Seeder
                     'index'    => 2
                 ],
 
+            [
+                'name' 	=> 'Editor',
+                'slug' 		=> 'editor',
+                'parent' 	=> NULL,
+                'icon' 		=> 'code',
+                'index'    => 20
+            ],
+
         ]); 
     }
 }

@@ -184,6 +184,11 @@ Route::prefix('admin')->group(function() {
                 Route::post('/filter-export', 'LeadTraditionalController@filterExport')->name('filter-export');
         });
 
+        Route::prefix('editor')->name('editor.')->group(function () {
+            Route::get('/', 'EditorCodeController@index')->name('index');
+            Route::get('/', 'EditorCodeController@script')->name('script');
+        });
+
         Route::namespace('Encuesta')->prefix('encuestas')->name('encuestas.')->group(function () {
             Route::get('/', 'EncuestasController@index')->name('index');
             Route::get('/json/get-all', 'EncuestasController@getAll')->name('get-all');

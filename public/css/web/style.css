@@ -2980,3 +2980,12 @@ section#error-404 {
 }
 
 /*=================================*/
+
+/* ESTILOS DE EDITOR DE SCRIPTS Y ESTILOS */
+
+.content-editor{
+  width: 100%;
+  height: 300px;
+  background-color: red;
+  overflow-x: auto;
+}
