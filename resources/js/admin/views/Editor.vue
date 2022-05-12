@@ -15,31 +15,46 @@
     <!-- ======================================================== -->
 
     <div class="container-fluid mt--6">
-      <div class="row">
-        <div class="col-12 col-md-6 col-lg-6 mb-6">
-          <div class="form-group">
-            <div class="mt-2">
-              <label for="Agregar Scripts" class="font-weight-bold"
-                >Agregar Scripts:</label
-              >
-            </div>
-            <textarea cols="40" class="form-control"></textarea>
-            <div class="content-editor">
+      
+      
+      
+        <draggable class="row" 
+          v-if="elements.length" 
+          v-model="elements"         
+        >
 
-            </div>
-          </div>
-          <a
-            href="#"
-            class="btn btn-icon btn-inverse-primary"
-            @click.prevent="newElScript"
+          <div class="col-12 col-md-6 col-lg-6 mb-6" 
+          v-for="(el,i) in elements"
+          :key="el.id"
           >
-            <span class="btn-inner--icon">
-              <i class="ri-add-line current-color ri-lg" />
-            </span>
-            <span class="btn-inner--text">Editar Scripts</span>
-          </a>
-        </div>
-        <div class="col-12 col-md-6 col-lg-6 mb-6">
+            <div class="form-group">
+              <div class="mt-2">
+                <label for="Agregar Scripts" class="font-weight-bold"
+                  >Agregar Scripts:</label
+                >
+              </div>
+              <!--textarea cols="40" class="form-control"></textarea-->
+              <div class="content-editor">
+                {{ el.codescript }}
+              </div>
+            </div>
+            <a
+              href="#"
+              class="btn btn-icon btn-inverse-primary"
+              @click.prevent="newElScript"
+            >
+              <span class="btn-inner--icon">
+                <i class="ri-add-line current-color ri-lg" />
+              </span>
+              <span class="btn-inner--text">Editar Scripts</span>
+            </a>
+          </div>
+
+        </draggable>
+
+
+        <draggable class="row">
+          <div class="col-12 col-md-6 col-lg-6 mb-6">
           <form action="">
             <div class="form-group">
               <div class="mt-2">
@@ -47,12 +62,15 @@
                   >Agregar Estilos:</label
                 >
               </div>
-              <textarea cols="40" class="form-control"></textarea>
+              <!--textarea cols="40" class="form-control"></textarea-->
+              <div class="content-editor" id="editorstyle">
+                {{ elements }}
+              </div>
             </div>
             <a
             href="#"
             class="btn btn-icon btn-inverse-primary"
-            @click.prevent="newElStyle"
+            @click.prevent="getEls"
           >
             <span class="btn-inner--icon">
               <i class="ri-add-line current-color ri-lg" />
@@ -61,7 +79,10 @@
           </a>
           </form>
         </div>
-      </div>
+        </draggable>
+      
+
+
     </div>
 
     <!-- ////////////////////////// -->
@@ -77,7 +98,7 @@
       body-class="pt-0"
     >
       <template slot="modal-title">
-        <div class="text-primary h2">Editar {{ title }}</div>
+        <div class="text-primary h2">Editar {{ titlemodal }}</div>
       </template>
 
       <template slot="modal-header-close">
@@ -92,10 +113,14 @@
               <div class="form-group">
                 <div class="mt-2">
                   <label for="" class="font-weight-bold"
-                    >Agregar {{ title }}:</label
+                    >Agregar {{ titlemodal }}:</label
                   >
                 </div>
-                <textarea cols="40" class="form-control"></textarea>
+                <textarea
+                  cols="6"
+                  class="form-control"
+                  v-model="element.codescript"
+                />
               </div>
             </div>
           </div>
@@ -105,7 +130,7 @@
       <template v-slot:modal-footer="{ ok }">
         <Button
           :classes="['btn-inverse-primary']"
-          :text="title == 'Nuevo' ? 'Crear' : 'Actualizar'"
+          :text="titlebtn == 'Nuevo' ? 'Crear' : 'Actualizar'"
           @click="submit"
           :request-server="requestSubmit"
         ></Button>
@@ -119,15 +144,30 @@
   </div>
 </template>
 
+<style scoped>
 
+.content-editor{
+  background-color: #fbfaf7;
+  width: 100%;
+  height: 250px;
+  overflow-x: auto;
+  border: 1px solid #e7e7e7;
+  padding: 30px;
+}
+
+.textarea-code{
+  height: 200px;
+}
+
+</style>
 
 <script>
 import BreadCrumb from "../components/BreadCrumb";
-/*import draggable from "vuedraggable";
-import vue2Dropzone from "vue2-dropzone";*/
+import draggable from "vuedraggable";
+/*import vue2Dropzone from "vue2-dropzone";*/
 import Button from "../components/Button";
-/*import Input from "../components/form/Input";
-import { Skeleton } from "vue-loading-skeleton";
+import Textcode from "../components/form/Textareacode";
+/*import { Skeleton } from "vue-loading-skeleton";
 import { quillEditor } from "vue-quill-editor";
 import Editor from "../components/form/Editor";
 /*import Destroy from "../components/modals/Destroy";
@@ -139,41 +179,43 @@ export default {
     /*messageCantDelete: String,
     Destroy,*/
     Button,
+    Textcode,
     /*Input,
     vueDropzone: vue2Dropzone,
     Skeleton,
-    SkeletonForm,
+    SkeletonForm,*/
     draggable,
-    Input,
-    Editor,
+    //Input,
+    //Editor,
     /*NoData,
     quillEditor,*/
   },
   props: {
     route: String,
     routeGetAll: String,
-    routeOrder: String,
-    messageOrder: String,
+    /*routeOrder: String,
+    messageOrder: String,*/
   },
   data() {
     return {
       modalCreateUpdate: false,
       modalDestroy: false,
-      title: "",
+      titlebtn: "",
+      titlemodal:"",
       requestSubmit: false,
-      /*errors: {},
-      requestSubmit: false,
-      modalCreateUpdate: false,
-      modalDestroy: false,
+      value: "",
+      errors: {},
+     /* modalCreateUpdate: false,
+      modalDestroy: false,*/
       loadingGet: false,
       loadingEls: false,
-      loadingSubmit: false,
+      /*loadingSubmit: false,*/
       elements: {},
-      title: "",
+      //title: "",
       element: {
         active: true,
       },
-      dropzoneOptions: {
+      /*dropzoneOptions: {
         url: "/",
         maxFiles: 1,
         autoProcessQueue: false,
@@ -184,7 +226,7 @@ export default {
     };
   },
   methods: {
-    handleChange() {
+    /*handleChange() {
       axios
         .put(this.routeOrder, this.elements)
         .then((response) => {
@@ -212,9 +254,9 @@ export default {
             },
           });
         });
-    },
+    },*/
 
-    destroyConfirm() {
+    /*destroyConfirm() {
       this.requestSubmit = true;
       axios
         .delete(this.route + "/" + this.element.id)
@@ -245,15 +287,17 @@ export default {
           });
           this.restoreEl();
         });
-    },
+    },*/
 
-    newElScript() {
-      this.title = "Script";
-      this.modalCreateUpdate = true;
+    newElScript() {      
+        this.titlebtn="Nuevo",
+        this.titlemodal="Script",
+        this.modalCreateUpdate = true;      
     },
 
     newElStyle() {
-      this.title = "Style";
+      this.titlebtn="Nuevo",
+      this.titlemodal="Style",
       this.modalCreateUpdate = true;
     },
 
@@ -269,56 +313,20 @@ export default {
       this.requestSubmit = true;
       let url;
       let method;
-      const like = 0;
-      const dislike = 0;
       const fd = new FormData();
 
-      if (this.title == "Nuevo") {
+      if(this.titlebtn == "Nuevo"){
         url = this.route;
         method = "post";
-      } else {
-        url = this.route + "/" + this.element.id;
-        method = "post";
-        fd.append("_method", "put");
-      }
-      if (this.element.question) {
-        fd.append("question", this.element.question);
       }
 
-      if (this.element.description) {
-        fd.append("description", this.element.description);
+      if (this.element.codescript) {
+        fd.append("codescript", this.element.codescript);
       }
 
-      if (this.element.question) {
-        fd.append("question_es", this.element.question);
-      }
-
-      if (this.element.description) {
-        fd.append("description_es", this.element.description);
-      }
-
-      if (this.element.question_en) {
-        fd.append("question_en", this.element.question_en);
-      }
-
-      if (this.element.description_en) {
-        fd.append("description_en", this.element.description_en);
-      }
-
-      fd.append("like", like);
-      fd.append("dislike", dislike);
-
-      //console.log(url);
-      /*console.log(this.element.question);
-      console.log(this.element.description);      
-      console.log(like);
-      console.log(dislike);      
-      console.log(fd);*/
-      /*if (this.element.active == true) {
-        fd.append("active", 1);
-      } else {
-        fd.append("active", 0);
-      }*/
+      /*console.log(url);
+      console.log(this.titlebtn);
+      console.log(this.element.codescript);*/
 
       axios({
         method: method,

@@ -24,12 +24,16 @@
       </span>
       <span class="btn-inner--text">Inglés</span>
     </a>
+
     <div class="d-inline-block ml-auto text-danger mt-1" v-if="countErrors">{{ countErrors }}  {{ countErrors > 1 ? 'Errores' : 'Error'}}</div>
     </div>
+
     <div class="mt-2">
       <label class="font-weight-bold" :for="label+random">{{ label }}:</label>
     </div>
+
     <textarea cols="10" class="form-control" v-model="value[ active ]" />
+    
     <div v-for="(el,i) in errors" :key="i">
       <label class="text-danger text-sm d-block" v-if="i == variable+'_'+active">{{ el[0] }}</label>
     </div>

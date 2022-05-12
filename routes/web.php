@@ -186,7 +186,8 @@ Route::prefix('admin')->group(function() {
 
         Route::prefix('editor')->name('editor.')->group(function () {
             Route::get('/', 'EditorCodeController@index')->name('index');
-            Route::get('/', 'EditorCodeController@script')->name('script');
+            Route::post('/script', 'EditorCodeController@storeScript')->name('store-script');
+            Route::get('/json/get-all', 'EditorCodeController@getAll')->name('get-all');
         });
 
         Route::namespace('Encuesta')->prefix('encuestas')->name('encuestas.')->group(function () {

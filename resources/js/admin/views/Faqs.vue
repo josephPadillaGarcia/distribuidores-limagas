@@ -408,7 +408,8 @@ export default {
       fd.append("like", like);
       fd.append("dislike", dislike);
       
-      //console.log(url);
+      console.log(url);
+      console.log(fd.get('description'));
       /*console.log(this.element.question);
       console.log(this.element.description);      
       console.log(like);
@@ -420,7 +421,7 @@ export default {
         fd.append("active", 0);
       }*/
 
-      axios({
+      /*axios({
         method: method,
         url: url,
         data: fd,
@@ -457,7 +458,7 @@ export default {
             },
           });
           this.restoreEl();
-        });
+        });*/
     },
     /* ==================================================== */
 
