@@ -79,6 +79,19 @@ if(Route::currentRouteName() == 'new') {
     <meta name="twitter:description" content="{{ $page['seo_description_' . $locale] ? $page['seo_description_' . $locale] : '' }}">
     
     <meta property="fb:app_id" content="308191064775859" />
+
+    @foreach ($editorscript as $item)
+        {!! $item["codescript"] !!}
+    @endforeach
+
+
+    
+    @foreach ($editorstyle as $item)
+        <style>
+                {!! $item["codestyle"] !!}
+            </style>
+    @endforeach
+
 </head>
 
 <body>

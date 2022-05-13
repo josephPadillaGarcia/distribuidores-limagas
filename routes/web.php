@@ -187,7 +187,13 @@ Route::prefix('admin')->group(function() {
         Route::prefix('editor')->name('editor.')->group(function () {
             Route::get('/', 'EditorCodeController@index')->name('index');
             Route::post('/script', 'EditorCodeController@storeScript')->name('store-script');
+            Route::post('/style', 'EditorCodeController@storeStyle')->name('store-style');
             Route::get('/json/get-all', 'EditorCodeController@getAll')->name('get-all');
+            Route::get('/json/get-all-style', 'EditorCodeController@getAllStyle')->name('get-all-style');
+            Route::get('/json/get-script/{element}', 'EditorCodeController@getScript')->name('get-script');            
+            Route::get('/json/get-style/{element}', 'EditorCodeController@getStyle')->name('get-style');
+            Route::put('/script/{element}', 'EditorCodeController@updateScript')->name('update-script');  
+            Route::put('/style/{element}', 'EditorCodeController@updateStyle')->name('update-style');  
         });
 
         Route::namespace('Encuesta')->prefix('encuestas')->name('encuestas.')->group(function () {

@@ -22,6 +22,8 @@ use Carbon\Carbon;
 use App\Encuesta;
 use App\WorkWithUsModal;
 use App\NewsModal;
+use App\EditorScript;
+use App\EditorStyles;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Post\LeadRequest;
@@ -74,6 +76,9 @@ class WebController extends Controller
         $customers = Customer::where('active', 1)->orderBy('index')->get();
         $appTracking = AppTracking::first();
 
+        $editorscript = EditorScript::get();
+        $editorstyle = EditorStyles::get();
+
         $social_networks = SocialNetwork::select('id', 'url', 'master_social_network_id')->with('master_social_networks:id,icon,name')->orderBy('index', 'asc')->get();
         $information = Information::first();
 
@@ -90,6 +95,8 @@ class WebController extends Controller
             "customers" => $customers,
             "appTracking" => $appTracking,
             "footer" => $footer,
+            "editorscript" => $editorscript,
+            "editorstyle" => $editorstyle,
         );
 
         //dd($request->all());

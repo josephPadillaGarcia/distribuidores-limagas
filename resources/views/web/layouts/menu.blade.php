@@ -125,6 +125,7 @@ $information = $menu["information"];
             </div>
         </div>
     </nav>
+
 </header>
 @push('scripts')
 <script type="text/javascript">

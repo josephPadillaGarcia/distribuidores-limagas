@@ -395,7 +395,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /*import vue2Dropzone from "vue2-dropzone";*/
@@ -431,7 +430,10 @@ import NoData from "../components/NoData";*/
   },
   props: {
     route: String,
-    routeGetAll: String
+    routeScript: String,
+    routeStyle: String,
+    routeGetAll: String,
+    routeGetAllStyle: String
     /*routeOrder: String,
     messageOrder: String,*/
 
@@ -447,16 +449,22 @@ import NoData from "../components/NoData";*/
       errors: {},
 
       /* modalCreateUpdate: false,
-       modalDestroy: false,*/
+      modalDestroy: false,*/
       loadingGet: false,
       loadingEls: false,
+      loadingElsStyle: false,
 
       /*loadingSubmit: false,*/
       elements: {},
+      elementsStyle: {},
       //title: "",
       element: {
         active: true
       }
+      /*elementStyle: {
+        active: true,
+      },*/
+
       /*dropzoneOptions: {
         url: "/",
         maxFiles: 1,
@@ -539,8 +547,13 @@ import NoData from "../components/NoData";*/
     },
     editEl: function editEl(id) {
       this.title = "Actualizar";
-      this.modalCreateUpdate = true;
+      this.titlemodal = "Script", this.modalCreateUpdate = true;
       this.getEl(id);
+    },
+    editElStyle: function editElStyle(id) {
+      this.title = "Actualizar";
+      this.titlemodal = "Style", this.modalCreateUpdate = true;
+      this.getElStyle(id);
     },
 
     /*================================*/
@@ -554,17 +567,26 @@ import NoData from "../components/NoData";*/
       var method;
       var fd = new FormData();
 
-      if (this.titlebtn == "Nuevo") {
-        url = this.route;
+      if (this.titlemodal == "Script") {
+        url = this.route + "/script/" + this.element.id;
         method = "post";
-      }
+        fd.append("_method", "put");
 
-      if (this.element.codescript) {
-        fd.append("codescript", this.element.codescript);
+        if (this.element.codescript) {
+          fd.append("codescript", this.element.codescript);
+        }
+      } else {
+        url = this.route + "/style/" + this.element.id;
+        method = "post";
+        fd.append("_method", "put");
+
+        if (this.element.codestyle) {
+          fd.append("codestyle", this.element.codestyle);
+        }
       }
       /*console.log(url);
-      console.log(this.titlebtn);
-      console.log(this.element.codescript);*/
+      console.log(this.titlemodal);
+      console.log(this.element.codestyle);*/
 
 
       axios({
@@ -614,18 +636,22 @@ import NoData from "../components/NoData";*/
         active: true
       }, this.modalCreateUpdate = this.modalDestroy = false;
       this.getEls();
+      this.getElsStyle();
       this.errors = {};
     },
-    deleteEl: function deleteEl(id) {
+
+    /*deleteEl(id) {
       this.modalDestroy = true;
       this.getEl(id);
-    },
+    },*/
     restoreEl: function restoreEl() {
       this.element = {
         active: true
       }, this.modalCreateUpdate = this.modalDestroy = false;
       this.errors = {};
     },
+
+    /* OBTIENE TODOS LOS DATOS DE SCRIPT */
     getEls: function getEls() {
       var _this2 = this;
 
@@ -635,18 +661,51 @@ import NoData from "../components/NoData";*/
         _this2.loadingEls = false;
       })["catch"](function (error) {});
     },
-    getEl: function getEl(id) {
+
+    /* ==================================== */
+
+    /* OBTIENE TODOS LOS DATOS DE STYLE */
+    getElsStyle: function getElsStyle() {
       var _this3 = this;
 
+      this.loadingElsStyle = true;
+      axios.get(this.routeGetAllStyle).then(function (response) {
+        _this3.elementsStyle = response.data;
+        _this3.loadingElsStyle = false;
+      })["catch"](function (error) {});
+    },
+
+    /* ==================================== */
+
+    /* OBTIENE LOS DATOS DE UN REGISTRO DE SCRIPT */
+    getEl: function getEl(id) {
+      var _this4 = this;
+
       this.loadingGet = true;
-      axios.get(this.route + "/json/get/" + id).then(function (response) {
-        _this3.element = response.data;
-        _this3.loadingGet = false;
+      axios.get(this.route + "/json/get-script/" + id).then(function (response) {
+        _this4.element = response.data;
+        _this4.loadingGet = false;
+      })["catch"](function (error) {});
+    },
+
+    /* ==================================== */
+
+    /* OBTIENE LOS DATOS DE UN REGISTRO DE STYLE */
+    getElStyle: function getElStyle(id) {
+      var _this5 = this;
+
+      this.loadingGet = true;
+      axios.get(this.route + "/json/get-style/" + id).then(function (response) {
+        _this5.element = response.data;
+        _this5.loadingGet = false;
       })["catch"](function (error) {});
     }
+    /* ==================================== */
+
   },
   created: function created() {
     this.getEls();
+    this.getElsStyle();
   }
 });
 
@@ -702,7 +761,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.content-editor[data-v-5dc901e8]{\r\n  background-color: #fbfaf7;\r\n  width: 100%;\r\n  height: 250px;\r\n  overflow-x: auto;\r\n  border: 1px solid #e7e7e7;\r\n  padding: 30px;\n}\n.textarea-code[data-v-5dc901e8]{\r\n  height: 200px;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.content-editor[data-v-5dc901e8] {\r\n  background-color: #fbfaf7;\r\n  width: 100%;\r\n  height: 250px;\r\n  overflow-x: auto;\r\n  border: 1px solid #e7e7e7;\r\n  padding: 30px;\n}\n.textarea-code[data-v-5dc901e8] {\r\n  height: 200px;\n}\r\n", ""]);
 
 // exports
 
@@ -1200,9 +1259,9 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "content-editor" }, [
                           _vm._v(
-                            "\n              " +
+                            "\n            " +
                               _vm._s(el.codescript) +
-                              "\n            "
+                              "\n          "
                           )
                         ])
                       ]),
@@ -1215,7 +1274,7 @@ var render = function() {
                           on: {
                             click: function($event) {
                               $event.preventDefault()
-                              return _vm.newElScript.apply(null, arguments)
+                              return _vm.editEl(el.id)
                             }
                           }
                         },
@@ -1238,64 +1297,85 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _c("draggable", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-12 col-md-6 col-lg-6 mb-6" }, [
-              _c("form", { attrs: { action: "" } }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("div", { staticClass: "mt-2" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "font-weight-bold",
-                        attrs: { for: "Agregar Estilos" }
-                      },
-                      [_vm._v("Agregar Estilos:")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
+          _vm.elementsStyle.length
+            ? _c(
+                "draggable",
+                {
+                  staticClass: "row",
+                  model: {
+                    value: _vm.elementsStyle,
+                    callback: function($$v) {
+                      _vm.elementsStyle = $$v
+                    },
+                    expression: "elementsStyle"
+                  }
+                },
+                _vm._l(_vm.elementsStyle, function(el, i) {
+                  return _c(
                     "div",
                     {
-                      staticClass: "content-editor",
-                      attrs: { id: "editorstyle" }
+                      key: el.id,
+                      staticClass: "col-12 col-md-6 col-lg-6 mb-6"
                     },
                     [
-                      _vm._v(
-                        "\n              " +
-                          _vm._s(_vm.elements) +
-                          "\n            "
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("div", { staticClass: "mt-2" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "font-weight-bold",
+                              attrs: { for: "Agregar Estilos" }
+                            },
+                            [_vm._v("Agregar Estilos:")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "content-editor",
+                            attrs: { id: "editorstyle" }
+                          },
+                          [
+                            _vm._v(
+                              "\n            " +
+                                _vm._s(el.codestyle) +
+                                "\n          "
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-icon btn-inverse-primary",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.editElStyle(el.id)
+                            }
+                          }
+                        },
+                        [
+                          _c("span", { staticClass: "btn-inner--icon" }, [
+                            _c("i", {
+                              staticClass: "ri-add-line current-color ri-lg"
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "btn-inner--text" }, [
+                            _vm._v("Editar Styles")
+                          ])
+                        ]
                       )
                     ]
                   )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-icon btn-inverse-primary",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.getEls.apply(null, arguments)
-                      }
-                    }
-                  },
-                  [
-                    _c("span", { staticClass: "btn-inner--icon" }, [
-                      _c("i", {
-                        staticClass: "ri-add-line current-color ri-lg"
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "btn-inner--text" }, [
-                      _vm._v("Editar Styles")
-                    ])
-                  ]
-                )
-              ])
-            ])
-          ])
+                }),
+                0
+              )
+            : _vm._e()
         ],
         1
       ),
@@ -1393,31 +1473,65 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("textarea", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.element.codescript,
-                            expression: "element.codescript"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { cols: "6" },
-                        domProps: { value: _vm.element.codescript },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.element,
-                              "codescript",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
+                      _vm.titlemodal == "Script"
+                        ? _c("div", [
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.element.codescript,
+                                  expression: "element.codescript"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { cols: "6" },
+                              domProps: { value: _vm.element.codescript },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.element,
+                                    "codescript",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.titlemodal == "Style"
+                        ? _c("div", [
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.element.codestyle,
+                                  expression: "element.codestyle"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { cols: "6" },
+                              domProps: { value: _vm.element.codestyle },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.element,
+                                    "codestyle",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        : _vm._e()
                     ])
                   ])
                 ])

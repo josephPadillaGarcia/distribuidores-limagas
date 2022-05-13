@@ -15,74 +15,65 @@
     <!-- ======================================================== -->
 
     <div class="container-fluid mt--6">
-      
-      
-      
-        <draggable class="row" 
-          v-if="elements.length" 
-          v-model="elements"         
-        >
-
-          <div class="col-12 col-md-6 col-lg-6 mb-6" 
-          v-for="(el,i) in elements"
+      <draggable class="row" v-if="elements.length" v-model="elements">
+        <div
+          class="col-12 col-md-6 col-lg-6 mb-6"
+          v-for="(el, i) in elements"
           :key="el.id"
-          >
-            <div class="form-group">
-              <div class="mt-2">
-                <label for="Agregar Scripts" class="font-weight-bold"
-                  >Agregar Scripts:</label
-                >
-              </div>
-              <!--textarea cols="40" class="form-control"></textarea-->
-              <div class="content-editor">
-                {{ el.codescript }}
-              </div>
+        >
+          <div class="form-group">
+            <div class="mt-2">
+              <label for="Agregar Scripts" class="font-weight-bold"
+                >Agregar Scripts:</label
+              >
             </div>
-            <a
-              href="#"
-              class="btn btn-icon btn-inverse-primary"
-              @click.prevent="newElScript"
-            >
-              <span class="btn-inner--icon">
-                <i class="ri-add-line current-color ri-lg" />
-              </span>
-              <span class="btn-inner--text">Editar Scripts</span>
-            </a>
+            <!--textarea cols="40" class="form-control"></textarea-->
+            <div class="content-editor">
+              {{ el.codescript }}
+            </div>
           </div>
-
-        </draggable>
-
-
-        <draggable class="row">
-          <div class="col-12 col-md-6 col-lg-6 mb-6">
-          <form action="">
-            <div class="form-group">
-              <div class="mt-2">
-                <label for="Agregar Estilos" class="font-weight-bold"
-                  >Agregar Estilos:</label
-                >
-              </div>
-              <!--textarea cols="40" class="form-control"></textarea-->
-              <div class="content-editor" id="editorstyle">
-                {{ elements }}
-              </div>
-            </div>
-            <a
+          <a
             href="#"
             class="btn btn-icon btn-inverse-primary"
-            @click.prevent="getEls"
+            @click.prevent="editEl(el.id)"
+          >
+            <span class="btn-inner--icon">
+              <i class="ri-add-line current-color ri-lg" />
+            </span>
+            <span class="btn-inner--text">Editar Scripts</span>
+          </a>
+        </div>
+      </draggable>
+
+      <draggable class="row" v-if="elementsStyle.length" v-model="elementsStyle">
+        <div
+          class="col-12 col-md-6 col-lg-6 mb-6"
+          v-for="(el, i) in elementsStyle"
+          :key="el.id"
+        >
+          <div class="form-group">
+            <div class="mt-2">
+              <label for="Agregar Estilos" class="font-weight-bold"
+                >Agregar Estilos:</label
+              >
+            </div>
+            <!--textarea cols="40" class="form-control"></textarea-->
+            <div class="content-editor" id="editorstyle">
+              {{ el.codestyle }}
+            </div>
+          </div>
+          <a
+            href="#"
+            class="btn btn-icon btn-inverse-primary"
+            @click.prevent="editElStyle(el.id)"
           >
             <span class="btn-inner--icon">
               <i class="ri-add-line current-color ri-lg" />
             </span>
             <span class="btn-inner--text">Editar Styles</span>
           </a>
-          </form>
         </div>
-        </draggable>
-      
-
-
+      </draggable>
     </div>
 
     <!-- ////////////////////////// -->
@@ -116,11 +107,22 @@
                     >Agregar {{ titlemodal }}:</label
                   >
                 </div>
-                <textarea
-                  cols="6"
-                  class="form-control"
-                  v-model="element.codescript"
-                />
+
+                <div v-if="titlemodal == 'Script'">
+                  <textarea
+                    cols="6"
+                    class="form-control"
+                    v-model="element.codescript"
+                  />
+                </div>
+                <div v-if="titlemodal == 'Style'  ">
+                  <textarea
+                    cols="6"
+                    class="form-control"
+                    v-model="element.codestyle"
+                  />
+                </div>
+
               </div>
             </div>
           </div>
@@ -139,14 +141,12 @@
         </button>
       </template>
     </b-modal>
-  <!-- ////////////////////////// -->
-
+    <!-- ////////////////////////// -->
   </div>
 </template>
 
 <style scoped>
-
-.content-editor{
+.content-editor {
   background-color: #fbfaf7;
   width: 100%;
   height: 250px;
@@ -155,10 +155,9 @@
   padding: 30px;
 }
 
-.textarea-code{
+.textarea-code {
   height: 200px;
 }
-
 </style>
 
 <script>
@@ -191,8 +190,11 @@ export default {
     quillEditor,*/
   },
   props: {
-    route: String,
+    route:String,
+    routeScript: String,
+    routeStyle: String,
     routeGetAll: String,
+    routeGetAllStyle: String,
     /*routeOrder: String,
     messageOrder: String,*/
   },
@@ -201,20 +203,27 @@ export default {
       modalCreateUpdate: false,
       modalDestroy: false,
       titlebtn: "",
-      titlemodal:"",
+      titlemodal: "",
       requestSubmit: false,
       value: "",
       errors: {},
-     /* modalCreateUpdate: false,
+      /* modalCreateUpdate: false,
       modalDestroy: false,*/
       loadingGet: false,
       loadingEls: false,
+      loadingElsStyle: false,
       /*loadingSubmit: false,*/
       elements: {},
+      elementsStyle: {},
+
       //title: "",
       element: {
         active: true,
       },
+
+      /*elementStyle: {
+        active: true,
+      },*/
       /*dropzoneOptions: {
         url: "/",
         maxFiles: 1,
@@ -289,22 +298,30 @@ export default {
         });
     },*/
 
-    newElScript() {      
-        this.titlebtn="Nuevo",
-        this.titlemodal="Script",
-        this.modalCreateUpdate = true;      
+    newElScript() {
+      this.titlebtn = "Nuevo",
+        this.titlemodal = "Script",
+        this.modalCreateUpdate = true;
     },
 
     newElStyle() {
-      this.titlebtn="Nuevo",
-      this.titlemodal="Style",
-      this.modalCreateUpdate = true;
+      this.titlebtn = "Nuevo",
+        this.titlemodal = "Style",
+        this.modalCreateUpdate = true;
     },
 
     editEl(id) {
       this.title = "Actualizar";
+      this.titlemodal = "Script",
       this.modalCreateUpdate = true;
       this.getEl(id);
+    },
+
+    editElStyle(id) {
+      this.title = "Actualizar";
+      this.titlemodal = "Style",
+      this.modalCreateUpdate = true;
+      this.getElStyle(id);
     },
 
     /*================================*/
@@ -315,18 +332,31 @@ export default {
       let method;
       const fd = new FormData();
 
-      if(this.titlebtn == "Nuevo"){
-        url = this.route;
+      if (this.titlemodal == "Script") {
+        
+        url = this.route + "/script/" + this.element.id;
         method = "post";
-      }
+        fd.append("_method", "put");
 
-      if (this.element.codescript) {
-        fd.append("codescript", this.element.codescript);
+        if (this.element.codescript) {
+          fd.append("codescript", this.element.codescript);
+        }
+
+      }else{
+
+        url = this.route + "/style/" + this.element.id;
+        method = "post";
+        fd.append("_method", "put");
+
+        if (this.element.codestyle) {
+          fd.append("codestyle", this.element.codestyle);
+        }
+
       }
 
       /*console.log(url);
-      console.log(this.titlebtn);
-      console.log(this.element.codescript);*/
+      console.log(this.titlemodal);
+      console.log(this.element.codestyle);*/
 
       axios({
         method: method,
@@ -375,12 +405,13 @@ export default {
       }),
         (this.modalCreateUpdate = this.modalDestroy = false);
       this.getEls();
+      this.getElsStyle();
       this.errors = {};
     },
-    deleteEl(id) {
+    /*deleteEl(id) {
       this.modalDestroy = true;
       this.getEl(id);
-    },
+    },*/
     restoreEl() {
       (this.element = {
         active: true,
@@ -388,6 +419,9 @@ export default {
         (this.modalCreateUpdate = this.modalDestroy = false);
       this.errors = {};
     },
+
+
+    /* OBTIENE TODOS LOS DATOS DE SCRIPT */
     getEls() {
       this.loadingEls = true;
       axios
@@ -398,19 +432,53 @@ export default {
         })
         .catch((error) => {});
     },
+    /* ==================================== */
+
+
+    /* OBTIENE TODOS LOS DATOS DE STYLE */
+    getElsStyle() {
+      this.loadingElsStyle = true;
+      axios
+        .get(this.routeGetAllStyle)
+        .then((response) => {
+          this.elementsStyle = response.data;
+          this.loadingElsStyle = false;
+        })
+        .catch((error) => {});
+    },
+    /* ==================================== */
+
+    /* OBTIENE LOS DATOS DE UN REGISTRO DE SCRIPT */
     getEl(id) {
       this.loadingGet = true;
       axios
-        .get(this.route + "/json/get/" + id)
+        .get(this.route + "/json/get-script/" + id)
         .then((response) => {
           this.element = response.data;
           this.loadingGet = false;
         })
         .catch((error) => {});
     },
+    /* ==================================== */
+
+
+    /* OBTIENE LOS DATOS DE UN REGISTRO DE STYLE */
+    getElStyle(id) {
+      this.loadingGet = true;
+      axios
+        .get(this.route + "/json/get-style/" + id)
+        .then((response) => {
+          this.element = response.data;
+          this.loadingGet = false;
+        })
+        .catch((error) => {});
+    },
+    /* ==================================== */
+
   },
   created() {
     this.getEls();
+    this.getElsStyle();
   },
 };
 </script>

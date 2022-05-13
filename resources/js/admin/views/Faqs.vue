@@ -421,7 +421,7 @@ export default {
         fd.append("active", 0);
       }*/
 
-      /*axios({
+      axios({
         method: method,
         url: url,
         data: fd,
@@ -458,7 +458,7 @@ export default {
             },
           });
           this.restoreEl();
-        });*/
+        });
     },
     /* ==================================================== */
 

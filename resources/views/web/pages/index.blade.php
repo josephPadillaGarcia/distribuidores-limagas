@@ -10,7 +10,10 @@
     $customers = $data["customers"];
     $footer = $data["footer"];
     $locale = Config::get('app.locale');
-    $page = $data["page"];
+    $page = $data["page"];    
+
+    $editorscript = $data["editorscript"];
+    $editorstyle = $data["editorstyle"];
 @endphp
   <main>
         <section class="position-relative marginb_section section_bannerHome section_bannerHome_02" id="seccion_banner_global">
@@ -485,6 +488,7 @@
                 </div>
             </div>
         </section>
+
     </main>
 @endsection
 
