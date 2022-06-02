@@ -80,18 +80,6 @@ if(Route::currentRouteName() == 'new') {
     
     <meta property="fb:app_id" content="308191064775859" />
 
-    @foreach ($editorscript as $item)
-        {!! $item["codescript"] !!}
-    @endforeach
-
-
-    
-    @foreach ($editorstyle as $item)
-        <style>
-                {!! $item["codestyle"] !!}
-            </style>
-    @endforeach
-
 </head>
 
 <body>
@@ -105,9 +93,6 @@ if(Route::currentRouteName() == 'new') {
     <script src="{{ asset('js/web/web.js') }}"></script>
     @stack('scripts')
     
-    <!-- Start of HubSpot Embed Code -->
-<script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/8096378.js"></script>
-<!-- End of HubSpot Embed Code -->
 </body>
 
 </html>

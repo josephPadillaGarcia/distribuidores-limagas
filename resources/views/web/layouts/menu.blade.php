@@ -2,10 +2,11 @@
 $services = $menu["services"];
 $information = $menu["information"];
 @endphp
-<header class="fixed-top" id="content_header">
+<header class="" id="content_header">
     <nav class="navbar navbar-expand-lg position-relative" aria-label="Tenth navbar example">
         <div class="container-fluid" id="header_container">
-            <div class="logo_dinet" id="header_logo_wrapper">
+            <h1>Header</h1>
+            <!--div class="logo_dinet" id="header_logo_wrapper">
                 <a href="{{ LaravelLocalization::localizeUrl('/') }}">
                     <img id="header_logo" class="" src="/storage/web/img/logo_dinet.png" alt="" />
                 </a>
@@ -21,9 +22,9 @@ $information = $menu["information"];
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="flaticon flaticon-boton-de-menu-de-tres-lineas-horizontales"></i>
-            </button>
+            </button-->
 
-            <div class="collapse navbar-collapse justify-content-end" id="navbarMain">
+            <!--div class="collapse navbar-collapse justify-content-end" id="navbarMain">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.about') }}">
@@ -122,7 +123,9 @@ $information = $menu["information"];
                     </li>
                     @endif
                 </ul>
-            </div>
+            </div-->
+
+
         </div>
     </nav>
 

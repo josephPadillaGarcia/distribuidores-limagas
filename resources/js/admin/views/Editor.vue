@@ -27,7 +27,6 @@
                 >Agregar Scripts:</label
               >
             </div>
-            <!--textarea cols="40" class="form-control"></textarea-->
             <div class="content-editor">
               {{ el.codescript }}
             </div>

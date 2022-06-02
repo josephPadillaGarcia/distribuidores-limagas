@@ -66,10 +66,10 @@ class WebController extends Controller
         return $content;
     }
 
-    public function index($locale = null)
+    public function index(Request $request , $locale = null)
     {
         //$this->validateLocale($locale);
-        $page = $this->getSeoPage(NULL, $this->locale);
+        /*$page = $this->getSeoPage(NULL, $this->locale);
         $services = Service::where('active', 1)->orderBy('index')->get();
         $tutos = Tutorial::orderBy('index')->get();
         $content = $this->getContentPage(NULL);
@@ -99,18 +99,51 @@ class WebController extends Controller
             "editorstyle" => $editorstyle,
         );
 
-        //dd($request->all());
+        return view("web.pages.index", compact('data'));*/
 
-        /* $encuesta= new Encuesta();
-        $encuesta->num_face = $request->num_face;
-        $encuesta->respuesta = $request->respuesta;
+        $page = $this->getSeoPage('branch-offices', $this->locale);
+        $content = $this->getContentPage('branch-offices');
+        $offices = BranchOffice::with('ubigeoRel');
+        $department = $province = $district = NULL;
+        if($request->department){
+            $department = Ubigeo::where('department', $request->department)->first();
+        }
+        if($request->province){
+            $province = Ubigeo::where('province', $request->province)->where('department', $request->department)->first();
+        }
+        if($request->district){
+            $district = Ubigeo::where('district', $request->district)->where('department', $request->department)->where('province', $request->province)->first();
+        }
+        if($department && !$province && !$district){
+            $offices = $offices->whereHas('ubigeoRel', function ($q) use ($department) {
+                $q->where('code_department',$department->code_department);
+            });
+        }
+        if($department && $province && !$district){
+            $offices = $offices->whereHas('ubigeoRel', function ($q) use ($department, $province) {
+                $q->where('code_department',$department->code_department)->where('code_province',$province->code_province);
+            });
+        }
+        if($department && $province && $district){
+            $offices = $offices->whereHas('ubigeoRel', function ($q) use ($department, $province, $district) {
+                $q->where('code_department',$department->code_department)->where('code_province',$province->code_province)->where('code_district',$district->code_district);
+            });
+        }
+        $offices = $offices->orderBy('index')->get();
+        $departments = Ubigeo::whereHas('branchOfficeRel')->orderBy('code_ubigeo', 'DESC')->groupBy('code_department')->get();
+        $data = array(
+            "page" => $page,
+            "content" => $content,
+            "offices" => $offices,
+            "departments" => $departments
+        );
+        return view("web.pages.branch-office", compact('data'))->with(
+            ['province' => $request->province, 'department' => $request->department,'district' => $request->district]
+        );
 
-        $encuesta->save();*/
-
-        return view("web.pages.index", compact('data'));
     }
 
-    public function aboutUs($locale = null)
+    /*public function aboutUs($locale = null)
     {
         //$this->validateLocale($locale);
         $page = $this->getSeoPage('about-dinet', $this->locale);
@@ -129,9 +162,9 @@ class WebController extends Controller
         );
 
         return view("web.pages.about-us", compact('data'));
-    }
+    }*/
 
-    public function privacyPolicies($locale = null)
+    /*public function privacyPolicies($locale = null)
     {
         //$this->validateLocale($locale);
         $page = $this->getSeoPage('privacy-policies', $this->locale);
@@ -143,9 +176,9 @@ class WebController extends Controller
         );
 
         return view("web.pages.privacy-policies", compact('data'));
-    }
+    }*/
 
-    public function quotations($locale = null)
+    /*public function quotations($locale = null)
     {
         //$this->validateLocale($locale);
         $page = $this->getSeoPage('quotes', $this->locale);
@@ -161,9 +194,9 @@ class WebController extends Controller
         );
 
         return view("web.pages.quotations", compact('data'));
-    }
+    }*/
 
-    public function services($locale = null)
+    /*public function services($locale = null)
     {
         //$this->validateLocale($locale);
         $page = $this->getSeoPage('services', $this->locale);
@@ -180,16 +213,11 @@ class WebController extends Controller
 
         return view("web.pages.services", compact('data'));
     }
-
-    public function service(Request $request, Service $slug)
+*/
+    /*public function service(Request $request, Service $slug)
     {
-        //$service = Service::where('slug_' . $this->locale, $slug)->where('active',true)->first();
-
-        /*if (!$service) {
-            return Abort(404);
-        }*/
+        
         $page = $this->getSeoPage('services', $this->locale);
-        // $page = $this->getSeoPage('services', "es");
         $privacy = $this->getContentPage('privacy-policies');
         $appTracking = AppTracking::first();
         $services = Service::where('active', true)->where('id', '!=', $slug->id)->inRandomOrder()->take(3)->get();
@@ -209,9 +237,9 @@ class WebController extends Controller
         //dd($data);
 
         return view("web.pages.service", compact('data'));
-    }
+    }*/
 
-    public function faq($locale = null)
+    /*public function faq($locale = null)
     {
         $page = $this->getSeoPage('faq', $this->locale);
         $faqs = Faq::orderBy('index')->get();
@@ -223,9 +251,9 @@ class WebController extends Controller
         );
 
         return view("web.pages.faq", compact('data'));
-    }
+    }*/
 
-    public function encuesta(Request $request)
+    /*public function encuesta(Request $request)
     {
         try {
             $encuesta = new Encuesta();
@@ -237,9 +265,9 @@ class WebController extends Controller
         } catch (\Exception $e) {
             return  response()->json('malo', 500);
         }
-    }
+    }*/
 
-    public function workwithUs($locale = null)
+    /*public function workwithUs($locale = null)
     {
         $page = $this->getSeoPage('work-with-us', $this->locale);
         $workwus = Puesto::get();
@@ -248,9 +276,9 @@ class WebController extends Controller
             "workwus" => $workwus,
         );
         return view("web.pages.work-with-us", compact('data'));
-    }
+    }*/
 
-    public function sendMessage(Request $request, WorkWithUsModal $workwithus)
+    /*public function sendMessage(Request $request, WorkWithUsModal $workwithus)
     {
         //$el = request(['name', 'apellido','email','phone','name_file','puesto']);
         try {
@@ -272,9 +300,9 @@ class WebController extends Controller
         } catch (\Exception $e) {
             return  response()->json('malo', 500);
         }
-    }
+    }*/
 
-    public function news(Request $request, $locale = null)
+    /*public function news(Request $request, $locale = null)
     {
         $page = $this->getSeoPage('news', $this->locale);
         $news = Post::with('category')->where('published', 1);
@@ -292,9 +320,9 @@ class WebController extends Controller
         );
 
         return view("web.pages.noticias.index", compact('data'));
-    }
+    }*/
 
-    public function newsCategory(Request $request, $locale = null)
+    /*public function newsCategory(Request $request, $locale = null)
     {
         $category = Category::where('slug_' . $this->locale, $request->slug)->first();
         if (!$category) {
@@ -315,9 +343,9 @@ class WebController extends Controller
         );
 
         return view("web.pages.noticias.index", compact('data', 'category'));
-    }
+    }*/
 
-    public function singleNews(Request $request, $locale = null)
+    /*public function singleNews(Request $request, $locale = null)
     {
         $category = Category::select('id', 'name_' . $this->locale, 'slug_es', 'slug_en')->where('slug_' . $this->locale, $request->slug)->first();
         if (!$category) {
@@ -340,9 +368,9 @@ class WebController extends Controller
         );
 
         return view("web.pages.noticias.singlenews", compact('data'));
-    }
+    }*/
 
-    public function branchoffice(Request $request)
+    /*public function branchoffice(Request $request)
     {
         $page = $this->getSeoPage('branch-offices', $this->locale);
         $content = $this->getContentPage('branch-offices');
@@ -383,7 +411,7 @@ class WebController extends Controller
         return view("web.pages.branch-office", compact('data'))->with(
             ['province' => $request->province, 'department' => $request->department,'district' => $request->district]
         );
-    }
+    }*/
 
     public function getProvinces(Request $request)
     {

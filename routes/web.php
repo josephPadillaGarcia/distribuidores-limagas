@@ -3,16 +3,15 @@
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::namespace('Web')->name('web.')->group(function() {
-    Route::post('/encuesta','WebController@encuesta')->name('encuesta');
+    //Route::post('/encuesta','WebController@encuesta')->name('encuesta');
     Route::get('ubigeo/provinces', 'WebController@getProvinces')->name('provinces');        
     Route::get('ubigeo/districts', 'WebController@getDistricts')->name('districts');        
 });
 
-Route::group(['prefix' => LaravelLocalization::setLocale(),
-'middleware' => [ 'localize','localeCookieRedirect', 'localizationRedirect' ]], function()
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localize','localeCookieRedirect', 'localizationRedirect' ]], function()
 {
     Route::get('/', 'Web\WebController@index')->name('index');
-    Route::get(LaravelLocalization::transRoute('routes.about'), 'Web\WebController@aboutUs')->name('aboutUs');
+    /*Route::get(LaravelLocalization::transRoute('routes.about'), 'Web\WebController@aboutUs')->name('aboutUs');
     Route::get(LaravelLocalization::transRoute('routes.privacy_policies'), 'Web\WebController@privacyPolicies')->name('privacyPolicies');
     Route::get(LaravelLocalization::transRoute('routes.quotations'), 'Web\WebController@quotations')->name('quotations');
     Route::get(LaravelLocalization::transRoute('routes.services'), 'Web\WebController@services')->name('services');
@@ -20,7 +19,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
     Route::get(LaravelLocalization::transRoute('routes.faq'), 'Web\WebController@faq')->name('faq');
     Route::get(LaravelLocalization::transRoute('routes.news'), 'Web\WebController@news')->name('news');
     Route::get(LaravelLocalization::transRoute('routes.news-category'), 'Web\WebController@newsCategory')->name('news-categories');
-    Route::get(LaravelLocalization::transRoute('routes.news-category-post'), 'Web\WebController@singleNews')->name('new');
+    Route::get(LaravelLocalization::transRoute('routes.news-category-post'), 'Web\WebController@singleNews')->name('new');*/
     Route::get(LaravelLocalization::transRoute('routes.branch-offices'), 'Web\WebController@branchoffice')->name('branch-office');
 
 });
