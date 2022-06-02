@@ -42,7 +42,7 @@ Route::prefix('admin')->group(function() {
         Route::put('profile', 'ProfileController@updateProfile')->name('profile.update-profile');
         Route::put('change-password', 'ProfileController@updatePassword')->name('profile.update-contrasena');
     
-        Route::namespace('Configuration')->prefix('configuracion')->name('configuration.')->group(function () {
+        /*Route::namespace('Configuration')->prefix('configuracion')->name('configuration.')->group(function () {
             Route::name('users.')->prefix('usuarios')->group(function () {
                 Route::get('/', 'UsersController@index')->name('index');
                 Route::post('/', 'UsersController@store')->name('store');
@@ -64,9 +64,9 @@ Route::prefix('admin')->group(function() {
                     Route::get('/json/get/{element}', 'ConfigQuantityPackageController@get')->name('get');
                 });
             });
-        });
+        });*/
     
-        Route::prefix('servicios')->name('services.')->group(function () {
+        /*Route::prefix('servicios')->name('services.')->group(function () {
             Route::get('/', 'ServicesController@index')->name('index');
             Route::get('/nuevo', 'ServicesController@create')->name('create');
             Route::get('/editar/{element}', 'ServicesController@edit')->name('edit');
@@ -77,10 +77,10 @@ Route::prefix('admin')->group(function() {
             Route::delete('/{element}', 'ServicesController@destroy')->name('destroy');
             Route::get('/json/get-all', 'ServicesController@getAll')->name('get-all');
             Route::get('/json/get/{element}', 'ServicesController@get')->name('get');
-        });
+        });*/
     
         #Customers
-        Route::namespace('Customers')->prefix('clientes')->name('customers.')->group(function () {
+        Route::namespace('Productos')->prefix('productos')->name('productos.')->group(function () {
             Route::get('/', 'IndexController@index')->name('index');
             Route::post('/', 'IndexController@store')->name('store');
             Route::put('/order', 'IndexController@order')->name('order');
@@ -90,7 +90,7 @@ Route::prefix('admin')->group(function() {
             Route::get('/json/get/{element}', 'IndexController@get')->name('get');
         });
 
-        Route::prefix('faqs')->name('faqs.')->group(function () {
+        /*Route::prefix('faqs')->name('faqs.')->group(function () {
             Route::get('/', 'FaqController@index')->name('index');
             Route::post('/', 'FaqController@store')->name('store');
             Route::put('/order', 'FaqController@order')->name('order');
@@ -114,8 +114,6 @@ Route::prefix('admin')->group(function() {
             Route::post('/posts/image', 'PostsController@storeImage')->name('store-image');
             });
             Route::name('categorias.')->prefix('categorias')->group(function () {
-                /*Route::get('/', 'CategoriesController@index')->name('index');
-                Route::get('/json/get-all', 'CategoriesController@getAll')->name('get-all');*/
                 Route::get('/', 'CategoriesController@index')->name('index');
                 Route::post('/', 'CategoriesController@store')->name('store');
                 Route::put('/{element}', 'CategoriesController@update')->name('update');
@@ -218,9 +216,9 @@ Route::prefix('admin')->group(function() {
             Route::get('/', 'AppTrackingController@index')->name('index');
             Route::post('/', 'AppTrackingController@store')->name('store');
             Route::get('/json/get', 'AppTrackingController@get')->name('get');
-        });
+        });*/
 
-        Route::prefix('sucursales')->name('sucursales.')->group(function () {
+        Route::prefix('distribuidores')->name('distribuidores.')->group(function () {
             Route::get('/', 'SucursalesController@index')->name('index');
             Route::post('/', 'SucursalesController@store')->name('store');
             Route::put('/order', 'SucursalesController@order')->name('order');

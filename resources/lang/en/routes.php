@@ -9,6 +9,4 @@ return [
     "faq" => "faq",
     "privacy_policies" => "privacy-policies",
     "service"  =>  "services/{slug}",
-    "news-category"  =>  "news/category/{slug}",
-    "news-category-post" =>  "news/category/{slug}/{post}",
 ];

@@ -8,9 +8,6 @@ if(Route::currentRouteName() == 'service') {
     $page["seo_keywords_" . $locale] = $service["seo_keywords_" . $locale];
     $page["seo_image"] = $service["seo_image"];
 }
-if(Route::currentRouteName() == 'news-categories') {
-    $page["title_" . $locale] = $page["title_" . $locale].' '.$category["name_" . $locale];
-}
 if(Route::currentRouteName() == 'new') {
     $page["title_" . $locale] = $data["new"]["title_" . $locale];
     $page["seo_description_" . $locale] = $data["new"]["excerpt_" . $locale];

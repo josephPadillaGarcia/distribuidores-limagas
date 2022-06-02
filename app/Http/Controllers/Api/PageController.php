@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\AppTracking;
-use App\Category;
 use App\ConfigQuantityPackage;
 use App\Customer;
 use App\Http\Controllers\Api\BaseController;
-use App\MasterLeadMedium;
-use App\Post;
-use App\Project;
 use App\Service;
 use App\Testimonial;
 use App\Tutorial;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PageController extends BaseController
@@ -26,21 +20,18 @@ class PageController extends BaseController
         $tutos = Tutorial::orderBy('index')->get();
         $content = $this->getContentPage(NULL);
         $customers = Customer::where('active', 1)->orderBy('index')->get();
-        $appTracking = AppTracking::first();
         $data = array(
             "page" => $page,
             "services" => $services,
             "content" => $content,
             "tutos" => $tutos,
             "customers" => $customers,
-            "appTracking" => $appTracking
         );
         return $this->sendResponse($data, '');
     }
 
     public function about(Request $request)
     {
-        $appTracking = AppTracking::first();
         $page = $this->getSeoPage('about-dinet', $request->locale);
         $content = $this->getContentPage('about-dinet');
         $customers = Customer::where('active', 1)->orderBy('index')->get();
@@ -50,7 +41,6 @@ class PageController extends BaseController
             "content" => $content,
             "customers" => $customers,
             "testimonials" => $testimonials,
-            "appTracking" => $appTracking
         );
         return $this->sendResponse($data, '');
     }
@@ -60,12 +50,10 @@ class PageController extends BaseController
         $page = $this->getSeoPage('services', $request->locale);
         $services = Service::where('active', 1)->orderBy('index')->get();
         $content = $this->getContentPage('services');
-        $appTracking = AppTracking::first();
         $data = array(
             "page" => $page,
             "services" => $services,
             "content" => $content,
-            "appTracking" => $appTracking
         );
         return $this->sendResponse($data, '');
     }
@@ -78,7 +66,6 @@ class PageController extends BaseController
         }
         $page = $this->getSeoPage('services', $request->locale);
         $privacy = $this->getContentPage('privacy-policies');
-        $appTracking = AppTracking::first();
         $services = Service::where('active',true)->where('id', '!=', $service->id)->inRandomOrder()->take(3)->get();
         $quantityPackages = ConfigQuantityPackage::where('active', 1)->orderBy('index')->get();
         $content = $this->getContentPage('services');
@@ -86,7 +73,6 @@ class PageController extends BaseController
         $data = array(
             "page" => $page,            
             'privacy' => $privacy,
-            "appTracking" => $appTracking,
             "services" => $services,
             "quantity" => $quantityPackages,
             "service" => $service,

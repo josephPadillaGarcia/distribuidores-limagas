@@ -20,7 +20,7 @@
                 <span class="btn-inner--icon">
                   <i class="ri-add-line current-color ri-lg" />
                 </span>
-                <span class="btn-inner--text">Nueva Sucursal</span>
+                <span class="btn-inner--text">Nuevo Distribuidor</span>
               </a>
             </div>
           </div>
@@ -73,11 +73,11 @@
             <div class="card">
               <div class="card-body">
                 <h3 class="mb-1">
-                  Nombre: <br />
+                  Nistribuidor: <br />
                   <span class="font-weight-normal">{{ el.name }}</span>
                 </h3>
                 <h3 class="mb-1">
-                  Dirección: <br />
+                  Descripción: <br />
                   <span class="font-weight-normal">
                     <pre
                       class="mb-0"
@@ -126,7 +126,7 @@
                   </span>
                   <span class="font-weight-normal" v-else> No registrado </span>
                 </h3>
-                <h3 class="mb-1">
+                <!--h3 class="mb-1">
                   Horario: <br />
                   <span class="font-weight-normal">
                     <pre
@@ -139,7 +139,7 @@
                       >{{ el.schedule ? el.schedule : "No registrado" }}</pre
                     >
                   </span>
-                </h3>
+                </h3-->
                 <h3 class="mb-1">
                   Iframe: <br />
                   <span class="font-weight-normal" v-if="!el.iframe"
@@ -180,7 +180,7 @@
       body-class="pt-0"
     >
       <template slot="modal-title">
-        <div class="text-primary h2">{{ title }} Sucursal</div>
+        <div class="text-primary h2">{{ title }} Distribuidor</div>
       </template>
       <template slot="modal-header-close">
         <button type="button" class="btn p-0 bg-transparent" @click="restoreEl">
@@ -195,7 +195,7 @@
           <div class="row">
             <div class="col-12">
               <div class="form-group">
-                <label class="font-weight-bold" for="">Nombre</label>
+                <label class="font-weight-bold" for="">Distribuidor</label>
                 <input
                   type="text"
                   class="form-control"
@@ -212,7 +212,7 @@
             </div>
             <div class="col-12">
               <div class="form-group">
-                <label class="font-weight-bold" for="">Ubicación</label>
+                <label class="font-weight-bold" for="">Descripción</label>
                 <textarea
                   cols="6"
                   class="form-control"
@@ -262,7 +262,7 @@
                 Fijos: (054) 444444, Móviles: 9 dígitos</small
               >
             </div>
-            <div class="col-12">
+            <!--div class="col-12">
               <div class="form-group">
                 <label class="font-weight-bold" for="">Horario(Opcional)</label>
                 <textarea
@@ -277,7 +277,7 @@
                   >{{ errors.schedule[0] }}</label
                 >
               </div>
-            </div>
+            </div-->
             <div class="col-12">
               <div class="form-group">
                 <label class="font-weight-bold" for=""
