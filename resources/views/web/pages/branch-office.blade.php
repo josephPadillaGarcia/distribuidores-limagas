@@ -73,11 +73,14 @@
                                         @endif
                                     </ul>
                                 </div>
+                                <div class="sucursales__action">
+                                    <a href="#!">Ver</a>
+                                </div>
                             </div>
                             @if($office->iframe)
-                            <div class="sucursales__footer">
+                            <!--div class="sucursales__footer">
                                 {!! $office->iframe !!}
-                            </div>
+                            </div-->
                             @endif
                         </div>
                     </div>

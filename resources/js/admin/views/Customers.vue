@@ -6,9 +6,9 @@
           <div class="row align-items-center pt-0 pt-md-2 pb-4">
             <div class="col-6 col-md-7">
               <BreadCrumb
-                title="Clientes"
+                title="Productos"
                 parent
-                active="Clientes"
+                active="Productos"
               ></BreadCrumb>
             </div>
             <div class="col-6 col-md-5 text-right">
@@ -20,7 +20,7 @@
                 <span class="btn-inner--icon">
                   <i class="ri-add-line current-color ri-lg" />
                 </span>
-                <span class="btn-inner--text">Nuevo Cliente</span>
+                <span class="btn-inner--text">Nuevo Producto</span>
               </a>
             </div>
           </div>
@@ -60,7 +60,11 @@
                   />
                 </div>
                 <h3 class="mb-1">
-                  Nombre:
+                  Nombre producto:
+                  <span class="font-weight-normal">{{ el.name }}</span>
+                </h3>
+                <h3 class="mb-1">
+                  Precio producto:
                   <span class="font-weight-normal">{{ el.name }}</span>
                 </h3>
                 <h3 class="mb-1">
@@ -126,7 +130,7 @@
         </div>
           <div class="row">
             <div class="col-12">
-               <div class="form-group">
+              <div class="form-group">
                 <label class="font-weight-bold" for="name"
                   >Nombre</label
                 >
@@ -135,6 +139,23 @@
                   class="form-control"
                   v-model="element.name"
                   id="name"
+                />
+                <label
+                  v-if="errors && errors.name"
+                  class="mt-2 text-danger text-sm"
+                  for="name"
+                  >{{ errors.name[0] }}</label
+                >
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold" for="price"
+                  >Precio</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="element.name"
+                  id="price"
                 />
                 <label
                   v-if="errors && errors.name"

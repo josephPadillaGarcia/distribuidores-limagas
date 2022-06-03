@@ -6,9 +6,9 @@
           <div class="row align-items-center pt-0 pt-md-2 pb-4">
             <div class="col-6 col-md-7">
               <BreadCrumb
-                title="Sucursales"
+                title="Distribuidores"
                 parent
-                active="Sucursales"
+                active="Distribuidores"
               ></BreadCrumb>
             </div>
             <div class="col-6 col-md-5 text-right">
@@ -45,7 +45,7 @@
               <input
                 v-model="q"
                 type="search"
-                placeholder="Buscar por Nombre Sucursal"
+                placeholder="Buscar por Nombre de Distribuidor"
                 aria-label="search"
                 aria-describedby="search"
                 class="form-control bg-white"
@@ -73,7 +73,7 @@
             <div class="card">
               <div class="card-body">
                 <h3 class="mb-1">
-                  Nistribuidor: <br />
+                  Distribuidor: <br />
                   <span class="font-weight-normal">{{ el.name }}</span>
                 </h3>
                 <h3 class="mb-1">
