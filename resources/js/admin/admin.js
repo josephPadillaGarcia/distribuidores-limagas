@@ -32,7 +32,7 @@ const app = new Vue({
         'traditional': () => import('./views/lead/traditional.vue' /* webpackChunkName: "js/pages/admin/lead/traditional" */),
         'testimonials': () => import('./views/Testimonials.vue' /* webpackChunkName: "js/pages/admin/testimonials" */),
             
-        'customers': () => import('./views/Customers.vue' /* webpackChunkName: "js/pages/admin/customers" */),
+        'productos': () => import('./views/productos.vue' /* webpackChunkName: "js/pages/admin/productos" */),
         'reset': () => import('./views/auth/Reset.vue' /* webpackChunkName: "js/pages/admin/reset" */),
         'configuration-general': () => import('./views/configuration/General/Index.vue' /* webpackChunkName: "js/pages/admin/configuration/general" */),
         "content-general-content": () => import( "./views/content/GeneralContent.vue" /* webpackChunkName: "js/pages/admin/content/general-content" */),

@@ -104,7 +104,7 @@
       body-class="pt-0"
     >
       <template slot="modal-title">
-        <div class="text-primary h2">{{ title }} Cliente</div>
+        <div class="text-primary h2">{{ title }} Producto</div>
       </template>
       <template slot="modal-header-close">
         <button type="button" class="btn p-0 bg-transparent" @click="restoreEl">
@@ -124,7 +124,7 @@
               name="check-button"
               switch
             >
-              Mostrar Cliente en la Web
+              Mostrar Producto en la Web
             </b-form-checkbox>
           </div>
         </div>
@@ -148,20 +148,20 @@
                 >
               </div>
               <div class="form-group">
-                <label class="font-weight-bold" for="price"
+                <label class="font-weight-bold" for="precio"
                   >Precio</label
                 >
                 <input
                   type="text"
                   class="form-control"
-                  v-model="element.name"
-                  id="price"
+                  v-model="element.precio"
+                  id="precio"
                 />
                 <label
-                  v-if="errors && errors.name"
+                  v-if="errors && errors.precio"
                   class="mt-2 text-danger text-sm"
-                  for="name"
-                  >{{ errors.name[0] }}</label
+                  for="precio"
+                  >{{ errors.precio[0] }}</label
                 >
               </div>
             </div>
@@ -392,6 +392,9 @@ export default {
       }
       if (this.element.name) {
         fd.append("name", this.element.name);
+      }
+      if (this.element.precio) {
+        fd.append("precio", this.element.precio);
       }
       /*if (this.element.title_en) {
         fd.append("title_en", this.element.title_en);

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Cms\Productos;
 
 use App\Customer;
+use App\Productos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Cms\CustomerRequest;
+use App\Http\Requests\Cms\ProductosRequest;
 use App\Http\Traits\CmsTrait;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,7 +20,7 @@ class IndexController extends Controller
         return view("admin.pages.productos.index");
     }
 
-    public function store(CustomerRequest $request)
+    public function store(ProductosRequest $request)
     {
         $el = request(["name", "active"]);
         $image_name = $this->setFileName('t-', $request->file('image'));
@@ -27,29 +29,29 @@ class IndexController extends Controller
             return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.errors.image')], 500);
         }
         $el = array_merge($el, ["image" => $image_name]);
-        $elIndex = $this->getMaxIndex(Customer::selectRaw('MAX(id),MAX(`index`) as "index"')->get());
+        $elIndex = $this->getMaxIndex(Productos::selectRaw('MAX(id),MAX(`index`) as "index"')->get());
 
         $el = array_merge($el, ["index" => $elIndex]);
         try {
-            $el = Customer::UpdateOrCreate($el);
+            $el = Productos::UpdateOrCreate($el);
             return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.create.success', ['name' => trans('custom.attribute.customer')])], 200);
         } catch (\Exception $e) {
             return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.create.error', ['name' => trans('custom.attribute.customer')])], 500);
         }
     }
 
-    public function get(Customer $element)
+    public function get(Productos $element)
     {
         return response()->json($element);
     }
 
     public function getAll(Request $request)
     {
-        $els = Customer::orderBy('index')->get();
+        $els = Productos::orderBy('index')->get();
         return response()->json($els);
     }
 
-    public function destroy(Customer $element)
+    public function destroy(Productos $element)
     {
         $image = $element->image;
         try {
@@ -70,7 +72,7 @@ class IndexController extends Controller
         $elements = $request->all();
         try {
             for ($i = 0; $i < count($elements); $i++) {
-                $cliente = Customer::UpdateOrCreate(["id" => $elements[$i]["id"]], ["index" => $i + 1]);
+                $cliente = Productos::UpdateOrCreate(["id" => $elements[$i]["id"]], ["index" => $i + 1]);
             }
             return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.update.success', ['name' => trans('custom.attribute.customer')])], 200);
         } catch (\Exception $e) {
@@ -78,7 +80,7 @@ class IndexController extends Controller
         }
     }
 
-    public function update(CustomerRequest $request, Customer $element)
+    public function update(ProductosRequest $request, Productos $element)
     {
         $request_testimonial = request(["name", "active"]);
         if ($request->hasFile('image')) {
@@ -95,7 +97,7 @@ class IndexController extends Controller
             Storage::disk('public')->delete('img/customers/' . $element->image);
         }
         try {
-            $element = Customer::UpdateOrCreate(["id" => $element->id], $request_testimonial);
+            $element = Productos::UpdateOrCreate(["id" => $element->id], $request_testimonial);
             return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.update.success', ['name' => trans('custom.attribute.customer')])], 200);
         } catch (\Exception $e) {
             return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.update.error', ['name' => trans('custom.attribute.customer')])], 500);

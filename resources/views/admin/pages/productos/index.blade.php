@@ -10,12 +10,12 @@
 </style>
 @endsection
 @section('content')
-    <customers
+    <productos
     message-order="@lang('custom.message.order')"
     route="{{ route('cms.productos.index') }}" 
     route-order="{{ route('cms.productos.order') }}"
     images-url="{{ config('services.images_url') }}"
     route-get-all="{{ route('cms.productos.get-all') }}"
-    ></customers>
+    ></productos>
 @endsection
 
