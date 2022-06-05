@@ -54,7 +54,7 @@
               <div class="card-body">
                 <div class="text-center mb-2">
                   <img
-                    :src="imagesUrl + '/customers/' + el.image"
+                    :src="imagesUrl + '/productos/' + el.image"
                     :alt="el.name"
                     class="img-fluid d-block mb-2 mx-auto"
                   />
@@ -65,7 +65,7 @@
                 </h3>
                 <h3 class="mb-1">
                   Precio producto:
-                  <span class="font-weight-normal">{{ el.name }}</span>
+                  <span class="font-weight-normal">{{ el.precio }}</span>
                 </h3>
                 <h3 class="mb-1">
                   <span class="">Mostrar en la Web:</span>
@@ -179,7 +179,7 @@
                   <div class="row">
                     <div class="col text-center" v-if="element.image">
                       <img
-                        :src="imagesUrl + '/customers/' + element.image"
+                        :src="imagesUrl + '/productos/' + element.image"
                         :alt="element.name"
                         class="mx-auto img-fluid"
                       />

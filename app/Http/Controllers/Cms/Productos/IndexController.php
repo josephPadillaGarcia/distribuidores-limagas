@@ -22,9 +22,9 @@ class IndexController extends Controller
 
     public function store(ProductosRequest $request)
     {
-        $el = request(["name", "active"]);
+        $el = request(["name", "precio", "active"]);
         $image_name = $this->setFileName('t-', $request->file('image'));
-        $store_image = Storage::disk('public')->putFileAs('img/customers/', $request->file('image'), $image_name);
+        $store_image = Storage::disk('public')->putFileAs('img/productos/', $request->file('image'), $image_name);
         if (!$store_image) {
             return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.errors.image')], 500);
         }
@@ -58,7 +58,7 @@ class IndexController extends Controller
             $delete_element = $element->delete();
             if ($delete_element) {
                 if ($image) {
-                    Storage::disk('public')->delete('img/customers/' . $image);
+                    Storage::disk('public')->delete('img/productos/' . $image);
                 }
             }
             return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.delete.success', ['name' => trans('custom.attribute.customer')])], 200);
@@ -82,10 +82,10 @@ class IndexController extends Controller
 
     public function update(ProductosRequest $request, Productos $element)
     {
-        $request_testimonial = request(["name", "active"]);
+        $request_testimonial = request(["name", "precio", "active"]);
         if ($request->hasFile('image')) {
             $image_name = $this->setFileName('t-', $request->file('image'));
-            $store_image = Storage::disk('public')->putFileAs('img/customers/', $request->file('image'), $image_name);
+            $store_image = Storage::disk('public')->putFileAs('img/productos/', $request->file('image'), $image_name);
             if (!$store_image) {
                 return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.errors.image')], 500);
             }
@@ -94,7 +94,7 @@ class IndexController extends Controller
             $request_testimonial = array_merge($request_testimonial, ["image" => $element->image]);
         }
         if ($request->hasFile('image') && $element->image) {
-            Storage::disk('public')->delete('img/customers/' . $element->image);
+            Storage::disk('public')->delete('img/productos/' . $element->image);
         }
         try {
             $element = Productos::UpdateOrCreate(["id" => $element->id], $request_testimonial);

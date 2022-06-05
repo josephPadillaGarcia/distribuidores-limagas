@@ -67,7 +67,7 @@ class WebController extends Controller
     public function index(Request $request , $locale = null)
     {
 
-        $page = $this->getSeoPage('branch-offices', $this->locale);
+        //$page = $this->getSeoPage('branch-offices', $this->locale);
         $content = $this->getContentPage('branch-offices');
         $offices = BranchOffice::with('ubigeoRel');
         $department = $province = $district = NULL;
@@ -98,7 +98,6 @@ class WebController extends Controller
         $offices = $offices->orderBy('index')->get();
         $departments = Ubigeo::whereHas('branchOfficeRel')->orderBy('code_ubigeo', 'DESC')->groupBy('code_department')->get();
         $data = array(
-            "page" => $page,
             "content" => $content,
             "offices" => $offices,
             "departments" => $departments
@@ -107,6 +106,10 @@ class WebController extends Controller
             ['province' => $request->province, 'department' => $request->department,'district' => $request->district]
         );
 
+    }
+
+    public function distribuidor(BranchOffice $id){
+       return view("web.pages.distribuidor", compact('id'));
     }
 
     public function getProvinces(Request $request)

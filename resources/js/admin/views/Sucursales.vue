@@ -77,7 +77,7 @@
                   <span class="font-weight-normal">{{ el.name }}</span>
                 </h3>
                 <h3 class="mb-1">
-                  Descripción: <br />
+                  Dirección: <br />
                   <span class="font-weight-normal">
                     <pre
                       class="mb-0"
@@ -212,7 +212,7 @@
             </div>
             <div class="col-12">
               <div class="form-group">
-                <label class="font-weight-bold" for="">Descripción</label>
+                <label class="font-weight-bold" for="">Dirección</label>
                 <textarea
                   cols="6"
                   class="form-control"

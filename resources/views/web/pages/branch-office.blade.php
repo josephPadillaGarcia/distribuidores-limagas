@@ -2,12 +2,11 @@
 
 @section('content')
 @php
-    $page = $data["page"];
     $locale = Config::get('app.locale');
-    $content = $data["content"];
+    //$content = $data["content"];
     $offices = $data["offices"];
     $departments = $data["departments"];
-    $storageUrl = config('services.storage_url');
+    //$storageUrl = config('services.storage_url');
 @endphp
 
 <main>
@@ -74,7 +73,7 @@
                                     </ul>
                                 </div>
                                 <div class="sucursales__action">
-                                    <a href="#!">Ver</a>
+                                    <a href="{{ route('distribuidor',$office->id ) }}">Ver</a>
                                 </div>
                             </div>
                             @if($office->iframe)
