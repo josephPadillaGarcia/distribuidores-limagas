@@ -34,6 +34,20 @@ Route::prefix('admin')->group(function() {
     Route::post('login/reset', 'Cms\Auth\ResetPasswordController@reset')->name('password.update');
 
     Route::middleware(['auth'])->namespace('Cms')->name('cms.')->group(function () {
+        
+        Route::prefix('distribuidores')->name('distribuidores.')->group(function () {
+            Route::get('/', 'SucursalesController@index')->name('index');
+            Route::post('/', 'SucursalesController@store')->name('store');
+            Route::put('/order', 'SucursalesController@order')->name('order');
+            Route::put('/{element}', 'SucursalesController@update')->name('update');
+            Route::delete('/{element}', 'SucursalesController@destroy')->name('destroy');
+            Route::get('/json/get-all', 'SucursalesController@getAll')->name('get-all');
+            Route::get('/json/get/{element}', 'SucursalesController@get')->name('get');
+
+            //Productos
+            Route::get('/product/json/get-all', 'SucursalesController@getAllProduct')->name('product-get-all');
+        });
+
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
         Route::get('json/dashboard', 'DashboardController@getStatistics')->name('dashboard.get-statistics');
         Route::get('json/dashboard-by-date', 'DashboardController@getStatisticsByDate')->name('dashboard.get-statistics-by-date');
@@ -43,6 +57,8 @@ Route::prefix('admin')->group(function() {
         Route::put('profile', 'ProfileController@updateProfile')->name('profile.update-profile');
         Route::put('change-password', 'ProfileController@updatePassword')->name('profile.update-contrasena');
     
+        
+
         /*Route::namespace('Configuration')->prefix('configuracion')->name('configuration.')->group(function () {
             Route::name('users.')->prefix('usuarios')->group(function () {
                 Route::get('/', 'UsersController@index')->name('index');
@@ -219,15 +235,6 @@ Route::prefix('admin')->group(function() {
             Route::get('/json/get', 'AppTrackingController@get')->name('get');
         });*/
 
-        Route::prefix('distribuidores')->name('distribuidores.')->group(function () {
-            Route::get('/', 'SucursalesController@index')->name('index');
-            Route::post('/', 'SucursalesController@store')->name('store');
-            Route::put('/order', 'SucursalesController@order')->name('order');
-            Route::put('/{element}', 'SucursalesController@update')->name('update');
-            Route::delete('/{element}', 'SucursalesController@destroy')->name('destroy');
-            Route::get('/json/get-all', 'SucursalesController@getAll')->name('get-all');
-            Route::get('/json/get/{element}', 'SucursalesController@get')->name('get');
-        });
     
         #Misc
         Route::get('json/select/categories', 'CmsController@getCategories')->name('json.get-categories');

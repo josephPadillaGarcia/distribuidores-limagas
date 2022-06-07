@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Cms\BranchOfficeRequest;
 use App\Http\Traits\CmsTrait;
+use App\Productos;
 use Illuminate\Support\Facades\Storage;
 
 class SucursalesController extends Controller
@@ -96,4 +97,10 @@ class SucursalesController extends Controller
             return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.update.error', ['name' => trans('custom.attribute.sucursal')])], 500);
         }
     }
+
+public function getAllProduct(){
+    $els = Productos::orderBy('index')->get();
+    return response()->json($els);
+}
+
 }

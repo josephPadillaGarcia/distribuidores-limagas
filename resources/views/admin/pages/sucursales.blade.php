@@ -9,5 +9,7 @@
     route-departments-get="{{ route('cms.json.get-departments')}}"
     route-provinces-get="{{ route('cms.json.get-provinces')}}"
     route-districts-get="{{ route('cms.json.get-districts')}}"
+
+    route-products-get-all = "{{ route('cms.distribuidores.product-get-all') }}"
     ></sucursales>
 @endsection

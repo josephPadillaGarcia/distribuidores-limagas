@@ -26,7 +26,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/dashboard';
+    protected $redirectTo = '/admin/distribuidores';
 
     public function __construct()
     {
@@ -40,7 +40,7 @@ class ResetPasswordController extends Controller
     }
 
     protected function sendResetResponse(Request $request, $response){
-        return ['status' => trans($response), "route" => route('cms.dashboard')];
+        return ['status' => trans($response), "route" => route('cms.distribuidores.index')];
     }
     
     protected function sendResetFailedResponse(Request $request, $response){

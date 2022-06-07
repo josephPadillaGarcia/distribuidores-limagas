@@ -49,7 +49,7 @@ class LoginController extends Controller
     protected function sendLoginResponse(Request $request){
         $route = session()->get('url.intended');
         if(!$route){
-            $route = route('cms.dashboard');
+            $route = route('cms.distribuidores.index');
         }
         else{
             session()->forget('url.intended');

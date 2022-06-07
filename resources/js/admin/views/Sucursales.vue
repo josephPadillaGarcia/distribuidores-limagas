@@ -297,6 +297,28 @@
                 >
               </div>
             </div>
+
+            <div v-if="products">
+              {{ products }}
+              <div v-for="(p,i) in products" :key="p.id">
+                <a href="#!">
+                  <img
+                    :src="imagesUrl + '/productos/' + p.image"
+                    height="100"
+                    alt=""
+                  />
+                  <span>{{ p.name }}</span>
+                  <b>Precio: {{ p.precio }}</b>
+                </a>
+              </div>
+            </div>
+
+            <div v-else>
+              <p>No hay productos registrados</p>
+            </div>
+            
+
+
           </div>
         </form>
       </div>
@@ -361,6 +383,7 @@ export default {
     routeDepartmentsGet: String,
     routeDistrictsGet: String,
     routeProvincesGet: String,
+    routeProductsGetAll: String,
   },
   data() {
     return {
@@ -388,6 +411,8 @@ export default {
         addRemoveLinks: true,
         dictRemoveFile: "Remover",
       },
+
+      products: [],
     };
   },
   methods: {
@@ -560,9 +585,24 @@ export default {
         })
         .catch((error) => {});
     },
+
+
+  // Obteniendo todos los productos de gas
+    getProducts(){
+      axios
+        .get(this.routeProductsGetAll)
+        .then((response) => {
+          this.products = response.data;
+        })
+        .catch((err) => {});
+    }
+
   },
+  //------------------------------
+
   created() {
     this.getEls();
+    this.getProducts();
   },
   /*watch: {
     // whenever question changes, this function will run
