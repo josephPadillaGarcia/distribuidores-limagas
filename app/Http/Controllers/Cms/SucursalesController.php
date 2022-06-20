@@ -98,9 +98,15 @@ class SucursalesController extends Controller
         }
     }
 
-public function getAllProduct(){
-    $els = Productos::orderBy('index')->get();
-    return response()->json($els);
-}
+    // MUESTRA TODOS LOS PRODUCTOS
+    public function getAllProduct(){
+        $els = Productos::orderBy('index')->get();
+        return response()->json($els);
+    }
+    //--------------------------------------
 
+    // MUESTRA UN PRODUCTO 
+    public function getProduct(Productos $element){
+        return response()->json($element);
+    }
 }

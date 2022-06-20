@@ -38,9 +38,9 @@
           <div class="col-12 col-md-6 mb-4">
             <div class="input-group input-group-merge">
               <div class="input-group-prepend bg-white">
-                <span id="search" class="input-group-text bg-white"
-                  ><i class="current-color ri-search-line"></i
-                ></span>
+                <span id="search" class="input-group-text bg-white">
+                  <i class="current-color ri-search-line"></i>
+                </span>
               </div>
               <input
                 v-model="q"
@@ -73,11 +73,13 @@
             <div class="card">
               <div class="card-body">
                 <h3 class="mb-1">
-                  Distribuidor: <br />
+                  Distribuidor:
+                  <br />
                   <span class="font-weight-normal">{{ el.name }}</span>
                 </h3>
                 <h3 class="mb-1">
-                  Dirección: <br />
+                  Dirección:
+                  <br />
                   <span class="font-weight-normal">
                     <pre
                       class="mb-0"
@@ -91,26 +93,27 @@
                   </span>
                 </h3>
                 <h3 class="mb-1">
-                  Ubigeo: <br />
-                  <span class="font-weight-normal"
-                    >{{ el.ubigeo_rel.district }} -
+                  Ubigeo:
+                  <br />
+                  <span class="font-weight-normal">
+                    {{ el.ubigeo_rel.district }} -
                     {{ el.ubigeo_rel.province }} -
                     {{ el.ubigeo_rel.department }}
                   </span>
                 </h3>
                 <h3 class="mb-1">
-                  Email: <br />
+                  Email:
+                  <br />
                   <span class="font-weight-normal" v-if="el.emails">
                     <template v-for="(e, i) in el.emails">
-                      <span class="d-block" :key="i + 'emi'">
-                        {{ e.name }}
-                      </span>
+                      <span class="d-block" :key="i + 'emi'">{{ e.name }}</span>
                     </template>
                   </span>
-                  <span class="font-weight-normal" v-else> No registrado </span>
+                  <span class="font-weight-normal" v-else>No registrado</span>
                 </h3>
                 <h3 class="mb-1">
-                  Teléfono: <br />
+                  Teléfono:
+                  <br />
                   <span class="font-weight-normal" v-if="el.phone_numbers">
                     <template v-for="(e, i) in el.phone_numbers">
                       <a
@@ -119,13 +122,28 @@
                         :href="'tel:' + e.number"
                         class="d-block"
                         :key="i + 'pn'"
+                        >{{ e.number }}</a
                       >
-                        {{ e.number }}
-                      </a>
                     </template>
                   </span>
-                  <span class="font-weight-normal" v-else> No registrado </span>
+                  <span class="font-weight-normal" v-else>No registrado</span>
                 </h3>
+
+                <h3 class="mb-1">
+                  Productos:
+                  <br />
+                  <span v-if="el.products">
+                    <template v-for="(e, i) in el.products">
+                      <p :key="i + 'pn'">{{ showproducts(e.idprod) }}</p>
+                    </template>
+                  </span>
+                  <span v-else> No tiene productos registrados </span>
+                </h3>
+
+                <!--template>
+                  {{ getproducts }}
+                  </template-->
+
                 <!--h3 class="mb-1">
                   Horario: <br />
                   <span class="font-weight-normal">
@@ -141,7 +159,8 @@
                   </span>
                 </h3-->
                 <h3 class="mb-1">
-                  Iframe: <br />
+                  Iframe:
+                  <br />
                   <span class="font-weight-normal" v-if="!el.iframe"
                     >No registrado</span
                   >
@@ -195,7 +214,7 @@
           <div class="row">
             <div class="col-12">
               <div class="form-group">
-                <label class="font-weight-bold" for="">Distribuidor</label>
+                <label class="font-weight-bold" for>Distribuidor</label>
                 <input
                   type="text"
                   class="form-control"
@@ -212,7 +231,7 @@
             </div>
             <div class="col-12">
               <div class="form-group">
-                <label class="font-weight-bold" for="">Dirección</label>
+                <label class="font-weight-bold" for>Dirección</label>
                 <textarea
                   cols="6"
                   class="form-control"
@@ -257,10 +276,13 @@
                 :array.sync="element.phone_numbers"
                 :array-prop="element.phone_numbers"
               />
-              <small class=""
-                >Formatos recomendados: <br />
-                Fijos: (054) 444444, Móviles: 9 dígitos</small
-              >
+              <small class>
+                Formatos recomendados:
+                <br />Fijos: (054) 444444, Móviles: 9 dígitos
+              </small>
+              <pre>
+                {{ element.phone_numbers }}
+              </pre>
             </div>
             <!--div class="col-12">
               <div class="form-group">
@@ -280,7 +302,7 @@
             </div-->
             <div class="col-12">
               <div class="form-group">
-                <label class="font-weight-bold" for=""
+                <label class="font-weight-bold" for
                   >Iframe Mapa(Opcional)</label
                 >
                 <textarea
@@ -298,27 +320,33 @@
               </div>
             </div>
 
-            <div v-if="products">
-              {{ products }}
-              <div v-for="(p,i) in products" :key="p.id">
-                <a href="#!">
-                  <img
-                    :src="imagesUrl + '/productos/' + p.image"
-                    height="100"
-                    alt=""
+            <div class="col-12">
+              <!-- INFORMACION DE PRODUCTOS -->
+              <!--div v-if="products" class="prod-list">
+                <div v-for="(p, i) in products" :key="p.id" class="btn-prod">
+                  <input
+                    type="checkbox"
+                    :value="p.id"
+                    v-model="addIdProducts.idprod"
                   />
-                  <span>{{ p.name }}</span>
-                  <b>Precio: {{ p.precio }}</b>
-                </a>
+                  <label>{{ p.name }}</label>
+                </div>
+                <span>Checked names: {{ addIdProducts.idprod }}</span>
               </div>
+              <div v-else>
+                <p>No hay productos registrados</p>
+              </div-->
+
+              <CheckBoxSelectArray
+                :allproducts="products"
+                :selectproducts.sync="element.producto"
+              />
+
+              <pre>
+{{ element.producto }}
+              </pre>
+              <!-- ///////////////////////////////////////// -->
             </div>
-
-            <div v-else>
-              <p>No hay productos registrados</p>
-            </div>
-            
-
-
           </div>
         </form>
       </div>
@@ -344,6 +372,21 @@
     ></destroy>
   </div>
 </template>
+
+<style scoped>
+.prod-list {
+  display: flex;
+  gap: 12px;
+}
+.btn-prod a {
+  display: grid;
+  padding: 12px;
+  background: #eeeeee;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+}
+</style>
+
 <script>
 import BreadCrumb from "../components/BreadCrumb";
 import draggable from "vuedraggable";
@@ -357,6 +400,8 @@ import SkeletonForm from "../components/skeleton/form";
 import NoData from "../components/NoData";
 import Ubigeo from "../components/form/Ubigeo";
 import InputSelectArray from "../components/form/InputSelectArray";
+
+import CheckBoxSelectArray from "../components/form/CheckBoxSelectArray";
 export default {
   components: {
     BreadCrumb,
@@ -373,6 +418,7 @@ export default {
     NoData,
     Ubigeo,
     InputSelectArray,
+    CheckBoxSelectArray,
   },
   props: {
     route: String,
@@ -383,7 +429,13 @@ export default {
     routeDepartmentsGet: String,
     routeDistrictsGet: String,
     routeProvincesGet: String,
+
+    //productos
     routeProductsGetAll: String,
+    routeProductsGet: String,
+    selproducts: {
+      type: Object,
+    },
   },
   data() {
     return {
@@ -413,17 +465,19 @@ export default {
       },
 
       products: [],
+      addProducts: [],
+      getproducts: {},
     };
   },
   methods: {
-    handleMove(){
-      if(this.q){
+    handleMove() {
+      if (this.q) {
         return false;
       }
       return true;
     },
     handleChange() {
-      if(this.q){
+      if (this.q) {
         return false;
       }
       axios
@@ -506,12 +560,15 @@ export default {
         url = this.route + "/" + this.element.id;
         method = "put";
       }
-      axios({
+
+      console.log(this.element.emails);
+
+      /*axios({
         method: method,
         url: url,
-        data: this.element,
+        data: this.element
       })
-        .then((response) => {
+        .then(response => {
           this.requestSubmit = false;
           Swal.fire({
             title: response.data.title,
@@ -520,12 +577,12 @@ export default {
             confirmButtonText: "OK",
             buttonsStyling: false,
             customClass: {
-              confirmButton: "btn btn-inverse-primary",
-            },
+              confirmButton: "btn btn-inverse-primary"
+            }
           });
           this.restore();
         })
-        .catch((error) => {
+        .catch(error => {
           this.requestSubmit = false;
           if (error.response.status === 422) {
             this.errors = error.response.data.errors || {};
@@ -538,11 +595,11 @@ export default {
             confirmButtonText: "OK",
             buttonsStyling: false,
             customClass: {
-              confirmButton: "btn btn-inverse-primary",
-            },
+              confirmButton: "btn btn-inverse-primary"
+            }
           });
           this.restoreEl();
-        });
+        });*/
     },
     restore() {
       (this.element = {
@@ -586,23 +643,36 @@ export default {
         .catch((error) => {});
     },
 
-
-  // Obteniendo todos los productos de gas
-    getProducts(){
+    // Obteniendo todos los productos de gas
+    getProducts() {
       axios
         .get(this.routeProductsGetAll)
         .then((response) => {
           this.products = response.data;
         })
         .catch((err) => {});
-    }
+    },
+    //------------------------------
 
+    /*addproduct(){
+      this.addproducts = this.products.map(item => item.id)
+    },*/
+
+    showproducts(id) {
+      axios
+        .get(this.route + "/product/json/get/" + id)
+        .then((response) => {
+          this.getproducts = response.data;
+        })
+        .catch((error) => {});
+      //return "Hola producto: "+id;
+    },
   },
-  //------------------------------
 
   created() {
     this.getEls();
     this.getProducts();
+    //this.showproducts(id);
   },
   /*watch: {
     // whenever question changes, this function will run
@@ -613,16 +683,15 @@ export default {
     }
   },*/
   computed: {
-    filteredElements: function() {
+    filteredElements: function () {
       let filtered = this.elements;
       if (this.q) {
         filtered = this.elements.filter(
-          e =>
-            e.name.toUpperCase().includes(this.q.toUpperCase()) == true
+          (e) => e.name.toUpperCase().includes(this.q.toUpperCase()) == true
         );
       }
       return filtered;
     },
-  }
+  },
 };
 </script>

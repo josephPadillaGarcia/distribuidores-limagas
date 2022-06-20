@@ -14,7 +14,7 @@
           v-model="array[i][el.variable]"
         />
         <!--<select :class="['form-control', hideDepartment ? 'd-none' : '']"  :id="el.variable" v-else v-model="array[i][el.variable]">-->
-        <select :class="['form-control']"  :id="el.variable" v-else v-model="array[i][el.variable]">
+        <select :class="['form-control']" :id="el.variable" v-else v-model="array[i][el.variable]">
           <option
             :value="el2.code_department"
             v-for="(el2,i) in selectItems"
@@ -54,36 +54,36 @@ export default {
     },*/
     disableEdit: {
       default: false,
-      type: Boolean,
+      type: Boolean
     },
     fieldName: String,
     selectItems: Array,
     headers: Array,
     arrayProp: Array,
-    errorsProp: Object,
+    errorsProp: Object
   },
   data() {
     return {
       arrayData: [{}],
-      errorsData: {},
+      errorsData: {}
     };
   },
   methods: {
     restore() {
       this.arrayData = [{}];
     },
-    addEl: function (i) {
+    addEl: function(i) {
       const isEmpty = Object.values(this.arrayData[i]).every(
-        (x) => x === null || x === ""
+        x => x === null || x === ""
       );
       if (isEmpty) {
         return;
       }
       this.arrayData.push({});
     },
-    deleteEl: function (i) {
+    deleteEl: function(i) {
       this.arrayData.splice(i, 1);
-    },
+    }
   },
   computed: {
     array: {
@@ -93,13 +93,13 @@ export default {
       set(value) {
         this.arrayData.push({});
         this.array.push({});
-      },
+      }
     },
     errors: {
       get() {
         return this.errorsData;
-      },
-    },
+      }
+    }
   },
   watch: {
     array: {
@@ -109,14 +109,14 @@ export default {
           return;
         }
         this.$emit("update:array", newValue);
-      },
+      }
     },
     errorsProp: {
       immediate: true,
       deep: true,
       handler(newValue, oldValue) {
         this.errorsData = newValue;
-      },
+      }
     },
     arrayProp: {
       immediate: true,
@@ -125,8 +125,8 @@ export default {
         if (newValue && newValue.length > 0) {
           this.arrayData = newValue;
         }
-      },
-    },
-  },
+      }
+    }
+  }
 };
 </script>

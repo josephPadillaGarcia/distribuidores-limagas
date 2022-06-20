@@ -46,6 +46,7 @@ Route::prefix('admin')->group(function() {
 
             //Productos
             Route::get('/product/json/get-all', 'SucursalesController@getAllProduct')->name('product-get-all');
+            Route::get('/product/json/get/{element}', 'SucursalesController@getProduct')->name('product-get');
         });
 
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
