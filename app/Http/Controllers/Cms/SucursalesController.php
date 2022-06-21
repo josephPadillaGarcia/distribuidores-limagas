@@ -21,7 +21,7 @@ class SucursalesController extends Controller
 
     public function store(BranchOfficeRequest $request)
     {
-        $el = request(["name", "direction", "schedule","iframe"]);
+        $el = request(["name", "direction", "schedule","iframe", "products"]);
         if($request->emails){
             $el = array_merge($el, ["emails" => $request->emails]);
         }

@@ -20,34 +20,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    allproducts: {
-      type: Object
-    }
+    allproducts: Array
   },
   data: function data() {
     return {
-      /*user: [],
-      roles: [
-        {
-          id: 1,
-          name: "Client",
-        },
-        {
-          id: 2,
-          name: "Admin",
-        },
-        {
-          id: 3,
-          name: "Guest",
-        },
-      ],*/
       selectproducts: []
     };
+  },
+  watch: {
+    selectproducts: function selectproducts() {
+      this.$emit('arrayproducts', this.selectproducts);
+    }
   }
 });
 
@@ -666,55 +651,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -783,8 +719,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         dictRemoveFile: "Remover"
       },
       products: [],
-      addProducts: [],
-      getproducts: {}
+      getproducts: {},
+      sproducts: []
     };
   },
   methods: {
@@ -872,6 +808,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.getEl(id);
     },
     submit: function submit() {
+      var _this3 = this;
+
       this.requestSubmit = true;
       var url;
       var method;
@@ -882,46 +820,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else {
         url = this.route + "/" + this.element.id;
         method = "put";
-      }
+      } //console.log(this.element.emails);
 
-      console.log(this.element.emails);
-      /*axios({
+
+      axios({
         method: method,
         url: url,
         data: this.element
-      })
-        .then(response => {
-          this.requestSubmit = false;
-          Swal.fire({
-            title: response.data.title,
-            text: response.data.message,
-            type: "success",
-            confirmButtonText: "OK",
-            buttonsStyling: false,
-            customClass: {
-              confirmButton: "btn btn-inverse-primary"
-            }
-          });
-          this.restore();
-        })
-        .catch(error => {
-          this.requestSubmit = false;
-          if (error.response.status === 422) {
-            this.errors = error.response.data.errors || {};
-            return;
+      }).then(function (response) {
+        _this3.requestSubmit = false;
+        Swal.fire({
+          title: response.data.title,
+          text: response.data.message,
+          type: "success",
+          confirmButtonText: "OK",
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: "btn btn-inverse-primary"
           }
-          Swal.fire({
-            title: error.response.data.title,
-            text: error.response.data.message,
-            type: "error",
-            confirmButtonText: "OK",
-            buttonsStyling: false,
-            customClass: {
-              confirmButton: "btn btn-inverse-primary"
-            }
-          });
-          this.restoreEl();
-        });*/
+        });
+
+        _this3.restore();
+      })["catch"](function (error) {
+        _this3.requestSubmit = false;
+
+        if (error.response.status === 422) {
+          _this3.errors = error.response.data.errors || {};
+          return;
+        }
+
+        Swal.fire({
+          title: error.response.data.title,
+          text: error.response.data.message,
+          type: "error",
+          confirmButtonText: "OK",
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: "btn btn-inverse-primary"
+          }
+        });
+
+        _this3.restoreEl();
+      });
     },
     restore: function restore() {
       this.element = {
@@ -943,29 +883,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.errors = {};
     },
     getEls: function getEls() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.loadingEls = true;
       axios.get(this.routeGetAll).then(function (response) {
-        _this3.elements = response.data;
-        _this3.loadingEls = false;
+        _this4.elements = response.data;
+        _this4.loadingEls = false;
       })["catch"](function (error) {});
     },
     getEl: function getEl(id) {
-      var _this4 = this;
+      var _this5 = this;
 
       this.loadingGet = true;
       axios.get(this.route + "/json/get/" + id).then(function (response) {
-        _this4.element = response.data;
-        _this4.loadingGet = false;
+        _this5.element = response.data;
+        _this5.loadingGet = false;
       })["catch"](function (error) {});
     },
     // Obteniendo todos los productos de gas
     getProducts: function getProducts() {
-      var _this5 = this;
+      var _this6 = this;
 
       axios.get(this.routeProductsGetAll).then(function (response) {
-        _this5.products = response.data;
+        _this6.products = response.data;
       })["catch"](function (err) {});
     },
     //------------------------------
@@ -974,11 +914,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.addproducts = this.products.map(item => item.id)
     },*/
     showproducts: function showproducts(id) {
-      var _this6 = this;
+      var _this7 = this;
 
       axios.get(this.route + "/product/json/get/" + id).then(function (response) {
-        _this6.getproducts = response.data;
-      })["catch"](function (error) {}); //return "Hola producto: "+id;
+        _this7.getproducts = response.data;
+      })["catch"](function (error) {});
+    },
+    elementproducts: function elementproducts(val) {
+      this.sproducts = val;
+      this.element.products = val;
     }
   },
   created: function created() {
@@ -996,13 +940,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },*/
   computed: {
     filteredElements: function filteredElements() {
-      var _this7 = this;
+      var _this8 = this;
 
       var filtered = this.elements;
 
       if (this.q) {
         filtered = this.elements.filter(function (e) {
-          return e.name.toUpperCase().includes(_this7.q.toUpperCase()) == true;
+          return e.name.toUpperCase().includes(_this8.q.toUpperCase()) == true;
         });
       }
 
@@ -1578,7 +1522,7 @@ var render = function() {
                               _c("div", { staticClass: "card-body" }, [
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
-                                    "\n                  Distribuidor:\n                  "
+                                    "\n                Distribuidor:\n                "
                                   ),
                                   _c("br"),
                                   _vm._v(" "),
@@ -1591,7 +1535,7 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
-                                    "\n                  Dirección:\n                  "
+                                    "\n                Dirección:\n                "
                                   ),
                                   _c("br"),
                                   _vm._v(" "),
@@ -1625,7 +1569,7 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
-                                    "\n                  Ubigeo:\n                  "
+                                    "\n                Ubigeo:\n                "
                                   ),
                                   _c("br"),
                                   _vm._v(" "),
@@ -1634,13 +1578,13 @@ var render = function() {
                                     { staticClass: "font-weight-normal" },
                                     [
                                       _vm._v(
-                                        "\n                    " +
+                                        "\n                  " +
                                           _vm._s(el.ubigeo_rel.district) +
-                                          " -\n                    " +
+                                          " -\n                  " +
                                           _vm._s(el.ubigeo_rel.province) +
-                                          " -\n                    " +
+                                          " -\n                  " +
                                           _vm._s(el.ubigeo_rel.department) +
-                                          "\n                  "
+                                          "\n                "
                                       )
                                     ]
                                   )
@@ -1648,7 +1592,7 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
-                                    "\n                  Email:\n                  "
+                                    "\n                Email:\n                "
                                   ),
                                   _c("br"),
                                   _vm._v(" "),
@@ -1681,7 +1625,7 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
-                                    "\n                  Teléfono:\n                  "
+                                    "\n                Teléfono:\n                "
                                   ),
                                   _c("br"),
                                   _vm._v(" "),
@@ -1725,27 +1669,31 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
-                                    "\n                  Productos:\n                  "
+                                    "\n                Productos:\n                "
                                   ),
                                   _c("br"),
                                   _vm._v(" "),
                                   el.products
                                     ? _c(
                                         "span",
-                                        [
-                                          _vm._l(el.products, function(e, i) {
-                                            return [
-                                              _c("p", { key: i + "pn" }, [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.showproducts(e.idprod)
-                                                  )
-                                                )
-                                              ])
-                                            ]
-                                          })
-                                        ],
-                                        2
+                                        _vm._l(el.products, function(e, i) {
+                                          return _c("div", { key: e.id }, [
+                                            _c("img", {
+                                              staticClass:
+                                                "img-fluid d-block mb-2 mx-auto",
+                                              attrs: {
+                                                src:
+                                                  _vm.imagesUrl +
+                                                  "/productos/" +
+                                                  e.image,
+                                                alt: e.name
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("p", [_vm._v(_vm._s(e.name))])
+                                          ])
+                                        }),
+                                        0
                                       )
                                     : _c("span", [
                                         _vm._v(
@@ -1756,7 +1704,7 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
-                                    "\n                  Iframe:\n                  "
+                                    "\n                Iframe:\n                "
                                   ),
                                   _c("br"),
                                   _vm._v(" "),
@@ -1788,7 +1736,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                    Editar\n                  "
+                                        "\n                  Editar\n                "
                                       )
                                     ]
                                   ),
@@ -1806,7 +1754,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                    Eliminar\n                  "
+                                        "\n                  Eliminar\n                "
                                       )
                                     ]
                                   )
@@ -1858,7 +1806,7 @@ var render = function() {
                       attrs: { type: "button" },
                       on: { click: _vm.restoreEl }
                     },
-                    [_vm._v("\n          Cancelar\n        ")]
+                    [_vm._v("\n        Cancelar\n      ")]
                   )
                 ]
               }
@@ -2120,19 +2068,11 @@ var render = function() {
                           _vm._v(" "),
                           _c("small", {}, [
                             _vm._v(
-                              "\n                Formatos recomendados:\n                "
+                              "\n              Formatos recomendados:\n              "
                             ),
                             _c("br"),
                             _vm._v(
-                              "Fijos: (054) 444444, Móviles: 9 dígitos\n              "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("pre", [
-                            _vm._v(
-                              "                " +
-                                _vm._s(_vm.element.phone_numbers) +
-                                "\n              "
+                              "Fijos: (054) 444444, Móviles: 9 dígitos\n            "
                             )
                           ])
                         ],
@@ -2198,22 +2138,9 @@ var render = function() {
                         { staticClass: "col-12" },
                         [
                           _c("CheckBoxSelectArray", {
-                            attrs: {
-                              allproducts: _vm.products,
-                              selectproducts: _vm.element.producto
-                            },
-                            on: {
-                              "update:selectproducts": function($event) {
-                                return _vm.$set(_vm.element, "producto", $event)
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("pre", [
-                            _vm._v(
-                              _vm._s(_vm.element.producto) + "\n              "
-                            )
-                          ])
+                            attrs: { allproducts: _vm.products },
+                            on: { arrayproducts: _vm.elementproducts }
+                          })
                         ],
                         1
                       )

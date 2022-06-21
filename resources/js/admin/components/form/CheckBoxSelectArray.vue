@@ -5,40 +5,24 @@
         <label>{{ sp.name }}</label>
         <input type="checkbox" v-model="selectproducts" :value="sp" />
       </div>
-
-      <!--p>User's selected roels {{ selectproducts }}</p-->
-      
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props:{
-    allproducts: {
-      type: Object
-    }
-
+  props: {
+    allproducts: Array,
   },
-  data(){
-    return{
-      /*user: [],
-      roles: [
-        {
-          id: 1,
-          name: "Client",
-        },
-        {
-          id: 2,
-          name: "Admin",
-        },
-        {
-          id: 3,
-          name: "Guest",
-        },
-      ],*/
+  data() {
+    return {
       selectproducts: [],
-    }
-  }
+    };
+  },
+  watch: {
+    selectproducts: function(){
+      this.$emit('arrayproducts', this.selectproducts)
+    } 
+  },
 };
 </script>

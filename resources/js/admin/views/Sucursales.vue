@@ -133,31 +133,20 @@
                   Productos:
                   <br />
                   <span v-if="el.products">
-                    <template v-for="(e, i) in el.products">
+                    <!--template v-for="(e, i) in el.products">
                       <p :key="i + 'pn'">{{ showproducts(e.idprod) }}</p>
-                    </template>
+                    </template-->
+                    <div class="" v-for="(e, i) in el.products" :key="e.id">
+                      <img
+                        :src="imagesUrl + '/productos/' + e.image"
+                        :alt="e.name"
+                        class="img-fluid d-block mb-2 mx-auto"
+                      />
+                      <p>{{ e.name }}</p>
+                    </div>
                   </span>
                   <span v-else> No tiene productos registrados </span>
                 </h3>
-
-                <!--template>
-                  {{ getproducts }}
-                  </template-->
-
-                <!--h3 class="mb-1">
-                  Horario: <br />
-                  <span class="font-weight-normal">
-                    <pre
-                      class="mb-0"
-                      style="
-                        font-family: inherit;
-                        white-space: pre-wrap;
-                        font-size: inherit;
-                      "
-                      >{{ el.schedule ? el.schedule : "No registrado" }}</pre
-                    >
-                  </span>
-                </h3-->
                 <h3 class="mb-1">
                   Iframe:
                   <br />
@@ -280,26 +269,7 @@
                 Formatos recomendados:
                 <br />Fijos: (054) 444444, Móviles: 9 dígitos
               </small>
-              <pre>
-                {{ element.phone_numbers }}
-              </pre>
             </div>
-            <!--div class="col-12">
-              <div class="form-group">
-                <label class="font-weight-bold" for="">Horario(Opcional)</label>
-                <textarea
-                  cols="6"
-                  class="form-control"
-                  v-model="element.schedule"
-                />
-                <label
-                  v-if="errors && errors.schedule"
-                  class="mt-2 text-danger text-sm"
-                  for="schedule"
-                  >{{ errors.schedule[0] }}</label
-                >
-              </div>
-            </div-->
             <div class="col-12">
               <div class="form-group">
                 <label class="font-weight-bold" for
@@ -322,29 +292,10 @@
 
             <div class="col-12">
               <!-- INFORMACION DE PRODUCTOS -->
-              <!--div v-if="products" class="prod-list">
-                <div v-for="(p, i) in products" :key="p.id" class="btn-prod">
-                  <input
-                    type="checkbox"
-                    :value="p.id"
-                    v-model="addIdProducts.idprod"
-                  />
-                  <label>{{ p.name }}</label>
-                </div>
-                <span>Checked names: {{ addIdProducts.idprod }}</span>
-              </div>
-              <div v-else>
-                <p>No hay productos registrados</p>
-              </div-->
-
               <CheckBoxSelectArray
                 :allproducts="products"
-                :selectproducts.sync="element.producto"
+                @arrayproducts="elementproducts"
               />
-
-              <pre>
-{{ element.producto }}
-              </pre>
               <!-- ///////////////////////////////////////// -->
             </div>
           </div>
@@ -465,8 +416,8 @@ export default {
       },
 
       products: [],
-      addProducts: [],
       getproducts: {},
+      sproducts: [],
     };
   },
   methods: {
@@ -561,9 +512,9 @@ export default {
         method = "put";
       }
 
-      console.log(this.element.emails);
+      //console.log(this.element.emails);
 
-      /*axios({
+      axios({
         method: method,
         url: url,
         data: this.element
@@ -599,7 +550,7 @@ export default {
             }
           });
           this.restoreEl();
-        });*/
+        });
     },
     restore() {
       (this.element = {
@@ -665,7 +616,11 @@ export default {
           this.getproducts = response.data;
         })
         .catch((error) => {});
-      //return "Hola producto: "+id;
+    },
+
+    elementproducts(val) {
+      this.sproducts = val;
+      this.element.products = val;
     },
   },
 
