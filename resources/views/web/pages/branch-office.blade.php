@@ -11,7 +11,7 @@
 
 <main>
     <section class="sucursales bottom_section">
-        <div class="sucursales__form">
+        <!--div class="sucursales__form">
             <div class="container">
                 <div class="row">
                     <ubigeo-filter locale="{{ $locale }}"
@@ -22,7 +22,7 @@
                     route-get-dis="{{ route('web.districts')}}"/>
                 </div>
             </div>
-        </div>
+        </div-->
 
         <div class="sucursales__list">
             <div class="container">
@@ -86,6 +86,30 @@
                     @endforeach
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="index">
+        <div class="busqueda_index color_white">
+            <div class="logo">
+                <img src="public/img/logo1.png" alt="">
+            </div>
+            <div class="texto">
+                <h1>Encuentra el distribuidor más cercano a ti:</h1>
+            </div>
+            <div class="formulario">
+                <ubigeo-filter locale="{{ $locale }}"
+                    department-parent="{{ $department }}"
+                    province-parent="{{ $province }}"
+                    district-parent="{{ $district }}"
+                    route-search="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.branch-offices') }}" :departments="{{ $departments }}" route-get-prov="{{ route('web.provinces')}}"
+                    route-get-dis="{{ route('web.districts')}}"/>
+            </div>
+        </div>
+    
+        <div class="img-footer">
+            <div class="left"><img src="public/img/img-left.png" alt=""></div>
+            <div class="right"><img src="public/img/img-right.png" alt=""></div>
         </div>
     </section>
 

@@ -4,15 +4,15 @@ $social_networks = $footer["social_networks"];
 $locale = $footer["locale"];
 $routeLocale = $footer["routeLocale"];
 @endphp
-<footer class="grid align-center lazyload" data-bg="/storage/web/img/footer.png">
+<!--footer class="grid align-center lazyload" data-bg="/storage/web/img/footer.png">
     <div class="container">
         <h1>Footer</h1>
-</footer>
+</footer-->
 
 
 
 @push('scripts')
-<script type="text/javascript">
+<!--script type="text/javascript">
     $(document).ready(function () {
         $('#btn_encuesta').prop('disabled', true); 
         $("ul.navbar-nav li.dropdown").hover(
@@ -48,5 +48,5 @@ $routeLocale = $footer["routeLocale"];
 
         
     });
-</script>
+</script-->
 @endpush

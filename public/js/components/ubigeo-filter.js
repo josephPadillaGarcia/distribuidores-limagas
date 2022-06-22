@@ -1,1 +1,535 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{56:function(t,e,r){"use strict";r.r(e);var i={props:{departmentParent:String,provinceParent:String,districtParent:String,departments:Array,routeGetProv:String,routeGetDis:String,routeSearch:String,locale:{type:String}},data:function(){return{department:this.departmentParent?this.departmentParent:"",provinces:null,province:this.provinceParent?this.provinceParent:"",district:this.districtParent?this.districtParent:"",districts:null}},methods:{t:function(t){return this.$t(t,this.locale)},getPr:function(){var t=this;axios.get(this.routeGetProv,{params:{department:this.department}}).then((function(e){t.provinces=e.data,t.districtParent||(t.district=""),t.provinceParent||(t.province=""),t.districts=null}))},getDis:function(){var t=this;axios.get(this.routeGetDis,{params:{department:this.department,province:this.province}}).then((function(e){t.districts=e.data}))},search:function(){}},watch:{department:{immediate:!0,handler:function(t){t&&this.getPr()}},province:{immediate:!0,handler:function(t){t&&this.getDis()}}}},n=r(9),a=Object(n.a)(i,(function(){var t=this,e=t.$createElement,r=t._self._c||e;return r("form",{staticClass:"col-lg-12",on:{submit:t.search}},[r("div",{staticClass:"row"},[r("div",{staticClass:"col-lg-3"},[r("div",{staticClass:"grupo-form"},[r("label",{attrs:{for:""}},[t._v("\n          "+t._s(t.t("Departamento"))+"\n        ")]),t._v(" "),r("select",{directives:[{name:"model",rawName:"v-model",value:t.department,expression:"department"}],staticClass:"form-select",attrs:{id:"department",name:"department"},on:{change:function(e){var r=Array.prototype.filter.call(e.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.department=e.target.multiple?r:r[0]}}},[r("option",{attrs:{value:"",disabled:""}},[t._v("--Seleccionar--")]),t._v(" "),t._l(t.departments,(function(e){return r("option",{key:"dep"+e.code_department,domProps:{value:e.department}},[t._v("\n            "+t._s(e.department)+"\n          ")])}))],2)])]),t._v(" "),r("div",{staticClass:"col-lg-3"},[r("div",{staticClass:"grupo-form"},[r("label",{attrs:{for:""}},[t._v("\n          "+t._s(t.t("Provincia"))+"\n        ")]),t._v(" "),r("select",{directives:[{name:"model",rawName:"v-model",value:t.province,expression:"province"}],staticClass:"form-select",attrs:{id:"province",name:"province",disabled:!t.department},on:{change:[function(e){var r=Array.prototype.filter.call(e.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.province=e.target.multiple?r:r[0]},t.getDis]}},[r("option",{attrs:{value:"",disabled:""}},[t._v("--Seleccionar--")]),t._v(" "),t._l(t.provinces,(function(e){return r("option",{key:"dep"+e.code_province,domProps:{value:e.province}},[t._v("\n            "+t._s(e.province)+"\n          ")])}))],2)])]),t._v(" "),r("div",{staticClass:"col-lg-3"},[r("div",{staticClass:"grupo-form"},[r("label",{attrs:{for:""}},[t._v("\n          "+t._s(t.t("Distrito"))+"\n        ")]),t._v(" "),r("select",{directives:[{name:"model",rawName:"v-model",value:t.district,expression:"district"}],staticClass:"form-select",attrs:{id:"district",name:"district",disabled:!t.province},on:{change:function(e){var r=Array.prototype.filter.call(e.target.options,(function(t){return t.selected})).map((function(t){return"_value"in t?t._value:t.value}));t.district=e.target.multiple?r:r[0]}}},[r("option",{attrs:{value:"",disabled:""}},[t._v("--Seleccionar--")]),t._v(" "),t._l(t.districts,(function(e){return r("option",{key:"dep"+e.code_district,domProps:{value:e.district}},[t._v("\n            "+t._s(e.district)+"\n          ")])}))],2)])]),t._v(" "),t.departmentParent||t.provinceParent||t.districtParent?r("div",{staticClass:"col-lg"},[r("a",{attrs:{href:this.routeSearch}},[t._v(t._s(t.t("Limpiar Filtros"))+" ")])]):t._e(),t._v(" "),r("div",{class:t.departmentParent||t.provinceParent||t.districtParent?"col-lg-2":"col-lg-3"},[r("div",{staticClass:"btn-form"},[r("button",{staticClass:"btn-form__main",attrs:{type:"submit"}},[t._v(t._s(t.t("Filtrar"))+" ")])])])])])}),[],!1,null,null,null);e.default=a.exports}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["js/components/ubigeo-filter"],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/web/components/UbigeoFilter.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/web/components/UbigeoFilter.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    departmentParent: String,
+    provinceParent: String,
+    districtParent: String,
+    departments: Array,
+    routeGetProv: String,
+    routeGetDis: String,
+    routeSearch: String,
+    locale: {
+      type: String
+    }
+  },
+  data: function data() {
+    return {
+      department: this.departmentParent ? this.departmentParent : "",
+      provinces: null,
+      province: this.provinceParent ? this.provinceParent : "",
+      district: this.districtParent ? this.districtParent : "",
+      districts: null
+    };
+  },
+  methods: {
+    t: function t(name) {
+      return this.$t(name, this.locale);
+    },
+    getPr: function getPr() {
+      var _this = this;
+
+      axios.get(this.routeGetProv, {
+        params: {
+          department: this.department
+        }
+      }).then(function (response) {
+        _this.provinces = response.data;
+
+        if (!_this.districtParent) {
+          _this.district = "";
+        }
+
+        if (!_this.provinceParent) {
+          _this.province = "";
+        }
+
+        _this.districts = null;
+      });
+    },
+    getDis: function getDis() {
+      var _this2 = this;
+
+      axios.get(this.routeGetDis, {
+        params: {
+          department: this.department,
+          province: this.province
+        }
+      }).then(function (response) {
+        _this2.districts = response.data;
+      });
+    },
+    search: function search() {}
+  },
+  watch: {
+    department: {
+      immediate: true,
+      handler: function handler(newValue) {
+        if (newValue) {
+          this.getPr();
+        }
+      }
+    },
+    province: {
+      immediate: true,
+      handler: function handler(newValue) {
+        if (newValue) {
+          this.getDis();
+        }
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/web/components/UbigeoFilter.vue?vue&type=template&id=5393265d&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/web/components/UbigeoFilter.vue?vue&type=template&id=5393265d& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("form", { attrs: { action: "" }, on: { submit: _vm.search } }, [
+    _c("div", { staticClass: "select" }, [
+      _c("i", {}),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.department,
+              expression: "department"
+            }
+          ],
+          attrs: { id: "department", name: "department" },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.department = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "", disabled: "" } }, [
+            _vm._v("--Seleccionar--")
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.departments, function(el) {
+            return _c(
+              "option",
+              {
+                key: "dep" + el.code_department,
+                domProps: { value: el.department }
+              },
+              [_vm._v("\n        " + _vm._s(el.department) + "\n      ")]
+            )
+          })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "select" }, [
+      _c("i", {}),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.province,
+              expression: "province"
+            }
+          ],
+          attrs: {
+            id: "province",
+            name: "province",
+            disabled: _vm.department ? false : true
+          },
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.province = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.getDis
+            ]
+          }
+        },
+        [
+          _c("option", { attrs: { value: "", disabled: "" } }, [
+            _vm._v("--Seleccionar--")
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.provinces, function(el) {
+            return _c(
+              "option",
+              {
+                key: "dep" + el.code_province,
+                domProps: { value: el.province }
+              },
+              [_vm._v("\n        " + _vm._s(el.province) + "\n      ")]
+            )
+          })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "select" }, [
+      _c("i", {}),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.district,
+              expression: "district"
+            }
+          ],
+          attrs: {
+            id: "district",
+            name: "district",
+            disabled: _vm.province ? false : true
+          },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.district = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "", disabled: "" } }, [
+            _vm._v("--Seleccionar--")
+          ]),
+          _vm._v(" "),
+          _vm._l(_vm.districts, function(el) {
+            return _c(
+              "option",
+              {
+                key: "dep" + el.code_district,
+                domProps: { value: el.district }
+              },
+              [_vm._v("\n        " + _vm._s(el.district) + "\n      ")]
+            )
+          })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        class:
+          _vm.departmentParent || _vm.provinceParent || _vm.districtParent
+            ? "col-lg-2"
+            : "col-lg-3"
+      },
+      [
+        _c("div", { staticClass: "btn-form" }, [
+          _c("button", { staticClass: "btn btn2", attrs: { type: "submit" } }, [
+            _vm._v("\n          " + _vm._s(_vm.t("Filtrar")) + "\n        ")
+          ])
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./resources/js/web/components/UbigeoFilter.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/web/components/UbigeoFilter.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UbigeoFilter_vue_vue_type_template_id_5393265d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UbigeoFilter.vue?vue&type=template&id=5393265d& */ "./resources/js/web/components/UbigeoFilter.vue?vue&type=template&id=5393265d&");
+/* harmony import */ var _UbigeoFilter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UbigeoFilter.vue?vue&type=script&lang=js& */ "./resources/js/web/components/UbigeoFilter.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UbigeoFilter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UbigeoFilter_vue_vue_type_template_id_5393265d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UbigeoFilter_vue_vue_type_template_id_5393265d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/web/components/UbigeoFilter.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/web/components/UbigeoFilter.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/web/components/UbigeoFilter.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UbigeoFilter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./UbigeoFilter.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/web/components/UbigeoFilter.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UbigeoFilter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/web/components/UbigeoFilter.vue?vue&type=template&id=5393265d&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/web/components/UbigeoFilter.vue?vue&type=template&id=5393265d& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UbigeoFilter_vue_vue_type_template_id_5393265d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./UbigeoFilter.vue?vue&type=template&id=5393265d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/web/components/UbigeoFilter.vue?vue&type=template&id=5393265d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UbigeoFilter_vue_vue_type_template_id_5393265d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UbigeoFilter_vue_vue_type_template_id_5393265d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ })
+
+}]);

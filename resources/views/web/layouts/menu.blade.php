@@ -1,6 +1,6 @@
 @php
 @endphp
-<header class="" id="content_header">
+<!--header class="" id="content_header">
     <nav class="navbar navbar-expand-lg position-relative" aria-label="Tenth navbar example">
         <div class="container-fluid" id="header_container">
             <h1>Header</h1>
@@ -8,8 +8,8 @@
         </div>
     </nav>
 
-</header>
-@push('scripts')
+</header-->
+<!--@push('scripts')
 <script type="text/javascript">
     $(document).ready(function() {
         $("ul.navbar-nav li.dropdown").hover(
@@ -30,4 +30,4 @@
         );
     });
 </script>
-@endpush
+@endpush-->
