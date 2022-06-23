@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Cms\WorkWithUsRequest;
 use App\Http\Traits\CmsTrait;
 use App\Ubigeo;
+use App\listaDistribuidores;
 
 class WebController extends Controller
 {
@@ -136,5 +137,10 @@ class WebController extends Controller
             })
             ->where('code_district', '!=', '00')->orderBy('district')->get();
         return response()->json($districts, 200);
+    }
+
+    public function listadistribuidores(Request $request){
+
+        return view("web.pages.lista-distribuidores");
     }
 }

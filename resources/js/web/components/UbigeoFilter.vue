@@ -96,7 +96,7 @@
     </div>
   </form-->
 
-  <form @submit="search" action="">
+  <form @submit.prevent="submit" action="">
     <div class="select">
       <i class=""></i>
       <select id="department" name="department" v-model="department" class="">
@@ -150,18 +150,19 @@
       </select>
     </div>
     <div
-        :class="
-          departmentParent || provinceParent || districtParent
-            ? 'col-lg-2'
-            : 'col-lg-3'
-        "
-      >
-        <div class="btn-form">
-          <button type="submit" class="btn btn2">
-            {{ t("Buscar") }}
-          </button>
-        </div>
+      :class="
+        departmentParent || provinceParent || districtParent
+          ? 'col-lg-2'
+          : 'col-lg-3'
+      "
+    >
+      <div class="btn-form">
+        <button type="submit" class="btn btn2" @click="submit">
+          {{ t("Filtrar") }}
+        </button>
       </div>
+    </div>
+    <pre>{{ element }}</pre>
   </form>
 </template>
 <script>
@@ -174,6 +175,7 @@ export default {
     routeGetProv: String,
     routeGetDis: String,
     routeSearch: String,
+    routeListaDistribuidores: String,
     locale: {
       type: String,
     },
@@ -185,6 +187,7 @@ export default {
       province: this.provinceParent ? this.provinceParent : "",
       district: this.districtParent ? this.districtParent : "",
       districts: null,
+      element: {},
     };
   },
   methods: {
@@ -208,6 +211,7 @@ export default {
           }
           this.districts = null;
         });
+
     },
     getDis() {
       axios
@@ -220,8 +224,20 @@ export default {
         .then((response) => {
           this.districts = response.data;
         });
+
     },
-    search() {},
+    submit() {
+      axios
+        .post(this.routeListaDistribuidores, {
+          params: {
+            department: this.department,
+            province: this.province,
+            district: this.district,
+          },
+        })
+        .then((response) => {
+        });
+    },
   },
   watch: {
     department: {

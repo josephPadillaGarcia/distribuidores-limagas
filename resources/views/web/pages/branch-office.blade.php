@@ -103,7 +103,9 @@
                     province-parent="{{ $province }}"
                     district-parent="{{ $district }}"
                     route-search="{{ LaravelLocalization::getURLFromRouteNameTranslated( Config::get('app.locale') , 'routes.branch-offices') }}" :departments="{{ $departments }}" route-get-prov="{{ route('web.provinces')}}"
-                    route-get-dis="{{ route('web.districts')}}"/>
+                    route-get-dis="{{ route('web.districts')}}"
+                    route-lista-distribuidores="{{ route('web.listadistribuidores') }}"
+                    />
             </div>
         </div>
     

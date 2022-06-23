@@ -24222,26 +24222,14 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
 
 /***/ }),
 
-/***/ "./resources/sass/web/web.scss":
-/*!*************************************!*\
-  !*** ./resources/sass/web/web.scss ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 0:
-/*!*********************************************************************!*\
-  !*** multi ./resources/js/web/web.js ./resources/sass/web/web.scss ***!
-  \*********************************************************************/
+/*!***************************************!*\
+  !*** multi ./resources/js/web/web.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\proyectos_freelos\distribuidores-limagas\resources\js\web\web.js */"./resources/js/web/web.js");
-module.exports = __webpack_require__(/*! C:\wamp64\www\proyectos_freelos\distribuidores-limagas\resources\sass\web\web.scss */"./resources/sass/web/web.scss");
+module.exports = __webpack_require__(/*! C:\wamp64\www\proyecto-frelos\distribuidores-limagas\resources\js\web\web.js */"./resources/js/web/web.js");
 
 
 /***/ })

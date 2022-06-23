@@ -175,6 +175,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     departmentParent: String,
@@ -184,6 +185,7 @@ __webpack_require__.r(__webpack_exports__);
     routeGetProv: String,
     routeGetDis: String,
     routeSearch: String,
+    routeListaDistribuidores: String,
     locale: {
       type: String
     }
@@ -194,7 +196,8 @@ __webpack_require__.r(__webpack_exports__);
       provinces: null,
       province: this.provinceParent ? this.provinceParent : "",
       district: this.districtParent ? this.districtParent : "",
-      districts: null
+      districts: null,
+      element: {}
     };
   },
   methods: {
@@ -234,7 +237,11 @@ __webpack_require__.r(__webpack_exports__);
         _this2.districts = response.data;
       });
     },
-    search: function search() {}
+    submit: function submit() {
+      axios.post(this.routeListaDistribuidores, {
+        params: {}
+      }).then(function (response) {});
+    }
   },
   watch: {
     department: {
@@ -273,80 +280,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("form", { attrs: { action: "" }, on: { submit: _vm.search } }, [
-    _c("div", { staticClass: "select" }, [
-      _c("i", {}),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.department,
-              expression: "department"
-            }
-          ],
-          attrs: { id: "department", name: "department" },
-          on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.department = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            }
-          }
-        },
-        [
-          _c("option", { attrs: { value: "", disabled: "" } }, [
-            _vm._v("--Seleccionar--")
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.departments, function(el) {
-            return _c(
-              "option",
+  return _c(
+    "form",
+    {
+      attrs: { action: "" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.submit.apply(null, arguments)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "select" }, [
+        _c("i", {}),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
               {
-                key: "dep" + el.code_department,
-                domProps: { value: el.department }
-              },
-              [_vm._v("\n        " + _vm._s(el.department) + "\n      ")]
-            )
-          })
-        ],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "select" }, [
-      _c("i", {}),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.province,
-              expression: "province"
-            }
-          ],
-          attrs: {
-            id: "province",
-            name: "province",
-            disabled: _vm.department ? false : true
-          },
-          on: {
-            change: [
-              function($event) {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.department,
+                expression: "department"
+              }
+            ],
+            attrs: { id: "department", name: "department" },
+            on: {
+              change: function($event) {
                 var $$selectedVal = Array.prototype.filter
                   .call($event.target.options, function(o) {
                     return o.selected
@@ -355,106 +317,171 @@ var render = function() {
                     var val = "_value" in o ? o._value : o.value
                     return val
                   })
-                _vm.province = $event.target.multiple
+                _vm.department = $event.target.multiple
                   ? $$selectedVal
                   : $$selectedVal[0]
-              },
-              _vm.getDis
-            ]
-          }
-        },
-        [
-          _c("option", { attrs: { value: "", disabled: "" } }, [
-            _vm._v("--Seleccionar--")
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.provinces, function(el) {
-            return _c(
-              "option",
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "" } }, [
+              _vm._v("--Seleccionar--")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.departments, function(el) {
+              return _c(
+                "option",
+                {
+                  key: "dep" + el.code_department,
+                  domProps: { value: el.department }
+                },
+                [_vm._v("\n        " + _vm._s(el.department) + "\n      ")]
+              )
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "select" }, [
+        _c("i", {}),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
               {
-                key: "dep" + el.code_province,
-                domProps: { value: el.province }
-              },
-              [_vm._v("\n        " + _vm._s(el.province) + "\n      ")]
-            )
-          })
-        ],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "select" }, [
-      _c("i", {}),
+                name: "model",
+                rawName: "v-model",
+                value: _vm.province,
+                expression: "province"
+              }
+            ],
+            attrs: {
+              id: "province",
+              name: "province",
+              disabled: _vm.department ? false : true
+            },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.province = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.getDis
+              ]
+            }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "" } }, [
+              _vm._v("--Seleccionar--")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.provinces, function(el) {
+              return _c(
+                "option",
+                {
+                  key: "dep" + el.code_province,
+                  domProps: { value: el.province }
+                },
+                [_vm._v("\n        " + _vm._s(el.province) + "\n      ")]
+              )
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "select" }, [
+        _c("i", {}),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.district,
+                expression: "district"
+              }
+            ],
+            attrs: {
+              id: "district",
+              name: "district",
+              disabled: _vm.province ? false : true
+            },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.district = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "" } }, [
+              _vm._v("--Seleccionar--")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.districts, function(el) {
+              return _c(
+                "option",
+                {
+                  key: "dep" + el.code_district,
+                  domProps: { value: el.district }
+                },
+                [_vm._v("\n        " + _vm._s(el.district) + "\n      ")]
+              )
+            })
+          ],
+          2
+        )
+      ]),
       _vm._v(" "),
       _c(
-        "select",
+        "div",
         {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.district,
-              expression: "district"
-            }
-          ],
-          attrs: {
-            id: "district",
-            name: "district",
-            disabled: _vm.province ? false : true
-          },
-          on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.district = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            }
-          }
+          class:
+            _vm.departmentParent || _vm.provinceParent || _vm.districtParent
+              ? "col-lg-2"
+              : "col-lg-3"
         },
         [
-          _c("option", { attrs: { value: "", disabled: "" } }, [
-            _vm._v("--Seleccionar--")
-          ]),
-          _vm._v(" "),
-          _vm._l(_vm.districts, function(el) {
-            return _c(
-              "option",
+          _c("div", { staticClass: "btn-form" }, [
+            _c(
+              "button",
               {
-                key: "dep" + el.code_district,
-                domProps: { value: el.district }
+                staticClass: "btn btn2",
+                attrs: { type: "submit" },
+                on: { click: _vm.submit }
               },
-              [_vm._v("\n        " + _vm._s(el.district) + "\n      ")]
+              [_vm._v("\n        " + _vm._s(_vm.t("Filtrar")) + "\n      ")]
             )
-          })
-        ],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        class:
-          _vm.departmentParent || _vm.provinceParent || _vm.districtParent
-            ? "col-lg-2"
-            : "col-lg-3"
-      },
-      [
-        _c("div", { staticClass: "btn-form" }, [
-          _c("button", { staticClass: "btn btn2", attrs: { type: "submit" } }, [
-            _vm._v("\n          " + _vm._s(_vm.t("Filtrar")) + "\n        ")
           ])
-        ])
-      ]
-    )
-  ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("pre", [_vm._v(_vm._s(_vm.element))])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

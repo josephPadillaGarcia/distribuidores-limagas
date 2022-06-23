@@ -1,3 +1,10 @@
 {
-    "/css/web.css": "/css/web.css"
+    "/js/web/manifest.js": "/js/web/manifest.js",
+    "/js/web/vendor.js": "/js/web/vendor.js",
+    "/js/web/web.js": "/js/web/web.js",
+    "/js/components/form-header.js": "/js/components/form-header.js",
+    "/js/components/form-index.js": "/js/components/form-index.js",
+    "/js/components/form-quote.js": "/js/components/form-quote.js",
+    "/js/components/ubigeo-filter.js": "/js/components/ubigeo-filter.js",
+    "/vendors~js/components/form-quote.js": "/vendors~js/components/form-quote.js"
 }
