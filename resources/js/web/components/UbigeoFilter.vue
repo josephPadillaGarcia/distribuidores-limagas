@@ -96,59 +96,62 @@
     </div>
   </form-->
 
-  <form @submit.prevent="submit" action="">
-    <div class="select">
-      <i class=""></i>
-      <select id="department" name="department" v-model="department" class="">
-        <option value="" disabled>--Seleccionar--</option>
-        <option
-          v-for="el in departments"
-          :key="'dep' + el.code_department"
-          :value="el.department"
+  <div>
+    <form @submit.prevent="submit" action="">
+      <div class="select">
+        <i class=""></i>
+        <select id="department" name="department" v-model="department" class="">
+          <option value="" disabled>--Seleccionar--</option>
+          <option
+            v-for="el in departments"
+            :key="'dep' + el.code_department"
+            :value="el.department"
+          >
+            {{ el.department }}
+          </option>
+        </select>
+      </div>
+      <div class="select">
+        <i class=""></i>
+        <select
+          id="province"
+          name="province"
+          :disabled="department ? false : true"
+          @change="getDis"
+          v-model="province"
+          class=""
         >
-          {{ el.department }}
-        </option>
-      </select>
-    </div>
-    <div class="select">
-      <i class=""></i>
-      <select
-        id="province"
-        name="province"
-        :disabled="department ? false : true"
-        @change="getDis"
-        v-model="province"
-        class=""
-      >
-        <option value="" disabled>--Seleccionar--</option>
-        <option
-          v-for="el in provinces"
-          :key="'dep' + el.code_province"
-          :value="el.province"
+          <option value="" disabled>--Seleccionar--</option>
+          <option
+            v-for="el in provinces"
+            :key="'dep' + el.code_province"
+            :value="el.province"
+          >
+            {{ el.province }}
+          </option>
+        </select>
+      </div>
+      <div class="select">
+        <i class=""></i>
+        <select
+          id="district"
+          name="district"
+          :disabled="province ? false : true"
+          v-model="district"
+          class=""
         >
-          {{ el.province }}
-        </option>
-      </select>
-    </div>
-    <div class="select">
-      <i class=""></i>
-      <select
-        id="district"
-        name="district"
-        :disabled="province ? false : true"
-        v-model="district"
-        class=""
-      >
-        <option value="" disabled>--Seleccionar--</option>
-        <option
-          v-for="el in districts"
-          :key="'dep' + el.code_district"
-          :value="el.district"
-        >
-          {{ el.district }}
-        </option>
-      </select>
-    </div>
+          <option value="" disabled>--Seleccionar--</option>
+          <option
+            v-for="el in districts"
+            :key="'dep' + el.code_district"
+            :value="el.district"
+          >
+            {{ el.district }}
+          </option>
+        </select>
+      </div>
+    </form>
+
     <div
       :class="
         departmentParent || provinceParent || districtParent
@@ -160,10 +163,16 @@
         <button type="submit" class="btn btn2" @click="submit">
           {{ t("Filtrar") }}
         </button>
+
+        <!--Button
+          :classes="['btn btn2']"
+          :text="title == 'Filtrar'"
+          @click="submit"
+          :request-server="requestSubmit"
+        ></Button-->
       </div>
     </div>
-    <pre>{{ element }}</pre>
-  </form>
+  </div>
 </template>
 <script>
 export default {
@@ -187,7 +196,9 @@ export default {
       province: this.provinceParent ? this.provinceParent : "",
       district: this.districtParent ? this.districtParent : "",
       districts: null,
-      element: {},
+      requestSubmit: false,
+      title: "",
+      element: [],
     };
   },
   methods: {
@@ -211,7 +222,6 @@ export default {
           }
           this.districts = null;
         });
-
     },
     getDis() {
       axios
@@ -224,19 +234,36 @@ export default {
         .then((response) => {
           this.districts = response.data;
         });
-
     },
     submit() {
-      axios
-        .post(this.routeListaDistribuidores, {
-          params: {
-            department: this.department,
-            province: this.province,
-            district: this.district,
-          },
-        })
-        .then((response) => {
-        });
+      //const fd = new FormData();
+      /*var url = document.createElement('a');
+      url.href = this.routeListaDistribuidores;*/
+
+      if (this.department) {
+        //fd.append("department", this.department);
+        this.element.push(this.department);
+      }
+
+      if (this.province) {
+        this.element.push(this.province);
+      }
+
+      if (this.district) {
+        this.element.push(this.district);
+      }
+
+      document.location.href =
+              this.routeListaDistribuidores +
+              "?department=" +
+              this.department +
+              "&province=" +
+              this.province +
+              "&district=" +
+              this.district;
+
+
+      
     },
   },
   watch: {

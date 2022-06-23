@@ -16,14 +16,14 @@ class CreateBranchOfficesTable extends Migration
         Schema::create('branch_offices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();
-            $table->text('iframe')->nullable();
-            $table->text('direction')->nullable();
-            $table->text('schedule')->nullable();
-            $table->boolean('show')->default(true);
             $table->string('code_ubigeo');
             $table->foreign('code_ubigeo')->references('code_ubigeo')->on('master_ubigeo');
-            $table->json('phone_numbers')->nullable();
             $table->json('emails')->nullable();
+            $table->json('phone_numbers')->nullable();
+            $table->text('direction')->nullable();
+            $table->text('iframe')->nullable();
+            $table->text('schedule')->nullable();
+            $table->boolean('show')->default(true);
             $table->integer('index');
             $table->timestamps();
         });

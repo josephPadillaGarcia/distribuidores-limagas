@@ -78,6 +78,36 @@
                   <span class="font-weight-normal">{{ el.name }}</span>
                 </h3>
                 <h3 class="mb-1">
+                  Horario:
+                  <br />
+                  <span class="font-weight-normal">
+                    <pre
+                      class="mb-0"
+                      style="
+                        font-family: inherit;
+                        white-space: pre-wrap;
+                        font-size: inherit;
+                      "
+                      >{{ el.horario ? el.horario : "No registrado" }}</pre
+                    >
+                  </span>
+                </h3>
+                <h3 class="mb-1">
+                  Zona:
+                  <br />
+                  <span class="font-weight-normal">
+                    <pre
+                      class="mb-0"
+                      style="
+                        font-family: inherit;
+                        white-space: pre-wrap;
+                        font-size: inherit;
+                      "
+                      >{{ el.zona ? el.zona : "No registrado" }}</pre
+                    >
+                  </span>
+                </h3>
+                <h3 class="mb-1">
                   Dirección:
                   <br />
                   <span class="font-weight-normal">
@@ -218,6 +248,80 @@
                 >
               </div>
             </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold" for>Horario de atención</label>
+                <textarea
+                  cols="6"
+                  class="form-control"
+                  v-model="element.horario"
+                />
+                <label
+                  v-if="errors && errors.horario"
+                  class="mt-2 text-danger text-sm"
+                  for="horario"
+                  >{{ errors.horario[0] }}</label
+                >
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold" for>Zona de cobertura</label>
+                <textarea
+                  cols="6"
+                  class="form-control"
+                  v-model="element.zona"
+                />
+                <label
+                  v-if="errors && errors.zona"
+                  class="mt-2 text-danger text-sm"
+                  for="zona"
+                  >{{ errors.zona[0] }}</label
+                >
+              </div>
+            </div>
+
+            <div class="col-12">
+              <Ubigeo
+                :errors="errors"
+                :route-department="routeDepartmentsGet"
+                :route-district="routeDistrictsGet"
+                :route-province="routeProvincesGet"
+                :codeDepartment.sync="element.department"
+                :codeProvince.sync="element.province"
+                :codeDistrict.sync="element.district"
+                :codeUbigeoParent="element.code_ubigeo"
+              />
+            </div>
+
+            <div class="col-6">
+              <InputSelectArray
+                fieldName="emails"
+                :errorsProp.sync="errors"
+                :headers="[{ variable: 'name', label: 'Email (Opcional)' }]"
+                :array.sync="element.emails"
+                :array-prop="element.emails"
+              />
+            </div>
+
+            <div class="col-6">
+              <InputSelectArray
+                fieldName="phone_numbers"
+                :errorsProp.sync="errors"
+                :headers="[
+                  { variable: 'number', label: 'Teléfonos (Opcional)' },
+                ]"
+                :array.sync="element.phone_numbers"
+                :array-prop="element.phone_numbers"
+              />
+              <small class>
+                Formatos recomendados:
+                <br />Fijos: (054) 444444, Móviles: 9 dígitos
+              </small>
+            </div>
+
             <div class="col-12">
               <div class="form-group">
                 <label class="font-weight-bold" for>Dirección</label>
@@ -234,42 +338,7 @@
                 >
               </div>
             </div>
-            <div class="col-12">
-              <Ubigeo
-                :errors="errors"
-                :route-department="routeDepartmentsGet"
-                :route-district="routeDistrictsGet"
-                :route-province="routeProvincesGet"
-                :codeDepartment.sync="element.department"
-                :codeProvince.sync="element.province"
-                :codeDistrict.sync="element.district"
-                :codeUbigeoParent="element.code_ubigeo"
-              />
-            </div>
-            <div class="col-6">
-              <InputSelectArray
-                fieldName="emails"
-                :errorsProp.sync="errors"
-                :headers="[{ variable: 'name', label: 'Email (Opcional)' }]"
-                :array.sync="element.emails"
-                :array-prop="element.emails"
-              />
-            </div>
-            <div class="col-6">
-              <InputSelectArray
-                fieldName="phone_numbers"
-                :errorsProp.sync="errors"
-                :headers="[
-                  { variable: 'number', label: 'Teléfonos (Opcional)' },
-                ]"
-                :array.sync="element.phone_numbers"
-                :array-prop="element.phone_numbers"
-              />
-              <small class>
-                Formatos recomendados:
-                <br />Fijos: (054) 444444, Móviles: 9 dígitos
-              </small>
-            </div>
+
             <div class="col-12">
               <div class="form-group">
                 <label class="font-weight-bold" for
@@ -298,6 +367,11 @@
               />
               <!-- ///////////////////////////////////////// -->
             </div>
+
+            <div class="col-12 galeria">
+              <p>Galeria de imagenes</p>
+            </div>
+
           </div>
         </form>
       </div>
@@ -512,7 +586,8 @@ export default {
         method = "put";
       }
 
-      //console.log(this.element.emails);
+      /*console.log(this.element.horario);
+      console.log(this.element.zona);*/
 
       axios({
         method: method,

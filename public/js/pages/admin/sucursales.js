@@ -651,6 +651,80 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -820,7 +894,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       } else {
         url = this.route + "/" + this.element.id;
         method = "put";
-      } //console.log(this.element.emails);
+      }
+      /*console.log(this.element.horario);
+      console.log(this.element.zona);*/
 
 
       axios({
@@ -1535,6 +1611,74 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
+                                    "\n                Horario:\n                "
+                                  ),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    { staticClass: "font-weight-normal" },
+                                    [
+                                      _c(
+                                        "pre",
+                                        {
+                                          staticClass: "mb-0",
+                                          staticStyle: {
+                                            "font-family": "inherit",
+                                            "white-space": "pre-wrap",
+                                            "font-size": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              el.horario
+                                                ? el.horario
+                                                : "No registrado"
+                                            )
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "mb-1" }, [
+                                  _vm._v(
+                                    "\n                Zona:\n                "
+                                  ),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    { staticClass: "font-weight-normal" },
+                                    [
+                                      _c(
+                                        "pre",
+                                        {
+                                          staticClass: "mb-0",
+                                          staticStyle: {
+                                            "font-family": "inherit",
+                                            "white-space": "pre-wrap",
+                                            "font-size": "inherit"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              el.zona
+                                                ? el.zona
+                                                : "No registrado"
+                                            )
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "mb-1" }, [
+                                  _vm._v(
                                     "\n                Dirección:\n                "
                                   ),
                                   _c("br"),
@@ -1904,7 +2048,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-12" }, [
+                      _c("div", { staticClass: "col-6" }, [
                         _c("div", { staticClass: "form-group" }, [
                           _c(
                             "label",
@@ -1912,7 +2056,7 @@ var render = function() {
                               staticClass: "font-weight-bold",
                               attrs: { for: "" }
                             },
-                            [_vm._v("Dirección")]
+                            [_vm._v("Horario de atención")]
                           ),
                           _vm._v(" "),
                           _c("textarea", {
@@ -1920,13 +2064,13 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.element.direction,
-                                expression: "element.direction"
+                                value: _vm.element.horario,
+                                expression: "element.horario"
                               }
                             ],
                             staticClass: "form-control",
                             attrs: { cols: "6" },
-                            domProps: { value: _vm.element.direction },
+                            domProps: { value: _vm.element.horario },
                             on: {
                               input: function($event) {
                                 if ($event.target.composing) {
@@ -1934,21 +2078,71 @@ var render = function() {
                                 }
                                 _vm.$set(
                                   _vm.element,
-                                  "direction",
+                                  "horario",
                                   $event.target.value
                                 )
                               }
                             }
                           }),
                           _vm._v(" "),
-                          _vm.errors && _vm.errors.direction
+                          _vm.errors && _vm.errors.horario
                             ? _c(
                                 "label",
                                 {
                                   staticClass: "mt-2 text-danger text-sm",
-                                  attrs: { for: "direction" }
+                                  attrs: { for: "horario" }
                                 },
-                                [_vm._v(_vm._s(_vm.errors.direction[0]))]
+                                [_vm._v(_vm._s(_vm.errors.horario[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-6" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "font-weight-bold",
+                              attrs: { for: "" }
+                            },
+                            [_vm._v("Zona de cobertura")]
+                          ),
+                          _vm._v(" "),
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.element.zona,
+                                expression: "element.zona"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { cols: "6" },
+                            domProps: { value: _vm.element.zona },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.element,
+                                  "zona",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.zona
+                            ? _c(
+                                "label",
+                                {
+                                  staticClass: "mt-2 text-danger text-sm",
+                                  attrs: { for: "zona" }
+                                },
+                                [_vm._v(_vm._s(_vm.errors.zona[0]))]
                               )
                             : _vm._e()
                         ])
@@ -2087,6 +2281,56 @@ var render = function() {
                               staticClass: "font-weight-bold",
                               attrs: { for: "" }
                             },
+                            [_vm._v("Dirección")]
+                          ),
+                          _vm._v(" "),
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.element.direction,
+                                expression: "element.direction"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { cols: "6" },
+                            domProps: { value: _vm.element.direction },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.element,
+                                  "direction",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm.errors && _vm.errors.direction
+                            ? _c(
+                                "label",
+                                {
+                                  staticClass: "mt-2 text-danger text-sm",
+                                  attrs: { for: "direction" }
+                                },
+                                [_vm._v(_vm._s(_vm.errors.direction[0]))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-12" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "font-weight-bold",
+                              attrs: { for: "" }
+                            },
                             [_vm._v("Iframe Mapa(Opcional)")]
                           ),
                           _vm._v(" "),
@@ -2143,7 +2387,11 @@ var render = function() {
                           })
                         ],
                         1
-                      )
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-12 galeria" }, [
+                        _c("p", [_vm._v("Galeria de imagenes")])
+                      ])
                     ])
                   ]
                 )

@@ -10,8 +10,8 @@
 @endphp
 
 <main>
-    <section class="sucursales bottom_section">
-        <!--div class="sucursales__form">
+    <!--section class="sucursales bottom_section">
+        <div class="sucursales__form">
             <div class="container">
                 <div class="row">
                     <ubigeo-filter locale="{{ $locale }}"
@@ -22,7 +22,7 @@
                     route-get-dis="{{ route('web.districts')}}"/>
                 </div>
             </div>
-        </div-->
+        </div>
 
         <div class="sucursales__list">
             <div class="container">
@@ -76,18 +76,12 @@
                                     <a href="{{ route('distribuidor',$office->id ) }}">Ver</a>
                                 </div>
                             </div>
-                            @if($office->iframe)
-                            <!--div class="sucursales__footer">
-                                {!! $office->iframe !!}
-                            </div-->
-                            @endif
-                        </div>
                     </div>
                     @endforeach
                 </div>
             </div>
         </div>
-    </section>
+    </section-->
 
     <section id="index">
         <div class="busqueda_index color_white">

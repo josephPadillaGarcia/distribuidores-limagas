@@ -6,7 +6,7 @@ Route::namespace('Web')->name('web.')->group(function() {
     //Route::post('/encuesta','WebController@encuesta')->name('encuesta');
     Route::get('ubigeo/provinces', 'WebController@getProvinces')->name('provinces');        
     Route::get('ubigeo/districts', 'WebController@getDistricts')->name('districts');         
-    Route::post('/lista-distribuidores', 'WebController@listadistribuidores')->name('listadistribuidores');       
+    Route::get('/lista-distribuidores', 'WebController@listadistribuidores')->name('listadistribuidores');       
 });
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => [ 'localize','localeCookieRedirect', 'localizationRedirect' ]], function()

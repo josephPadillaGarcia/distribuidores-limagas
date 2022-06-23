@@ -139,8 +139,96 @@ class WebController extends Controller
         return response()->json($districts, 200);
     }
 
-    public function listadistribuidores(Request $request){
+    public function listadistribuidores(Request $request, $locale = null){
 
-        return view("web.pages.lista-distribuidores");
+        //$page = $this->getSeoPage('branch-offices', $this->locale);
+        $content = $this->getContentPage('branch-offices');
+        $offices = BranchOffice::with('ubigeoRel');
+        $department = $province = $district = NULL;
+        if($request->department){
+            $department = Ubigeo::where('department', $request->department)->first();
+        }
+        if($request->province){
+            $province = Ubigeo::where('province', $request->province)->where('department', $request->department)->first();
+        }
+        if($request->district){
+            $district = Ubigeo::where('district', $request->district)->where('department', $request->department)->where('province', $request->province)->first();
+        }
+        if($department && !$province && !$district){
+            $offices = $offices->whereHas('ubigeoRel', function ($q) use ($department) {
+                $q->where('code_department',$department->code_department);
+            });
+        }
+        if($department && $province && !$district){
+            $offices = $offices->whereHas('ubigeoRel', function ($q) use ($department, $province) {
+                $q->where('code_department',$department->code_department)->where('code_province',$province->code_province);
+            });
+        }
+        if($department && $province && $district){
+            $offices = $offices->whereHas('ubigeoRel', function ($q) use ($department, $province, $district) {
+                $q->where('code_department',$department->code_department)->where('code_province',$province->code_province)->where('code_district',$district->code_district);
+            });
+        }
+        $offices = $offices->orderBy('index')->get();
+        $departments = Ubigeo::whereHas('branchOfficeRel')->orderBy('code_ubigeo', 'DESC')->groupBy('code_department')->get();
+
+        $department = $request->department;
+        $data = array(
+            "content" => $content,
+            "offices" => $offices,
+            "departments" => $departments
+        );
+        return view("web.pages.lista-distribuidores", compact('data'))->with(
+            ['province' => $request->province, 'department' => $request->department,'district' => $request->district]
+        );
+
+
+        //return view("web.pages.lista-distribuidores");
     }
+
+    /*public function index(Request $request , $locale = null)
+    {
+
+        //$page = $this->getSeoPage('branch-offices', $this->locale);
+        $content = $this->getContentPage('branch-offices');
+        $offices = BranchOffice::with('ubigeoRel');
+        $department = $province = $district = NULL;
+        if($request->department){
+            $department = Ubigeo::where('department', $request->department)->first();
+        }
+        if($request->province){
+            $province = Ubigeo::where('province', $request->province)->where('department', $request->department)->first();
+        }
+        if($request->district){
+            $district = Ubigeo::where('district', $request->district)->where('department', $request->department)->where('province', $request->province)->first();
+        }
+        if($department && !$province && !$district){
+            $offices = $offices->whereHas('ubigeoRel', function ($q) use ($department) {
+                $q->where('code_department',$department->code_department);
+            });
+        }
+        if($department && $province && !$district){
+            $offices = $offices->whereHas('ubigeoRel', function ($q) use ($department, $province) {
+                $q->where('code_department',$department->code_department)->where('code_province',$province->code_province);
+            });
+        }
+        if($department && $province && $district){
+            $offices = $offices->whereHas('ubigeoRel', function ($q) use ($department, $province, $district) {
+                $q->where('code_department',$department->code_department)->where('code_province',$province->code_province)->where('code_district',$district->code_district);
+            });
+        }
+        $offices = $offices->orderBy('index')->get();
+        $departments = Ubigeo::whereHas('branchOfficeRel')->orderBy('code_ubigeo', 'DESC')->groupBy('code_department')->get();
+        $data = array(
+            "content" => $content,
+            "offices" => $offices,
+            "departments" => $departments
+        );
+        return view("web.pages.branch-office", compact('data'))->with(
+            ['province' => $request->province, 'department' => $request->department,'district' => $request->district]
+        );
+
+    }*/
+
+
 }
