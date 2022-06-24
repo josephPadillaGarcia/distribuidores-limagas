@@ -164,12 +164,6 @@
           {{ t("Filtrar") }}
         </button>
 
-        <!--Button
-          :classes="['btn btn2']"
-          :text="title == 'Filtrar'"
-          @click="submit"
-          :request-server="requestSubmit"
-        ></Button-->
       </div>
     </div>
   </div>

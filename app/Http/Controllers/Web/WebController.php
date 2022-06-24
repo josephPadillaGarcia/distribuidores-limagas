@@ -172,11 +172,17 @@ class WebController extends Controller
         $offices = $offices->orderBy('index')->get();
         $departments = Ubigeo::whereHas('branchOfficeRel')->orderBy('code_ubigeo', 'DESC')->groupBy('code_department')->get();
 
-        $department = $request->department;
+$departamento = $request->department;
+$provincia = $request->province;
+$distrito = $request->district;
+
         $data = array(
             "content" => $content,
             "offices" => $offices,
-            "departments" => $departments
+            "departments" => $departments,
+            "departamento" => $departamento,
+            "provincia" => $provincia,
+            "distrito" => $distrito
         );
         return view("web.pages.lista-distribuidores", compact('data'))->with(
             ['province' => $request->province, 'department' => $request->department,'district' => $request->district]

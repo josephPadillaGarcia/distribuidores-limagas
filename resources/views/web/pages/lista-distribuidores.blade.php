@@ -6,12 +6,29 @@
     //$content = $data["content"];
     $offices = $data["offices"];
     $departments = $data["departments"];
+    $departamento = $data["departamento"];
+    $provincia = $data["provincia"];
+    $distrito = $data["distrito"];
     //$storageUrl = config('services.storage_url');
 @endphp
 <main>
 
-<h2>Lista de distribuidores limagas</h2>
-<!--pre>{{ print_r($departments) }}</pre-->
+<header class="header-filter">
+    <div class="logo">
+        <img src="public/img/logo2.png" alt="">
+    </div>
+    <div class="nav_busqueda">
+        <i></i>
+        <div class="grid_filter">
+            <div>Departamento:<b>{{ $departamento }}</b></div>
+            <div>Provincia:<b>{{ $provincia }}</b></div>
+            <div>Distrito:<b>{{ $distrito }}</b></div>
+        </div>
+    </div>
+    <div>
+        <a href="{{ route("index") }}" class="btn btn1"> <i></i> Otra ubicación</a>
+    </div>
+</header>
 
 <div class="sucursales__list">
     <div class="container">
