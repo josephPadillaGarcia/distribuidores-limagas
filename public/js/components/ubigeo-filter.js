@@ -185,6 +185,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     departmentParent: String,
@@ -320,7 +386,7 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "select" }, [
-          _c("i", {}),
+          _c("i", { staticClass: "flaticon flaticon-star" }),
           _vm._v(" "),
           _c(
             "select",
@@ -375,7 +441,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "select" }, [
-          _c("i", {}),
+          _c("i", { staticClass: "flaticon flaticon-star" }),
           _vm._v(" "),
           _c(
             "select",
@@ -433,7 +499,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "select" }, [
-          _c("i", {}),
+          _c("i", { staticClass: "flaticon flaticon-star" }),
           _vm._v(" "),
           _c(
             "select",
@@ -485,30 +551,34 @@ var render = function() {
             ],
             2
           )
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        class:
-          _vm.departmentParent || _vm.provinceParent || _vm.districtParent
-            ? "col-lg-2"
-            : "col-lg-3"
-      },
-      [
-        _c("div", { staticClass: "btn-form" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn2",
-              attrs: { type: "submit" },
-              on: { click: _vm.submit }
-            },
-            [_vm._v("\n        " + _vm._s(_vm.t("Filtrar")) + "\n      ")]
-          )
-        ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            class:
+              _vm.departmentParent || _vm.provinceParent || _vm.districtParent
+                ? "col-lg-2"
+                : "col-lg-3"
+          },
+          [
+            _c("div", { staticClass: "text-center" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn2",
+                  attrs: { type: "submit" },
+                  on: { click: _vm.submit }
+                },
+                [
+                  _vm._v(
+                    "\n          " + _vm._s(_vm.t("Buscar")) + "\n        "
+                  )
+                ]
+              )
+            ])
+          ]
+        )
       ]
     )
   ])

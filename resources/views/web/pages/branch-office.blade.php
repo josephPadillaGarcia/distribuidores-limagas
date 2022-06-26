@@ -6,12 +6,13 @@
     //$content = $data["content"];
     $offices = $data["offices"];
     $departments = $data["departments"];
-    //$storageUrl = config('services.storage_url');
+    $storageUrl = config('services.storage_url');
 @endphp
 
 <main>
 
-    <section id="index">
+
+    <section id="index" style="background-image: url({{ $storageUrl.'/img/fondo1.jpg' }});">
         <div class="busqueda_index color_white">
             <div class="logo">
                 <img src="public/img/logo1.png" alt="">
@@ -32,8 +33,8 @@
         </div>
     
         <div class="img-footer">
-            <div class="left"><img src="public/img/img-left.png" alt=""></div>
-            <div class="right"><img src="public/img/img-right.png" alt=""></div>
+            <div class="left"><img src=" {{ $storageUrl.'/img/img-left.png' }} " alt=""></div>
+            <div class="right"><img src="{{ $storageUrl.'/img/img-right.png' }}" alt=""></div>
         </div>
     </section>
 

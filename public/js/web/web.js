@@ -24229,7 +24229,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\proyectos-free\distribuidores-limagas\resources\js\web\web.js */"./resources/js/web/web.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\proyecto-frelos\distribuidores-limagas\resources\js\web\web.js */"./resources/js/web/web.js");
 
 
 /***/ })
