@@ -15,7 +15,7 @@
     <section id="index" style="background-image: url({{ $storageUrl.'/img/fondo1.jpg' }});">
         <div class="busqueda_index color_white">
             <div class="logo">
-                <img src="public/img/logo1.png" alt="">
+                <img src="{{ $storageUrl.'/img/logo1.png' }} " alt="">
             </div>
             <div class="texto">
                 <h1>Encuentra el distribuidor más cercano a ti:</h1>
@@ -37,6 +37,8 @@
             <div class="right"><img src="{{ $storageUrl.'/img/img-right.png' }}" alt=""></div>
         </div>
     </section>
+
+    <div class="pie"></div>
 
 </main>
 

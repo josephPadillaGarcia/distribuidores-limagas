@@ -66,7 +66,7 @@
             <ul>
                 @if ($id->phone_numbers)
                     @foreach ($id->phone_numbers as $pn)
-                        <li><a href="" class="btn btn2 btn-icon"><i class="flaticon flaticon-telefono"> </i>{{ $pn['number'] }}</a></li>          
+                        <li><a href="" class="btn-dis btn2 btn-icon"><i class="flaticon flaticon-telefono"> </i>{{ $pn['number'] }}</a></li>          
                     @endforeach
                 @endif
             
@@ -79,7 +79,7 @@
             <ul>
                 @if ($id->emails)
                     @foreach ($id->emails as $e)
-                        <li><a href="" class="btn btn2 btn-icon"><i class="flaticon flaticon-correo-electronico"> </i>{{ $e['name'] }}</a></li>
+                        <li><a href="" class="btn-dis btn2 btn-icon"><i class="flaticon flaticon-correo-electronico"> </i>{{ $e['name'] }}</a></li>
                     @endforeach
                 @endif
                 

@@ -67,7 +67,7 @@
         "
       >
         <div class="text-center">
-          <button type="submit" class="btn btn2" @click="submit">
+          <button type="submit" class="btn-dis btn2" @click="submit">
             {{ t("Buscar") }}
           </button>
         </div>

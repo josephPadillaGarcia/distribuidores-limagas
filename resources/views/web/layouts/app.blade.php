@@ -41,12 +41,12 @@ if(Route::currentRouteName() == 'new') {
     <meta name="theme-color" content="#ffffff">
     <link href="{{ asset('css/web/remixicon.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/web/fonts.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/web/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/web/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/web/new-style.css') }}" rel="stylesheet">
+    <!--link href="{{ asset('css/web/bootstrap.min.css') }}" rel="stylesheet"-->
     <link href="{{ asset('css/web/flaticon.css') }}" rel="stylesheet">
     <link href="{{ asset('css/web/owl.carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('css/web/jq.fancybox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/web.css') }}" rel="stylesheet">
+    <!--link href="{{ asset('css/web.css') }}" rel="stylesheet"-->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
