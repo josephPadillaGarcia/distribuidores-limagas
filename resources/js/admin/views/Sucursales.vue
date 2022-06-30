@@ -78,34 +78,9 @@
                   <span class="font-weight-normal">{{ el.name }}</span>
                 </h3>
                 <h3 class="mb-1">
-                  Horario:
+                  Descripción:
                   <br />
-                  <span class="font-weight-normal">
-                    <pre
-                      class="mb-0"
-                      style="
-                        font-family: inherit;
-                        white-space: pre-wrap;
-                        font-size: inherit;
-                      "
-                      >{{ el.horario ? el.horario : "No registrado" }}</pre
-                    >
-                  </span>
-                </h3>
-                <h3 class="mb-1">
-                  Zona:
-                  <br />
-                  <span class="font-weight-normal">
-                    <pre
-                      class="mb-0"
-                      style="
-                        font-family: inherit;
-                        white-space: pre-wrap;
-                        font-size: inherit;
-                      "
-                      >{{ el.zona ? el.zona : "No registrado" }}</pre
-                    >
-                  </span>
+                  <div v-html="el.description" class="content-editor-value"></div>
                 </h3>
                 <h3 class="mb-1">
                   Dirección:
@@ -249,40 +224,19 @@
               </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-12">
               <div class="form-group">
-                <label class="font-weight-bold" for>Horario de atención</label>
-                <textarea
-                  cols="6"
-                  class="form-control"
-                  v-model="element.horario"
+                <EditorSimple
+                  size="md"
+                  label="Descripción"
+                  variable="information"
+                  :errors="errors"
+                  :valueEs.sync="element.description"
+                  :valueEsParent="element.description"
                 />
-                <label
-                  v-if="errors && errors.horario"
-                  class="mt-2 text-danger text-sm"
-                  for="horario"
-                  >{{ errors.horario[0] }}</label
-                >
               </div>
             </div>
-
-            <div class="col-6">
-              <div class="form-group">
-                <label class="font-weight-bold" for>Zona de cobertura</label>
-                <textarea
-                  cols="6"
-                  class="form-control"
-                  v-model="element.zona"
-                />
-                <label
-                  v-if="errors && errors.zona"
-                  class="mt-2 text-danger text-sm"
-                  for="zona"
-                  >{{ errors.zona[0] }}</label
-                >
-              </div>
-            </div>
-
+            
             <div class="col-12">
               <Ubigeo
                 :errors="errors"
@@ -426,6 +380,7 @@ import NoData from "../components/NoData";
 import Ubigeo from "../components/form/Ubigeo";
 import InputSelectArray from "../components/form/InputSelectArray";
 
+import EditorSimple from "../components/form/EditorSimple";
 import CheckBoxSelectArray from "../components/form/CheckBoxSelectArray";
 export default {
   components: {
@@ -444,6 +399,8 @@ export default {
     Ubigeo,
     InputSelectArray,
     CheckBoxSelectArray,
+
+    EditorSimple,
   },
   props: {
     route: String,
@@ -586,6 +543,7 @@ export default {
         method = "put";
       }
 
+//console.log(this.element.description);
       /*console.log(this.element.horario);
       console.log(this.element.zona);*/
 

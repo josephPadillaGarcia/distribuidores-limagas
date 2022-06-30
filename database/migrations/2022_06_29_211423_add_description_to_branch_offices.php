@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddHorarioZonaToBranchOffice extends Migration
+class AddDescriptionToBranchOffices extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddHorarioZonaToBranchOffice extends Migration
      */
     public function up()
     {
-        Schema::table('branch_offices', function (Blueprint $table) { 
-            $table->text('horario')->nullable();
-            $table->text('zona')->nullable();
+        Schema::table('branch_offices', function (Blueprint $table) {
+            $table->text("description");
         });
     }
 
@@ -27,8 +26,7 @@ class AddHorarioZonaToBranchOffice extends Migration
     public function down()
     {
         Schema::table('branch_offices', function (Blueprint $table) {
-            $table->string('horario')->nullable();
-            $table->string('zona')->nullable();
+            $table->text("description");
         });
     }
 }

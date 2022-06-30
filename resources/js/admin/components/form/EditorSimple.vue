@@ -72,12 +72,12 @@ export default {
     label: String,
     variable: String,
     errors: Object,
-    valueEnParent: String,
+    //valueEnParent: String,
     valueEsParent: String,
-    showEnglish: {
+    /*showEnglish: {
       default: true,
       type: Boolean
-    },
+    },*/
     url: {
       type: String,
       required: false,
@@ -117,7 +117,7 @@ export default {
       },
       active: "es",
       value: {
-        en: "",
+        //en: "",
         es: "",
       },
       random: Math.ceil(Math.random() * 10),
@@ -129,27 +129,27 @@ export default {
     },
   },
   watch: {
-    valueEnParent: {
+    /*valueEnParent: {
       immediate: true,
       handler: function (newValue) {
         this.value.en = newValue;
       },
-    },
+    },*/
     valueEsParent: {
       immediate: true,
       handler: function (newValue) {
         this.value.es = newValue;
       },
     },
-    "value.en": function (newValue, oldValue) {
+    /*"value.en": function (newValue, oldValue) {
       this.$emit("update:valueEn", newValue);
-    },
+    },*/
     "value.es": function (newValue, oldValue) {
       this.$emit("update:valueEs", newValue);
     },
   },
   computed: {
-    countErrors: function () {
+    /*countErrors: function () {
       if (Object.keys(this.errors).length) {
         let total = 0;
         for (const el in this.errors) {
@@ -159,7 +159,7 @@ export default {
         }
         return total;
       }
-    },
+    },*/
   },
 };
 </script>

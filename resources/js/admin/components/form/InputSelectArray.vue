@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="row mb-2" v-for="(el, i) in array.length" :key="'tr'+i">
+      
       <div v-for="(el, j) in headers" :class="j == 0 ? 'col-8' : 'col-8'" :key="'td'+j">
         <label
           class="font-weight-bold"
@@ -26,6 +27,8 @@
           v-if="errors && errors[fieldName+'.'+i+'.'+el.variable]"
         >{{ errors[fieldName+'.'+i+'.'+el.variable][0] }}</label>
       </div>
+
+
       <div class="mb-2 mt-2 mt-0 actions d-flex align-items-end col" v-if="!disableEdit">
         <button
           class="btn btn-sm btn-icon-only rounded-circle btn-inverse-primary"

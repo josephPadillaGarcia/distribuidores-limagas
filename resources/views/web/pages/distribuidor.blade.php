@@ -42,21 +42,10 @@
     <section class="container-short content">
         <h1>{{ $id->name }}</h1>
         <div>
-            <p><strong>🕐 Horarios de atención:</strong></p>
-            @if($id->horario)
-                {{ $id->horario }}
+            @if($id->description)
+                {!! $id->description !!}
             @else
-                <p>No hay horario registrado</p>
-            @endif
-            <ul>
-                <li>Lun. a Vie. de 10:00 am - 6:30 pm</li>
-                <li>Sab. de 10:00 am - 1:30 pm</li>
-            </ul>
-            <p><strong>🚚 Zona de cobertura:</strong></p>
-            @if($id->zona)
-                {{ $id->zona }}
-            @else
-                <p>No hay zonas registradas</p>
+                <b>No hay horario registrado</b>
             @endif
         </div>
         <div class="telefono">
