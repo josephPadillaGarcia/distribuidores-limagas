@@ -34,18 +34,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      selectitems: [] ///selectpaymentmethod: [],
-
+      selectitems: []
     };
   },
   watch: {
     selectitems: function selectitems() {
       this.$emit("arrayitems", this.selectitems);
     }
-    /*selectpaymentmethod: function () {
-      this.$emit("arraypaymentmethod", this.selectpaymentmethod);
-    },*/
-
   }
 });
 
@@ -519,6 +514,37 @@ var _components;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2153,6 +2179,47 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
+                                    "\n                Whatsapp:\n                "
+                                  ),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  el.num_what
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "font-weight-normal" },
+                                        [
+                                          _vm._l(el.num_what, function(e, i) {
+                                            return [
+                                              _c(
+                                                "a",
+                                                {
+                                                  key: i + "pn",
+                                                  staticClass: "d-block",
+                                                  staticStyle: {
+                                                    "text-decoration":
+                                                      "underline"
+                                                  },
+                                                  attrs: {
+                                                    target: "_blank",
+                                                    href: "tel:" + e.numwhat
+                                                  }
+                                                },
+                                                [_vm._v(_vm._s(e.numwhat))]
+                                              )
+                                            ]
+                                          })
+                                        ],
+                                        2
+                                      )
+                                    : _c(
+                                        "span",
+                                        { staticClass: "font-weight-normal" },
+                                        [_vm._v("No registrado")]
+                                      )
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "mb-1" }, [
+                                  _vm._v(
                                     "\n                Facebook Link:\n                "
                                   ),
                                   _c("br"),
@@ -2597,6 +2664,39 @@ var render = function() {
                               "Fijos: (054) 444444, Móviles: 9 dígitos\n            "
                             )
                           ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-6" },
+                        [
+                          _c("InputSelectArray", {
+                            attrs: {
+                              fieldName: "num_what",
+                              errorsProp: _vm.errors,
+                              headers: [
+                                {
+                                  variable: "numwhat",
+                                  label: "Whatsapp (Opcional)"
+                                }
+                              ],
+                              array: _vm.element.num_what,
+                              "array-prop": _vm.element.num_what
+                            },
+                            on: {
+                              "update:errorsProp": function($event) {
+                                _vm.errors = $event
+                              },
+                              "update:errors-prop": function($event) {
+                                _vm.errors = $event
+                              },
+                              "update:array": function($event) {
+                                return _vm.$set(_vm.element, "num_what", $event)
+                              }
+                            }
+                          })
                         ],
                         1
                       ),

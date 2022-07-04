@@ -29,6 +29,9 @@ class SucursalesController extends Controller
         if($request->phone_numbers){
             $el = array_merge($el, ["phone_numbers" => $request->phone_numbers]);
         }
+        if($request->num_what){
+            $el = array_merge($el, ["num_what" => $request->num_what]);
+        }
         $el = array_merge($el, [ "code_ubigeo" => $request->department . $request->province . $request->district]);
         $elIndex = $this->getMaxIndex(BranchOffice::selectRaw('MAX(id),MAX(`index`) as "index"')->get());
 

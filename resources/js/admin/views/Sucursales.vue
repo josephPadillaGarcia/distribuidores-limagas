@@ -120,6 +120,7 @@
                   </span>
                   <span class="font-weight-normal" v-else>No registrado</span>
                 </h3>
+
                 <h3 class="mb-1">
                   Teléfono:
                   <br />
@@ -132,6 +133,24 @@
                         class="d-block"
                         :key="i + 'pn'"
                         >{{ e.number }}</a
+                      >
+                    </template>
+                  </span>
+                  <span class="font-weight-normal" v-else>No registrado</span>
+                </h3>
+
+                <h3 class="mb-1">
+                  Whatsapp:
+                  <br />
+                  <span class="font-weight-normal" v-if="el.num_what">
+                    <template v-for="(e, i) in el.num_what">
+                      <a
+                        target="_blank"
+                        style="text-decoration: underline"
+                        :href="'tel:' + e.numwhat"
+                        class="d-block"
+                        :key="i + 'pn'"
+                        >{{ e.numwhat }}</a
                       >
                     </template>
                   </span>
@@ -299,6 +318,18 @@
                 Formatos recomendados:
                 <br />Fijos: (054) 444444, Móviles: 9 dígitos
               </small>
+            </div>
+
+            <div class="col-6">
+              <InputSelectArray
+                fieldName="num_what"
+                :errorsProp.sync="errors"
+                :headers="[
+                  { variable: 'numwhat', label: 'Whatsapp (Opcional)' },
+                ]"
+                :array.sync="element.num_what"
+                :array-prop="element.num_what"
+              />
             </div>
 
             <div class="col-6">

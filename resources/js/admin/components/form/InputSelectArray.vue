@@ -9,7 +9,7 @@
         >{{ el.label.charAt(0).toUpperCase() + el.label.slice(1) }}</label>
         <input
           type="text"
-          v-if="el.variable == 'name' || el.variable == 'number'"
+          v-if="el.variable == 'name' || el.variable == 'number' || el.variable == 'numwhat'"
           class="form-control"
           :id="el.variable"
           v-model="array[i][el.variable]"

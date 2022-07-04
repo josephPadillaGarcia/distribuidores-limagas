@@ -21,6 +21,8 @@ class BranchOfficeRequest extends FormRequest
         return [
                 'emails.*.name' => 'email',
                 'phone_numbers.*.number' => 'teléfono',
+                'num_what.*.numwhat' => 'número',
+                
             ];
     }
 
@@ -41,6 +43,8 @@ class BranchOfficeRequest extends FormRequest
             'emails.*' => 'nullable|sometimes',
             'phone_numbers.*.number' => 'required',
             'phone_numbers.*' => 'nullable|sometimes',
+            'num_what.*.numwhat' => 'required',
+            'num_what.*.' => 'nullable|sometimes',
         ];
         return $rules;
     }

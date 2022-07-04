@@ -12,6 +12,7 @@ class BranchOffice extends Model
     protected $casts = [
         'emails' => 'array',
         'phone_numbers' => 'array',
+        'num_what' => 'array',
         'products' => 'array',
         'payment_methods' => 'array',
     ];

@@ -190,7 +190,9 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                el.variable == "name" || el.variable == "number"
+                el.variable == "name" ||
+                el.variable == "number" ||
+                el.variable == "numwhat"
                   ? _c("input", {
                       directives: [
                         {
