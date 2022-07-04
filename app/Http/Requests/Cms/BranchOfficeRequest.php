@@ -21,7 +21,6 @@ class BranchOfficeRequest extends FormRequest
         return [
                 'emails.*.name' => 'email',
                 'phone_numbers.*.number' => 'teléfono',
-                'zona_horaria.*.zona' => 'zona'
             ];
     }
 
@@ -42,8 +41,6 @@ class BranchOfficeRequest extends FormRequest
             'emails.*' => 'nullable|sometimes',
             'phone_numbers.*.number' => 'required',
             'phone_numbers.*' => 'nullable|sometimes',
-            'zona_horaria.*.zona' => 'required',
-            'zona_horaria.*' => 'nullable|sometimes',
         ];
         return $rules;
     }

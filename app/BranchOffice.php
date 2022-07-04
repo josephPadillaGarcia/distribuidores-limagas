@@ -13,7 +13,7 @@ class BranchOffice extends Model
         'emails' => 'array',
         'phone_numbers' => 'array',
         'products' => 'array',
-        'zona_horaria' => 'array',
+        'payment_methods' => 'array',
     ];
 
     public function ubigeoRel()

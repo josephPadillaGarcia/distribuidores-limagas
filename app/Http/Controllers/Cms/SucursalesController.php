@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Cms\BranchOfficeRequest;
 use App\Http\Traits\CmsTrait;
 use App\Productos;
+use App\PaymendMethod;
 use Illuminate\Support\Facades\Storage;
 
 class SucursalesController extends Controller
@@ -21,7 +22,7 @@ class SucursalesController extends Controller
 
     public function store(BranchOfficeRequest $request)
     {
-        $el = request(["name", "description", "direction", "schedule","iframe", "products", "link_face","link_insta"]);
+        $el = request(["name", "description", "direction", "schedule","iframe", "products", "link_face","link_insta", "payment_methods"]);
         if($request->emails){
             $el = array_merge($el, ["emails" => $request->emails]);
         }
@@ -109,4 +110,12 @@ class SucursalesController extends Controller
     public function getProduct(Productos $element){
         return response()->json($element);
     }
+
+    // MUESTRA TODOS LOS PRODUCTOS
+    public function getAllPaymentMethod(){
+        $els = PaymendMethod::get();
+        return response()->json($els);
+    }
+    //--------------------------------------
+
 }

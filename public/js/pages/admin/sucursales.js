@@ -20,19 +20,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    allproducts: Array
+    allitems: Array
   },
   data: function data() {
     return {
-      selectproducts: []
+      selectitems: [] ///selectpaymentmethod: [],
+
     };
   },
   watch: {
-    selectproducts: function selectproducts() {
-      this.$emit('arrayproducts', this.selectproducts);
+    selectitems: function selectitems() {
+      this.$emit("arrayitems", this.selectitems);
     }
+    /*selectpaymentmethod: function () {
+      this.$emit("arraypaymentmethod", this.selectpaymentmethod);
+    },*/
+
   }
 });
 
@@ -912,6 +925,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -952,6 +992,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     routeProductsGet: String,
     selproducts: {
       type: Object
+    },
+    //payment method
+    routePaymentMethodGetAll: String,
+    selpaymentmethod: {
+      type: Object
     }
   },
   data: function data() {
@@ -981,8 +1026,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         dictRemoveFile: "Remover"
       },
       products: [],
-      getproducts: {},
-      sproducts: []
+      //sproducts: [],
+      payment_methods: []
     };
   },
   methods: {
@@ -1173,26 +1218,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this6.products = response.data;
       })["catch"](function (err) {});
     },
-    //------------------------------
 
-    /*addproduct(){
-      this.addproducts = this.products.map(item => item.id)
+    /*showproducts(id) {
+      axios
+        .get(this.route + "/product/json/get/" + id)
+        .then((response) => {
+          this.getproducts = response.data;
+        })
+        .catch((error) => {});
     },*/
-    showproducts: function showproducts(id) {
+    elementproducts: function elementproducts(val) {
+      //this.sproducts = val;
+      this.element.products = val;
+    },
+    //------------------------------
+    // OBTENEMOS LOS METODOS DE PAGO
+    getPaymentMethod: function getPaymentMethod() {
       var _this7 = this;
 
-      axios.get(this.route + "/product/json/get/" + id).then(function (response) {
-        _this7.getproducts = response.data;
-      })["catch"](function (error) {});
+      axios.get(this.routePaymentMethodGetAll).then(function (response) {
+        _this7.payment_methods = response.data;
+      })["catch"](function (err) {});
     },
-    elementproducts: function elementproducts(val) {
-      this.sproducts = val;
-      this.element.products = val;
-    }
+    elementpaymentmethod: function elementpaymentmethod(val) {
+      //this.sproducts = val;
+      this.element.payment_methods = val;
+    } //---------------------------
+
   },
   created: function created() {
     this.getEls();
-    this.getProducts(); //this.showproducts(id);
+    this.getProducts();
+    this.getPaymentMethod(); //this.showproducts(id);
   },
 
   /*watch: {
@@ -1290,48 +1347,95 @@ var render = function() {
     _c(
       "div",
       { staticClass: "app" },
-      _vm._l(_vm.allproducts, function(sp) {
+      _vm._l(_vm.allitems, function(sp) {
         return _c("div", { key: sp.id }, [
-          _c("label", [_vm._v(_vm._s(sp.name))]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.selectproducts,
-                expression: "selectproducts"
-              }
-            ],
-            attrs: { type: "checkbox" },
-            domProps: {
-              value: sp,
-              checked: Array.isArray(_vm.selectproducts)
-                ? _vm._i(_vm.selectproducts, sp) > -1
-                : _vm.selectproducts
-            },
-            on: {
-              change: function($event) {
-                var $$a = _vm.selectproducts,
-                  $$el = $event.target,
-                  $$c = $$el.checked ? true : false
-                if (Array.isArray($$a)) {
-                  var $$v = sp,
-                    $$i = _vm._i($$a, $$v)
-                  if ($$el.checked) {
-                    $$i < 0 && (_vm.selectproducts = $$a.concat([$$v]))
-                  } else {
-                    $$i > -1 &&
-                      (_vm.selectproducts = $$a
-                        .slice(0, $$i)
-                        .concat($$a.slice($$i + 1)))
+          sp.name
+            ? _c("div", [
+                _c("label", [_vm._v(_vm._s(sp.name))]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selectitems,
+                      expression: "selectitems"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    value: sp,
+                    checked: Array.isArray(_vm.selectitems)
+                      ? _vm._i(_vm.selectitems, sp) > -1
+                      : _vm.selectitems
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.selectitems,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = sp,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.selectitems = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.selectitems = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.selectitems = $$c
+                      }
+                    }
                   }
-                } else {
-                  _vm.selectproducts = $$c
-                }
-              }
-            }
-          })
+                })
+              ])
+            : sp.method
+            ? _c("div", [
+                _c("label", [_vm._v(_vm._s(sp.method))]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.selectitems,
+                      expression: "selectitems"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    value: sp,
+                    checked: Array.isArray(_vm.selectitems)
+                      ? _vm._i(_vm.selectitems, sp) > -1
+                      : _vm.selectitems
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.selectitems,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = sp,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.selectitems = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.selectitems = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.selectitems = $$c
+                      }
+                    }
+                  }
+                })
+              ])
+            : _vm._e()
         ])
       }),
       0
@@ -2075,6 +2179,32 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
+                                    "\n                Metodos de Pago:\n                "
+                                  ),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  el.payment_methods
+                                    ? _c(
+                                        "span",
+                                        _vm._l(el.payment_methods, function(
+                                          e,
+                                          i
+                                        ) {
+                                          return _c("div", { key: e.id }, [
+                                            _c("p", [_vm._v(_vm._s(e.method))])
+                                          ])
+                                        }),
+                                        0
+                                      )
+                                    : _c("span", [
+                                        _vm._v(
+                                          " No tiene metodos de pago registrados "
+                                        )
+                                      ])
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "mb-1" }, [
+                                  _vm._v(
                                     "\n                Productos:\n                "
                                   ),
                                   _c("br"),
@@ -2600,6 +2730,29 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-12" }, [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "" }
+                              },
+                              [_vm._v("Metodos de Pago")]
+                            ),
+                            _vm._v(" "),
+                            _c("CheckBoxSelectArray", {
+                              attrs: { allitems: _vm.payment_methods },
+                              on: { arrayitems: _vm.elementpaymentmethod }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-12" }, [
                         _c("div", { staticClass: "form-group" }, [
                           _c(
                             "label",
@@ -2653,17 +2806,28 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-12" },
-                        [
-                          _c("CheckBoxSelectArray", {
-                            attrs: { allproducts: _vm.products },
-                            on: { arrayproducts: _vm.elementproducts }
-                          })
-                        ],
-                        1
-                      ),
+                      _c("div", { staticClass: "col-12" }, [
+                        _c(
+                          "div",
+                          { staticClass: "form-group" },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                attrs: { for: "" }
+                              },
+                              [_vm._v("Productos")]
+                            ),
+                            _vm._v(" "),
+                            _c("CheckBoxSelectArray", {
+                              attrs: { allitems: _vm.products },
+                              on: { arrayitems: _vm.elementproducts }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-12 galeria" }, [
                         _c("p", [_vm._v("Galeria de imagenes")])

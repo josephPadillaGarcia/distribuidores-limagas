@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDescriptionToBranchOffices extends Migration
+class AddNumWhatToBranchOffices extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddDescriptionToBranchOffices extends Migration
     public function up()
     {
         Schema::table('branch_offices', function (Blueprint $table) {
-            $table->text('description');
+            $table->json('num_what')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddDescriptionToBranchOffices extends Migration
     public function down()
     {
         Schema::table('branch_offices', function (Blueprint $table) {
-            $table->text('description');
+            $table->json('num_what')->nullable();
         });
     }
 }

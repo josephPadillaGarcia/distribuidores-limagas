@@ -59,7 +59,6 @@
           </div>
         </div>
 
-
         <draggable
           class="row"
           v-if="filteredElements.length"
@@ -82,7 +81,10 @@
                 <h3 class="mb-1">
                   Descripción:
                   <br />
-                  <div v-html="el.description" class="content-editor-value"></div>
+                  <div
+                    v-html="el.description"
+                    class="content-editor-value"
+                  ></div>
                 </h3>
                 <h3 class="mb-1">
                   Dirección:
@@ -149,12 +151,20 @@
                 </h3>
 
                 <h3 class="mb-1">
+                  Metodos de Pago:
+                  <br />
+                  <span v-if="el.payment_methods">
+                    <div class="" v-for="(e, i) in el.payment_methods" :key="e.id">
+                      <p>{{ e.method }}</p>
+                    </div>
+                  </span>
+                  <span v-else> No tiene metodos de pago registrados </span>
+                </h3>
+
+                <h3 class="mb-1">
                   Productos:
                   <br />
                   <span v-if="el.products">
-                    <!--template v-for="(e, i) in el.products">
-                      <p :key="i + 'pn'">{{ showproducts(e.idprod) }}</p>
-                    </template-->
                     <div class="" v-for="(e, i) in el.products" :key="e.id">
                       <img
                         :src="imagesUrl + '/productos/' + e.image"
@@ -166,6 +176,7 @@
                   </span>
                   <span v-else> No tiene productos registrados </span>
                 </h3>
+                
                 <h3 class="mb-1">
                   Iframe:
                   <br />
@@ -250,7 +261,7 @@
                 />
               </div>
             </div>
-            
+
             <div class="col-12">
               <Ubigeo
                 :errors="errors"
@@ -333,6 +344,19 @@
 
             <div class="col-12">
               <div class="form-group">
+                <label class="font-weight-bold" for>Metodos de Pago</label>
+              <!-- INFORMACION DE PRODUCTOS -->
+              <CheckBoxSelectArray
+                :allitems="payment_methods"
+                @arrayitems="elementpaymentmethod"
+              />
+              <!-- ///////////////////////////////////////// -->
+
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-group">
                 <label class="font-weight-bold" for
                   >Iframe Mapa(Opcional)</label
                 >
@@ -352,18 +376,21 @@
             </div>
 
             <div class="col-12">
+              <div class="form-group">
+                <label class="font-weight-bold" for>Productos</label>
               <!-- INFORMACION DE PRODUCTOS -->
               <CheckBoxSelectArray
-                :allproducts="products"
-                @arrayproducts="elementproducts"
+                :allitems="products"
+                @arrayitems="elementproducts"
               />
               <!-- ///////////////////////////////////////// -->
+
+              </div>
             </div>
 
             <div class="col-12 galeria">
               <p>Galeria de imagenes</p>
             </div>
-
           </div>
         </form>
       </div>
@@ -456,6 +483,12 @@ export default {
     selproducts: {
       type: Object,
     },
+
+    //payment method
+    routePaymentMethodGetAll: String,
+    selpaymentmethod: {
+      type: Object,
+    },
   },
   data() {
     return {
@@ -485,8 +518,9 @@ export default {
       },
 
       products: [],
-      getproducts: {},
-      sproducts: [],
+      //sproducts: [],
+
+      payment_methods: [],
     };
   },
   methods: {
@@ -581,16 +615,16 @@ export default {
         method = "put";
       }
 
-//console.log(this.element.description);
+      //console.log(this.element.description);
       /*console.log(this.element.horario);
       console.log(this.element.zona);*/
 
       axios({
         method: method,
         url: url,
-        data: this.element
+        data: this.element,
       })
-        .then(response => {
+        .then((response) => {
           this.requestSubmit = false;
           Swal.fire({
             title: response.data.title,
@@ -599,12 +633,12 @@ export default {
             confirmButtonText: "OK",
             buttonsStyling: false,
             customClass: {
-              confirmButton: "btn btn-inverse-primary"
-            }
+              confirmButton: "btn btn-inverse-primary",
+            },
           });
           this.restore();
         })
-        .catch(error => {
+        .catch((error) => {
           this.requestSubmit = false;
           if (error.response.status === 422) {
             this.errors = error.response.data.errors || {};
@@ -617,8 +651,8 @@ export default {
             confirmButtonText: "OK",
             buttonsStyling: false,
             customClass: {
-              confirmButton: "btn btn-inverse-primary"
-            }
+              confirmButton: "btn btn-inverse-primary",
+            },
           });
           this.restoreEl();
         });
@@ -674,30 +708,44 @@ export default {
         })
         .catch((err) => {});
     },
-    //------------------------------
 
-    /*addproduct(){
-      this.addproducts = this.products.map(item => item.id)
-    },*/
-
-    showproducts(id) {
+    /*showproducts(id) {
       axios
         .get(this.route + "/product/json/get/" + id)
         .then((response) => {
           this.getproducts = response.data;
         })
         .catch((error) => {});
-    },
+    },*/
 
     elementproducts(val) {
-      this.sproducts = val;
+      //this.sproducts = val;
       this.element.products = val;
     },
+    //------------------------------
+
+    // OBTENEMOS LOS METODOS DE PAGO
+    getPaymentMethod() {
+      axios
+        .get(this.routePaymentMethodGetAll)
+        .then((response) => {
+          this.payment_methods = response.data;
+        })
+        .catch((err) => {});
+    },
+
+    elementpaymentmethod(val) {
+      //this.sproducts = val;
+      this.element.payment_methods = val;
+    },
+
+    //---------------------------
   },
 
   created() {
     this.getEls();
     this.getProducts();
+    this.getPaymentMethod();
     //this.showproducts(id);
   },
   /*watch: {

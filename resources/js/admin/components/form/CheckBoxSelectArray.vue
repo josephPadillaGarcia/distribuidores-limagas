@@ -1,9 +1,17 @@
 <template>
   <div>
     <div class="app">
-      <div v-for="sp in allproducts" :key="sp.id">
-        <label>{{ sp.name }}</label>
-        <input type="checkbox" v-model="selectproducts" :value="sp" />
+      <div v-for="sp in allitems" :key="sp.id">
+
+        <div v-if="sp.name">
+          <label>{{ sp.name }}</label>
+          <input type="checkbox" v-model="selectitems" :value="sp" />
+        </div>
+        <div v-else-if="sp.method">
+          <label>{{ sp.method }}</label>
+          <input type="checkbox" v-model="selectitems" :value="sp" />
+        </div>
+
       </div>
     </div>
   </div>
@@ -12,17 +20,17 @@
 <script>
 export default {
   props: {
-    allproducts: Array,
+    allitems: Array,
   },
   data() {
     return {
-      selectproducts: [],
+      selectitems: [],
     };
   },
   watch: {
-    selectproducts: function(){
-      this.$emit('arrayproducts', this.selectproducts)
-    } 
+    selectitems: function () {
+      this.$emit("arrayitems", this.selectitems);
+    },
   },
 };
 </script>
