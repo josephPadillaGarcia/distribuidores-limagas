@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEditorcodescriptTable extends Migration
+class AddDescriptionToBranchOffices extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateEditorcodescriptTable extends Migration
      */
     public function up()
     {
-        Schema::create('editorcodescript', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->text('codescript');
-            $table->timestamps();
+        Schema::table('branch_offices', function (Blueprint $table) {
+            $table->text('description');
         });
     }
 
@@ -27,6 +25,8 @@ class CreateEditorcodescriptTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('editorcodescript');
+        Schema::table('branch_offices', function (Blueprint $table) {
+            $table->text('description');
+        });
     }
 }

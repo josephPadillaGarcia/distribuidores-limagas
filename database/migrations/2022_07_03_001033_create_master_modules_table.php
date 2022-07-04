@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateMasterModulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('master_modules', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name_es');
-            $table->string('name_en');
-            $table->string('slug_es')->unique();
-            $table->string('slug_en')->unique();
+            $table->string('name');
+            $table->string('slug')->nullable();
+            $table->integer('parent')->nullable();
+            $table->string('icon',30)->nullable();
+            $table->integer('index');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('master_modules');
     }
 }

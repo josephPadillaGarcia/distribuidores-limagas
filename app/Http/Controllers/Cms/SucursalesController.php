@@ -21,7 +21,7 @@ class SucursalesController extends Controller
 
     public function store(BranchOfficeRequest $request)
     {
-        $el = request(["name", "description", "direction", "schedule","iframe", "products"]);
+        $el = request(["name", "description", "direction", "schedule","iframe", "products", "link_face","link_insta"]);
         if($request->emails){
             $el = array_merge($el, ["emails" => $request->emails]);
         }
@@ -76,7 +76,7 @@ class SucursalesController extends Controller
 
     public function update(BranchOfficeRequest $request, BranchOffice $element)
     {
-        $request_element = request(["name", "description", "direction", "schedule","iframe", "products"]);
+        $request_element = request(["name", "description", "direction", "schedule","iframe", "products", "link_face","link_insta"]);
         if($request->phone_numbers){
             $request_element = array_merge($request_element, ["phone_numbers" => $request->phone_numbers]);
         }

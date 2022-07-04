@@ -22,7 +22,7 @@ class BranchOfficeSeeder extends Seeder
                 'phone_numbers' => '[{"number":"12345678"}, {"number":"32165487"}]',
                 'emails' => '[{"name":"nuevo@gmail.com"}, {"name":"prueva@gmail.com"}]',
                 'index' => 2,
-                'products' => '[{"idprod":"2"}, {"idprod":"3"}]',
+                'products' => '[{"id": 1, "name": "gas limagas", "precio": "15", "image": "t-165682527562c125bb79525.png", "active": true, "index": 1, "created_at": "2022-07-03 00:14:35", "updated_at": "2022-07-03 00:14:35"}]',
             ],
 
         ]);

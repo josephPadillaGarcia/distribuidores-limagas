@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFielsEnToFaqsTable extends Migration
+class CreatePaymentMethodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class AddFielsEnToFaqsTable extends Migration
      */
     public function up()
     {
-        Schema::table('faqs', function (Blueprint $table) {
-            $table->string('question_en')->nullable();
-            $table->text('description_en')->nullable();
+        Schema::create('payment_methods', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->text('method');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +27,6 @@ class AddFielsEnToFaqsTable extends Migration
      */
     public function down()
     {
-        Schema::table('faqs', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('payment_methods');
     }
 }

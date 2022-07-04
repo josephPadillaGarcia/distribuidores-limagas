@@ -912,32 +912,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1927,7 +1901,7 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
-                                    "\n                Distribuidor:\n                "
+                                    "\n                Descripción:\n                "
                                   ),
                                   _c("br"),
                                   _vm._v(" "),
@@ -2071,6 +2045,32 @@ var render = function() {
                                         { staticClass: "font-weight-normal" },
                                         [_vm._v("No registrado")]
                                       )
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "mb-1" }, [
+                                  _vm._v(
+                                    "\n                Facebook Link:\n                "
+                                  ),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    { staticClass: "font-weight-normal" },
+                                    [_vm._v(_vm._s(el.link_face))]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "mb-1" }, [
+                                  _vm._v(
+                                    "\n                Instagram Link:\n                "
+                                  ),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    { staticClass: "font-weight-normal" },
+                                    [_vm._v(_vm._s(el.link_insta))]
+                                  )
                                 ]),
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
@@ -2470,6 +2470,84 @@ var render = function() {
                         ],
                         1
                       ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-6" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "font-weight-bold",
+                              attrs: { for: "" }
+                            },
+                            [_vm._v("Facebook")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.element.link_face,
+                                expression: "element.link_face"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "text", id: "link_face" },
+                            domProps: { value: _vm.element.link_face },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.element,
+                                  "link_face",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-6" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "font-weight-bold",
+                              attrs: { for: "" }
+                            },
+                            [_vm._v("Instagram")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.element.link_insta,
+                                expression: "element.link_insta"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "text", id: "link_insta" },
+                            domProps: { value: _vm.element.link_insta },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.element,
+                                  "link_insta",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-12" }, [
                         _c("div", { staticClass: "form-group" }, [

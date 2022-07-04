@@ -58,6 +58,8 @@
             <i class="d-block mb-4" v-if="!q">{{ messageOrder }}</i>
           </div>
         </div>
+
+
         <draggable
           class="row"
           v-if="filteredElements.length"
@@ -132,6 +134,18 @@
                     </template>
                   </span>
                   <span class="font-weight-normal" v-else>No registrado</span>
+                </h3>
+
+                <h3 class="mb-1">
+                  Facebook Link:
+                  <br />
+                  <span class="font-weight-normal">{{ el.link_face }}</span>
+                </h3>
+
+                <h3 class="mb-1">
+                  Instagram Link:
+                  <br />
+                  <span class="font-weight-normal">{{ el.link_insta }}</span>
                 </h3>
 
                 <h3 class="mb-1">
@@ -274,6 +288,30 @@
                 Formatos recomendados:
                 <br />Fijos: (054) 444444, Móviles: 9 dígitos
               </small>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold" for>Facebook</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="element.link_face"
+                  id="link_face"
+                />
+              </div>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold" for>Instagram</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="element.link_insta"
+                  id="link_insta"
+                />
+              </div>
             </div>
 
             <div class="col-12">
