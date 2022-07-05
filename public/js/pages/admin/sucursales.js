@@ -508,8 +508,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_NoData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../components/NoData */ "./resources/js/admin/components/NoData.vue");
 /* harmony import */ var _components_form_Ubigeo__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/form/Ubigeo */ "./resources/js/admin/components/form/Ubigeo.vue");
 /* harmony import */ var _components_form_InputSelectArray__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/form/InputSelectArray */ "./resources/js/admin/components/form/InputSelectArray.vue");
-/* harmony import */ var _components_form_EditorSimple__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/form/EditorSimple */ "./resources/js/admin/components/form/EditorSimple.vue");
-/* harmony import */ var _components_form_CheckBoxSelectArray__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/form/CheckBoxSelectArray */ "./resources/js/admin/components/form/CheckBoxSelectArray.vue");
+/* harmony import */ var _components_DataTable__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/DataTable */ "./resources/js/admin/components/DataTable.vue");
+/* harmony import */ var _components_form_EditorSimple__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/form/EditorSimple */ "./resources/js/admin/components/form/EditorSimple.vue");
+/* harmony import */ var _components_form_CheckBoxSelectArray__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/form/CheckBoxSelectArray */ "./resources/js/admin/components/form/CheckBoxSelectArray.vue");
 var _components;
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
@@ -1048,6 +1049,41 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -1073,7 +1109,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Skeleton: vue_loading_skeleton__WEBPACK_IMPORTED_MODULE_5__["Skeleton"],
     SkeletonForm: _components_skeleton_form__WEBPACK_IMPORTED_MODULE_8__["default"],
     draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_1___default.a
-  }, _defineProperty(_components, "Input", _components_form_Input__WEBPACK_IMPORTED_MODULE_4__["default"]), _defineProperty(_components, "Editor", _components_form_Editor__WEBPACK_IMPORTED_MODULE_6__["default"]), _defineProperty(_components, "NoData", _components_NoData__WEBPACK_IMPORTED_MODULE_9__["default"]), _defineProperty(_components, "Ubigeo", _components_form_Ubigeo__WEBPACK_IMPORTED_MODULE_10__["default"]), _defineProperty(_components, "InputSelectArray", _components_form_InputSelectArray__WEBPACK_IMPORTED_MODULE_11__["default"]), _defineProperty(_components, "CheckBoxSelectArray", _components_form_CheckBoxSelectArray__WEBPACK_IMPORTED_MODULE_13__["default"]), _defineProperty(_components, "EditorSimple", _components_form_EditorSimple__WEBPACK_IMPORTED_MODULE_12__["default"]), _components),
+  }, _defineProperty(_components, "Input", _components_form_Input__WEBPACK_IMPORTED_MODULE_4__["default"]), _defineProperty(_components, "Editor", _components_form_Editor__WEBPACK_IMPORTED_MODULE_6__["default"]), _defineProperty(_components, "NoData", _components_NoData__WEBPACK_IMPORTED_MODULE_9__["default"]), _defineProperty(_components, "Ubigeo", _components_form_Ubigeo__WEBPACK_IMPORTED_MODULE_10__["default"]), _defineProperty(_components, "InputSelectArray", _components_form_InputSelectArray__WEBPACK_IMPORTED_MODULE_11__["default"]), _defineProperty(_components, "CheckBoxSelectArray", _components_form_CheckBoxSelectArray__WEBPACK_IMPORTED_MODULE_14__["default"]), _defineProperty(_components, "DataTable", _components_DataTable__WEBPACK_IMPORTED_MODULE_12__["default"]), _defineProperty(_components, "EditorSimple", _components_form_EditorSimple__WEBPACK_IMPORTED_MODULE_13__["default"]), _components),
   props: {
     route: String,
     routeGetAll: String,
@@ -1123,7 +1159,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       products: [],
       //sproducts: [],
-      payment_methods: []
+      payment_methods: [] //newemails: object,
+
     };
   },
   methods: {
@@ -1248,8 +1285,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       if (this.element.emails) {
-        fd.append("emails", this.element.emails);
+        fd.append("emails", JSON.stringify(this.element.emails));
       }
+      /*if (this.element.emails) {
+        fd.append("emails", this.element.emails);
+      }*/
+
 
       if (this.element.iframe) {
         fd.append("iframe", this.element.iframe);
@@ -1268,20 +1309,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       if (this.element.num_what) {
-        fd.append("num_what", this.element.num_what);
+        fd.append("num_what", JSON.stringify(this.element.num_what));
       }
+      /*if (this.element.num_what) {
+        fd.append("num_what", this.element.num_what);
+      }*/
+
 
       if (this.element.payment_methods) {
-        fd.append("payment_methods", this.element.payment_methods);
+        fd.append("payment_methods", JSON.stringify(this.element.payment_methods));
       }
+      /*if (this.element.payment_methods) {
+        fd.append("payment_methods", this.element.payment_methods);
+      }*/
+
 
       if (this.element.phone_numbers) {
-        fd.append("phone_numbers", this.element.phone_numbers);
+        fd.append("phone_numbers", JSON.stringify(this.element.phone_numbers));
       }
+      /*if (this.element.phone_numbers) {
+        fd.append("phone_numbers", this.element.phone_numbers);
+      }*/
+
 
       if (this.element.products) {
-        fd.append("products", this.element.products);
+        fd.append("products", JSON.stringify(this.element.products));
       }
+      /*if (this.element.products) {
+        fd.append("products", this.element.products);
+      }*/
+
 
       if (this.element.province) {
         fd.append("province", this.element.province);
@@ -1301,7 +1358,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var entrie = _step.value;
-          console.log(entrie[0] + ': ' + entrie[1]);
+          console.log(entrie[0] + ": " + entrie[1]);
         } //console.log(fd.entries());
 
         /*console.log(this.element.horario);
@@ -1378,7 +1435,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.loadingEls = true;
       axios.get(this.routeGetAll).then(function (response) {
-        _this4.elements = response.data;
+        _this4.elements = response.data; //this.newemails
+
         _this4.loadingEls = false;
       })["catch"](function (error) {});
     },
@@ -2142,6 +2200,37 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-12" },
+                    [
+                      _c("DataTable", {
+                        attrs: {
+                          object: _vm.elements,
+                          placeholder: "Información General ",
+                          "button-update": false,
+                          "button-read": false,
+                          "button-delete": true,
+                          "entries-prop": _vm.elementsPerPage,
+                          messageCantDelete: _vm.messageCantDelete
+                        },
+                        on: {
+                          get: _vm.getElements,
+                          delete: _vm.deleteEl,
+                          "update:entriesProp": function($event) {
+                            _vm.elementsPerPage = $event
+                          },
+                          "update:entries-prop": function($event) {
+                            _vm.elementsPerPage = $event
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
                 _vm.elements
                   ? _c(
                       "draggable",
@@ -2262,12 +2351,20 @@ var render = function() {
                                         "span",
                                         { staticClass: "font-weight-normal" },
                                         [
-                                          _c(
-                                            "pre",
-                                            { staticClass: "d-block" },
-                                            [_vm._v(_vm._s(typeof el.emails))]
-                                          )
-                                        ]
+                                          _vm._l(el.emails, function(e, i) {
+                                            return [
+                                              _c(
+                                                "span",
+                                                {
+                                                  key: i + "emi",
+                                                  staticClass: "d-block"
+                                                },
+                                                [_vm._v(_vm._s(e.name))]
+                                              )
+                                            ]
+                                          })
+                                        ],
+                                        2
                                       )
                                     : _c(
                                         "span",
@@ -2482,6 +2579,29 @@ var render = function() {
                                           innerHTML: _vm._s(el.iframe)
                                         }
                                       })
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "mb-1" }, [
+                                  _vm._v(
+                                    "\n                Productos:\n                "
+                                  ),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  el.img_slider_1
+                                    ? _c("span", [
+                                        _c("img", {
+                                          staticClass: "img-fluid d-block mb-2",
+                                          attrs: {
+                                            src:
+                                              _vm.imagesUrl +
+                                              "/sliders/" +
+                                              el.img_slider_1
+                                          }
+                                        })
+                                      ])
+                                    : _c("span", [
+                                        _vm._v(" No tiene imagen registrada ")
+                                      ])
                                 ]),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "mt-4 text-center" }, [

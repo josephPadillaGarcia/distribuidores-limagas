@@ -85,8 +85,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     departmentParent: String,
@@ -222,7 +220,7 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "select" }, [
-          _c("i", { staticClass: "flaticon flaticon-star" }),
+          _c("i", { staticClass: "flaticon flaticon-marcador-de-posicion" }),
           _vm._v(" "),
           _c(
             "select",
@@ -277,7 +275,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "select" }, [
-          _c("i", { staticClass: "flaticon flaticon-star" }),
+          _c("i", { staticClass: "flaticon flaticon-marcador-de-posicion" }),
           _vm._v(" "),
           _c(
             "select",

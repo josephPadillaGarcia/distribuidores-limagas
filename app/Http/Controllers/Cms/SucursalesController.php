@@ -22,15 +22,32 @@ class SucursalesController extends Controller
 
     public function store(BranchOfficeRequest $request)
     {
-        $el = request(["name", "description", "direction", "schedule","iframe", "products", "link_face","link_insta", "payment_methods"]);
+        /*$aemails = json_decode($request->emails, true);
+        dd($aemails);*/
+        $el = request(["name", "description", "direction", "schedule","iframe", "link_face","link_insta", "payment_methods"]);
         if($request->emails){
-            $el = array_merge($el, ["emails" => $request->emails]);
+            $aemails = json_decode($request->emails, true);
+            $el = array_merge($el, ["emails" => $aemails]);
         }
         if($request->phone_numbers){
-            $el = array_merge($el, ["phone_numbers" => $request->phone_numbers]);
+            $aphone = json_decode($request->phone_numbers, true);
+            $el = array_merge($el, ["phone_numbers" => $aphone]);
+            //$el = array_merge($el, ["phone_numbers" => $request->phone_numbers]);
         }
         if($request->num_what){
-            $el = array_merge($el, ["num_what" => $request->num_what]);
+            $awhat = json_decode($request->num_what, true);
+            $el = array_merge($el, ["num_what" => $awhat]);
+            //$el = array_merge($el, ["num_what" => $request->num_what]);
+        }
+        
+        if($request->products){
+            $aproducts = json_decode($request->products, true);
+            $el = array_merge($el, ["products" => $aproducts]);
+        }
+
+        if($request->payment_methods){
+            $apaymentmethod = json_decode($request->payment_methods, true);
+            $el = array_merge($el, ["payment_methods" => $apaymentmethod]);
         }
 
         $image_name = $this->setFileName('t-', $request->file('img_slider_1'));

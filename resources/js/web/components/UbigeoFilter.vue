@@ -1,9 +1,8 @@
 <template>
-
   <div>
     <form @submit.prevent="submit" action="">
       <div class="select">
-        <i class="flaticon flaticon-star"></i>
+        <i class="flaticon flaticon-marcador-de-posicion"></i>
         <select id="department" name="department" v-model="department" class="">
           <option value="" disabled>--Seleccionar--</option>
           <option
@@ -16,7 +15,7 @@
         </select>
       </div>
       <div class="select">
-        <i class="flaticon flaticon-star"></i>
+        <i class="flaticon flaticon-marcador-de-posicion"></i>
         <select
           id="province"
           name="province"
@@ -73,7 +72,6 @@
         </div>
       </div>
     </form>
-
   </div>
 </template>
 <script>

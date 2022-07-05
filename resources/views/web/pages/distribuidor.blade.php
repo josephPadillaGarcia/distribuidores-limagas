@@ -22,18 +22,37 @@
 
 <section class="slider">
     <div class="owl-slider owl-carousel owl-theme owl-general owl-general--centrar-navegadores">
-        <div class="item">
-            <img class="card__image" src="{{ $storageUrl.'/img/banner1.jpg'}}" alt="" >
-        </div>
-        <div class="item">
-            <img class="card__image" src="{{ $storageUrl.'/img/banner2.jpg'}}" alt="" >
-        </div>
-        <div class="item">
-            <img class="card__image" src="{{ $storageUrl.'/img/banner3.jpg'}}" alt="" >
-        </div>
-        <div class="item">
-            <img class="card__image" src="{{ $storageUrl.'/img/banner4.jpg'}}" alt="" >
-        </div>
+        
+            @if ($id->img_slider_1)
+                <div class="item">
+                    <img class="lazyload" src="{{ $storageUrl . '/img/sliders/' . $id->img_slider_1 }}" alt="{{ $id->name  }}" />
+                </div>
+            @endif    
+            
+            @if ($id->img_slider_2)
+                <div class="item">
+                    <img class="lazyload" src="{{ $storageUrl . '/img/sliders/' . $id->img_slider_2 }}" alt="{{ $id->name  }}" />
+                </div>
+            @endif  
+            
+            @if ($id->img_slider_3)
+                <div class="item">
+                    <img class="lazyload" src="{{ $storageUrl . '/img/sliders/' . $id->img_slider_3 }}" alt="{{ $id->name  }}" />
+                </div>
+            @endif  
+
+            @if ($id->img_slider_4)
+                <div class="item">
+                    <img class="lazyload" src="{{ $storageUrl . '/img/sliders/' . $id->img_slider_4 }}" alt="{{ $id->name  }}" />
+                </div>
+            @endif  
+
+            @if ($id->img_slider_5)
+                <div class="item">
+                    <img class="lazyload" src="{{ $storageUrl . '/img/sliders/' . $id->img_slider_5 }}" alt="{{ $id->name  }}" />
+                </div>
+            @endif  
+    
     </div>
 </section>
 

@@ -59,6 +59,22 @@
           </div>
         </div>
 
+        <div class="row">
+            <div class="col-12">
+              <DataTable
+                :object="elements"
+                placeholder="Información General "
+                :button-update="false"
+                :button-read="false"
+                :button-delete="true"
+                @get="getElements"
+                @delete="deleteEl"
+                :entries-prop.sync="elementsPerPage"
+                :messageCantDelete="messageCantDelete"
+              ></DataTable>
+            </div>
+        </div>
+
         <draggable
           class="row"
           v-if="elements"
@@ -114,10 +130,11 @@
                   Email:
                   <br />
                   <span class="font-weight-normal" v-if="el.emails">
-                    <!--template v-for="(e, i) in el.emails">
+                    <template v-for="(e, i) in el.emails">
                       <span class="d-block" :key="i + 'emi'">{{ e.name }}</span>
-                    </template-->
-                    <pre class="d-block">{{ typeof el.emails }}</pre>
+                    </template>
+                    <!--pre class="d-block">{{ typeof el.emails }}</pre>
+                    <pre class="d-block">{{ typeof el.emails }}</pre-->
                   </span>
                   <span class="font-weight-normal" v-else>No registrado</span>
                 </h3>
@@ -136,6 +153,7 @@
                         >{{ e.number }}</a
                       >
                     </template>
+                    <!--pre class="d-block">{{ typeof el.phone_numbers }}</pre-->
                   </span>
                   <span class="font-weight-normal" v-else>No registrado</span>
                 </h3>
@@ -154,6 +172,7 @@
                         >{{ e.numwhat }}</a
                       >
                     </template>
+                    <!--pre class="d-block">{{ typeof el.num_what }}</pre-->
                   </span>
                   <span class="font-weight-normal" v-else>No registrado</span>
                 </h3>
@@ -187,6 +206,7 @@
                       <p>{{ e.method }}</p>
                       <p>{{ e.img_method }}</p>
                     </div>
+                    <!--pre class="d-block">{{ typeof el.payment_methods }}</pre-->
                   </span>
                   <span v-else> No tiene metodos de pago registrados </span>
                 </h3>
@@ -203,6 +223,7 @@
                       />
                       <p>{{ e.name }}</p>
                     </div>
+                    <!--pre class="d-block">{{ typeof el.products }}</pre-->
                   </span>
                   <span v-else> No tiene productos registrados </span>
                 </h3>
@@ -215,6 +236,19 @@
                   >
                   <div v-else v-html="el.iframe" class="parent-iframe"></div>
                 </h3>
+
+                <h3 class="mb-1">
+                  Productos:
+                  <br />
+                  <span v-if="el.img_slider_1">
+                    <img
+                        :src="imagesUrl + '/sliders/' + el.img_slider_1"
+                        class="img-fluid d-block mb-2"
+                      />
+                  </span>
+                  <span v-else> No tiene imagen registrada </span>
+                </h3>
+
                 <div class="mt-4 text-center">
                   <button
                     @click="editEl(el.id)"
@@ -539,6 +573,7 @@ import SkeletonForm from "../components/skeleton/form";
 import NoData from "../components/NoData";
 import Ubigeo from "../components/form/Ubigeo";
 import InputSelectArray from "../components/form/InputSelectArray";
+import DataTable from "../components/DataTable";
 
 import EditorSimple from "../components/form/EditorSimple";
 import CheckBoxSelectArray from "../components/form/CheckBoxSelectArray";
@@ -559,6 +594,7 @@ export default {
     Ubigeo,
     InputSelectArray,
     CheckBoxSelectArray,
+    DataTable,
 
     EditorSimple,
   },
@@ -617,7 +653,7 @@ export default {
 
       payment_methods: [],
 
-      newemails: object,
+      //newemails: object,
     };
   },
   methods: {
@@ -735,8 +771,12 @@ export default {
       }
 
       if (this.element.emails) {
-        fd.append("emails", this.element.emails);
+        fd.append("emails", JSON.stringify(this.element.emails));
       }
+
+      /*if (this.element.emails) {
+        fd.append("emails", this.element.emails);
+      }*/
 
       if (this.element.iframe) {
         fd.append("iframe", this.element.iframe);
@@ -755,19 +795,40 @@ export default {
       }
 
       if (this.element.num_what) {
-        fd.append("num_what", this.element.num_what);
+        fd.append("num_what", JSON.stringify(this.element.num_what));
       }
+
+      /*if (this.element.num_what) {
+        fd.append("num_what", this.element.num_what);
+      }*/
 
       if (this.element.payment_methods) {
-        fd.append("payment_methods", this.element.payment_methods);
+        fd.append(
+          "payment_methods",
+          JSON.stringify(this.element.payment_methods)
+        );
       }
 
+      /*if (this.element.payment_methods) {
+        fd.append("payment_methods", this.element.payment_methods);
+      }*/
+
       if (this.element.phone_numbers) {
+        fd.append("phone_numbers", JSON.stringify(this.element.phone_numbers));
+      }
+
+      /*if (this.element.phone_numbers) {
         fd.append("phone_numbers", this.element.phone_numbers);
-      }
+      }*/
+
       if (this.element.products) {
-        fd.append("products", this.element.products);
+        fd.append("products", JSON.stringify(this.element.products));
       }
+
+      /*if (this.element.products) {
+        fd.append("products", this.element.products);
+      }*/
+
       if (this.element.province) {
         fd.append("province", this.element.province);
       }
@@ -780,9 +841,9 @@ export default {
         this.element.img_slider_1 = this.$refs.ref_image.dropzone.files[0];
       }*/
 
-for (var entrie of fd.entries()) {
-        console.log(entrie[0]+ ': ' + entrie[1]); 
-}
+      for (var entrie of fd.entries()) {
+        console.log(entrie[0] + ": " + entrie[1]);
+      }
 
       //console.log(fd.entries());
       /*console.log(this.element.horario);
@@ -854,7 +915,7 @@ for (var entrie of fd.entries()) {
         .get(this.routeGetAll)
         .then((response) => {
           this.elements = response.data;
-      this.newemails
+          //this.newemails
           this.loadingEls = false;
         })
         .catch((error) => {});

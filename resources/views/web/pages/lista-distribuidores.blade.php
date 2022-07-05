@@ -49,8 +49,8 @@
                                 
                                 @if($office->phone_numbers)
                                     <li>
-                                        <i class="flaticon flaticon-telefono"> </i>
                                         @foreach($office->phone_numbers as $ph)
+                                            <i class="flaticon flaticon-telefono"> </i>
                                             <a href="tel:{{ $ph['number'] }}" target="_blank"> {{ $ph['number'] }}</a> <br>
                                         @endforeach
                                     </li>
@@ -60,7 +60,8 @@
                         </div>
 
                         <div class="img">
-                            <img src="public/img/banner1.jpg" alt="">
+                            <!--img src="public/img/banner1.jpg" alt=""-->
+                            <img class="lazyload" src="{{ $storageUrl . '/img/sliders/' . $office->img_slider_1 }}" alt="{{ $office->name  }}" />
                             <a href="{{ route('distribuidor',$office->id ) }}" class=""><i class="flaticon flaticon-proximo"></i></a>
                         </div>
                     </div>

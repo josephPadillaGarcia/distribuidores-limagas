@@ -20,6 +20,7 @@
             <div class="texto">
                 <h1>Encuentra el distribuidor más cercano a ti:</h1>
             </div>
+
             <div class="formulario">
                 <ubigeo-filter locale="{{ $locale }}"
                     department-parent="{{ $department }}"
@@ -29,6 +30,12 @@
                     route-get-dis="{{ route('web.districts')}}"
                     route-lista-distribuidores="{{ route('web.listadistribuidores') }}"
                     />
+            </div>
+
+            <div class="redes">
+                <span>Síguenos en:</span>
+                <a href="" class="btn-circle"><i class="flaticon-facebook"></i></a>
+                <a href="" class="btn-circle"><i class="flaticon-instagram-1"></i></a>
             </div>
         </div>
     
