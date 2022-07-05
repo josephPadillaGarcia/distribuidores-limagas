@@ -32,6 +32,17 @@ class SucursalesController extends Controller
         if($request->num_what){
             $el = array_merge($el, ["num_what" => $request->num_what]);
         }
+
+        $image_name = $this->setFileName('t-', $request->file('img_slider_1'));
+        $store_image = Storage::disk('public')->putFileAs('img/sliders/', $request->file('img_slider_1'), $image_name);
+        if (!$store_image) {
+            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.errors.image')], 500);
+        }
+        
+        $el = array_merge($el, ["img_slider_1" => $image_name]);
+
+        
+
         $el = array_merge($el, [ "code_ubigeo" => $request->department . $request->province . $request->district]);
         $elIndex = $this->getMaxIndex(BranchOffice::selectRaw('MAX(id),MAX(`index`) as "index"')->get());
 

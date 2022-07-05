@@ -512,8 +512,72 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_form_CheckBoxSelectArray__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/form/CheckBoxSelectArray */ "./resources/js/admin/components/form/CheckBoxSelectArray.vue");
 var _components;
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1053,7 +1117,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         maxFiles: 1,
         acceptedFiles: "image/png,image/jpeg,image/jpg,image/svg+xml",
         autoProcessQueue: false,
-        thumbnailWidth: 150,
+        thumbnailWidth: 600,
         addRemoveLinks: true,
         dictRemoveFile: "Remover"
       },
@@ -1152,23 +1216,108 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.requestSubmit = true;
       var url;
       var method;
+      var fd = new FormData();
 
       if (this.title == "Nuevo") {
         url = this.route;
         method = "post";
       } else {
         url = this.route + "/" + this.element.id;
-        method = "put";
-      } //console.log(this.element.description);
+        method = "post";
+        fd.append("_method", "put");
+      }
 
-      /*console.log(this.element.horario);
-      console.log(this.element.zona);*/
+      if (this.element.name) {
+        fd.append("name", this.element.name);
+      }
 
+      if (this.element.department) {
+        fd.append("department", this.element.department);
+      }
+
+      if (this.element.description) {
+        fd.append("description", this.element.description);
+      }
+
+      if (this.element.direction) {
+        fd.append("direction", this.element.direction);
+      }
+
+      if (this.element.district) {
+        fd.append("district", this.element.district);
+      }
+
+      if (this.element.emails) {
+        fd.append("emails", this.element.emails);
+      }
+
+      if (this.element.iframe) {
+        fd.append("iframe", this.element.iframe);
+      }
+
+      if (this.element.image) {
+        fd.append("image", this.element.image);
+      }
+
+      if (this.element.link_face) {
+        fd.append("link_face", this.element.link_face);
+      }
+
+      if (this.element.link_insta) {
+        fd.append("link_insta", this.element.link_insta);
+      }
+
+      if (this.element.num_what) {
+        fd.append("num_what", this.element.num_what);
+      }
+
+      if (this.element.payment_methods) {
+        fd.append("payment_methods", this.element.payment_methods);
+      }
+
+      if (this.element.phone_numbers) {
+        fd.append("phone_numbers", this.element.phone_numbers);
+      }
+
+      if (this.element.products) {
+        fd.append("products", this.element.products);
+      }
+
+      if (this.element.province) {
+        fd.append("province", this.element.province);
+      }
+
+      if (this.$refs.ref_image.dropzone.files[0]) {
+        fd.append("img_slider_1", this.$refs.ref_image.dropzone.files[0]);
+      }
+      /*if (this.$refs.ref_image.dropzone.files[0]) {
+        this.element.img_slider_1 = this.$refs.ref_image.dropzone.files[0];
+      }*/
+
+
+      var _iterator = _createForOfIteratorHelper(fd.entries()),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var entrie = _step.value;
+          console.log(entrie[0] + ': ' + entrie[1]);
+        } //console.log(fd.entries());
+
+        /*console.log(this.element.horario);
+        console.log(this.element.zona);
+        data: this.element,*/
+
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
 
       axios({
         method: method,
         url: url,
-        data: this.element
+        data: fd
       }).then(function (response) {
         _this3.requestSubmit = false;
         Swal.fire({
@@ -1293,19 +1442,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },*/
   computed: {
-    filteredElements: function filteredElements() {
-      var _this8 = this;
-
-      var filtered = this.elements;
-
+    /*filteredElements: function () {
+      let filtered = this.elements;
       if (this.q) {
-        filtered = this.elements.filter(function (e) {
-          return e.name.toUpperCase().includes(_this8.q.toUpperCase()) == true;
-        });
+        filtered = this.elements.filter(
+          (e) => e.name.toUpperCase().includes(this.q.toUpperCase()) == true
+        );
       }
-
       return filtered;
-    }
+    },*/
   }
 });
 
@@ -1997,7 +2142,7 @@ var render = function() {
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _vm.filteredElements.length
+                _vm.elements
                   ? _c(
                       "draggable",
                       {
@@ -2012,7 +2157,7 @@ var render = function() {
                           expression: "elements"
                         }
                       },
-                      _vm._l(_vm.filteredElements, function(el, i) {
+                      _vm._l(_vm.elements, function(el, i) {
                         return _c(
                           "div",
                           {
@@ -2117,20 +2262,12 @@ var render = function() {
                                         "span",
                                         { staticClass: "font-weight-normal" },
                                         [
-                                          _vm._l(el.emails, function(e, i) {
-                                            return [
-                                              _c(
-                                                "span",
-                                                {
-                                                  key: i + "emi",
-                                                  staticClass: "d-block"
-                                                },
-                                                [_vm._v(_vm._s(e.name))]
-                                              )
-                                            ]
-                                          })
-                                        ],
-                                        2
+                                          _c(
+                                            "pre",
+                                            { staticClass: "d-block" },
+                                            [_vm._v(_vm._s(typeof el.emails))]
+                                          )
+                                        ]
                                       )
                                     : _c(
                                         "span",
@@ -2951,9 +3088,147 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-12 galeria" }, [
-                        _c("p", [_vm._v("Galeria de imagenes")])
-                      ])
+                      _c(
+                        "div",
+                        { staticClass: "col-12 galeria" },
+                        [
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-12 col-md-12 col-lg-12" },
+                              [
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass: "font-weight-bold",
+                                      attrs: { for: "image" }
+                                    },
+                                    [_vm._v("Imagen:")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "small",
+                                    { staticClass: "d-block mb-0 lh-1" },
+                                    [
+                                      _vm._v(
+                                        "Resolución recomendada: 430x250px"
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "small",
+                                    { staticClass: "d-block mb-0 lh-1" },
+                                    [_vm._v("Formato: JPG")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "small",
+                                    { staticClass: "d-block mb-2 lh-1" },
+                                    [
+                                      _vm._v(
+                                        "Tamaño recomendado: No mayor a 150KB"
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "row" }, [
+                                    _vm.element.img_slider_1
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "col text-center" },
+                                          [
+                                            _c("img", {
+                                              staticClass: "mx-auto img-fluid",
+                                              attrs: {
+                                                src:
+                                                  _vm.imagesUrl +
+                                                  "/" +
+                                                  _vm.element.img_slider_1,
+                                                alt: _vm.element.name
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col" },
+                                      [
+                                        _c(
+                                          "vue-dropzone",
+                                          {
+                                            ref: "ref_image",
+                                            staticClass: "text-center",
+                                            attrs: {
+                                              id: "image",
+                                              options: _vm.dropzoneOptions,
+                                              duplicateCheck: true,
+                                              useCustomSlot: true
+                                            },
+                                            on: {
+                                              "vdropzone-file-added": function(
+                                                $event
+                                              ) {
+                                                return _vm.$validateImageDropzone(
+                                                  $event,
+                                                  _vm.$refs.ref_image.dropzone,
+                                                  1,
+                                                  600000,
+                                                  "600kb"
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "dropzone-custom-content"
+                                              },
+                                              [
+                                                _c(
+                                                  "h5",
+                                                  {
+                                                    staticClass:
+                                                      "dropzone-custom-title text-primary"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                            Suelte los archivos aquí o haga click para\n                            cargarlos.\n                          "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm.errors && _vm.errors.image
+                                    ? _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "text-danger text-sm d-block mt-2",
+                                          attrs: { for: "image" }
+                                        },
+                                        [_vm._v(_vm._s(_vm.errors.image[0]))]
+                                      )
+                                    : _vm._e()
+                                ])
+                              ]
+                            )
+                          ]
+                        ],
+                        2
+                      )
                     ])
                   ]
                 )

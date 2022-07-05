@@ -23,11 +23,13 @@ class IndexController extends Controller
     public function store(ProductosRequest $request)
     {
         $el = request(["name", "precio", "active"]);
+
         $image_name = $this->setFileName('t-', $request->file('image'));
         $store_image = Storage::disk('public')->putFileAs('img/productos/', $request->file('image'), $image_name);
         if (!$store_image) {
             return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.errors.image')], 500);
         }
+        
         $el = array_merge($el, ["image" => $image_name]);
         $elIndex = $this->getMaxIndex(Productos::selectRaw('MAX(id),MAX(`index`) as "index"')->get());
 

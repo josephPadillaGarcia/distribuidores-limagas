@@ -61,14 +61,14 @@
 
         <draggable
           class="row"
-          v-if="filteredElements.length"
+          v-if="elements"
           v-model="elements"
           @change="handleChange"
           :move="handleMove"
         >
           <div
             class="col-12 col-md-6 col-lg-4 mb-4"
-            v-for="(el, i) in filteredElements"
+            v-for="(el, i) in elements"
             :key="el.id"
           >
             <div class="card">
@@ -114,9 +114,10 @@
                   Email:
                   <br />
                   <span class="font-weight-normal" v-if="el.emails">
-                    <template v-for="(e, i) in el.emails">
+                    <!--template v-for="(e, i) in el.emails">
                       <span class="d-block" :key="i + 'emi'">{{ e.name }}</span>
-                    </template>
+                    </template-->
+                    <pre class="d-block">{{ typeof el.emails }}</pre>
                   </span>
                   <span class="font-weight-normal" v-else>No registrado</span>
                 </h3>
@@ -173,9 +174,13 @@
                   Metodos de Pago:
                   <br />
                   <span v-if="el.payment_methods">
-                    <div class="" v-for="(e, i) in el.payment_methods" :key="e.id">
+                    <div
+                      class=""
+                      v-for="(e, i) in el.payment_methods"
+                      :key="e.id"
+                    >
                       <img
-                        :src="imagesUrl +'/'+ e.img_method"
+                        :src="imagesUrl + '/' + e.img_method"
                         :alt="e.name"
                         class="img-fluid d-block mb-2"
                       />
@@ -201,7 +206,7 @@
                   </span>
                   <span v-else> No tiene productos registrados </span>
                 </h3>
-                
+
                 <h3 class="mb-1">
                   Iframe:
                   <br />
@@ -382,13 +387,12 @@
             <div class="col-12">
               <div class="form-group">
                 <label class="font-weight-bold" for>Metodos de Pago</label>
-              <!-- INFORMACION DE PRODUCTOS -->
-              <CheckBoxSelectArray
-                :allitems="payment_methods"
-                @arrayitems="elementpaymentmethod"
-              />
-              <!-- ///////////////////////////////////////// -->
-
+                <!-- INFORMACION DE PRODUCTOS -->
+                <CheckBoxSelectArray
+                  :allitems="payment_methods"
+                  @arrayitems="elementpaymentmethod"
+                />
+                <!-- ///////////////////////////////////////// -->
               </div>
             </div>
 
@@ -415,18 +419,72 @@
             <div class="col-12">
               <div class="form-group">
                 <label class="font-weight-bold" for>Productos</label>
-              <!-- INFORMACION DE PRODUCTOS -->
-              <CheckBoxSelectArray
-                :allitems="products"
-                @arrayitems="elementproducts"
-              />
-              <!-- ///////////////////////////////////////// -->
-
+                <!-- INFORMACION DE PRODUCTOS -->
+                <CheckBoxSelectArray
+                  :allitems="products"
+                  @arrayitems="elementproducts"
+                />
+                <!-- ///////////////////////////////////////// -->
               </div>
             </div>
 
             <div class="col-12 galeria">
-              <p>Galeria de imagenes</p>
+              <template>
+                <div class="col-12 col-md-12 col-lg-12">
+                  <div class="form-group">
+                    <label class="font-weight-bold" for="image">Imagen:</label>
+                    <small class="d-block mb-0 lh-1"
+                      >Resolución recomendada: 430x250px</small
+                    >
+                    <small class="d-block mb-0 lh-1">Formato: JPG</small>
+                    <small class="d-block mb-2 lh-1"
+                      >Tamaño recomendado: No mayor a 150KB</small
+                    >
+                    <div class="row">
+                      <div class="col text-center" v-if="element.img_slider_1">
+                        <img
+                          :src="imagesUrl + '/' + element.img_slider_1"
+                          :alt="element.name"
+                          class="mx-auto img-fluid"
+                        />
+                      </div>
+                      <div class="col">
+                        <vue-dropzone
+                          ref="ref_image"
+                          class="text-center"
+                          @vdropzone-file-added="
+                            $validateImageDropzone(
+                              $event,
+                              $refs.ref_image.dropzone,
+                              1,
+                              600000,
+                              '600kb'
+                            )
+                          "
+                          id="image"
+                          :options="dropzoneOptions"
+                          :duplicateCheck="true"
+                          :useCustomSlot="true"
+                        >
+                          <div class="dropzone-custom-content">
+                            <h5 class="dropzone-custom-title text-primary">
+                              Suelte los archivos aquí o haga click para
+                              cargarlos.
+                            </h5>
+                          </div>
+                        </vue-dropzone>
+                      </div>
+                    </div>
+
+                    <label
+                      v-if="errors && errors.image"
+                      class="text-danger text-sm d-block mt-2"
+                      for="image"
+                      >{{ errors.image[0] }}</label
+                    >
+                  </div>
+                </div>
+              </template>
             </div>
           </div>
         </form>
@@ -549,7 +607,7 @@ export default {
         maxFiles: 1,
         acceptedFiles: "image/png,image/jpeg,image/jpg,image/svg+xml",
         autoProcessQueue: false,
-        thumbnailWidth: 150,
+        thumbnailWidth: 600,
         addRemoveLinks: true,
         dictRemoveFile: "Remover",
       },
@@ -558,6 +616,8 @@ export default {
       //sproducts: [],
 
       payment_methods: [],
+
+      newemails: object,
     };
   },
   methods: {
@@ -644,22 +704,95 @@ export default {
       this.requestSubmit = true;
       let url;
       let method;
+      const fd = new FormData();
       if (this.title == "Nuevo") {
         url = this.route;
         method = "post";
       } else {
         url = this.route + "/" + this.element.id;
-        method = "put";
+        method = "post";
+        fd.append("_method", "put");
       }
 
-      //console.log(this.element.description);
+      if (this.element.name) {
+        fd.append("name", this.element.name);
+      }
+
+      if (this.element.department) {
+        fd.append("department", this.element.department);
+      }
+
+      if (this.element.description) {
+        fd.append("description", this.element.description);
+      }
+
+      if (this.element.direction) {
+        fd.append("direction", this.element.direction);
+      }
+
+      if (this.element.district) {
+        fd.append("district", this.element.district);
+      }
+
+      if (this.element.emails) {
+        fd.append("emails", this.element.emails);
+      }
+
+      if (this.element.iframe) {
+        fd.append("iframe", this.element.iframe);
+      }
+
+      if (this.element.image) {
+        fd.append("image", this.element.image);
+      }
+
+      if (this.element.link_face) {
+        fd.append("link_face", this.element.link_face);
+      }
+
+      if (this.element.link_insta) {
+        fd.append("link_insta", this.element.link_insta);
+      }
+
+      if (this.element.num_what) {
+        fd.append("num_what", this.element.num_what);
+      }
+
+      if (this.element.payment_methods) {
+        fd.append("payment_methods", this.element.payment_methods);
+      }
+
+      if (this.element.phone_numbers) {
+        fd.append("phone_numbers", this.element.phone_numbers);
+      }
+      if (this.element.products) {
+        fd.append("products", this.element.products);
+      }
+      if (this.element.province) {
+        fd.append("province", this.element.province);
+      }
+
+      if (this.$refs.ref_image.dropzone.files[0]) {
+        fd.append("img_slider_1", this.$refs.ref_image.dropzone.files[0]);
+      }
+
+      /*if (this.$refs.ref_image.dropzone.files[0]) {
+        this.element.img_slider_1 = this.$refs.ref_image.dropzone.files[0];
+      }*/
+
+for (var entrie of fd.entries()) {
+        console.log(entrie[0]+ ': ' + entrie[1]); 
+}
+
+      //console.log(fd.entries());
       /*console.log(this.element.horario);
-      console.log(this.element.zona);*/
+      console.log(this.element.zona);
+      data: this.element,*/
 
       axios({
         method: method,
         url: url,
-        data: this.element,
+        data: fd,
       })
         .then((response) => {
           this.requestSubmit = false;
@@ -721,6 +854,7 @@ export default {
         .get(this.routeGetAll)
         .then((response) => {
           this.elements = response.data;
+      this.newemails
           this.loadingEls = false;
         })
         .catch((error) => {});
@@ -794,7 +928,7 @@ export default {
     }
   },*/
   computed: {
-    filteredElements: function () {
+    /*filteredElements: function () {
       let filtered = this.elements;
       if (this.q) {
         filtered = this.elements.filter(
@@ -802,7 +936,7 @@ export default {
         );
       }
       return filtered;
-    },
+    },*/
   },
 };
 </script>

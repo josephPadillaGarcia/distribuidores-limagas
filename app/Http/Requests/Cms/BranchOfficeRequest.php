@@ -46,6 +46,20 @@ class BranchOfficeRequest extends FormRequest
             'num_what.*.numwhat' => 'required',
             'num_what.*.' => 'nullable|sometimes',
         ];
+        switch ($this->method()) {
+            case 'POST':
+                $rules = array_merge(
+                    $rules,
+                    ['img_slider_1' => 'required']
+                );
+                break;
+            case 'PUT':
+                $rules = array_merge(
+                    $rules,
+                    ['img_slider_1' => 'sometimes|required']
+                );
+                break;
+        }
         return $rules;
     }
 }
