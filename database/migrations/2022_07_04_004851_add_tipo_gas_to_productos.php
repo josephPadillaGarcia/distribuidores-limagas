@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTipoGasToBranchOffices extends Migration
+class AddTipoGasToProductos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddTipoGasToBranchOffices extends Migration
      */
     public function up()
     {
-        Schema::table('branch_offices', function (Blueprint $table) {
-            //
+        Schema::table('productos', function (Blueprint $table) {
+            $table->string('tipogas')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddTipoGasToBranchOffices extends Migration
      */
     public function down()
     {
-        Schema::table('branch_offices', function (Blueprint $table) {
-            //
+        Schema::table('productos', function (Blueprint $table) {
+            $table->string('tipogas')->nullable();
         });
     }
 }

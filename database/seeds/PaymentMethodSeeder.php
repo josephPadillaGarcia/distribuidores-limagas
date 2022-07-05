@@ -14,19 +14,24 @@ class PaymentMethodSeeder extends Seeder
         DB::table('payment_methods')->insert([
 
             [
-                'method' => 'Efectivo'
+                'method' => 'Efectivo',
+                'img_method' => 'efectivo.png',
             ],
             [
-                'method' => 'Visa'
+                'method' => 'Visa',
+                'img_method' => 'visa.png',
             ],
             [
-                'method' => 'MasterCard'
+                'method' => 'MasterCard',
+                'img_method' => 'mastercard.png',
             ],
             [
-                'method' => 'AmericanExpress'
+                'method' => 'AmericanExpress',
+                'img_method' => 'americanexpress.png',
             ],
             [
-                'method' => 'Diners Club International'
+                'method' => 'Diners Club International',
+                'img_method' => 'dinnersclub.png',
             ],
 
         ]);

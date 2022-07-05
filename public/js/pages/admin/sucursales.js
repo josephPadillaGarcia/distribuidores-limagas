@@ -978,6 +978,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2258,7 +2264,23 @@ var render = function() {
                                           i
                                         ) {
                                           return _c("div", { key: e.id }, [
-                                            _c("p", [_vm._v(_vm._s(e.method))])
+                                            _c("img", {
+                                              staticClass:
+                                                "img-fluid d-block mb-2",
+                                              attrs: {
+                                                src:
+                                                  _vm.imagesUrl +
+                                                  "/" +
+                                                  e.img_method,
+                                                alt: e.name
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("p", [_vm._v(_vm._s(e.method))]),
+                                            _vm._v(" "),
+                                            _c("p", [
+                                              _vm._v(_vm._s(e.img_method))
+                                            ])
                                           ])
                                         }),
                                         0
@@ -2283,7 +2305,7 @@ var render = function() {
                                           return _c("div", { key: e.id }, [
                                             _c("img", {
                                               staticClass:
-                                                "img-fluid d-block mb-2 mx-auto",
+                                                "img-fluid d-block mb-2",
                                               attrs: {
                                                 src:
                                                   _vm.imagesUrl +

@@ -174,7 +174,13 @@
                   <br />
                   <span v-if="el.payment_methods">
                     <div class="" v-for="(e, i) in el.payment_methods" :key="e.id">
+                      <img
+                        :src="imagesUrl +'/'+ e.img_method"
+                        :alt="e.name"
+                        class="img-fluid d-block mb-2"
+                      />
                       <p>{{ e.method }}</p>
+                      <p>{{ e.img_method }}</p>
                     </div>
                   </span>
                   <span v-else> No tiene metodos de pago registrados </span>
@@ -188,7 +194,7 @@
                       <img
                         :src="imagesUrl + '/productos/' + e.image"
                         :alt="e.name"
-                        class="img-fluid d-block mb-2 mx-auto"
+                        class="img-fluid d-block mb-2"
                       />
                       <p>{{ e.name }}</p>
                     </div>
