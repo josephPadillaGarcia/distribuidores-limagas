@@ -1083,6 +1083,205 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1159,8 +1358,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       products: [],
       //sproducts: [],
-      payment_methods: [] //newemails: object,
-
+      payment_methods: [],
+      elementsPerPage: 20
     };
   },
   methods: {
@@ -1347,6 +1546,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.$refs.ref_image.dropzone.files[0]) {
         fd.append("img_slider_1", this.$refs.ref_image.dropzone.files[0]);
       }
+
+      if (this.$refs.ref_image_2.dropzone.files[0]) {
+        fd.append("img_slider_2", this.$refs.ref_image_2.dropzone.files[0]);
+      }
+
+      if (this.$refs.ref_image_3.dropzone.files[0]) {
+        fd.append("img_slider_3", this.$refs.ref_image_3.dropzone.files[0]);
+      }
+
+      if (this.$refs.ref_image_4.dropzone.files[0]) {
+        fd.append("img_slider_4", this.$refs.ref_image_4.dropzone.files[0]);
+      }
+
+      if (this.$refs.ref_image_5.dropzone.files[0]) {
+        fd.append("img_slider_5", this.$refs.ref_image_5.dropzone.files[0]);
+      }
       /*if (this.$refs.ref_image.dropzone.files[0]) {
         this.element.img_slider_1 = this.$refs.ref_image.dropzone.files[0];
       }*/
@@ -1418,6 +1633,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, this.modalCreateUpdate = this.modalDestroy = false;
       this.getEls();
       this.errors = {};
+      this.getElements(1, this.elementsPerPage);
     },
     deleteEl: function deleteEl(id) {
       this.modalDestroy = true;
@@ -1430,31 +1646,45 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, this.modalCreateUpdate = this.modalDestroy = false;
       this.errors = {};
     },
-    getEls: function getEls() {
+    getElements: function getElements(page, itemsPerPage) {
       var _this4 = this;
+
+      var q = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      var url = this.routeGetAll + "?page=" + page + "&itemsPerPage=" + itemsPerPage;
+
+      if (q) {
+        url = url + "&q=" + q;
+      }
+
+      axios.get(url).then(function (response) {
+        _this4.elements = response.data;
+      })["catch"](function (error) {});
+    },
+    getEls: function getEls() {
+      var _this5 = this;
 
       this.loadingEls = true;
       axios.get(this.routeGetAll).then(function (response) {
-        _this4.elements = response.data; //this.newemails
+        _this5.elements = response.data; //this.newemails
 
-        _this4.loadingEls = false;
+        _this5.loadingEls = false;
       })["catch"](function (error) {});
     },
     getEl: function getEl(id) {
-      var _this5 = this;
+      var _this6 = this;
 
       this.loadingGet = true;
       axios.get(this.route + "/json/get/" + id).then(function (response) {
-        _this5.element = response.data;
-        _this5.loadingGet = false;
+        _this6.element = response.data;
+        _this6.loadingGet = false;
       })["catch"](function (error) {});
     },
     // Obteniendo todos los productos de gas
     getProducts: function getProducts() {
-      var _this6 = this;
+      var _this7 = this;
 
       axios.get(this.routeProductsGetAll).then(function (response) {
-        _this6.products = response.data;
+        _this7.products = response.data;
       })["catch"](function (err) {});
     },
 
@@ -1473,10 +1703,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //------------------------------
     // OBTENEMOS LOS METODOS DE PAGO
     getPaymentMethod: function getPaymentMethod() {
-      var _this7 = this;
+      var _this8 = this;
 
       axios.get(this.routePaymentMethodGetAll).then(function (response) {
-        _this7.payment_methods = response.data;
+        _this8.payment_methods = response.data;
       })["catch"](function (err) {});
     },
     elementpaymentmethod: function elementpaymentmethod(val) {
@@ -1488,7 +1718,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.getEls();
     this.getProducts();
-    this.getPaymentMethod(); //this.showproducts(id);
+    this.getPaymentMethod();
+    this.getElements(1, this.elementsPerPage); //this.showproducts(id);
   },
 
   /*watch: {
@@ -2208,9 +2439,9 @@ var render = function() {
                       _c("DataTable", {
                         attrs: {
                           object: _vm.elements,
-                          placeholder: "Información General ",
+                          placeholder: "Name, Dirección",
                           "button-update": false,
-                          "button-read": false,
+                          "button-read": true,
                           "button-delete": true,
                           "entries-prop": _vm.elementsPerPage,
                           messageCantDelete: _vm.messageCantDelete
@@ -2583,7 +2814,7 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
-                                    "\n                Productos:\n                "
+                                    "\n                Galeria de imagenes:\n                "
                                   ),
                                   _c("br"),
                                   _vm._v(" "),
@@ -3248,7 +3479,7 @@ var render = function() {
                                     { staticClass: "d-block mb-2 lh-1" },
                                     [
                                       _vm._v(
-                                        "Tamaño recomendado: No mayor a 150KB"
+                                        "Tamaño recomendado: No mayor a 600KB"
                                       )
                                     ]
                                   ),
@@ -3266,7 +3497,7 @@ var render = function() {
                                                   _vm.imagesUrl +
                                                   "/" +
                                                   _vm.element.img_slider_1,
-                                                alt: _vm.element.name
+                                                alt: "imagen distribuidor"
                                               }
                                             })
                                           ]
@@ -3295,6 +3526,410 @@ var render = function() {
                                                 return _vm.$validateImageDropzone(
                                                   $event,
                                                   _vm.$refs.ref_image.dropzone,
+                                                  1,
+                                                  600000,
+                                                  "600kb"
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "dropzone-custom-content"
+                                              },
+                                              [
+                                                _c(
+                                                  "h5",
+                                                  {
+                                                    staticClass:
+                                                      "dropzone-custom-title text-primary"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                            Suelte los archivos aquí o haga click para\n                            cargarlos.\n                          "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm.errors && _vm.errors.image
+                                    ? _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "text-danger text-sm d-block mt-2",
+                                          attrs: { for: "image" }
+                                        },
+                                        [_vm._v(_vm._s(_vm.errors.image[0]))]
+                                      )
+                                    : _vm._e()
+                                ])
+                              ]
+                            )
+                          ],
+                          _vm._v(" "),
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-12 col-md-12 col-lg-12" },
+                              [
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c("div", { staticClass: "row" }, [
+                                    _vm.element.img_slider_2
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "col text-center" },
+                                          [
+                                            _c("img", {
+                                              staticClass: "mx-auto img-fluid",
+                                              attrs: {
+                                                src:
+                                                  _vm.imagesUrl +
+                                                  "/" +
+                                                  _vm.element.img_slider_2,
+                                                alt: "imagen distribuidor 2"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col" },
+                                      [
+                                        _c(
+                                          "vue-dropzone",
+                                          {
+                                            ref: "ref_image_2",
+                                            staticClass: "text-center",
+                                            attrs: {
+                                              id: "image_2",
+                                              options: _vm.dropzoneOptions,
+                                              duplicateCheck: true,
+                                              useCustomSlot: true
+                                            },
+                                            on: {
+                                              "vdropzone-file-added": function(
+                                                $event
+                                              ) {
+                                                return _vm.$validateImageDropzone(
+                                                  $event,
+                                                  _vm.$refs.ref_image_2
+                                                    .dropzone,
+                                                  1,
+                                                  600000,
+                                                  "600kb"
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "dropzone-custom-content"
+                                              },
+                                              [
+                                                _c(
+                                                  "h5",
+                                                  {
+                                                    staticClass:
+                                                      "dropzone-custom-title text-primary"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                            Suelte los archivos aquí o haga click para\n                            cargarlos.\n                          "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm.errors && _vm.errors.image
+                                    ? _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "text-danger text-sm d-block mt-2",
+                                          attrs: { for: "image" }
+                                        },
+                                        [_vm._v(_vm._s(_vm.errors.image[0]))]
+                                      )
+                                    : _vm._e()
+                                ])
+                              ]
+                            )
+                          ],
+                          _vm._v(" "),
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-12 col-md-12 col-lg-12" },
+                              [
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c("div", { staticClass: "row" }, [
+                                    _vm.element.img_slider_3
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "col text-center" },
+                                          [
+                                            _c("img", {
+                                              staticClass: "mx-auto img-fluid",
+                                              attrs: {
+                                                src:
+                                                  _vm.imagesUrl +
+                                                  "/" +
+                                                  _vm.element.img_slider_3,
+                                                alt: "imagen distribuidor 3"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col" },
+                                      [
+                                        _c(
+                                          "vue-dropzone",
+                                          {
+                                            ref: "ref_image_3",
+                                            staticClass: "text-center",
+                                            attrs: {
+                                              id: "image_3",
+                                              options: _vm.dropzoneOptions,
+                                              duplicateCheck: true,
+                                              useCustomSlot: true
+                                            },
+                                            on: {
+                                              "vdropzone-file-added": function(
+                                                $event
+                                              ) {
+                                                return _vm.$validateImageDropzone(
+                                                  $event,
+                                                  _vm.$refs.ref_image_3
+                                                    .dropzone,
+                                                  1,
+                                                  600000,
+                                                  "600kb"
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "dropzone-custom-content"
+                                              },
+                                              [
+                                                _c(
+                                                  "h5",
+                                                  {
+                                                    staticClass:
+                                                      "dropzone-custom-title text-primary"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                            Suelte los archivos aquí o haga click para\n                            cargarlos.\n                          "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm.errors && _vm.errors.image
+                                    ? _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "text-danger text-sm d-block mt-2",
+                                          attrs: { for: "image" }
+                                        },
+                                        [_vm._v(_vm._s(_vm.errors.image[0]))]
+                                      )
+                                    : _vm._e()
+                                ])
+                              ]
+                            )
+                          ],
+                          _vm._v(" "),
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-12 col-md-12 col-lg-12" },
+                              [
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c("div", { staticClass: "row" }, [
+                                    _vm.element.img_slider_4
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "col text-center" },
+                                          [
+                                            _c("img", {
+                                              staticClass: "mx-auto img-fluid",
+                                              attrs: {
+                                                src:
+                                                  _vm.imagesUrl +
+                                                  "/" +
+                                                  _vm.element.img_slider_4,
+                                                alt: "imagen distribuidor 4"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col" },
+                                      [
+                                        _c(
+                                          "vue-dropzone",
+                                          {
+                                            ref: "ref_image_4",
+                                            staticClass: "text-center",
+                                            attrs: {
+                                              id: "image_4",
+                                              options: _vm.dropzoneOptions,
+                                              duplicateCheck: true,
+                                              useCustomSlot: true
+                                            },
+                                            on: {
+                                              "vdropzone-file-added": function(
+                                                $event
+                                              ) {
+                                                return _vm.$validateImageDropzone(
+                                                  $event,
+                                                  _vm.$refs.ref_image_4
+                                                    .dropzone,
+                                                  1,
+                                                  600000,
+                                                  "600kb"
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "dropzone-custom-content"
+                                              },
+                                              [
+                                                _c(
+                                                  "h5",
+                                                  {
+                                                    staticClass:
+                                                      "dropzone-custom-title text-primary"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                            Suelte los archivos aquí o haga click para\n                            cargarlos.\n                          "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm.errors && _vm.errors.image
+                                    ? _c(
+                                        "label",
+                                        {
+                                          staticClass:
+                                            "text-danger text-sm d-block mt-2",
+                                          attrs: { for: "image" }
+                                        },
+                                        [_vm._v(_vm._s(_vm.errors.image[0]))]
+                                      )
+                                    : _vm._e()
+                                ])
+                              ]
+                            )
+                          ],
+                          _vm._v(" "),
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "col-12 col-md-12 col-lg-12" },
+                              [
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c("div", { staticClass: "row" }, [
+                                    _vm.element.img_slider_5
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "col text-center" },
+                                          [
+                                            _c("img", {
+                                              staticClass: "mx-auto img-fluid",
+                                              attrs: {
+                                                src:
+                                                  _vm.imagesUrl +
+                                                  "/" +
+                                                  _vm.element.img_slider_5,
+                                                alt: "imagen distribuidor 4"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "col" },
+                                      [
+                                        _c(
+                                          "vue-dropzone",
+                                          {
+                                            ref: "ref_image_5",
+                                            staticClass: "text-center",
+                                            attrs: {
+                                              id: "image_5",
+                                              options: _vm.dropzoneOptions,
+                                              duplicateCheck: true,
+                                              useCustomSlot: true
+                                            },
+                                            on: {
+                                              "vdropzone-file-added": function(
+                                                $event
+                                              ) {
+                                                return _vm.$validateImageDropzone(
+                                                  $event,
+                                                  _vm.$refs.ref_image_5
+                                                    .dropzone,
                                                   1,
                                                   600000,
                                                   "600kb"

@@ -63,9 +63,9 @@
             <div class="col-12">
               <DataTable
                 :object="elements"
-                placeholder="Información General "
+                placeholder="Name, Dirección"
                 :button-update="false"
-                :button-read="false"
+                :button-read="true"
                 :button-delete="true"
                 @get="getElements"
                 @delete="deleteEl"
@@ -238,13 +238,13 @@
                 </h3>
 
                 <h3 class="mb-1">
-                  Productos:
+                  Galeria de imagenes:
                   <br />
                   <span v-if="el.img_slider_1">
                     <img
-                        :src="imagesUrl + '/sliders/' + el.img_slider_1"
-                        class="img-fluid d-block mb-2"
-                      />
+                      :src="imagesUrl + '/sliders/' + el.img_slider_1"
+                      class="img-fluid d-block mb-2"
+                    />
                   </span>
                   <span v-else> No tiene imagen registrada </span>
                 </h3>
@@ -472,13 +472,13 @@
                     >
                     <small class="d-block mb-0 lh-1">Formato: JPG</small>
                     <small class="d-block mb-2 lh-1"
-                      >Tamaño recomendado: No mayor a 150KB</small
+                      >Tamaño recomendado: No mayor a 600KB</small
                     >
                     <div class="row">
                       <div class="col text-center" v-if="element.img_slider_1">
                         <img
                           :src="imagesUrl + '/' + element.img_slider_1"
-                          :alt="element.name"
+                          alt="imagen distribuidor"
                           class="mx-auto img-fluid"
                         />
                       </div>
@@ -496,6 +496,205 @@
                             )
                           "
                           id="image"
+                          :options="dropzoneOptions"
+                          :duplicateCheck="true"
+                          :useCustomSlot="true"
+                        >
+                          <div class="dropzone-custom-content">
+                            <h5 class="dropzone-custom-title text-primary">
+                              Suelte los archivos aquí o haga click para
+                              cargarlos.
+                            </h5>
+                          </div>
+                        </vue-dropzone>
+                      </div>
+                    </div>
+
+                    <label
+                      v-if="errors && errors.image"
+                      class="text-danger text-sm d-block mt-2"
+                      for="image"
+                      >{{ errors.image[0] }}</label
+                    >
+                  </div>
+                </div>
+              </template>
+
+
+              <template>
+                <div class="col-12 col-md-12 col-lg-12">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col text-center" v-if="element.img_slider_2">
+                        <img
+                          :src="imagesUrl + '/' + element.img_slider_2"
+                          alt="imagen distribuidor 2"
+                          class="mx-auto img-fluid"
+                        />
+                      </div>
+                      <div class="col">
+                        <vue-dropzone
+                          ref="ref_image_2"
+                          class="text-center"
+                          @vdropzone-file-added="
+                            $validateImageDropzone(
+                              $event,
+                              $refs.ref_image_2.dropzone,
+                              1,
+                              600000,
+                              '600kb'
+                            )
+                          "
+                          id="image_2"
+                          :options="dropzoneOptions"
+                          :duplicateCheck="true"
+                          :useCustomSlot="true"
+                        >
+                          <div class="dropzone-custom-content">
+                            <h5 class="dropzone-custom-title text-primary">
+                              Suelte los archivos aquí o haga click para
+                              cargarlos.
+                            </h5>
+                          </div>
+                        </vue-dropzone>
+                      </div>
+                    </div>
+
+                    <label
+                      v-if="errors && errors.image"
+                      class="text-danger text-sm d-block mt-2"
+                      for="image"
+                      >{{ errors.image[0] }}</label
+                    >
+                  </div>
+                </div>
+              </template>
+
+
+              <template>
+                <div class="col-12 col-md-12 col-lg-12">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col text-center" v-if="element.img_slider_3">
+                        <img
+                          :src="imagesUrl + '/' + element.img_slider_3"
+                          alt="imagen distribuidor 3"
+                          class="mx-auto img-fluid"
+                        />
+                      </div>
+                      <div class="col">
+                        <vue-dropzone
+                          ref="ref_image_3"
+                          class="text-center"
+                          @vdropzone-file-added="
+                            $validateImageDropzone(
+                              $event,
+                              $refs.ref_image_3.dropzone,
+                              1,
+                              600000,
+                              '600kb'
+                            )
+                          "
+                          id="image_3"
+                          :options="dropzoneOptions"
+                          :duplicateCheck="true"
+                          :useCustomSlot="true"
+                        >
+                          <div class="dropzone-custom-content">
+                            <h5 class="dropzone-custom-title text-primary">
+                              Suelte los archivos aquí o haga click para
+                              cargarlos.
+                            </h5>
+                          </div>
+                        </vue-dropzone>
+                      </div>
+                    </div>
+
+                    <label
+                      v-if="errors && errors.image"
+                      class="text-danger text-sm d-block mt-2"
+                      for="image"
+                      >{{ errors.image[0] }}</label
+                    >
+                  </div>
+                </div>
+              </template>
+
+
+              <template>
+                <div class="col-12 col-md-12 col-lg-12">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col text-center" v-if="element.img_slider_4">
+                        <img
+                          :src="imagesUrl + '/' + element.img_slider_4"
+                          alt="imagen distribuidor 4"
+                          class="mx-auto img-fluid"
+                        />
+                      </div>
+                      <div class="col">
+                        <vue-dropzone
+                          ref="ref_image_4"
+                          class="text-center"
+                          @vdropzone-file-added="
+                            $validateImageDropzone(
+                              $event,
+                              $refs.ref_image_4.dropzone,
+                              1,
+                              600000,
+                              '600kb'
+                            )
+                          "
+                          id="image_4"
+                          :options="dropzoneOptions"
+                          :duplicateCheck="true"
+                          :useCustomSlot="true"
+                        >
+                          <div class="dropzone-custom-content">
+                            <h5 class="dropzone-custom-title text-primary">
+                              Suelte los archivos aquí o haga click para
+                              cargarlos.
+                            </h5>
+                          </div>
+                        </vue-dropzone>
+                      </div>
+                    </div>
+
+                    <label
+                      v-if="errors && errors.image"
+                      class="text-danger text-sm d-block mt-2"
+                      for="image"
+                      >{{ errors.image[0] }}</label
+                    >
+                  </div>
+                </div>
+              </template>
+
+              <template>
+                <div class="col-12 col-md-12 col-lg-12">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col text-center" v-if="element.img_slider_5">
+                        <img
+                          :src="imagesUrl + '/' + element.img_slider_5"
+                          alt="imagen distribuidor 4"
+                          class="mx-auto img-fluid"
+                        />
+                      </div>
+                      <div class="col">
+                        <vue-dropzone
+                          ref="ref_image_5"
+                          class="text-center"
+                          @vdropzone-file-added="
+                            $validateImageDropzone(
+                              $event,
+                              $refs.ref_image_5.dropzone,
+                              1,
+                              600000,
+                              '600kb'
+                            )
+                          "
+                          id="image_5"
                           :options="dropzoneOptions"
                           :duplicateCheck="true"
                           :useCustomSlot="true"
@@ -652,8 +851,8 @@ export default {
       //sproducts: [],
 
       payment_methods: [],
-
-      //newemails: object,
+      
+      elementsPerPage: 20,
     };
   },
   methods: {
@@ -837,6 +1036,22 @@ export default {
         fd.append("img_slider_1", this.$refs.ref_image.dropzone.files[0]);
       }
 
+      if (this.$refs.ref_image_2.dropzone.files[0]) {
+        fd.append("img_slider_2", this.$refs.ref_image_2.dropzone.files[0]);
+      }
+
+      if (this.$refs.ref_image_3.dropzone.files[0]) {
+        fd.append("img_slider_3", this.$refs.ref_image_3.dropzone.files[0]);
+      }
+
+      if (this.$refs.ref_image_4.dropzone.files[0]) {
+        fd.append("img_slider_4", this.$refs.ref_image_4.dropzone.files[0]);
+      }
+
+      if (this.$refs.ref_image_5.dropzone.files[0]) {
+        fd.append("img_slider_5", this.$refs.ref_image_5.dropzone.files[0]);
+      }
+
       /*if (this.$refs.ref_image.dropzone.files[0]) {
         this.element.img_slider_1 = this.$refs.ref_image.dropzone.files[0];
       }*/
@@ -896,6 +1111,7 @@ export default {
         (this.modalCreateUpdate = this.modalDestroy = false);
       this.getEls();
       this.errors = {};
+      this.getElements(1, this.elementsPerPage);
     },
     deleteEl(id) {
       this.modalDestroy = true;
@@ -909,6 +1125,21 @@ export default {
         (this.modalCreateUpdate = this.modalDestroy = false);
       this.errors = {};
     },
+    
+    getElements(page, itemsPerPage, q = null) {
+      let url =
+        this.routeGetAll + "?page=" + page + "&itemsPerPage=" + itemsPerPage;
+      if (q) {
+        url = url + "&q=" + q;
+      }
+      axios
+        .get(url)
+        .then((response) => {
+          this.elements = response.data;
+        })
+        .catch((error) => {});
+    },
+
     getEls() {
       this.loadingEls = true;
       axios
@@ -978,6 +1209,7 @@ export default {
     this.getEls();
     this.getProducts();
     this.getPaymentMethod();
+    this.getElements(1, this.elementsPerPage);
     //this.showproducts(id);
   },
   /*watch: {

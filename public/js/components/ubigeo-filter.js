@@ -85,6 +85,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     departmentParent: String,
@@ -400,15 +405,11 @@ var render = function() {
               _c(
                 "button",
                 {
-                  staticClass: "btn-dis btn2",
+                  staticClass: "btn btn2",
                   attrs: { type: "submit" },
                   on: { click: _vm.submit }
                 },
-                [
-                  _vm._v(
-                    "\n          " + _vm._s(_vm.t("Buscar")) + "\n        "
-                  )
-                ]
+                [_vm._v(_vm._s(_vm.t("Buscar")))]
               )
             ])
           ]

@@ -20,7 +20,6 @@
             <img src="{{ $storageUrl.'/img/logo1.png' }}" alt="">
         </div>
         <div class="nav_busqueda color_white">
-            <i class="flaticon flaticon-star"></i>
             <div>Departamento: <b>{{ $departamento }}</b></div>
             <div class="line"></div>
             <div>Provincia: <b>{{ $provincia }}</b></div>
@@ -28,10 +27,11 @@
             <div>Distrito: <b>{{ $distrito }}</b></div>
         </div>
         <div class="align-center">
-            <a href="{{ route("index") }}" class="btn btn1 btn-icon"> <i class="flaticon flaticon-atras"></i> Otra ubicación</a>
+            <a href="{{ route("index") }}" class="btn btn1 btn-icon"> Otra ubicación</a>
         </div>
     </div>
 </header>
+
 
 <section class="section">
     <div class="container">
@@ -48,7 +48,7 @@
                                 <li><i class="flaticon flaticon-star"> </i>{!! $office->direction !!}</li>
                                 
                                 @if($office->phone_numbers)
-                                    <li>
+                                    <li>    
                                         @foreach($office->phone_numbers as $ph)
                                             <i class="flaticon flaticon-telefono"> </i>
                                             <a href="tel:{{ $ph['number'] }}" target="_blank"> {{ $ph['number'] }}</a> <br>

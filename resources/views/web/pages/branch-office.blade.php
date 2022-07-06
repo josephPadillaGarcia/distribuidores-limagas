@@ -35,7 +35,7 @@
             <div class="redes">
                 <span>Síguenos en:</span>
                 <a href="" class="btn-circle"><i class="flaticon-facebook"></i></a>
-                <a href="" class="btn-circle"><i class="flaticon-instagram-1"></i></a>
+                <a href="" class="btn-circle"><i class="flaticon-instagram"></i></a>
             </div>
         </div>
     

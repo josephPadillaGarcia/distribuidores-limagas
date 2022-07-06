@@ -65,11 +65,16 @@
             : 'col-lg-3'
         "
       >
-        <div class="text-center">
+
+      
+                <div class="text-center">
+                    <button type="submit" class="btn btn2" @click="submit">{{ t("Buscar") }}</button>
+                </div>
+        <!--div class="text-center">
           <button type="submit" class="btn-dis btn2" @click="submit">
             {{ t("Buscar") }}
           </button>
-        </div>
+        </div-->
       </div>
     </form>
   </div>

@@ -24,6 +24,9 @@
   font-style: normal;
   }
 
+.flaticon-marcador-de-posicion:before {
+    content: "\f101";
+}
 .flaticon-atras:before {
     content: "\f101";
 }
@@ -165,3 +168,85 @@
 .flaticon-youtube:before {
     content: "\f12f";
 }
+
+
+
+
+
+
+/*.flaticon-llamada-telefonica:before {
+    content: "\f102";
+}
+.flaticon-llamada-telefonica-1:before {
+    content: "\f103";
+}
+.flaticon-telefono-movil:before {
+    content: "\f104";
+}
+.flaticon-whatsapp:before {
+    content: "\f105";
+}
+.flaticon-whatsapp-1:before {
+    content: "\f106";
+}
+.flaticon-email:before {
+    content: "\f107";
+}
+.flaticon-gas:before {
+    content: "\f108";
+}
+.flaticon-mesa-de-ayuda:before {
+    content: "\f109";
+}
+.flaticon-ubicacion:before {
+    content: "\f10a";
+}
+.flaticon-pago-con-tarjeta-de-credito:before {
+    content: "\f10b";
+}
+.flaticon-tarjeta-de-credito:before {
+    content: "\f10c";
+}
+.flaticon-reloj:before {
+    content: "\f10d";
+}
+.flaticon-reloj-de-pared:before {
+    content: "\f10e";
+}
+.flaticon-entrega-rapida:before {
+    content: "\f10f";
+}
+.flaticon-facebook:before {
+    content: "\f110";
+}
+.flaticon-facebook-1:before {
+    content: "\f111";
+}
+.flaticon-instagram:before {
+    content: "\f112";
+}
+.flaticon-instagram-1:before {
+    content: "\f113";
+}
+.flaticon-linkedin:before {
+    content: "\f114";
+}
+.flaticon-linkedin-1:before {
+    content: "\f115";
+}
+.flaticon-facebook-messenger:before {
+    content: "\f116";
+}
+.flaticon-mensajero:before {
+    content: "\f117";
+}
+.flaticon-galeria-de-fotos:before {
+    content: "\f118";
+}
+.flaticon-youtube:before {
+    content: "\f119";
+}
+.flaticon-youtube-1:before {
+    content: "\f11a";
+}*/
+
