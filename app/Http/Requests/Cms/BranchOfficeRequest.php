@@ -50,13 +50,21 @@ class BranchOfficeRequest extends FormRequest
             case 'POST':
                 $rules = array_merge(
                     $rules,
-                    ['img_slider_1' => 'required']
+                    ['img_slider_1' => 'required'],                    
+                    ['img_slider_2' => 'required'],                   
+                    ['img_slider_3' => 'required'],                   
+                    ['img_slider_4' => 'required'],                   
+                    ['img_slider_5' => 'required'],
                 );
                 break;
             case 'PUT':
                 $rules = array_merge(
                     $rules,
-                    ['img_slider_1' => 'sometimes|required']
+                    ['img_slider_1' => 'sometimes|required'],
+                    ['img_slider_2' => 'sometimes|required'],
+                    ['img_slider_3' => 'sometimes|required'],
+                    ['img_slider_4' => 'sometimes|required'],
+                    ['img_slider_5' => 'sometimes|required']
                 );
                 break;
         }

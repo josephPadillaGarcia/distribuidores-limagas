@@ -44,6 +44,7 @@ Route::prefix('admin')->group(function() {
             Route::delete('/{element}', 'SucursalesController@destroy')->name('destroy');
             Route::get('/json/get-all', 'SucursalesController@getAll')->name('get-all');
             Route::get('/json/get/{element}', 'SucursalesController@get')->name('get');
+            Route::get('/items/json/get-all', 'SucursalesController@getItemsAll')->name('get-items-all');
 
             //Productos
             Route::get('/product/json/get-all', 'SucursalesController@getAllProduct')->name('product-get-all');

@@ -34,7 +34,7 @@
         </div>
       </div>
       <div v-else>
-        <div class="row" v-if="elements.length">
+        <!--div class="row" v-if="elements.length">
           <div class="col-12 col-md-6 mb-4">
             <div class="input-group input-group-merge">
               <div class="input-group-prepend bg-white">
@@ -52,7 +52,7 @@
               />
             </div>
           </div>
-        </div>
+        </div-->
         <div class="row" v-if="elements.length">
           <div class="col-12">
             <i class="d-block mb-4" v-if="!q">{{ messageOrder }}</i>
@@ -62,20 +62,20 @@
         <div class="row">
             <div class="col-12">
               <DataTable
-                :object="elements"
-                placeholder="Name, Dirección"
-                :button-update="false"
+                :object="itemstable"
+                placeholder="Distribuidor"
+                :button-update="true"
                 :button-read="true"
                 :button-delete="true"
                 @get="getElements"
                 @delete="deleteEl"
+                @update="editEl"
                 :entries-prop.sync="elementsPerPage"
-                :messageCantDelete="messageCantDelete"
               ></DataTable>
             </div>
         </div>
 
-        <draggable
+        <!--draggable
           class="row"
           v-if="elements"
           v-model="elements"
@@ -133,8 +133,6 @@
                     <template v-for="(e, i) in el.emails">
                       <span class="d-block" :key="i + 'emi'">{{ e.name }}</span>
                     </template>
-                    <!--pre class="d-block">{{ typeof el.emails }}</pre>
-                    <pre class="d-block">{{ typeof el.emails }}</pre-->
                   </span>
                   <span class="font-weight-normal" v-else>No registrado</span>
                 </h3>
@@ -153,7 +151,6 @@
                         >{{ e.number }}</a
                       >
                     </template>
-                    <!--pre class="d-block">{{ typeof el.phone_numbers }}</pre-->
                   </span>
                   <span class="font-weight-normal" v-else>No registrado</span>
                 </h3>
@@ -172,7 +169,6 @@
                         >{{ e.numwhat }}</a
                       >
                     </template>
-                    <!--pre class="d-block">{{ typeof el.num_what }}</pre-->
                   </span>
                   <span class="font-weight-normal" v-else>No registrado</span>
                 </h3>
@@ -206,7 +202,6 @@
                       <p>{{ e.method }}</p>
                       <p>{{ e.img_method }}</p>
                     </div>
-                    <!--pre class="d-block">{{ typeof el.payment_methods }}</pre-->
                   </span>
                   <span v-else> No tiene metodos de pago registrados </span>
                 </h3>
@@ -223,7 +218,6 @@
                       />
                       <p>{{ e.name }}</p>
                     </div>
-                    <!--pre class="d-block">{{ typeof el.products }}</pre-->
                   </span>
                   <span v-else> No tiene productos registrados </span>
                 </h3>
@@ -266,8 +260,8 @@
               </div>
             </div>
           </div>
-        </draggable>
-        <NoData v-else />
+        </draggable-->
+        <!--NoData v-else /-->
       </div>
     </div>
 
@@ -293,7 +287,7 @@
         <SkeletonForm></SkeletonForm>
       </div>
       <div v-else>
-        <form @submit.prevent="submit">
+        <form @submit.prevent="submit" enctype="multipart/form-data">
           <div class="row">
             <div class="col-12">
               <div class="form-group">
@@ -511,10 +505,10 @@
                     </div>
 
                     <label
-                      v-if="errors && errors.image"
+                      v-if="errors && errors.img_slider_1"
                       class="text-danger text-sm d-block mt-2"
                       for="image"
-                      >{{ errors.image[0] }}</label
+                      >{{ errors.img_slider_1[0] }}</label
                     >
                   </div>
                 </div>
@@ -561,10 +555,10 @@
                     </div>
 
                     <label
-                      v-if="errors && errors.image"
+                      v-if="errors && errors.img_slider_2"
                       class="text-danger text-sm d-block mt-2"
                       for="image"
-                      >{{ errors.image[0] }}</label
+                      >{{ errors.img_slider_2[0] }}</label
                     >
                   </div>
                 </div>
@@ -611,10 +605,10 @@
                     </div>
 
                     <label
-                      v-if="errors && errors.image"
+                      v-if="errors && errors.img_slider_3"
                       class="text-danger text-sm d-block mt-2"
                       for="image"
-                      >{{ errors.image[0] }}</label
+                      >{{ errors.img_slider_3[0] }}</label
                     >
                   </div>
                 </div>
@@ -661,10 +655,10 @@
                     </div>
 
                     <label
-                      v-if="errors && errors.image"
+                      v-if="errors && errors.img_slider_4"
                       class="text-danger text-sm d-block mt-2"
                       for="image"
-                      >{{ errors.image[0] }}</label
+                      >{{ errors.img_slider_4[0] }}</label
                     >
                   </div>
                 </div>
@@ -710,10 +704,10 @@
                     </div>
 
                     <label
-                      v-if="errors && errors.image"
+                      v-if="errors && errors.img_slider_5"
                       class="text-danger text-sm d-block mt-2"
                       for="image"
-                      >{{ errors.image[0] }}</label
+                      >{{ errors.img_slider_5[0] }}</label
                     >
                   </div>
                 </div>
@@ -819,6 +813,8 @@ export default {
     selpaymentmethod: {
       type: Object,
     },
+
+    routeItemsGetAll: String,
   },
   data() {
     return {
@@ -848,10 +844,10 @@ export default {
       },
 
       products: [],
-      //sproducts: [],
 
       payment_methods: [],
       
+      itemstable: {},
       elementsPerPage: 20,
     };
   },
@@ -1052,10 +1048,6 @@ export default {
         fd.append("img_slider_5", this.$refs.ref_image_5.dropzone.files[0]);
       }
 
-      /*if (this.$refs.ref_image.dropzone.files[0]) {
-        this.element.img_slider_1 = this.$refs.ref_image.dropzone.files[0];
-      }*/
-
       for (var entrie of fd.entries()) {
         console.log(entrie[0] + ": " + entrie[1]);
       }
@@ -1128,14 +1120,14 @@ export default {
     
     getElements(page, itemsPerPage, q = null) {
       let url =
-        this.routeGetAll + "?page=" + page + "&itemsPerPage=" + itemsPerPage;
+        this.routeItemsGetAll + "?page=" + page + "&itemsPerPage=" + itemsPerPage;
       if (q) {
         url = url + "&q=" + q;
       }
       axios
         .get(url)
         .then((response) => {
-          this.elements = response.data;
+          this.itemstable = response.data;
         })
         .catch((error) => {});
     },
@@ -1146,7 +1138,6 @@ export default {
         .get(this.routeGetAll)
         .then((response) => {
           this.elements = response.data;
-          //this.newemails
           this.loadingEls = false;
         })
         .catch((error) => {});
@@ -1182,7 +1173,6 @@ export default {
     },*/
 
     elementproducts(val) {
-      //this.sproducts = val;
       this.element.products = val;
     },
     //------------------------------
@@ -1198,7 +1188,6 @@ export default {
     },
 
     elementpaymentmethod(val) {
-      //this.sproducts = val;
       this.element.payment_methods = val;
     },
 
@@ -1210,7 +1199,6 @@ export default {
     this.getProducts();
     this.getPaymentMethod();
     this.getElements(1, this.elementsPerPage);
-    //this.showproducts(id);
   },
   /*watch: {
     // whenever question changes, this function will run

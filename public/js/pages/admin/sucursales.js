@@ -1276,12 +1276,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1328,7 +1322,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     routePaymentMethodGetAll: String,
     selpaymentmethod: {
       type: Object
-    }
+    },
+    routeItemsGetAll: String
   },
   data: function data() {
     return {
@@ -1357,8 +1352,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         dictRemoveFile: "Remover"
       },
       products: [],
-      //sproducts: [],
       payment_methods: [],
+      itemstable: {},
       elementsPerPage: 20
     };
   },
@@ -1562,10 +1557,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.$refs.ref_image_5.dropzone.files[0]) {
         fd.append("img_slider_5", this.$refs.ref_image_5.dropzone.files[0]);
       }
-      /*if (this.$refs.ref_image.dropzone.files[0]) {
-        this.element.img_slider_1 = this.$refs.ref_image.dropzone.files[0];
-      }*/
-
 
       var _iterator = _createForOfIteratorHelper(fd.entries()),
           _step;
@@ -1650,14 +1641,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this4 = this;
 
       var q = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-      var url = this.routeGetAll + "?page=" + page + "&itemsPerPage=" + itemsPerPage;
+      var url = this.routeItemsGetAll + "?page=" + page + "&itemsPerPage=" + itemsPerPage;
 
       if (q) {
         url = url + "&q=" + q;
       }
 
       axios.get(url).then(function (response) {
-        _this4.elements = response.data;
+        _this4.itemstable = response.data;
       })["catch"](function (error) {});
     },
     getEls: function getEls() {
@@ -1665,8 +1656,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.loadingEls = true;
       axios.get(this.routeGetAll).then(function (response) {
-        _this5.elements = response.data; //this.newemails
-
+        _this5.elements = response.data;
         _this5.loadingEls = false;
       })["catch"](function (error) {});
     },
@@ -1697,7 +1687,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         .catch((error) => {});
     },*/
     elementproducts: function elementproducts(val) {
-      //this.sproducts = val;
       this.element.products = val;
     },
     //------------------------------
@@ -1710,7 +1699,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function (err) {});
     },
     elementpaymentmethod: function elementpaymentmethod(val) {
-      //this.sproducts = val;
       this.element.payment_methods = val;
     } //---------------------------
 
@@ -1719,7 +1707,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.getEls();
     this.getProducts();
     this.getPaymentMethod();
-    this.getElements(1, this.elementsPerPage); //this.showproducts(id);
+    this.getElements(1, this.elementsPerPage);
   },
 
   /*watch: {
@@ -2374,515 +2362,50 @@ var render = function() {
               }),
               0
             )
-          : _c(
-              "div",
-              [
-                _vm.elements.length
-                  ? _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-12 col-md-6 mb-4" }, [
-                        _c(
-                          "div",
-                          { staticClass: "input-group input-group-merge" },
-                          [
-                            _vm._m(1),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.q,
-                                  expression: "q"
-                                }
-                              ],
-                              staticClass: "form-control bg-white",
-                              attrs: {
-                                type: "search",
-                                placeholder:
-                                  "Buscar por Nombre de Distribuidor",
-                                "aria-label": "search",
-                                "aria-describedby": "search"
-                              },
-                              domProps: { value: _vm.q },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.q = $event.target.value
-                                }
-                              }
-                            })
-                          ]
-                        )
-                      ])
+          : _c("div", [
+              _vm.elements.length
+                ? _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-12" }, [
+                      !_vm.q
+                        ? _c("i", { staticClass: "d-block mb-4" }, [
+                            _vm._v(_vm._s(_vm.messageOrder))
+                          ])
+                        : _vm._e()
                     ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.elements.length
-                  ? _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-12" }, [
-                        !_vm.q
-                          ? _c("i", { staticClass: "d-block mb-4" }, [
-                              _vm._v(_vm._s(_vm.messageOrder))
-                            ])
-                          : _vm._e()
-                      ])
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-12" },
-                    [
-                      _c("DataTable", {
-                        attrs: {
-                          object: _vm.elements,
-                          placeholder: "Name, Dirección",
-                          "button-update": false,
-                          "button-read": true,
-                          "button-delete": true,
-                          "entries-prop": _vm.elementsPerPage,
-                          messageCantDelete: _vm.messageCantDelete
-                        },
-                        on: {
-                          get: _vm.getElements,
-                          delete: _vm.deleteEl,
-                          "update:entriesProp": function($event) {
-                            _vm.elementsPerPage = $event
-                          },
-                          "update:entries-prop": function($event) {
-                            _vm.elementsPerPage = $event
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _vm.elements
-                  ? _c(
-                      "draggable",
-                      {
-                        staticClass: "row",
-                        attrs: { move: _vm.handleMove },
-                        on: { change: _vm.handleChange },
-                        model: {
-                          value: _vm.elements,
-                          callback: function($$v) {
-                            _vm.elements = $$v
-                          },
-                          expression: "elements"
-                        }
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-12" },
+                  [
+                    _c("DataTable", {
+                      attrs: {
+                        object: _vm.itemstable,
+                        placeholder: "Distribuidor",
+                        "button-update": true,
+                        "button-read": true,
+                        "button-delete": true,
+                        "entries-prop": _vm.elementsPerPage
                       },
-                      _vm._l(_vm.elements, function(el, i) {
-                        return _c(
-                          "div",
-                          {
-                            key: el.id,
-                            staticClass: "col-12 col-md-6 col-lg-4 mb-4"
-                          },
-                          [
-                            _c("div", { staticClass: "card" }, [
-                              _c("div", { staticClass: "card-body" }, [
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Distribuidor:\n                "
-                                  ),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    { staticClass: "font-weight-normal" },
-                                    [_vm._v(_vm._s(el.name))]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Descripción:\n                "
-                                  ),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c("div", {
-                                    staticClass: "content-editor-value",
-                                    domProps: {
-                                      innerHTML: _vm._s(el.description)
-                                    }
-                                  })
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Dirección:\n                "
-                                  ),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    { staticClass: "font-weight-normal" },
-                                    [
-                                      _c(
-                                        "pre",
-                                        {
-                                          staticClass: "mb-0",
-                                          staticStyle: {
-                                            "font-family": "inherit",
-                                            "white-space": "pre-wrap",
-                                            "font-size": "inherit"
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            _vm._s(
-                                              el.direction
-                                                ? el.direction
-                                                : "No registrado"
-                                            )
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Ubigeo:\n                "
-                                  ),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    { staticClass: "font-weight-normal" },
-                                    [
-                                      _vm._v(
-                                        "\n                  " +
-                                          _vm._s(el.ubigeo_rel.district) +
-                                          " -\n                  " +
-                                          _vm._s(el.ubigeo_rel.province) +
-                                          " -\n                  " +
-                                          _vm._s(el.ubigeo_rel.department) +
-                                          "\n                "
-                                      )
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Email:\n                "
-                                  ),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  el.emails
-                                    ? _c(
-                                        "span",
-                                        { staticClass: "font-weight-normal" },
-                                        [
-                                          _vm._l(el.emails, function(e, i) {
-                                            return [
-                                              _c(
-                                                "span",
-                                                {
-                                                  key: i + "emi",
-                                                  staticClass: "d-block"
-                                                },
-                                                [_vm._v(_vm._s(e.name))]
-                                              )
-                                            ]
-                                          })
-                                        ],
-                                        2
-                                      )
-                                    : _c(
-                                        "span",
-                                        { staticClass: "font-weight-normal" },
-                                        [_vm._v("No registrado")]
-                                      )
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Teléfono:\n                "
-                                  ),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  el.phone_numbers
-                                    ? _c(
-                                        "span",
-                                        { staticClass: "font-weight-normal" },
-                                        [
-                                          _vm._l(el.phone_numbers, function(
-                                            e,
-                                            i
-                                          ) {
-                                            return [
-                                              _c(
-                                                "a",
-                                                {
-                                                  key: i + "pn",
-                                                  staticClass: "d-block",
-                                                  staticStyle: {
-                                                    "text-decoration":
-                                                      "underline"
-                                                  },
-                                                  attrs: {
-                                                    target: "_blank",
-                                                    href: "tel:" + e.number
-                                                  }
-                                                },
-                                                [_vm._v(_vm._s(e.number))]
-                                              )
-                                            ]
-                                          })
-                                        ],
-                                        2
-                                      )
-                                    : _c(
-                                        "span",
-                                        { staticClass: "font-weight-normal" },
-                                        [_vm._v("No registrado")]
-                                      )
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Whatsapp:\n                "
-                                  ),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  el.num_what
-                                    ? _c(
-                                        "span",
-                                        { staticClass: "font-weight-normal" },
-                                        [
-                                          _vm._l(el.num_what, function(e, i) {
-                                            return [
-                                              _c(
-                                                "a",
-                                                {
-                                                  key: i + "pn",
-                                                  staticClass: "d-block",
-                                                  staticStyle: {
-                                                    "text-decoration":
-                                                      "underline"
-                                                  },
-                                                  attrs: {
-                                                    target: "_blank",
-                                                    href: "tel:" + e.numwhat
-                                                  }
-                                                },
-                                                [_vm._v(_vm._s(e.numwhat))]
-                                              )
-                                            ]
-                                          })
-                                        ],
-                                        2
-                                      )
-                                    : _c(
-                                        "span",
-                                        { staticClass: "font-weight-normal" },
-                                        [_vm._v("No registrado")]
-                                      )
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Facebook Link:\n                "
-                                  ),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    { staticClass: "font-weight-normal" },
-                                    [_vm._v(_vm._s(el.link_face))]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Instagram Link:\n                "
-                                  ),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    { staticClass: "font-weight-normal" },
-                                    [_vm._v(_vm._s(el.link_insta))]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Metodos de Pago:\n                "
-                                  ),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  el.payment_methods
-                                    ? _c(
-                                        "span",
-                                        _vm._l(el.payment_methods, function(
-                                          e,
-                                          i
-                                        ) {
-                                          return _c("div", { key: e.id }, [
-                                            _c("img", {
-                                              staticClass:
-                                                "img-fluid d-block mb-2",
-                                              attrs: {
-                                                src:
-                                                  _vm.imagesUrl +
-                                                  "/" +
-                                                  e.img_method,
-                                                alt: e.name
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c("p", [_vm._v(_vm._s(e.method))]),
-                                            _vm._v(" "),
-                                            _c("p", [
-                                              _vm._v(_vm._s(e.img_method))
-                                            ])
-                                          ])
-                                        }),
-                                        0
-                                      )
-                                    : _c("span", [
-                                        _vm._v(
-                                          " No tiene metodos de pago registrados "
-                                        )
-                                      ])
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Productos:\n                "
-                                  ),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  el.products
-                                    ? _c(
-                                        "span",
-                                        _vm._l(el.products, function(e, i) {
-                                          return _c("div", { key: e.id }, [
-                                            _c("img", {
-                                              staticClass:
-                                                "img-fluid d-block mb-2",
-                                              attrs: {
-                                                src:
-                                                  _vm.imagesUrl +
-                                                  "/productos/" +
-                                                  e.image,
-                                                alt: e.name
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c("p", [_vm._v(_vm._s(e.name))])
-                                          ])
-                                        }),
-                                        0
-                                      )
-                                    : _c("span", [
-                                        _vm._v(
-                                          " No tiene productos registrados "
-                                        )
-                                      ])
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Iframe:\n                "
-                                  ),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  !el.iframe
-                                    ? _c(
-                                        "span",
-                                        { staticClass: "font-weight-normal" },
-                                        [_vm._v("No registrado")]
-                                      )
-                                    : _c("div", {
-                                        staticClass: "parent-iframe",
-                                        domProps: {
-                                          innerHTML: _vm._s(el.iframe)
-                                        }
-                                      })
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _vm._v(
-                                    "\n                Galeria de imagenes:\n                "
-                                  ),
-                                  _c("br"),
-                                  _vm._v(" "),
-                                  el.img_slider_1
-                                    ? _c("span", [
-                                        _c("img", {
-                                          staticClass: "img-fluid d-block mb-2",
-                                          attrs: {
-                                            src:
-                                              _vm.imagesUrl +
-                                              "/sliders/" +
-                                              el.img_slider_1
-                                          }
-                                        })
-                                      ])
-                                    : _c("span", [
-                                        _vm._v(" No tiene imagen registrada ")
-                                      ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "mt-4 text-center" }, [
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "btn btn-inverse-primary btn-sm",
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.editEl(el.id)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                  Editar\n                "
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "button",
-                                    {
-                                      staticClass:
-                                        "btn btn-inverse-danger btn-sm",
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.deleteEl(el.id)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                  Eliminar\n                "
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ])
-                            ])
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  : _c("NoData")
-              ],
-              1
-            )
+                      on: {
+                        get: _vm.getElements,
+                        delete: _vm.deleteEl,
+                        update: _vm.editEl,
+                        "update:entriesProp": function($event) {
+                          _vm.elementsPerPage = $event
+                        },
+                        "update:entries-prop": function($event) {
+                          _vm.elementsPerPage = $event
+                        }
+                      }
+                    })
+                  ],
+                  1
+                )
+              ])
+            ])
       ]),
       _vm._v(" "),
       _c(
@@ -2958,6 +2481,7 @@ var render = function() {
                 _c(
                   "form",
                   {
+                    attrs: { enctype: "multipart/form-data" },
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
@@ -3562,7 +3086,7 @@ var render = function() {
                                     )
                                   ]),
                                   _vm._v(" "),
-                                  _vm.errors && _vm.errors.image
+                                  _vm.errors && _vm.errors.img_slider_1
                                     ? _c(
                                         "label",
                                         {
@@ -3570,7 +3094,11 @@ var render = function() {
                                             "text-danger text-sm d-block mt-2",
                                           attrs: { for: "image" }
                                         },
-                                        [_vm._v(_vm._s(_vm.errors.image[0]))]
+                                        [
+                                          _vm._v(
+                                            _vm._s(_vm.errors.img_slider_1[0])
+                                          )
+                                        ]
                                       )
                                     : _vm._e()
                                 ])
@@ -3663,7 +3191,7 @@ var render = function() {
                                     )
                                   ]),
                                   _vm._v(" "),
-                                  _vm.errors && _vm.errors.image
+                                  _vm.errors && _vm.errors.img_slider_2
                                     ? _c(
                                         "label",
                                         {
@@ -3671,7 +3199,11 @@ var render = function() {
                                             "text-danger text-sm d-block mt-2",
                                           attrs: { for: "image" }
                                         },
-                                        [_vm._v(_vm._s(_vm.errors.image[0]))]
+                                        [
+                                          _vm._v(
+                                            _vm._s(_vm.errors.img_slider_2[0])
+                                          )
+                                        ]
                                       )
                                     : _vm._e()
                                 ])
@@ -3764,7 +3296,7 @@ var render = function() {
                                     )
                                   ]),
                                   _vm._v(" "),
-                                  _vm.errors && _vm.errors.image
+                                  _vm.errors && _vm.errors.img_slider_3
                                     ? _c(
                                         "label",
                                         {
@@ -3772,7 +3304,11 @@ var render = function() {
                                             "text-danger text-sm d-block mt-2",
                                           attrs: { for: "image" }
                                         },
-                                        [_vm._v(_vm._s(_vm.errors.image[0]))]
+                                        [
+                                          _vm._v(
+                                            _vm._s(_vm.errors.img_slider_3[0])
+                                          )
+                                        ]
                                       )
                                     : _vm._e()
                                 ])
@@ -3865,7 +3401,7 @@ var render = function() {
                                     )
                                   ]),
                                   _vm._v(" "),
-                                  _vm.errors && _vm.errors.image
+                                  _vm.errors && _vm.errors.img_slider_4
                                     ? _c(
                                         "label",
                                         {
@@ -3873,7 +3409,11 @@ var render = function() {
                                             "text-danger text-sm d-block mt-2",
                                           attrs: { for: "image" }
                                         },
-                                        [_vm._v(_vm._s(_vm.errors.image[0]))]
+                                        [
+                                          _vm._v(
+                                            _vm._s(_vm.errors.img_slider_4[0])
+                                          )
+                                        ]
                                       )
                                     : _vm._e()
                                 ])
@@ -3966,7 +3506,7 @@ var render = function() {
                                     )
                                   ]),
                                   _vm._v(" "),
-                                  _vm.errors && _vm.errors.image
+                                  _vm.errors && _vm.errors.img_slider_5
                                     ? _c(
                                         "label",
                                         {
@@ -3974,7 +3514,11 @@ var render = function() {
                                             "text-danger text-sm d-block mt-2",
                                           attrs: { for: "image" }
                                         },
-                                        [_vm._v(_vm._s(_vm.errors.image[0]))]
+                                        [
+                                          _vm._v(
+                                            _vm._s(_vm.errors.img_slider_5[0])
+                                          )
+                                        ]
                                       )
                                     : _vm._e()
                                 ])
@@ -4012,18 +3556,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "btn-inner--icon" }, [
       _c("i", { staticClass: "ri-add-line current-color ri-lg" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend bg-white" }, [
-      _c(
-        "span",
-        { staticClass: "input-group-text bg-white", attrs: { id: "search" } },
-        [_c("i", { staticClass: "current-color ri-search-line" })]
-      )
     ])
   }
 ]

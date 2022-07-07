@@ -12,6 +12,8 @@
 
     route-products-get-all = "{{ route('cms.distribuidores.product-get-all') }}"
 
+    route-items-get-all = "{{ route('cms.distribuidores.get-items-all') }}"
+
     route-payment-method-get-all = "{{ route('cms.distribuidores.payment-method-get-all') }}"
     ></sucursales>
 @endsection
