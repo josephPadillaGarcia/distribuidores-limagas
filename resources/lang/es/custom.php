@@ -35,6 +35,7 @@ return [
         'app_tracking' => 'App de rastreo',
         'tutorial' => 'El tutorial',
         'sucursal' => 'La sucursal',
+        'product' => 'El producto'
     ],
     'title' => [
         'error' => 'Error',

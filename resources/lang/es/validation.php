@@ -216,6 +216,7 @@ return [
         'excerpt_es' => 'descripción corta español',
         'content_en' => 'contenido inglés',
         'content_es' => 'contenido español',
+        'tipogas' => 'tipo de gas',
     ],
 
 ];

@@ -25,6 +25,7 @@ class ProductosRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|max:100',
+            'tipogas' => 'required',
         ];
         switch ($this->method()) {
             case 'POST':

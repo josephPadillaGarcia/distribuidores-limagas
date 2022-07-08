@@ -22,13 +22,19 @@ class IndexController extends Controller
 
     public function store(ProductosRequest $request)
     {
-        $el = request(["name", "precio", "active"]);
+        $el = request(["name", "precio", "active", "tipogas"]);
 
         $image_name = $this->setFileName('t-', $request->file('image'));
         $store_image = Storage::disk('public')->putFileAs('img/productos/', $request->file('image'), $image_name);
         if (!$store_image) {
             return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.errors.image')], 500);
         }
+
+        /*if($request->tipogas){
+            $el = array_merge($el, ["tipogas" => $request->tipogas]);
+        }else{
+            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.errors.image')], 500);
+        }*/
         
         $el = array_merge($el, ["image" => $image_name]);
         $elIndex = $this->getMaxIndex(Productos::selectRaw('MAX(id),MAX(`index`) as "index"')->get());
@@ -36,9 +42,9 @@ class IndexController extends Controller
         $el = array_merge($el, ["index" => $elIndex]);
         try {
             $el = Productos::UpdateOrCreate($el);
-            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.create.success', ['name' => trans('custom.attribute.customer')])], 200);
+            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.create.success', ['name' => trans('custom.attribute.product')])], 200);
         } catch (\Exception $e) {
-            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.create.error', ['name' => trans('custom.attribute.customer')])], 500);
+            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.create.error', ['name' => trans('custom.attribute.product')])], 500);
         }
     }
 

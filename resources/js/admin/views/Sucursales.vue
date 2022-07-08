@@ -34,25 +34,6 @@
         </div>
       </div>
       <div v-else>
-        <!--div class="row" v-if="elements.length">
-          <div class="col-12 col-md-6 mb-4">
-            <div class="input-group input-group-merge">
-              <div class="input-group-prepend bg-white">
-                <span id="search" class="input-group-text bg-white">
-                  <i class="current-color ri-search-line"></i>
-                </span>
-              </div>
-              <input
-                v-model="q"
-                type="search"
-                placeholder="Buscar por Nombre de Distribuidor"
-                aria-label="search"
-                aria-describedby="search"
-                class="form-control bg-white"
-              />
-            </div>
-          </div>
-        </div-->
         <div class="row" v-if="elements.length">
           <div class="col-12">
             <i class="d-block mb-4" v-if="!q">{{ messageOrder }}</i>
@@ -75,6 +56,11 @@
             </div>
         </div>
 
+<div class="row" v-if="detailBlock">
+  <div class="col-12">
+    <h2>Hola mundo</h2>
+  </div>
+</div>
         <!--draggable
           class="row"
           v-if="elements"
@@ -471,7 +457,7 @@
                     <div class="row">
                       <div class="col text-center" v-if="element.img_slider_1">
                         <img
-                          :src="imagesUrl + '/' + element.img_slider_1"
+                          :src="imagesUrl + '/sliders/' + element.img_slider_1"
                           alt="imagen distribuidor"
                           class="mx-auto img-fluid"
                         />
@@ -521,7 +507,7 @@
                     <div class="row">
                       <div class="col text-center" v-if="element.img_slider_2">
                         <img
-                          :src="imagesUrl + '/' + element.img_slider_2"
+                          :src="imagesUrl + '/sliders/' + element.img_slider_2"
                           alt="imagen distribuidor 2"
                           class="mx-auto img-fluid"
                         />
@@ -571,7 +557,7 @@
                     <div class="row">
                       <div class="col text-center" v-if="element.img_slider_3">
                         <img
-                          :src="imagesUrl + '/' + element.img_slider_3"
+                          :src="imagesUrl + '/sliders/' + element.img_slider_3"
                           alt="imagen distribuidor 3"
                           class="mx-auto img-fluid"
                         />
@@ -621,7 +607,7 @@
                     <div class="row">
                       <div class="col text-center" v-if="element.img_slider_4">
                         <img
-                          :src="imagesUrl + '/' + element.img_slider_4"
+                          :src="imagesUrl + '/sliders/' + element.img_slider_4"
                           alt="imagen distribuidor 4"
                           class="mx-auto img-fluid"
                         />
@@ -670,7 +656,7 @@
                     <div class="row">
                       <div class="col text-center" v-if="element.img_slider_5">
                         <img
-                          :src="imagesUrl + '/' + element.img_slider_5"
+                          :src="imagesUrl + '/sliders/' + element.img_slider_5"
                           alt="imagen distribuidor 4"
                           class="mx-auto img-fluid"
                         />
@@ -849,6 +835,7 @@ export default {
       
       itemstable: {},
       elementsPerPage: 20,
+      detailBlock: false
     };
   },
   methods: {

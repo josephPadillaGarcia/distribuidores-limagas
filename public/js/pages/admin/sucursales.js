@@ -1262,20 +1262,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1354,7 +1340,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       products: [],
       payment_methods: [],
       itemstable: {},
-      elementsPerPage: 20
+      elementsPerPage: 20,
+      detailBlock: false
     };
   },
   methods: {
@@ -2404,7 +2391,11 @@ var render = function() {
                   ],
                   1
                 )
-              ])
+              ]),
+              _vm._v(" "),
+              _vm.detailBlock
+                ? _c("div", { staticClass: "row" }, [_vm._m(1)])
+                : _vm._e()
             ])
       ]),
       _vm._v(" "),
@@ -2442,7 +2433,7 @@ var render = function() {
                       attrs: { type: "button" },
                       on: { click: _vm.restoreEl }
                     },
-                    [_vm._v("\n        Cancelar\n      ")]
+                    [_vm._v("\n          Cancelar\n        ")]
                   )
                 ]
               }
@@ -2691,11 +2682,11 @@ var render = function() {
                           _vm._v(" "),
                           _c("small", {}, [
                             _vm._v(
-                              "\n              Formatos recomendados:\n              "
+                              "\n                Formatos recomendados:\n                "
                             ),
                             _c("br"),
                             _vm._v(
-                              "Fijos: (054) 444444, Móviles: 9 dígitos\n            "
+                              "Fijos: (054) 444444, Móviles: 9 dígitos\n              "
                             )
                           ])
                         ],
@@ -3019,7 +3010,7 @@ var render = function() {
                                               attrs: {
                                                 src:
                                                   _vm.imagesUrl +
-                                                  "/" +
+                                                  "/sliders/" +
                                                   _vm.element.img_slider_1,
                                                 alt: "imagen distribuidor"
                                               }
@@ -3073,7 +3064,7 @@ var render = function() {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      "\n                            Suelte los archivos aquí o haga click para\n                            cargarlos.\n                          "
+                                                      "\n                              Suelte los archivos aquí o haga click para\n                              cargarlos.\n                            "
                                                     )
                                                   ]
                                                 )
@@ -3123,7 +3114,7 @@ var render = function() {
                                               attrs: {
                                                 src:
                                                   _vm.imagesUrl +
-                                                  "/" +
+                                                  "/sliders/" +
                                                   _vm.element.img_slider_2,
                                                 alt: "imagen distribuidor 2"
                                               }
@@ -3178,7 +3169,7 @@ var render = function() {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      "\n                            Suelte los archivos aquí o haga click para\n                            cargarlos.\n                          "
+                                                      "\n                              Suelte los archivos aquí o haga click para\n                              cargarlos.\n                            "
                                                     )
                                                   ]
                                                 )
@@ -3228,7 +3219,7 @@ var render = function() {
                                               attrs: {
                                                 src:
                                                   _vm.imagesUrl +
-                                                  "/" +
+                                                  "/sliders/" +
                                                   _vm.element.img_slider_3,
                                                 alt: "imagen distribuidor 3"
                                               }
@@ -3283,7 +3274,7 @@ var render = function() {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      "\n                            Suelte los archivos aquí o haga click para\n                            cargarlos.\n                          "
+                                                      "\n                              Suelte los archivos aquí o haga click para\n                              cargarlos.\n                            "
                                                     )
                                                   ]
                                                 )
@@ -3333,7 +3324,7 @@ var render = function() {
                                               attrs: {
                                                 src:
                                                   _vm.imagesUrl +
-                                                  "/" +
+                                                  "/sliders/" +
                                                   _vm.element.img_slider_4,
                                                 alt: "imagen distribuidor 4"
                                               }
@@ -3388,7 +3379,7 @@ var render = function() {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      "\n                            Suelte los archivos aquí o haga click para\n                            cargarlos.\n                          "
+                                                      "\n                              Suelte los archivos aquí o haga click para\n                              cargarlos.\n                            "
                                                     )
                                                   ]
                                                 )
@@ -3438,7 +3429,7 @@ var render = function() {
                                               attrs: {
                                                 src:
                                                   _vm.imagesUrl +
-                                                  "/" +
+                                                  "/sliders/" +
                                                   _vm.element.img_slider_5,
                                                 alt: "imagen distribuidor 4"
                                               }
@@ -3493,7 +3484,7 @@ var render = function() {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      "\n                            Suelte los archivos aquí o haga click para\n                            cargarlos.\n                          "
+                                                      "\n                              Suelte los archivos aquí o haga click para\n                              cargarlos.\n                            "
                                                     )
                                                   ]
                                                 )
@@ -3556,6 +3547,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "btn-inner--icon" }, [
       _c("i", { staticClass: "ri-add-line current-color ri-lg" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c("h2", [_vm._v("Hola mundo")])
     ])
   }
 ]

@@ -325,6 +325,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -478,6 +490,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.element.precio) {
         fd.append("precio", this.element.precio);
       }
+
+      if (this.element.tipogas) {
+        fd.append("tipogas", this.element.tipogas);
+      }
       /*if (this.element.title_en) {
         fd.append("title_en", this.element.title_en);
       }*/
@@ -491,7 +507,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         fd.append("active", 1);
       } else {
         fd.append("active", 0);
-      }
+      } //console.log(this.element.tipogas);
+
 
       axios({
         method: method,
@@ -769,12 +786,12 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
-                                    "\n                Precio producto:\n                "
+                                    "\n                Peso del producto (kg):\n                "
                                   ),
                                   _c(
                                     "span",
                                     { staticClass: "font-weight-normal" },
-                                    [_vm._v(_vm._s(el.precio))]
+                                    [_vm._v(_vm._s(el.precio) + " Kg")]
                                   )
                                 ]),
                                 _vm._v(" "),
@@ -944,7 +961,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n            Mostrar Producto en la Web\n          "
+                                "\n              Mostrar Producto en la Web\n            "
                               )
                             ]
                           )
@@ -1013,7 +1030,7 @@ var render = function() {
                                 staticClass: "font-weight-bold",
                                 attrs: { for: "precio" }
                               },
-                              [_vm._v("Precio")]
+                              [_vm._v("Peso (kg)")]
                             ),
                             _vm._v(" "),
                             _c("input", {
@@ -1050,6 +1067,87 @@ var render = function() {
                                     attrs: { for: "precio" }
                                   },
                                   [_vm._v(_vm._s(_vm.errors.precio[0]))]
+                                )
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.element.tipogas,
+                                  expression: "element.tipogas"
+                                }
+                              ],
+                              attrs: {
+                                type: "radio",
+                                id: "limagas",
+                                value: "limagas"
+                              },
+                              domProps: {
+                                checked: _vm._q(_vm.element.tipogas, "limagas")
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.$set(
+                                    _vm.element,
+                                    "tipogas",
+                                    "limagas"
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("label", { attrs: { for: "limagas" } }, [
+                              _vm._v("Limagas")
+                            ]),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.element.tipogas,
+                                  expression: "element.tipogas"
+                                }
+                              ],
+                              attrs: {
+                                type: "radio",
+                                id: "othertipogas",
+                                value: "otrotipogas"
+                              },
+                              domProps: {
+                                checked: _vm._q(
+                                  _vm.element.tipogas,
+                                  "otrotipogas"
+                                )
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.$set(
+                                    _vm.element,
+                                    "tipogas",
+                                    "otrotipogas"
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("label", { attrs: { for: "othertipogas" } }, [
+                              _vm._v("Otro tipo de gas")
+                            ]),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(" "),
+                            _vm.errors && _vm.errors.tipogas
+                              ? _c(
+                                  "label",
+                                  { staticClass: "mt-2 text-danger text-sm" },
+                                  [_vm._v(_vm._s(_vm.errors.tipogas[0]))]
                                 )
                               : _vm._e()
                           ])

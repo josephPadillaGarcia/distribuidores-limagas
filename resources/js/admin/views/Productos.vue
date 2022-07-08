@@ -64,12 +64,14 @@
                   <span class="font-weight-normal">{{ el.name }}</span>
                 </h3>
                 <h3 class="mb-1">
-                  Precio producto:
-                  <span class="font-weight-normal">{{ el.precio }}</span>
+                  Peso del producto (kg):
+                  <span class="font-weight-normal">{{ el.precio }} Kg</span>
                 </h3>
                 <h3 class="mb-1">
                   <span class="">Mostrar en la Web:</span>
-                  <span class="font-weight-normal">{{ el.active ? 'Sí' : 'No' }}</span>
+                  <span class="font-weight-normal">{{
+                    el.active ? "Sí" : "No"
+                  }}</span>
                 </h3>
                 <div class="mt-4 text-center">
                   <button
@@ -117,23 +119,21 @@
       <div v-else>
         <form @submit.prevent="submit">
           <div class="row mb-3">
-          <div class="col-12 text-right">
-            <b-form-checkbox
-              size="lg"
-              v-model="element.active"
-              name="check-button"
-              switch
-            >
-              Mostrar Producto en la Web
-            </b-form-checkbox>
+            <div class="col-12 text-right">
+              <b-form-checkbox
+                size="lg"
+                v-model="element.active"
+                name="check-button"
+                switch
+              >
+                Mostrar Producto en la Web
+              </b-form-checkbox>
+            </div>
           </div>
-        </div>
           <div class="row">
             <div class="col-12">
               <div class="form-group">
-                <label class="font-weight-bold" for="name"
-                  >Nombre</label
-                >
+                <label class="font-weight-bold" for="name">Nombre</label>
                 <input
                   type="text"
                   class="form-control"
@@ -148,9 +148,7 @@
                 >
               </div>
               <div class="form-group">
-                <label class="font-weight-bold" for="precio"
-                  >Precio</label
-                >
+                <label class="font-weight-bold" for="precio">Peso (kg)</label>
                 <input
                   type="text"
                   class="form-control"
@@ -162,6 +160,20 @@
                   class="mt-2 text-danger text-sm"
                   for="precio"
                   >{{ errors.precio[0] }}</label
+                >
+              </div>
+              
+              <div class="form-group">
+                <input type="radio" id="limagas" value="limagas" v-model="element.tipogas">
+                <label for="limagas">Limagas</label>
+                <br>
+                <input type="radio" id="othertipogas" value="otrotipogas" v-model="element.tipogas">
+                <label for="othertipogas">Otro tipo de gas</label>
+                <br> 
+                <label
+                  v-if="errors && errors.tipogas"
+                  class="mt-2 text-danger text-sm"
+                  >{{ errors.tipogas[0] }}</label
                 >
               </div>
             </div>
@@ -396,6 +408,9 @@ export default {
       if (this.element.precio) {
         fd.append("precio", this.element.precio);
       }
+      if (this.element.tipogas) {
+        fd.append("tipogas", this.element.tipogas);
+      }
       /*if (this.element.title_en) {
         fd.append("title_en", this.element.title_en);
       }*/
@@ -409,6 +424,8 @@ export default {
       } else {
         fd.append("active", 0);
       }
+
+      //console.log(this.element.tipogas);
       axios({
         method: method,
         url: url,
