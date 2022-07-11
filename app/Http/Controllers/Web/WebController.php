@@ -98,10 +98,14 @@ class WebController extends Controller
         }
         $offices = $offices->orderBy('index')->get();
         $departments = Ubigeo::whereHas('branchOfficeRel')->orderBy('code_ubigeo', 'DESC')->groupBy('code_department')->get();
+        
+        $information = Information::first();
+        
         $data = array(
             "content" => $content,
             "offices" => $offices,
-            "departments" => $departments
+            "departments" => $departments,
+            "information" => $information,
         );
         return view("web.pages.branch-office", compact('data'))->with(
             ['province' => $request->province, 'department' => $request->department,'district' => $request->district]

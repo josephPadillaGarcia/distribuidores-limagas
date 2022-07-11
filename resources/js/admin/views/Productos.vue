@@ -68,6 +68,10 @@
                   <span class="font-weight-normal">{{ el.precio }} Kg</span>
                 </h3>
                 <h3 class="mb-1">
+                  Tipo de gas:
+                  <span class="font-weight-normal">{{ el.tipogas }}</span>
+                </h3>
+                <h3 class="mb-1">
                   <span class="">Mostrar en la Web:</span>
                   <span class="font-weight-normal">{{
                     el.active ? "Sí" : "No"

@@ -145,10 +145,10 @@ Route::prefix('admin')->group(function() {
                 Route::get('/json/get-all', 'CategoriesController@getAll')->name('get-all');
                 Route::get('/json/get/{element}', 'CategoriesController@get')->name('get');
             });
-        });
+        });*/
     
         Route::namespace('Content')->prefix('contenido')->name('content.')->group(function () {
-            Route::name('general-content.')->prefix('contenido-general')->group(function () {
+            /*Route::name('general-content.')->prefix('contenido-general')->group(function () {
                 Route::get('/', 'GeneralContentController@index')->name('index');
                 Route::put('/', 'GeneralContentController@updateSection')->name('update-section');
                 Route::get('/json/get-all', 'GeneralContentController@getAllPages')->name('get-all');
@@ -166,7 +166,7 @@ Route::prefix('admin')->group(function() {
                 Route::put('/{element}', 'SocialController@update')->name('update');
                 Route::get('/json/get-all', 'SocialController@getAll')->name('get-all');
                 Route::get('/json/get/{element}', 'SocialController@get')->name('get');
-            });
+            });*/
     
             Route::name('general-information.')->prefix('informacion-general')->group(function () {
                 #General Information
@@ -176,7 +176,7 @@ Route::prefix('admin')->group(function() {
             });
     
             #SEO
-            Route::name('seo.')->prefix('seo')->group(function () {
+            /*Route::name('seo.')->prefix('seo')->group(function () {
                 Route::get('/', 'SeoController@index')->name('index');
                 Route::get('/json/get-all', 'SeoController@getAll')->name('get-all');
                 Route::put('/{page}', 'SeoController@update')->name('update');
@@ -190,11 +190,11 @@ Route::prefix('admin')->group(function() {
                 Route::delete('/{element}', 'TestimonialsController@destroy')->name('destroy');
                 Route::get('/json/get-all', 'TestimonialsController@getAll')->name('get-all');
                 Route::get('/json/get/{element}', 'TestimonialsController@get')->name('get');
-            });
+            });*/
     
         });
     
-        Route::namespace('Leads')->prefix('leads')->name('leads.')->group(function () {
+        /*Route::namespace('Leads')->prefix('leads')->name('leads.')->group(function () {
                 Route::get('/', 'LeadTraditionalController@index')->name('index');
                 Route::get('/json/get-all', 'LeadTraditionalController@getAll')->name('get-all');
                 Route::delete('/{element}', 'LeadTraditionalController@destroy')->name('destroy');

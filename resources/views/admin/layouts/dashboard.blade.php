@@ -8,8 +8,8 @@
         <button-menu></button-menu>
         <!-- Brand -->
         <a class="navbar-brand" href="{{ route('cms.dashboard') }}">
-            <img src="/storage/img/logo-mini.png" class="align-middle d-block d-md-none logo-mini mx-auto" height="50" width="auto" />
-            <img src="/storage/img/logo.png" class="align-middle d-none d-md-block logo mx-auto" height="40" width="auto" />
+            <img src="/storage/img/icon.png" class="align-middle d-block d-md-none logo-mini mx-auto" height="50" width="auto" />
+            <img src="/storage/img/logo-limagas-color.png" class="align-middle d-none d-md-block logo mx-auto" height="40" width="auto" />
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">

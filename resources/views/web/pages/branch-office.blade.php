@@ -7,6 +7,7 @@
     $offices = $data["offices"];
     $departments = $data["departments"];
     $storageUrl = config('services.storage_url');
+    $information = $data["information"];
 @endphp
 
 <main>
@@ -34,8 +35,21 @@
 
             <div class="redes">
                 <span>Síguenos en:</span>
-                <a href="" class="btn-circle"><i class="flaticon-facebook"></i></a>
-                <a href="" class="btn-circle"><i class="flaticon-instagram"></i></a>
+                @if ($information->facebook_link)
+                    <a href="{{ $information->facebook_link }}" class="btn-circle"><i class="flaticon-facebook"></i></a>
+                @endif
+
+                @if ($information->instagram_link)
+                    <a href="{{ $information->instagram_link }}" class="btn-circle"><i class="flaticon-instagram"></i></a>
+                @endif
+
+                @if ($information->youtube_link)
+                    <a href="{{ $information->youtube_link }}" class="btn-circle"><i class="flaticon-youtube"></i></a>
+                @endif
+                
+                @if ($information->linkedin_link)
+                    <a href="{{ $information->linkedin_link }}" class="btn-circle"><i class="flaticon-linkedin"></i></a>
+                @endif
             </div>
         </div>
     

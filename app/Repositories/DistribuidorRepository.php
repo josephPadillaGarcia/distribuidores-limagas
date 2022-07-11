@@ -35,7 +35,7 @@ class DistribuidorRepository
     }
 
     public function datatable($id,$pagination){
-        $users = BranchOffice::where('id','!=',1)->where('id','!=',$id)->orderBy('id', 'DESC')
+        $users = BranchOffice::orderBy('id', 'DESC')
         ->paginate($pagination);
         foreach($users as $user){
             /*if($user["avatar"]){

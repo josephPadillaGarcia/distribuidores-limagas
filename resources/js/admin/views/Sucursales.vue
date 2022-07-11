@@ -34,57 +34,40 @@
         </div>
       </div>
       <div v-else>
-        <div class="row" v-if="elements.length">
+        <div class="row" v-if="showBlock">
           <div class="col-12">
-            <i class="d-block mb-4" v-if="!q">{{ messageOrder }}</i>
+            <DataTable
+              :object="itemstable"
+              placeholder="Distribuidor"
+              :button-update="true"
+              :button-read="true"
+              :button-delete="true"
+              @get="getElements"
+              @read="showDistribuidor"
+              @delete="deleteEl"
+              @update="editEl"
+              :entries-prop.sync="elementsPerPage"
+            ></DataTable>
           </div>
         </div>
 
-        <div class="row">
-            <div class="col-12">
-              <DataTable
-                :object="itemstable"
-                placeholder="Distribuidor"
-                :button-update="true"
-                :button-read="true"
-                :button-delete="true"
-                @get="getElements"
-                @delete="deleteEl"
-                @update="editEl"
-                :entries-prop.sync="elementsPerPage"
-              ></DataTable>
-            </div>
-        </div>
+        <!--pre>{{ this.itemstable }}</pre-->
 
-<div class="row" v-if="detailBlock">
-  <div class="col-12">
-    <h2>Hola mundo</h2>
-  </div>
-</div>
-        <!--draggable
-          class="row"
-          v-if="elements"
-          v-model="elements"
-          @change="handleChange"
-          :move="handleMove"
-        >
-          <div
-            class="col-12 col-md-6 col-lg-4 mb-4"
-            v-for="(el, i) in elements"
-            :key="el.id"
-          >
+        <div class="row" v-if="detailBlock">
+          <div class="row" v-if="element">
+            <!--pre>{{ this.element }}</pre-->
             <div class="card">
               <div class="card-body">
                 <h3 class="mb-1">
                   Distribuidor:
                   <br />
-                  <span class="font-weight-normal">{{ el.name }}</span>
+                  <span class="font-weight-normal">{{ element.name }}</span>
                 </h3>
                 <h3 class="mb-1">
                   Descripción:
                   <br />
                   <div
-                    v-html="el.description"
+                    v-html="element.description"
                     class="content-editor-value"
                   ></div>
                 </h3>
@@ -99,7 +82,9 @@
                         white-space: pre-wrap;
                         font-size: inherit;
                       "
-                      >{{ el.direction ? el.direction : "No registrado" }}</pre
+                      >{{
+                        element.direction ? element.direction : "No registrado"
+                      }}</pre
                     >
                   </span>
                 </h3>
@@ -107,16 +92,16 @@
                   Ubigeo:
                   <br />
                   <span class="font-weight-normal">
-                    {{ el.ubigeo_rel.district }} -
-                    {{ el.ubigeo_rel.province }} -
-                    {{ el.ubigeo_rel.department }}
+                    {{ element.ubigeo_rel.district }} -
+                    {{ element.ubigeo_rel.province }} -
+                    {{ element.ubigeo_rel.department }}
                   </span>
                 </h3>
                 <h3 class="mb-1">
                   Email:
                   <br />
-                  <span class="font-weight-normal" v-if="el.emails">
-                    <template v-for="(e, i) in el.emails">
+                  <span class="font-weight-normal" v-if="element.emails">
+                    <template v-for="(e, i) in element.emails">
                       <span class="d-block" :key="i + 'emi'">{{ e.name }}</span>
                     </template>
                   </span>
@@ -126,8 +111,8 @@
                 <h3 class="mb-1">
                   Teléfono:
                   <br />
-                  <span class="font-weight-normal" v-if="el.phone_numbers">
-                    <template v-for="(e, i) in el.phone_numbers">
+                  <span class="font-weight-normal" v-if="element.phone_numbers">
+                    <template v-for="(e, i) in element.phone_numbers">
                       <a
                         target="_blank"
                         style="text-decoration: underline"
@@ -144,8 +129,8 @@
                 <h3 class="mb-1">
                   Whatsapp:
                   <br />
-                  <span class="font-weight-normal" v-if="el.num_what">
-                    <template v-for="(e, i) in el.num_what">
+                  <span class="font-weight-normal" v-if="element.num_what">
+                    <template v-for="(e, i) in element.num_what">
                       <a
                         target="_blank"
                         style="text-decoration: underline"
@@ -162,22 +147,26 @@
                 <h3 class="mb-1">
                   Facebook Link:
                   <br />
-                  <span class="font-weight-normal">{{ el.link_face }}</span>
+                  <span class="font-weight-normal">{{
+                    element.link_face
+                  }}</span>
                 </h3>
 
                 <h3 class="mb-1">
                   Instagram Link:
                   <br />
-                  <span class="font-weight-normal">{{ el.link_insta }}</span>
+                  <span class="font-weight-normal">{{
+                    element.link_insta
+                  }}</span>
                 </h3>
 
                 <h3 class="mb-1">
                   Metodos de Pago:
                   <br />
-                  <span v-if="el.payment_methods">
+                  <span v-if="element.payment_methods">
                     <div
                       class=""
-                      v-for="(e, i) in el.payment_methods"
+                      v-for="(e, i) in element.payment_methods"
                       :key="e.id"
                     >
                       <img
@@ -195,8 +184,12 @@
                 <h3 class="mb-1">
                   Productos:
                   <br />
-                  <span v-if="el.products">
-                    <div class="" v-for="(e, i) in el.products" :key="e.id">
+                  <span v-if="element.products">
+                    <div
+                      class=""
+                      v-for="(e, i) in element.products"
+                      :key="e.id"
+                    >
                       <img
                         :src="imagesUrl + '/productos/' + e.image"
                         :alt="e.name"
@@ -211,18 +204,22 @@
                 <h3 class="mb-1">
                   Iframe:
                   <br />
-                  <span class="font-weight-normal" v-if="!el.iframe"
+                  <span class="font-weight-normal" v-if="!element.iframe"
                     >No registrado</span
                   >
-                  <div v-else v-html="el.iframe" class="parent-iframe"></div>
+                  <div
+                    v-else
+                    v-html="element.iframe"
+                    class="parent-iframe"
+                  ></div>
                 </h3>
 
                 <h3 class="mb-1">
                   Galeria de imagenes:
                   <br />
-                  <span v-if="el.img_slider_1">
+                  <span v-if="element.img_slider_1">
                     <img
-                      :src="imagesUrl + '/sliders/' + el.img_slider_1"
+                      :src="imagesUrl + '/sliders/' + element.img_slider_1"
                       class="img-fluid d-block mb-2"
                     />
                   </span>
@@ -231,23 +228,17 @@
 
                 <div class="mt-4 text-center">
                   <button
-                    @click="editEl(el.id)"
-                    class="btn btn-inverse-primary btn-sm"
+                    type="button"
+                    class="btn btn-secondary"
+                    @click.prevent="restore"
                   >
-                    Editar
-                  </button>
-                  <button
-                    @click="deleteEl(el.id)"
-                    class="btn btn-inverse-danger btn-sm"
-                  >
-                    Eliminar
+                    Regresar
                   </button>
                 </div>
               </div>
             </div>
           </div>
-        </draggable-->
-        <!--NoData v-else /-->
+        </div>
       </div>
     </div>
 
@@ -500,7 +491,6 @@
                 </div>
               </template>
 
-
               <template>
                 <div class="col-12 col-md-12 col-lg-12">
                   <div class="form-group">
@@ -550,7 +540,6 @@
                 </div>
               </template>
 
-
               <template>
                 <div class="col-12 col-md-12 col-lg-12">
                   <div class="form-group">
@@ -599,7 +588,6 @@
                   </div>
                 </div>
               </template>
-
 
               <template>
                 <div class="col-12 col-md-12 col-lg-12">
@@ -832,10 +820,11 @@ export default {
       products: [],
 
       payment_methods: [],
-      
+
       itemstable: {},
       elementsPerPage: 20,
-      detailBlock: false
+      showBlock: true,
+      detailBlock: false,
     };
   },
   methods: {
@@ -917,6 +906,8 @@ export default {
       this.title = "Actualizar";
       this.modalCreateUpdate = true;
       this.getEl(id);
+      /*this.startBlock = false,
+this.detailBlock = true*/
     },
     submit() {
       this.requestSubmit = true;
@@ -1088,9 +1079,16 @@ export default {
         active: true,
       }),
         (this.modalCreateUpdate = this.modalDestroy = false);
-      this.getEls();
+      //this.getEls();
+      this.showBlock = true;
+      this.detailBlock = false;
       this.errors = {};
       this.getElements(1, this.elementsPerPage);
+    },
+    showDistribuidor(id) {
+      this.getEl(id);
+      this.showBlock = false;
+      this.detailBlock = true;
     },
     deleteEl(id) {
       this.modalDestroy = true;
@@ -1104,10 +1102,14 @@ export default {
         (this.modalCreateUpdate = this.modalDestroy = false);
       this.errors = {};
     },
-    
+
     getElements(page, itemsPerPage, q = null) {
       let url =
-        this.routeItemsGetAll + "?page=" + page + "&itemsPerPage=" + itemsPerPage;
+        this.routeItemsGetAll +
+        "?page=" +
+        page +
+        "&itemsPerPage=" +
+        itemsPerPage;
       if (q) {
         url = url + "&q=" + q;
       }

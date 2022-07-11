@@ -162,13 +162,101 @@ class SucursalesController extends Controller
         $request_element = request(["name", "description", "direction", "schedule","iframe", "products", "link_face","link_insta"]);
         if($request->emails){
             $aemails = json_decode($request->emails, true);
-            $request_element  = array_merge($request_element , ["emails" => $aemails]);
+            $request_element = array_merge($request_element , ["emails" => $aemails]);
         }
         if($request->phone_numbers){
-            $request_element = array_merge($request_element, ["phone_numbers" => $request->phone_numbers]);
+            $aphone = json_decode($request->phone_numbers, true);
+            $request_element = array_merge($request_element, ["phone_numbers" => $aphone]);
         }
-        else{
-            $request_element = array_merge($request_element, ["phone_numbers" => NULL]);
+        if($request->num_what){
+            $awhat = json_decode($request->num_what, true);
+            $request_element = array_merge($request_element, ["num_what" => $awhat]);
+        }
+        
+        if($request->products){
+            $aproducts = json_decode($request->products, true);
+            $request_element = array_merge($request_element, ["products" => $aproducts]);
+        }
+
+        if($request->payment_methods){
+            $apaymentmethod = json_decode($request->payment_methods, true);
+            $request_element = array_merge($request_element, ["payment_methods" => $apaymentmethod]);
+        }
+
+
+        // Imagen 01
+        if ($request->hasFile('img_slider_1')) {
+            $image_name_01 = $this->setFileName('t-', $request->file('img_slider_1'));
+            $store_image_01 = Storage::disk('public')->putFileAs('img/sliders/', $request->file('img_slider_1'), $image_name_01);
+            $request_element = array_merge($request_element, ["img_slider_1" => $image_name_01]);
+            if (!$store_image_01) {
+                return response()->json(['title'=> trans('custom.title.error'), 'message'=> trans('custom.errors.image') ], 500);
+            }
+        } else {
+            $request_element = array_merge($request_element, ["img_slider_1" => $element->img_slider_1]);
+        }
+        if ($request->hasFile('img_slider_1') && $element->img_slider_1) {
+            Storage::disk('private')->delete('img/sliders/'.$element->img_slider_1);
+        }
+
+        // Imagen 02
+        if ($request->hasFile('img_slider_2')) {
+            $image_name_02 = $this->setFileName('t-', $request->file('img_slider_2'));
+            $store_image_02 = Storage::disk('public')->putFileAs('img/sliders/', $request->file('img_slider_2'), $image_name_02);
+            $request_element = array_merge($request_element, ["img_slider_2" => $image_name_02]);
+            if (!$store_image_02) {
+                return response()->json(['title'=> trans('custom.title.error'), 'message'=> trans('custom.errors.image') ], 500);
+            }
+        } else {
+            $request_element = array_merge($request_element, ["img_slider_2" => $element->img_slider_2]);
+        }
+        if ($request->hasFile('img_slider_2') && $element->img_slider_2) {
+            Storage::disk('private')->delete('img/sliders/'.$element->img_slider_2);
+        }
+
+        // Imagen 03
+        if ($request->hasFile('img_slider_3')) {
+            $image_name_03 = $this->setFileName('t-', $request->file('img_slider_3'));
+            $store_image_03 = Storage::disk('public')->putFileAs('img/sliders/', $request->file('img_slider_3'), $image_name_03);
+            $request_element = array_merge($request_element, ["img_slider_3" => $image_name_03]);
+            if (!$store_image_03) {
+                return response()->json(['title'=> trans('custom.title.error'), 'message'=> trans('custom.errors.image') ], 500);
+            }
+        } else {
+            $request_element = array_merge($request_element, ["img_slider_3" => $element->img_slider_3]);
+        }
+        if ($request->hasFile('img_slider_3') && $element->img_slider_3) {
+            Storage::disk('private')->delete('img/sliders/'.$element->img_slider_3);
+        }
+
+        // Imagen 04
+        if ($request->hasFile('img_slider_4')) {
+            $image_name_04 = $this->setFileName('t-', $request->file('img_slider_4'));
+            $store_image_04 = Storage::disk('public')->putFileAs('img/sliders/', $request->file('img_slider_4'), $image_name_04);
+            $request_element = array_merge($request_element, ["img_slider_4" => $image_name_04]);
+            if (!$store_image_04) {
+                return response()->json(['title'=> trans('custom.title.error'), 'message'=> trans('custom.errors.image') ], 500);
+            }
+        } else {
+            $request_element = array_merge($request_element, ["img_slider_4" => $element->img_slider_4]);
+        }
+        if ($request->hasFile('img_slider_4') && $element->img_slider_4) {
+            Storage::disk('private')->delete('img/sliders/'.$element->img_slider_4);
+        }
+
+        // Imagen 05
+        if ($request->hasFile('img_slider_5')) {
+            $image_name_05 = $this->setFileName('t-', $request->file('img_slider_5'));
+            $store_image_05 = Storage::disk('public')->putFileAs('img/sliders/', $request->file('img_slider_5'), $image_name_05);
+            $request_element = array_merge($request_element, ["img_slider_5" => $image_name_05]);
+            if (!$store_image_05) {
+                return response()->json(['title'=> trans('custom.title.error'), 'message'=> trans('custom.errors.image') ], 500);
+            }
+        } else {
+            $request_element = array_merge($request_element, ["img_slider_5" => $element->img_slider_5]);
+        }
+        if ($request->hasFile('img_slider_5') && $element->img_slider_5) {
+            Storage::disk('private')->delete('img/sliders/'.$element->img_slider_5);
         }
         /*if($request->emails){
             $request_element = array_merge($request_element, ["emails" => $request->emails]);

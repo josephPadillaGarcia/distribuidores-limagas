@@ -16,18 +16,18 @@ class GeneralInformationRequest extends FormRequest
         return true;
     }
 
-    public function attributes()
+    /*public function attributes()
     {
         return [
-                /*'phone_numbers.*.number' => 'teléfono',
+                'phone_numbers.*.number' => 'teléfono',
                 'whatsapp_numbers.*.number' => 'whatsapp',
                 'phone_numbers.*.department' => 'departamento',
-                'whatsapp_numbers.*.department' => 'departamento',*/
+                'whatsapp_numbers.*.department' => 'departamento',
                 'whatsapp_number' => 'número whatsapp',
                 'link_work_with_us' => 'link únete a nuestro equipo',
                 'api_url_tracking' => 'link envio cliente número tracking'
             ];
-    }
+    }*/
 
     /**
      * Get the validation rules that apply to the request.
@@ -37,14 +37,10 @@ class GeneralInformationRequest extends FormRequest
     public function rules()
     {
         return [
-            'direction' => 'required',
-            'book_link' => 'nullable|sometimes|url',
-            'api_url_tracking' => 'nullable|sometimes|url',
-            'contact_number' => 'nullable|digits:9',
-            'api_link' => 'nullable|sometimes|url',
-            'customers_link' => 'nullable|sometimes|url',
-            'whatsapp_number' => 'nullable|digits:9',
-            'link_work_with_us' => 'nullable|sometimes|url',
+            'facebook_link' => 'nullable|sometimes|url',
+            'instagram_link' => 'nullable|sometimes|url',
+            'youtube_link' => 'nullable|sometimes|url',
+            'linkedin_link' => 'nullable|sometimes|url',
         ];
     }
 }
