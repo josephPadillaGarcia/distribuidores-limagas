@@ -2131,7 +2131,7 @@ section.slider {
     grid-template-columns: auto 1fr;
     grid-gap: 12px; }
     /* line 428, scss/main.scss */
-    .formulario .select i {
+    .formulario .select i, .formulario .select span {
       color: #78B950;
       height: 100%;
       display: grid;

@@ -225,7 +225,7 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "select" }, [
-          _c("i", { staticClass: "flaticon flaticon-marcador-de-posicion" }),
+          _c("span", { staticClass: "ri-lg ri-map-pin-2-fill" }),
           _vm._v(" "),
           _c(
             "select",
@@ -280,7 +280,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "select" }, [
-          _c("i", { staticClass: "flaticon flaticon-marcador-de-posicion" }),
+          _c("span", { staticClass: "ri-lg ri-map-pin-2-fill" }),
           _vm._v(" "),
           _c(
             "select",
@@ -338,7 +338,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "select" }, [
-          _c("i", { staticClass: "flaticon flaticon-star" }),
+          _c("span", { staticClass: "ri-lg ri-map-pin-2-fill" }),
           _vm._v(" "),
           _c(
             "select",

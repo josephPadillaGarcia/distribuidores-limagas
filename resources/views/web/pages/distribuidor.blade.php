@@ -140,21 +140,42 @@
                 <br><br>
             </div>  
             <div id="slider-historia">
-                <div class="owl-balones owl-carousel owl-theme owl-general owl-general--centrar-navegadores">
+                @if ($id->products)
+                    <div class="owl-balones-limagas owl-carousel owl-theme owl-general owl-general--centrar-navegadores">
 
-                    @if ($id->products)
                         @foreach ($id->products as $e)
-                            <div class="item">
-                                <div class="card card-balon">
-                                    <img class="lazyload" src="{{ $storageUrl . '/img/productos/' . $e['image'] }}" alt="{{ $e['name'] }}" />
-                                    <h4>{{ $e['name'] }}</h4>
-                                    <span>{{ $e['precio'] }} kg</span>
+                            @if ($e['tipogas'] == "limagas")
+                                <div class="item">
+                                    <div class="card card-balon">
+                                        <img class="lazyload" src="{{ $storageUrl . '/img/productos/' . $e['image'] }}" alt="{{ $e['name'] }}" />
+                                        <h4>{{ $e['name'] }}</h4>
+                                        <span>{{ $e['precio'] }} kg</span>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         @endforeach
-                    @endif
 
-                </div>  
+                    </div>  
+                @endif
+
+                @if ($id->products)
+                    <div class="owl-balones-otrotipo owl-carousel owl-theme owl-general owl-general--centrar-navegadores">
+                        
+                            @foreach ($id->products as $e)
+                                @if ($e['tipogas'] == "otrotipogas")
+                                    <div class="item">
+                                        <div class="card card-balon">
+                                            <img class="lazyload" src="{{ $storageUrl . '/img/productos/' . $e['image'] }}" alt="{{ $e['name'] }}" />
+                                            <h4>{{ $e['name'] }}</h4>
+                                            <span>{{ $e['precio'] }} kg</span>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        
+                    </div>  
+                @endif
+
             </div>
         </div>
     </section>
@@ -168,7 +189,30 @@
 @push('scripts')
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.owl-balones.owl-carousel').owlCarousel({
+        $('.owl-balones-limagas.owl-carousel').owlCarousel({
+            loop: false,
+            margin: 10,
+            nav: true,
+            center: true,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 4000,
+            autoplayHoverPause: true,
+            navText: ["<span class='flaticon-atras'></span>","<span class='flaticon-proximo'></span>"],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1049: {
+                    items: 5
+                }
+            }
+        });
+
+        $('.owl-balones-otrotipo.owl-carousel').owlCarousel({
             loop: false,
             margin: 10,
             nav: true,

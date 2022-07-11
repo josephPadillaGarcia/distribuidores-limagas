@@ -10,6 +10,8 @@
     $provincia = $data["provincia"];
     $distrito = $data["distrito"];
     $storageUrl = config('services.storage_url');
+
+    $numoffices = count($offices);
 @endphp
 <main>
 
@@ -35,7 +37,7 @@
 
 <section class="section">
     <div class="container">
-        <div class="text-center padding">22 Distribuidores encontrados:</div>
+        <div class="text-center padding">{{ $numoffices }} Distribuidores encontrados:</div>
 
         <div class="grid-col">
 
