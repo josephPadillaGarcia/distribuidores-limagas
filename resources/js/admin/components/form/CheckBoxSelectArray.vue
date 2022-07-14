@@ -13,6 +13,9 @@
         </div>
 
       </div>
+      <div class="">
+        {{ this.methodsget }}
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +24,10 @@
 export default {
   props: {
     allitems: Array,
+    methodsget: {
+      type: String,
+      default: false
+    }
   },
   data() {
     return {

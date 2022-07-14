@@ -392,10 +392,11 @@
             <div class="col-12">
               <div class="form-group">
                 <label class="font-weight-bold" for>Metodos de Pago</label>
-                <!-- INFORMACION DE PRODUCTOS -->
+                <!-- METODOS DE PAGO -->
                 <CheckBoxSelectArray
                   :allitems="payment_methods"
                   @arrayitems="elementpaymentmethod"
+                  :methodsget="element.payment_methods"
                 />
                 <!-- ///////////////////////////////////////// -->
               </div>
