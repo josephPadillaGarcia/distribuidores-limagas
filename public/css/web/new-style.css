@@ -2339,3 +2339,14 @@ section.section-productos {
   .card-balon img {
     height: 125px;
     width: auto !important; } }
+
+
+    .content-balon {
+      padding: 20px;
+      background: rgb(255 255 255 / 68%);
+      border: 2px solid white;
+      border-radius: 50%;
+      padding-bottom: 26px;
+      padding-top: 58px;
+      margin-top: -44px;
+  }

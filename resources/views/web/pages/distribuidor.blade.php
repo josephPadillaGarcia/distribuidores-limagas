@@ -148,8 +148,10 @@
                                 <div class="item">
                                     <div class="card card-balon">
                                         <img class="lazyload" src="{{ $storageUrl . '/img/productos/' . $e['image'] }}" alt="{{ $e['name'] }}" />
-                                        <h4>{{ $e['name'] }}</h4>
-                                        <span>{{ $e['precio'] }} kg</span>
+                                        <div class="content-balon">
+                                            <h4>{{ $e['name'] }}</h4>
+                                            <span>{{ $e['precio'] }} kg</span>
+                                        </div>
                                     </div>
                                 </div>
                             @endif
@@ -166,8 +168,10 @@
                                     <div class="item">
                                         <div class="card card-balon">
                                             <img class="lazyload" src="{{ $storageUrl . '/img/productos/' . $e['image'] }}" alt="{{ $e['name'] }}" />
-                                            <h4>{{ $e['name'] }}</h4>
-                                            <span>{{ $e['precio'] }} kg</span>
+                                            <div class="content-balon">
+                                                <h4>{{ $e['name'] }}</h4>
+                                                <span>{{ $e['precio'] }} kg</span>
+                                            </div>
                                         </div>
                                     </div>
                                 @endif
