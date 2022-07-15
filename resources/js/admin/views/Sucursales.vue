@@ -28,213 +28,199 @@
       </div>
     </div>
     <div class="container-fluid mt--6">
-      <div class="row" v-if="loadingEls">
+      <!--div class="row" v-if="loadingEls">
         <div class="col-12 col-md-6 col-lg-3 mb-4" v-for="i in 8" :key="i">
           <Skeleton height="150px" />
         </div>
-      </div>
-      <div v-else>
-        <div class="row" v-if="showBlock">
-          <div class="col-12">
-            <DataTable
-              :object="itemstable"
-              placeholder="Distribuidor"
-              :button-update="true"
-              :button-read="true"
-              :button-delete="true"
-              @get="getElements"
-              @read="showDistribuidor"
-              @delete="deleteEl"
-              @update="editEl"
-              :entries-prop.sync="elementsPerPage"
-            ></DataTable>
-          </div>
+      </div-->
+      <div class="row" v-if="showBlock">
+        <div class="col-12">
+          <DataTable
+            :object="itemstable"
+            placeholder="Distribuidor"
+            :button-update="true"
+            :button-read="true"
+            :button-delete="true"
+            @get="getElements"
+            @read="showDistribuidor"
+            @delete="deleteEl"
+            @update="editEl"
+            :entries-prop.sync="elementsPerPage"
+          ></DataTable>
         </div>
+      </div>
 
-        <!--pre>{{ this.itemstable }}</pre-->
+      <!--pre>{{ this.itemstable }}</pre-->
 
-        <div class="row" v-if="detailBlock">
-          <div class="row" v-if="element">
-            <!--pre>{{ this.element }}</pre-->
-            <div class="card">
-              <div class="card-body">
-                <h3 class="mb-1">
-                  Distribuidor:
-                  <br />
-                  <span class="font-weight-normal">{{ element.name }}</span>
-                </h3>
-                <h3 class="mb-1">
-                  Descripción:
-                  <br />
-                  <div
-                    v-html="element.description"
-                    class="content-editor-value"
-                  ></div>
-                </h3>
-                <h3 class="mb-1">
-                  Dirección:
-                  <br />
-                  <span class="font-weight-normal">
-                    <pre
-                      class="mb-0"
-                      style="
-                        font-family: inherit;
-                        white-space: pre-wrap;
-                        font-size: inherit;
-                      "
-                      >{{
-                        element.direction ? element.direction : "No registrado"
-                      }}</pre
-                    >
-                  </span>
-                </h3>
-                <h3 class="mb-1">
-                  Ubigeo:
-                  <br />
-                  <span class="font-weight-normal">
-                    {{ element.ubigeo_rel.district }} -
-                    {{ element.ubigeo_rel.province }} -
-                    {{ element.ubigeo_rel.department }}
-                  </span>
-                </h3>
-                <h3 class="mb-1">
-                  Email:
-                  <br />
-                  <span class="font-weight-normal" v-if="element.emails">
-                    <template v-for="(e, i) in element.emails">
-                      <span class="d-block" :key="i + 'emi'">{{ e.name }}</span>
-                    </template>
-                  </span>
-                  <span class="font-weight-normal" v-else>No registrado</span>
-                </h3>
-
-                <h3 class="mb-1">
-                  Teléfono:
-                  <br />
-                  <span class="font-weight-normal" v-if="element.phone_numbers">
-                    <template v-for="(e, i) in element.phone_numbers">
-                      <a
-                        target="_blank"
-                        style="text-decoration: underline"
-                        :href="'tel:' + e.number"
-                        class="d-block"
-                        :key="i + 'pn'"
-                        >{{ e.number }}</a
-                      >
-                    </template>
-                  </span>
-                  <span class="font-weight-normal" v-else>No registrado</span>
-                </h3>
-
-                <h3 class="mb-1">
-                  Whatsapp:
-                  <br />
-                  <span class="font-weight-normal" v-if="element.num_what">
-                    <template v-for="(e, i) in element.num_what">
-                      <a
-                        target="_blank"
-                        style="text-decoration: underline"
-                        :href="'tel:' + e.numwhat"
-                        class="d-block"
-                        :key="i + 'pn'"
-                        >{{ e.numwhat }}</a
-                      >
-                    </template>
-                  </span>
-                  <span class="font-weight-normal" v-else>No registrado</span>
-                </h3>
-
-                <h3 class="mb-1">
-                  Facebook Link:
-                  <br />
-                  <span class="font-weight-normal">{{
-                    element.link_face
-                  }}</span>
-                </h3>
-
-                <h3 class="mb-1">
-                  Instagram Link:
-                  <br />
-                  <span class="font-weight-normal">{{
-                    element.link_insta
-                  }}</span>
-                </h3>
-
-                <h3 class="mb-1">
-                  Metodos de Pago:
-                  <br />
-                  <span v-if="element.payment_methods">
-                    <div
-                      class=""
-                      v-for="(e, i) in element.payment_methods"
-                      :key="e.id"
-                    >
-                      <img
-                        :src="imagesUrl + '/' + e.img_method"
-                        :alt="e.name"
-                        class="img-fluid d-block mb-2"
-                      />
-                      <p>{{ e.method }}</p>
-                      <p>{{ e.img_method }}</p>
-                    </div>
-                  </span>
-                  <span v-else> No tiene metodos de pago registrados </span>
-                </h3>
-
-                <h3 class="mb-1">
-                  Productos:
-                  <br />
-                  <span v-if="element.products">
-                    <div
-                      class=""
-                      v-for="(e, i) in element.products"
-                      :key="e.id"
-                    >
-                      <img
-                        :src="imagesUrl + '/productos/' + e.image"
-                        :alt="e.name"
-                        class="img-fluid d-block mb-2"
-                      />
-                      <p>{{ e.name }}</p>
-                    </div>
-                  </span>
-                  <span v-else> No tiene productos registrados </span>
-                </h3>
-
-                <h3 class="mb-1">
-                  Iframe:
-                  <br />
-                  <span class="font-weight-normal" v-if="!element.iframe"
-                    >No registrado</span
+      <div class="row" v-if="detailBlock">
+        <div class="row" v-if="element">
+          <!--pre>{{ this.element }}</pre-->
+          <div class="card">
+            <div class="card-body">
+              <h3 class="mb-1">
+                Distribuidor:
+                <br />
+                <span class="font-weight-normal">{{ element.name }}</span>
+              </h3>
+              <h3 class="mb-1">
+                Descripción:
+                <br />
+                <div
+                  v-html="element.description"
+                  class="content-editor-value"
+                ></div>
+              </h3>
+              <h3 class="mb-1">
+                Dirección:
+                <br />
+                <span class="font-weight-normal">
+                  <pre
+                    class="mb-0"
+                    style="
+                      font-family: inherit;
+                      white-space: pre-wrap;
+                      font-size: inherit;
+                    "
+                    >{{
+                      element.direction ? element.direction : "No registrado"
+                    }}</pre
                   >
-                  <div
-                    v-else
-                    v-html="element.iframe"
-                    class="parent-iframe"
-                  ></div>
-                </h3>
+                </span>
+              </h3>
+              <h3 class="mb-1">
+                Ubigeo:
+                <br />
+                <span class="font-weight-normal">
+                  {{ element.ubigeo_rel.district }} -
+                  {{ element.ubigeo_rel.province }} -
+                  {{ element.ubigeo_rel.department }}
+                </span>
+              </h3>
+              <h3 class="mb-1">
+                Email:
+                <br />
+                <span class="font-weight-normal" v-if="element.emails">
+                  <template v-for="(e, i) in element.emails">
+                    <span class="d-block" :key="i + 'emi'">{{ e.name }}</span>
+                  </template>
+                </span>
+                <span class="font-weight-normal" v-else>No registrado</span>
+              </h3>
 
-                <h3 class="mb-1">
-                  Galeria de imagenes:
-                  <br />
-                  <span v-if="element.img_slider_1">
+              <h3 class="mb-1">
+                Teléfono:
+                <br />
+                <span class="font-weight-normal" v-if="element.phone_numbers">
+                  <template v-for="(e, i) in element.phone_numbers">
+                    <a
+                      target="_blank"
+                      style="text-decoration: underline"
+                      :href="'tel:' + e.number"
+                      class="d-block"
+                      :key="i + 'pn'"
+                      >{{ e.number }}</a
+                    >
+                  </template>
+                </span>
+                <span class="font-weight-normal" v-else>No registrado</span>
+              </h3>
+
+              <h3 class="mb-1">
+                Whatsapp:
+                <br />
+                <span class="font-weight-normal" v-if="element.num_what">
+                  <template v-for="(e, i) in element.num_what">
+                    <a
+                      target="_blank"
+                      style="text-decoration: underline"
+                      :href="'tel:' + e.numwhat"
+                      class="d-block"
+                      :key="i + 'pn'"
+                      >{{ e.numwhat }}</a
+                    >
+                  </template>
+                </span>
+                <span class="font-weight-normal" v-else>No registrado</span>
+              </h3>
+
+              <h3 class="mb-1">
+                Facebook Link:
+                <br />
+                <span class="font-weight-normal">{{ element.link_face }}</span>
+              </h3>
+
+              <h3 class="mb-1">
+                Instagram Link:
+                <br />
+                <span class="font-weight-normal">{{ element.link_insta }}</span>
+              </h3>
+
+              <h3 class="mb-1">
+                Metodos de Pago:
+                <br />
+                <span v-if="element.payment_methods">
+                  <div
+                    class=""
+                    v-for="(e, i) in element.payment_methods"
+                    :key="e.id"
+                  >
                     <img
-                      :src="imagesUrl + '/sliders/' + element.img_slider_1"
+                      :src="imagesUrl + '/' + e.img_method"
+                      :alt="e.name"
                       class="img-fluid d-block mb-2"
                     />
-                  </span>
-                  <span v-else> No tiene imagen registrada </span>
-                </h3>
+                    <p>{{ e.method }}</p>
+                    <p>{{ e.img_method }}</p>
+                  </div>
+                </span>
+                <span v-else> No tiene metodos de pago registrados </span>
+              </h3>
 
-                <div class="mt-4 text-center">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    @click.prevent="restore"
-                  >
-                    Regresar
-                  </button>
-                </div>
+              <h3 class="mb-1">
+                Productos:
+                <br />
+                <span v-if="element.products">
+                  <div class="" v-for="(e, i) in element.products" :key="e.id">
+                    <img
+                      :src="imagesUrl + '/productos/' + e.image"
+                      :alt="e.name"
+                      class="img-fluid d-block mb-2"
+                    />
+                    <p>{{ e.name }}</p>
+                  </div>
+                </span>
+                <span v-else> No tiene productos registrados </span>
+              </h3>
+
+              <h3 class="mb-1">
+                Iframe:
+                <br />
+                <span class="font-weight-normal" v-if="!element.iframe"
+                  >No registrado</span
+                >
+                <div v-else v-html="element.iframe" class="parent-iframe"></div>
+              </h3>
+
+              <h3 class="mb-1">
+                Galeria de imagenes:
+                <br />
+                <span v-if="element.img_slider_1">
+                  <img
+                    :src="imagesUrl + '/sliders/' + element.img_slider_1"
+                    class="img-fluid d-block mb-2"
+                  />
+                </span>
+                <span v-else> No tiene imagen registrada </span>
+              </h3>
+
+              <div class="mt-4 text-center">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  @click.prevent="restore"
+                >
+                  Regresar
+                </button>
               </div>
             </div>
           </div>
@@ -798,7 +784,7 @@ export default {
       modalCreateUpdate: false,
       modalDestroy: false,
       loadingGet: false,
-      loadingEls: false,
+      //loadingEls: false,
       loadingSubmit: false,
       //showLoading: false,
       elements: {},
@@ -829,13 +815,13 @@ export default {
     };
   },
   methods: {
-    handleMove() {
+    /*handleMove() {
       if (this.q) {
         return false;
       }
       return true;
-    },
-    handleChange() {
+    },*/
+    /*handleChange() {
       if (this.q) {
         return false;
       }
@@ -866,7 +852,7 @@ export default {
             },
           });
         });
-    },
+    },*/
     destroyConfirm() {
       this.requestSubmit = true;
       axios
@@ -1122,7 +1108,7 @@ this.detailBlock = true*/
         .catch((error) => {});
     },
 
-    getEls() {
+    /*getEls() {
       this.loadingEls = true;
       axios
         .get(this.routeGetAll)
@@ -1131,7 +1117,7 @@ this.detailBlock = true*/
           this.loadingEls = false;
         })
         .catch((error) => {});
-    },
+    },*/
     getEl(id) {
       this.loadingGet = true;
       axios
@@ -1185,7 +1171,7 @@ this.detailBlock = true*/
   },
 
   created() {
-    this.getEls();
+    //this.getEls();
     this.getProducts();
     this.getPaymentMethod();
     this.getElements(1, this.elementsPerPage);

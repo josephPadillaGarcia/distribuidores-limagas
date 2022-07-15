@@ -766,7 +766,7 @@ var render = function() {
                                 _c("div", { staticClass: "text-center mb-2" }, [
                                   _c("img", {
                                     staticClass:
-                                      "img-fluid d-block mb-2 mx-auto",
+                                      "img-fluid d-block mb-2 mx-auto img-producto",
                                     attrs: {
                                       src:
                                         _vm.imagesUrl +
@@ -790,7 +790,7 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("h3", { staticClass: "mb-1" }, [
                                   _vm._v(
-                                    "\n                Peso del producto (kg):\n                "
+                                    "\n                Peso del producto (kg): \n                "
                                   ),
                                   _c(
                                     "span",

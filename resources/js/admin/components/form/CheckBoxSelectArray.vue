@@ -14,6 +14,7 @@
 
       </div>
       <div class="">
+        {{ this.allitems }}
         {{ this.methodsget }}
       </div>
     </div>

@@ -31,6 +31,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     allitems: Array,
@@ -1244,20 +1245,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1314,7 +1301,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       modalCreateUpdate: false,
       modalDestroy: false,
       loadingGet: false,
-      loadingEls: false,
+      //loadingEls: false,
       loadingSubmit: false,
       //showLoading: false,
       elements: {},
@@ -1342,21 +1329,52 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: {
-    handleMove: function handleMove() {
+    /*handleMove() {
       if (this.q) {
         return false;
       }
-
       return true;
-    },
-    handleChange: function handleChange() {
+    },*/
+
+    /*handleChange() {
+      if (this.q) {
+        return false;
+      }
+      axios
+        .put(this.routeOrder, this.elements)
+        .then((response) => {
+          this.restore();
+          Swal.fire({
+            title: response.data.title,
+            text: response.data.message,
+            type: "success",
+            confirmButtonText: "OK",
+            buttonsStyling: false,
+            customClass: {
+              confirmButton: "btn btn-primary",
+            },
+          });
+        })
+        .catch((error) => {
+          Swal.fire({
+            title: error.response.data.title,
+            text: error.response.data.message,
+            type: "error",
+            confirmButtonText: "OK",
+            buttonsStyling: false,
+            customClass: {
+              confirmButton: "btn btn-primary",
+            },
+          });
+        });
+    },*/
+    destroyConfirm: function destroyConfirm() {
       var _this = this;
 
-      if (this.q) {
-        return false;
-      }
+      this.requestSubmit = true;
+      axios["delete"](this.route + "/" + this.element.id).then(function (response) {
+        _this.requestSubmit = false;
 
-      axios.put(this.routeOrder, this.elements).then(function (response) {
         _this.restore();
 
         Swal.fire({
@@ -1366,38 +1384,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           confirmButtonText: "OK",
           buttonsStyling: false,
           customClass: {
-            confirmButton: "btn btn-primary"
-          }
-        });
-      })["catch"](function (error) {
-        Swal.fire({
-          title: error.response.data.title,
-          text: error.response.data.message,
-          type: "error",
-          confirmButtonText: "OK",
-          buttonsStyling: false,
-          customClass: {
-            confirmButton: "btn btn-primary"
-          }
-        });
-      });
-    },
-    destroyConfirm: function destroyConfirm() {
-      var _this2 = this;
-
-      this.requestSubmit = true;
-      axios["delete"](this.route + "/" + this.element.id).then(function (response) {
-        _this2.requestSubmit = false;
-
-        _this2.restore();
-
-        Swal.fire({
-          title: response.data.title,
-          text: response.data.message,
-          type: "success",
-          confirmButtonText: "OK",
-          buttonsStyling: false,
-          customClass: {
             confirmButton: "btn btn-inverse-primary"
           }
         });
@@ -1413,7 +1399,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         });
 
-        _this2.restoreEl();
+        _this.restoreEl();
       });
     },
     newEl: function newEl() {
@@ -1428,7 +1414,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.detailBlock = true*/
     },
     submit: function submit() {
-      var _this3 = this;
+      var _this2 = this;
 
       this.requestSubmit = true;
       var url;
@@ -1568,7 +1554,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         url: url,
         data: fd
       }).then(function (response) {
-        _this3.requestSubmit = false;
+        _this2.requestSubmit = false;
         Swal.fire({
           title: response.data.title,
           text: response.data.message,
@@ -1580,12 +1566,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         });
 
-        _this3.restore();
+        _this2.restore();
       })["catch"](function (error) {
-        _this3.requestSubmit = false;
+        _this2.requestSubmit = false;
 
         if (error.response.status === 422) {
-          _this3.errors = error.response.data.errors || {};
+          _this2.errors = error.response.data.errors || {};
           return;
         }
 
@@ -1600,7 +1586,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         });
 
-        _this3.restoreEl();
+        _this2.restoreEl();
       });
     },
     restore: function restore() {
@@ -1631,7 +1617,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.errors = {};
     },
     getElements: function getElements(page, itemsPerPage) {
-      var _this4 = this;
+      var _this3 = this;
 
       var q = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       var url = this.routeItemsGetAll + "?page=" + page + "&itemsPerPage=" + itemsPerPage;
@@ -1641,33 +1627,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       axios.get(url).then(function (response) {
-        _this4.itemstable = response.data;
+        _this3.itemstable = response.data;
       })["catch"](function (error) {});
     },
-    getEls: function getEls() {
-      var _this5 = this;
 
+    /*getEls() {
       this.loadingEls = true;
-      axios.get(this.routeGetAll).then(function (response) {
-        _this5.elements = response.data;
-        _this5.loadingEls = false;
-      })["catch"](function (error) {});
-    },
+      axios
+        .get(this.routeGetAll)
+        .then((response) => {
+          this.elements = response.data;
+          this.loadingEls = false;
+        })
+        .catch((error) => {});
+    },*/
     getEl: function getEl(id) {
-      var _this6 = this;
+      var _this4 = this;
 
       this.loadingGet = true;
       axios.get(this.route + "/json/get/" + id).then(function (response) {
-        _this6.element = response.data;
-        _this6.loadingGet = false;
+        _this4.element = response.data;
+        _this4.loadingGet = false;
       })["catch"](function (error) {});
     },
     // Obteniendo todos los productos de gas
     getProducts: function getProducts() {
-      var _this7 = this;
+      var _this5 = this;
 
       axios.get(this.routeProductsGetAll).then(function (response) {
-        _this7.products = response.data;
+        _this5.products = response.data;
       })["catch"](function (err) {});
     },
 
@@ -1685,10 +1673,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //------------------------------
     // OBTENEMOS LOS METODOS DE PAGO
     getPaymentMethod: function getPaymentMethod() {
-      var _this8 = this;
+      var _this6 = this;
 
       axios.get(this.routePaymentMethodGetAll).then(function (response) {
-        _this8.payment_methods = response.data;
+        _this6.payment_methods = response.data;
       })["catch"](function (err) {});
     },
     elementpaymentmethod: function elementpaymentmethod(val) {
@@ -1697,7 +1685,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   },
   created: function created() {
-    this.getEls();
+    //this.getEls();
     this.getProducts();
     this.getPaymentMethod();
     this.getElements(1, this.elementsPerPage);
@@ -1887,7 +1875,15 @@ var render = function() {
           ])
         }),
         _vm._v(" "),
-        _c("div", {}, [_vm._v("\n      " + _vm._s(this.methodsget) + "\n    ")])
+        _c("div", {}, [
+          _vm._v(
+            "\n      " +
+              _vm._s(this.allitems) +
+              "\n      " +
+              _vm._s(this.methodsget) +
+              "\n    "
+          )
+        ])
       ],
       2
     )
@@ -2345,451 +2341,379 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "container-fluid mt--6" }, [
-        _vm.loadingEls
-          ? _c(
-              "div",
-              { staticClass: "row" },
-              _vm._l(8, function(i) {
-                return _c(
-                  "div",
-                  { key: i, staticClass: "col-12 col-md-6 col-lg-3 mb-4" },
-                  [_c("Skeleton", { attrs: { height: "150px" } })],
-                  1
-                )
-              }),
-              0
-            )
-          : _c("div", [
-              _vm.showBlock
+        _vm.showBlock
+          ? _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "col-12" },
+                [
+                  _c("DataTable", {
+                    attrs: {
+                      object: _vm.itemstable,
+                      placeholder: "Distribuidor",
+                      "button-update": true,
+                      "button-read": true,
+                      "button-delete": true,
+                      "entries-prop": _vm.elementsPerPage
+                    },
+                    on: {
+                      get: _vm.getElements,
+                      read: _vm.showDistribuidor,
+                      delete: _vm.deleteEl,
+                      update: _vm.editEl,
+                      "update:entriesProp": function($event) {
+                        _vm.elementsPerPage = $event
+                      },
+                      "update:entries-prop": function($event) {
+                        _vm.elementsPerPage = $event
+                      }
+                    }
+                  })
+                ],
+                1
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.detailBlock
+          ? _c("div", { staticClass: "row" }, [
+              _vm.element
                 ? _c("div", { staticClass: "row" }, [
-                    _c(
-                      "div",
-                      { staticClass: "col-12" },
-                      [
-                        _c("DataTable", {
-                          attrs: {
-                            object: _vm.itemstable,
-                            placeholder: "Distribuidor",
-                            "button-update": true,
-                            "button-read": true,
-                            "button-delete": true,
-                            "entries-prop": _vm.elementsPerPage
-                          },
-                          on: {
-                            get: _vm.getElements,
-                            read: _vm.showDistribuidor,
-                            delete: _vm.deleteEl,
-                            update: _vm.editEl,
-                            "update:entriesProp": function($event) {
-                              _vm.elementsPerPage = $event
-                            },
-                            "update:entries-prop": function($event) {
-                              _vm.elementsPerPage = $event
+                    _c("div", { staticClass: "card" }, [
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("h3", { staticClass: "mb-1" }, [
+                          _vm._v(
+                            "\n              Distribuidor:\n              "
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "font-weight-normal" }, [
+                            _vm._v(_vm._s(_vm.element.name))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", { staticClass: "mb-1" }, [
+                          _vm._v(
+                            "\n              Descripción:\n              "
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("div", {
+                            staticClass: "content-editor-value",
+                            domProps: {
+                              innerHTML: _vm._s(_vm.element.description)
                             }
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.detailBlock
-                ? _c("div", { staticClass: "row" }, [
-                    _vm.element
-                      ? _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "card" }, [
-                            _c("div", { staticClass: "card-body" }, [
-                              _c("h3", { staticClass: "mb-1" }, [
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", { staticClass: "mb-1" }, [
+                          _vm._v("\n              Dirección:\n              "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "font-weight-normal" }, [
+                            _c(
+                              "pre",
+                              {
+                                staticClass: "mb-0",
+                                staticStyle: {
+                                  "font-family": "inherit",
+                                  "white-space": "pre-wrap",
+                                  "font-size": "inherit"
+                                }
+                              },
+                              [
                                 _vm._v(
-                                  "\n                Distribuidor:\n                "
-                                ),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  { staticClass: "font-weight-normal" },
-                                  [_vm._v(_vm._s(_vm.element.name))]
+                                  _vm._s(
+                                    _vm.element.direction
+                                      ? _vm.element.direction
+                                      : "No registrado"
+                                  )
                                 )
-                              ]),
-                              _vm._v(" "),
-                              _c("h3", { staticClass: "mb-1" }, [
-                                _vm._v(
-                                  "\n                Descripción:\n                "
-                                ),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c("div", {
-                                  staticClass: "content-editor-value",
-                                  domProps: {
-                                    innerHTML: _vm._s(_vm.element.description)
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", { staticClass: "mb-1" }, [
+                          _vm._v("\n              Ubigeo:\n              "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "font-weight-normal" }, [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(_vm.element.ubigeo_rel.district) +
+                                " -\n                " +
+                                _vm._s(_vm.element.ubigeo_rel.province) +
+                                " -\n                " +
+                                _vm._s(_vm.element.ubigeo_rel.department) +
+                                "\n              "
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", { staticClass: "mb-1" }, [
+                          _vm._v("\n              Email:\n              "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _vm.element.emails
+                            ? _c(
+                                "span",
+                                { staticClass: "font-weight-normal" },
+                                [
+                                  _vm._l(_vm.element.emails, function(e, i) {
+                                    return [
+                                      _c(
+                                        "span",
+                                        {
+                                          key: i + "emi",
+                                          staticClass: "d-block"
+                                        },
+                                        [_vm._v(_vm._s(e.name))]
+                                      )
+                                    ]
+                                  })
+                                ],
+                                2
+                              )
+                            : _c(
+                                "span",
+                                { staticClass: "font-weight-normal" },
+                                [_vm._v("No registrado")]
+                              )
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", { staticClass: "mb-1" }, [
+                          _vm._v("\n              Teléfono:\n              "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _vm.element.phone_numbers
+                            ? _c(
+                                "span",
+                                { staticClass: "font-weight-normal" },
+                                [
+                                  _vm._l(_vm.element.phone_numbers, function(
+                                    e,
+                                    i
+                                  ) {
+                                    return [
+                                      _c(
+                                        "a",
+                                        {
+                                          key: i + "pn",
+                                          staticClass: "d-block",
+                                          staticStyle: {
+                                            "text-decoration": "underline"
+                                          },
+                                          attrs: {
+                                            target: "_blank",
+                                            href: "tel:" + e.number
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(e.number))]
+                                      )
+                                    ]
+                                  })
+                                ],
+                                2
+                              )
+                            : _c(
+                                "span",
+                                { staticClass: "font-weight-normal" },
+                                [_vm._v("No registrado")]
+                              )
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", { staticClass: "mb-1" }, [
+                          _vm._v("\n              Whatsapp:\n              "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _vm.element.num_what
+                            ? _c(
+                                "span",
+                                { staticClass: "font-weight-normal" },
+                                [
+                                  _vm._l(_vm.element.num_what, function(e, i) {
+                                    return [
+                                      _c(
+                                        "a",
+                                        {
+                                          key: i + "pn",
+                                          staticClass: "d-block",
+                                          staticStyle: {
+                                            "text-decoration": "underline"
+                                          },
+                                          attrs: {
+                                            target: "_blank",
+                                            href: "tel:" + e.numwhat
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(e.numwhat))]
+                                      )
+                                    ]
+                                  })
+                                ],
+                                2
+                              )
+                            : _c(
+                                "span",
+                                { staticClass: "font-weight-normal" },
+                                [_vm._v("No registrado")]
+                              )
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", { staticClass: "mb-1" }, [
+                          _vm._v(
+                            "\n              Facebook Link:\n              "
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "font-weight-normal" }, [
+                            _vm._v(_vm._s(_vm.element.link_face))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", { staticClass: "mb-1" }, [
+                          _vm._v(
+                            "\n              Instagram Link:\n              "
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "font-weight-normal" }, [
+                            _vm._v(_vm._s(_vm.element.link_insta))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", { staticClass: "mb-1" }, [
+                          _vm._v(
+                            "\n              Metodos de Pago:\n              "
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
+                          _vm.element.payment_methods
+                            ? _c(
+                                "span",
+                                _vm._l(_vm.element.payment_methods, function(
+                                  e,
+                                  i
+                                ) {
+                                  return _c("div", { key: e.id }, [
+                                    _c("img", {
+                                      staticClass: "img-fluid d-block mb-2",
+                                      attrs: {
+                                        src: _vm.imagesUrl + "/" + e.img_method,
+                                        alt: e.name
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("p", [_vm._v(_vm._s(e.method))]),
+                                    _vm._v(" "),
+                                    _c("p", [_vm._v(_vm._s(e.img_method))])
+                                  ])
+                                }),
+                                0
+                              )
+                            : _c("span", [
+                                _vm._v(" No tiene metodos de pago registrados ")
+                              ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", { staticClass: "mb-1" }, [
+                          _vm._v("\n              Productos:\n              "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _vm.element.products
+                            ? _c(
+                                "span",
+                                _vm._l(_vm.element.products, function(e, i) {
+                                  return _c("div", { key: e.id }, [
+                                    _c("img", {
+                                      staticClass: "img-fluid d-block mb-2",
+                                      attrs: {
+                                        src:
+                                          _vm.imagesUrl +
+                                          "/productos/" +
+                                          e.image,
+                                        alt: e.name
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("p", [_vm._v(_vm._s(e.name))])
+                                  ])
+                                }),
+                                0
+                              )
+                            : _c("span", [
+                                _vm._v(" No tiene productos registrados ")
+                              ])
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", { staticClass: "mb-1" }, [
+                          _vm._v("\n              Iframe:\n              "),
+                          _c("br"),
+                          _vm._v(" "),
+                          !_vm.element.iframe
+                            ? _c(
+                                "span",
+                                { staticClass: "font-weight-normal" },
+                                [_vm._v("No registrado")]
+                              )
+                            : _c("div", {
+                                staticClass: "parent-iframe",
+                                domProps: {
+                                  innerHTML: _vm._s(_vm.element.iframe)
+                                }
+                              })
+                        ]),
+                        _vm._v(" "),
+                        _c("h3", { staticClass: "mb-1" }, [
+                          _vm._v(
+                            "\n              Galeria de imagenes:\n              "
+                          ),
+                          _c("br"),
+                          _vm._v(" "),
+                          _vm.element.img_slider_1
+                            ? _c("span", [
+                                _c("img", {
+                                  staticClass: "img-fluid d-block mb-2",
+                                  attrs: {
+                                    src:
+                                      _vm.imagesUrl +
+                                      "/sliders/" +
+                                      _vm.element.img_slider_1
                                   }
                                 })
-                              ]),
-                              _vm._v(" "),
-                              _c("h3", { staticClass: "mb-1" }, [
-                                _vm._v(
-                                  "\n                Dirección:\n                "
-                                ),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  { staticClass: "font-weight-normal" },
-                                  [
-                                    _c(
-                                      "pre",
-                                      {
-                                        staticClass: "mb-0",
-                                        staticStyle: {
-                                          "font-family": "inherit",
-                                          "white-space": "pre-wrap",
-                                          "font-size": "inherit"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.element.direction
-                                              ? _vm.element.direction
-                                              : "No registrado"
-                                          )
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("h3", { staticClass: "mb-1" }, [
-                                _vm._v(
-                                  "\n                Ubigeo:\n                "
-                                ),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  { staticClass: "font-weight-normal" },
-                                  [
-                                    _vm._v(
-                                      "\n                  " +
-                                        _vm._s(
-                                          _vm.element.ubigeo_rel.district
-                                        ) +
-                                        " -\n                  " +
-                                        _vm._s(
-                                          _vm.element.ubigeo_rel.province
-                                        ) +
-                                        " -\n                  " +
-                                        _vm._s(
-                                          _vm.element.ubigeo_rel.department
-                                        ) +
-                                        "\n                "
-                                    )
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("h3", { staticClass: "mb-1" }, [
-                                _vm._v(
-                                  "\n                Email:\n                "
-                                ),
-                                _c("br"),
-                                _vm._v(" "),
-                                _vm.element.emails
-                                  ? _c(
-                                      "span",
-                                      { staticClass: "font-weight-normal" },
-                                      [
-                                        _vm._l(_vm.element.emails, function(
-                                          e,
-                                          i
-                                        ) {
-                                          return [
-                                            _c(
-                                              "span",
-                                              {
-                                                key: i + "emi",
-                                                staticClass: "d-block"
-                                              },
-                                              [_vm._v(_vm._s(e.name))]
-                                            )
-                                          ]
-                                        })
-                                      ],
-                                      2
-                                    )
-                                  : _c(
-                                      "span",
-                                      { staticClass: "font-weight-normal" },
-                                      [_vm._v("No registrado")]
-                                    )
-                              ]),
-                              _vm._v(" "),
-                              _c("h3", { staticClass: "mb-1" }, [
-                                _vm._v(
-                                  "\n                Teléfono:\n                "
-                                ),
-                                _c("br"),
-                                _vm._v(" "),
-                                _vm.element.phone_numbers
-                                  ? _c(
-                                      "span",
-                                      { staticClass: "font-weight-normal" },
-                                      [
-                                        _vm._l(
-                                          _vm.element.phone_numbers,
-                                          function(e, i) {
-                                            return [
-                                              _c(
-                                                "a",
-                                                {
-                                                  key: i + "pn",
-                                                  staticClass: "d-block",
-                                                  staticStyle: {
-                                                    "text-decoration":
-                                                      "underline"
-                                                  },
-                                                  attrs: {
-                                                    target: "_blank",
-                                                    href: "tel:" + e.number
-                                                  }
-                                                },
-                                                [_vm._v(_vm._s(e.number))]
-                                              )
-                                            ]
-                                          }
-                                        )
-                                      ],
-                                      2
-                                    )
-                                  : _c(
-                                      "span",
-                                      { staticClass: "font-weight-normal" },
-                                      [_vm._v("No registrado")]
-                                    )
-                              ]),
-                              _vm._v(" "),
-                              _c("h3", { staticClass: "mb-1" }, [
-                                _vm._v(
-                                  "\n                Whatsapp:\n                "
-                                ),
-                                _c("br"),
-                                _vm._v(" "),
-                                _vm.element.num_what
-                                  ? _c(
-                                      "span",
-                                      { staticClass: "font-weight-normal" },
-                                      [
-                                        _vm._l(_vm.element.num_what, function(
-                                          e,
-                                          i
-                                        ) {
-                                          return [
-                                            _c(
-                                              "a",
-                                              {
-                                                key: i + "pn",
-                                                staticClass: "d-block",
-                                                staticStyle: {
-                                                  "text-decoration": "underline"
-                                                },
-                                                attrs: {
-                                                  target: "_blank",
-                                                  href: "tel:" + e.numwhat
-                                                }
-                                              },
-                                              [_vm._v(_vm._s(e.numwhat))]
-                                            )
-                                          ]
-                                        })
-                                      ],
-                                      2
-                                    )
-                                  : _c(
-                                      "span",
-                                      { staticClass: "font-weight-normal" },
-                                      [_vm._v("No registrado")]
-                                    )
-                              ]),
-                              _vm._v(" "),
-                              _c("h3", { staticClass: "mb-1" }, [
-                                _vm._v(
-                                  "\n                Facebook Link:\n                "
-                                ),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  { staticClass: "font-weight-normal" },
-                                  [_vm._v(_vm._s(_vm.element.link_face))]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("h3", { staticClass: "mb-1" }, [
-                                _vm._v(
-                                  "\n                Instagram Link:\n                "
-                                ),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  { staticClass: "font-weight-normal" },
-                                  [_vm._v(_vm._s(_vm.element.link_insta))]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("h3", { staticClass: "mb-1" }, [
-                                _vm._v(
-                                  "\n                Metodos de Pago:\n                "
-                                ),
-                                _c("br"),
-                                _vm._v(" "),
-                                _vm.element.payment_methods
-                                  ? _c(
-                                      "span",
-                                      _vm._l(
-                                        _vm.element.payment_methods,
-                                        function(e, i) {
-                                          return _c("div", { key: e.id }, [
-                                            _c("img", {
-                                              staticClass:
-                                                "img-fluid d-block mb-2",
-                                              attrs: {
-                                                src:
-                                                  _vm.imagesUrl +
-                                                  "/" +
-                                                  e.img_method,
-                                                alt: e.name
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c("p", [_vm._v(_vm._s(e.method))]),
-                                            _vm._v(" "),
-                                            _c("p", [
-                                              _vm._v(_vm._s(e.img_method))
-                                            ])
-                                          ])
-                                        }
-                                      ),
-                                      0
-                                    )
-                                  : _c("span", [
-                                      _vm._v(
-                                        " No tiene metodos de pago registrados "
-                                      )
-                                    ])
-                              ]),
-                              _vm._v(" "),
-                              _c("h3", { staticClass: "mb-1" }, [
-                                _vm._v(
-                                  "\n                Productos:\n                "
-                                ),
-                                _c("br"),
-                                _vm._v(" "),
-                                _vm.element.products
-                                  ? _c(
-                                      "span",
-                                      _vm._l(_vm.element.products, function(
-                                        e,
-                                        i
-                                      ) {
-                                        return _c("div", { key: e.id }, [
-                                          _c("img", {
-                                            staticClass:
-                                              "img-fluid d-block mb-2",
-                                            attrs: {
-                                              src:
-                                                _vm.imagesUrl +
-                                                "/productos/" +
-                                                e.image,
-                                              alt: e.name
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c("p", [_vm._v(_vm._s(e.name))])
-                                        ])
-                                      }),
-                                      0
-                                    )
-                                  : _c("span", [
-                                      _vm._v(" No tiene productos registrados ")
-                                    ])
-                              ]),
-                              _vm._v(" "),
-                              _c("h3", { staticClass: "mb-1" }, [
-                                _vm._v(
-                                  "\n                Iframe:\n                "
-                                ),
-                                _c("br"),
-                                _vm._v(" "),
-                                !_vm.element.iframe
-                                  ? _c(
-                                      "span",
-                                      { staticClass: "font-weight-normal" },
-                                      [_vm._v("No registrado")]
-                                    )
-                                  : _c("div", {
-                                      staticClass: "parent-iframe",
-                                      domProps: {
-                                        innerHTML: _vm._s(_vm.element.iframe)
-                                      }
-                                    })
-                              ]),
-                              _vm._v(" "),
-                              _c("h3", { staticClass: "mb-1" }, [
-                                _vm._v(
-                                  "\n                Galeria de imagenes:\n                "
-                                ),
-                                _c("br"),
-                                _vm._v(" "),
-                                _vm.element.img_slider_1
-                                  ? _c("span", [
-                                      _c("img", {
-                                        staticClass: "img-fluid d-block mb-2",
-                                        attrs: {
-                                          src:
-                                            _vm.imagesUrl +
-                                            "/sliders/" +
-                                            _vm.element.img_slider_1
-                                        }
-                                      })
-                                    ])
-                                  : _c("span", [
-                                      _vm._v(" No tiene imagen registrada ")
-                                    ])
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "mt-4 text-center" }, [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-secondary",
-                                    attrs: { type: "button" },
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        return _vm.restore.apply(
-                                          null,
-                                          arguments
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                  Regresar\n                "
-                                    )
-                                  ]
-                                )
                               ])
-                            ])
-                          ])
+                            : _c("span", [
+                                _vm._v(" No tiene imagen registrada ")
+                              ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "mt-4 text-center" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-secondary",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.restore.apply(null, arguments)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                Regresar\n              "
+                              )
+                            ]
+                          )
                         ])
-                      : _vm._e()
+                      ])
+                    ])
                   ])
                 : _vm._e()
             ])
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c(

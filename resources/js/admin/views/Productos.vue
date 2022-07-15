@@ -56,7 +56,7 @@
                   <img
                     :src="imagesUrl + '/productos/' + el.image"
                     :alt="el.name"
-                    class="img-fluid d-block mb-2 mx-auto"
+                    class="img-fluid d-block mb-2 mx-auto img-producto"
                   />
                 </div>
                 <h3 class="mb-1">
@@ -64,7 +64,7 @@
                   <span class="font-weight-normal">{{ el.name }}</span>
                 </h3>
                 <h3 class="mb-1">
-                  Peso del producto (kg):
+                  Peso del producto (kg): 
                   <span class="font-weight-normal">{{ el.precio }} Kg</span>
                 </h3>
                 <h3 class="mb-1">
