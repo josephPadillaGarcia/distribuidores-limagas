@@ -2,3 +2,16 @@
     width: auto;
     height: 180px;
 }
+
+.list-items {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-content: center;
+    justify-content: center;
+    grid-gap: 10px;
+  }
+
+  .items{    
+    display: inline-flex;
+    gap: 8px;
+  }

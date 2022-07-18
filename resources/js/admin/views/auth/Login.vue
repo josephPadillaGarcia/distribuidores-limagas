@@ -2,7 +2,7 @@
   <div class="row py-lg-0 my-lg-0 h-100 d-flex align-items-center mx-lg-5">
     <div class="col-12 px-lg-5 w-100 ">
       <img
-        src="/storage/img/logo.png"
+        src="/storage/img/logo-limagas-color.png"
         height="60"
         width="auto"
         alt="Logo"
@@ -37,7 +37,7 @@
             for="password"
           >{{ errors.password[0] }}</label>
         </div>
-        <div class="custom-control custom-control-alternative custom-checkbox">
+        <!--div class="custom-control custom-control-alternative custom-checkbox">
           <input
             class="custom-control-input"
             id="customCheckLogin"
@@ -47,7 +47,7 @@
           <label class="custom-control-label" for="customCheckLogin">
             <span class="text-dark">Recuérdame</span>
           </label>
-        </div>
+        </div-->
         <div class="text-center">
           <Button
             :text="'Iniciar Sesión'"

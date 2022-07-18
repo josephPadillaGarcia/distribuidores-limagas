@@ -455,7 +455,7 @@ var render = function() {
         _c("img", {
           staticClass: "d-block mx-auto mb-4",
           attrs: {
-            src: "/storage/img/logo.png",
+            src: "/storage/img/logo-limagas-color.png",
             height: "60",
             width: "auto",
             alt: "Logo"
@@ -562,57 +562,6 @@ var render = function() {
                       )
                     : _vm._e()
                 ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "custom-control custom-control-alternative custom-checkbox"
-                  },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.token_recordar,
-                          expression: "token_recordar"
-                        }
-                      ],
-                      staticClass: "custom-control-input",
-                      attrs: { id: "customCheckLogin", type: "checkbox" },
-                      domProps: {
-                        checked: Array.isArray(_vm.token_recordar)
-                          ? _vm._i(_vm.token_recordar, null) > -1
-                          : _vm.token_recordar
-                      },
-                      on: {
-                        change: function($event) {
-                          var $$a = _vm.token_recordar,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = null,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                (_vm.token_recordar = $$a.concat([$$v]))
-                            } else {
-                              $$i > -1 &&
-                                (_vm.token_recordar = $$a
-                                  .slice(0, $$i)
-                                  .concat($$a.slice($$i + 1)))
-                            }
-                          } else {
-                            _vm.token_recordar = $$c
-                          }
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm._m(0)
-                  ]
-                ),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -757,21 +706,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "label",
-      {
-        staticClass: "custom-control-label",
-        attrs: { for: "customCheckLogin" }
-      },
-      [_c("span", { staticClass: "text-dark" }, [_vm._v("Recuérdame")])]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

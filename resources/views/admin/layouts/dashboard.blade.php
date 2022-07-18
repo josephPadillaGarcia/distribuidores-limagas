@@ -8,7 +8,7 @@
         <button-menu></button-menu>
         <!-- Brand -->
         <a class="navbar-brand" href="{{ route('cms.dashboard') }}">
-            <img src="/storage/img/icon.png" class="align-middle d-block d-md-none logo-mini mx-auto" height="50" width="auto" />
+            <img src="/storage/img/logo-limagas-color.png" class="align-middle d-block d-md-none logo-mini mx-auto" height="50" width="auto" />
             <img src="/storage/img/logo-limagas-color.png" class="align-middle d-none d-md-block logo mx-auto" height="40" width="auto" />
         </a>
         <!-- User -->
@@ -26,10 +26,10 @@
                             </span>
                         </div>
                     </template>
-                    <b-dropdown-item href="{{ route('cms.profile') }}">
+                    <!--b-dropdown-item href="{{ route('cms.profile') }}">
                         <span class="ri-passport-line ri-lg current-color mr-2"></span> <span class="v-align-middle">Mi perfil</span>
                     </b-dropdown-item>
-                    <b-dropdown-divider></b-dropdown-divider>
+                    <b-dropdown-divider></b-dropdown-divider-->
                     <b-dropdown-item href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <span class="ri-shut-down-line ri-lg current-color text-danger mr-2"></span> <span class="v-align-middle">Cerrar Sesión</span>
                     </b-dropdown-item>
@@ -141,10 +141,10 @@
                                 </div>
                             </div>
                         </template>
-                        <b-dropdown-item class="my-1" href="{{ route('cms.profile') }}">
+                        <!--b-dropdown-item class="my-1" href="{{ route('cms.profile') }}">
                         <span class="ri-passport-line ri-lg current-color mr-2"></span> <span class="v-align-middle"> <span class="v-align-middle">Mi perfil</span>
                         </b-dropdown-item>
-                        <b-dropdown-divider></b-dropdown-divider>
+                        <b-dropdown-divider></b-dropdown-divider-->
                         <b-dropdown-item class="my-1" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <span class="ri-shut-down-line ri-lg current-color text-danger mr-2"></span><span class="v-align-middle">Cerrar Sesión</span>
                         </b-dropdown-item>

@@ -6,13 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name') }} - Admin</title>
     <meta name="robots" content="noindex,nofollow">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('storage/img/favicon/android-icon-192x192.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('storage/img/favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('storage/img/favicon/favicon-96x96.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('storage/img/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('storage/img/favicon/manifest.json') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('storage/img/icon.png') }}">
+    <link rel="manifest" href="{{ asset('storage/img/icon.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{{ asset('storage/img/ms-icon-144x144.png') }}">
+    <meta name="msapplication-TileImage" content="{{ asset('storage/img/icon.png') }}">
     <meta name="theme-color" content="#ffffff">
     <link href="{{ asset('css/admin/remixicon.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin/jq.fancybox.min.css') }}" rel="stylesheet">

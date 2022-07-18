@@ -377,10 +377,12 @@
 
             <div class="col-12">
               <div class="form-group">
-                <label class="font-weight-bold" for>Metodos de Pago</label>
+                <b class="font-weight-bold" for>Metodos de Pago</b>
                 <!-- METODOS DE PAGO -->
                 <CheckBoxSelectArray
                   :allitems="payment_methods"
+                  :title="title"
+                  head="pago"
                   @arrayitems="elementpaymentmethod"
                   :methodsget="element.payment_methods"
                 />
@@ -415,6 +417,9 @@
                 <CheckBoxSelectArray
                   :allitems="products"
                   @arrayitems="elementproducts"
+                  :title="title"
+                  head="productos"
+                  :methodsget="element.products"
                 />
                 <!-- ///////////////////////////////////////// -->
               </div>
@@ -812,6 +817,8 @@ export default {
       elementsPerPage: 20,
       showBlock: true,
       detailBlock: false,
+
+      ImgUrlProps: ""
     };
   },
   methods: {
@@ -968,10 +975,6 @@ this.detailBlock = true*/
           JSON.stringify(this.element.payment_methods)
         );
       }
-
-      /*if (this.element.payment_methods) {
-        fd.append("payment_methods", this.element.payment_methods);
-      }*/
 
       if (this.element.phone_numbers) {
         fd.append("phone_numbers", JSON.stringify(this.element.phone_numbers));
@@ -1168,6 +1171,10 @@ this.detailBlock = true*/
     },
 
     //---------------------------
+
+    /*addPropsComponents(){
+this.ImgUrlProps = this.Image
+    }*/
   },
 
   created() {
