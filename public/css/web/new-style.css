@@ -2254,7 +2254,9 @@ section.section-productos {
   /* line 551, scss/main.scss */
   .mapa iframe {
     display: block;
-    border-radius: 10px; }
+    border-radius: 10px; 
+    width: 100%;
+  }
 
 @media only screen and (max-width: 1050px) {
   /* line 558, scss/main.scss */
@@ -2350,3 +2352,12 @@ section.section-productos {
       padding-top: 58px;
       margin-top: -44px;
   }
+
+
+  .content-limagas, .content-otrogas {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    justify-content: center;
+    margin-bottom: 4rem;
+}

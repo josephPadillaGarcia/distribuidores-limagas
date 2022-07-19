@@ -244,11 +244,13 @@ Route::prefix('admin')->group(function() {
 
     
         #Misc
-        Route::get('json/select/categories', 'CmsController@getCategories')->name('json.get-categories');
+        Route::get('files/{folder}/{subfolder}/{file}', 'CmsController@getFile')->name('get-file');
         Route::get('json/get-departments', 'CmsController@getDepartmentsParent')->name('json.get-departments');
         Route::get('json/get-provinces', 'CmsController@getProvincesParent')->name('json.get-provinces');
         Route::get('json/get-districts', 'CmsController@getDistrictsParent')->name('json.get-districts');
     });
 });
 
-Route::get('files/{folder}/{subfolder}/{file}', 'Cms\CmsController@getFile')->name('get-file');
+Route::get('/symlink', function () {
+    Artisan::call('storage:link');
+});

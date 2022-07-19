@@ -98,7 +98,7 @@
             <ul>
                 @if ($id->num_what)
                     @foreach ($id->num_what as $pnw)
-                        <li><a href="" class="btn btn2 btn-icon"><i class="flaticon flaticon-whatsapp"> </i>{{ $pnw['numwhat'] }}</a></li>      
+                        <li><a href="https://api.whatsapp.com/send/?phone=51965151411&amp;text=Hola%2C+vi+su+anuncio+en+Google+y+deseo+información+de+sus+productos&amp;app_absent=0" class="btn btn2 btn-icon"><i class="flaticon flaticon-whatsapp"> </i>{{ $pnw['numwhat'] }}</a></li>      
                     @endforeach
                 @endif
             
@@ -116,6 +116,18 @@
                 @endif
                 
             </ul>   
+        </div>
+
+        <div class="telefono">
+            <p><strong>Síguenos en:</strong></p>
+            @if ($id->link_face || $id->link_insta)
+                <ul>
+                    <li><a href="{{ $id->link_face }}" class="btn btn-circle"><i class="flaticon-facebook"></i></a></li>
+                    <li><a href="{{ $id->link_insta }}" class="btn btn-circle"><i class="flaticon-instagram"></i></a></li> 
+                </ul>               
+            @else
+                <strong>No hay redes sociales registrados</strong>
+            @endif
         </div>
     
         <div class="ubicacion">
@@ -138,34 +150,12 @@
                 <img src="{{ $storageUrl.'/img/icon.png'}}" alt="">
                 <h2><strong>Nuestros Productos para tu Hogar</strong></h2>
                 <br><br>
-            </div>  
-            <div id="slider-historia">
-                @if ($id->products)
-                    <div class="owl-balones-limagas owl-carousel owl-theme owl-general owl-general--centrar-navegadores">
-
-                        @foreach ($id->products as $e)
-                            @if ($e['tipogas'] == "limagas")
-                                <div class="item">
-                                    <div class="card card-balon">
-                                        <img class="lazyload" src="{{ $storageUrl . '/img/productos/' . $e['image'] }}" alt="{{ $e['name'] }}" />
-                                        <div class="content-balon">
-                                            <h4>{{ $e['name'] }}</h4>
-                                            <span>{{ $e['precio'] }} kg</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                        @endforeach
-
-                    </div>  
-                @endif
-
-                @if ($id->products)
-                    <div class="owl-balones-otrotipo owl-carousel owl-theme owl-general owl-general--centrar-navegadores">
-                        
+                <div id="slider-historia">
+                    @if ($id->products)
+                        <div class="content-limagas">
+    
                             @foreach ($id->products as $e)
-                                @if ($e['tipogas'] == "otrotipogas")
-                                    <div class="item">
+                                @if ($e['tipogas'] == "limagas")
                                         <div class="card card-balon">
                                             <img class="lazyload" src="{{ $storageUrl . '/img/productos/' . $e['image'] }}" alt="{{ $e['name'] }}" />
                                             <div class="content-balon">
@@ -173,14 +163,35 @@
                                                 <span>{{ $e['precio'] }} kg</span>
                                             </div>
                                         </div>
-                                    </div>
                                 @endif
                             @endforeach
-                        
-                    </div>  
-                @endif
+    
+                        </div>  
+                    @endif
+    
+                    @if ($id->products)
+                        <div class="content-otrogas">
+                            
+                                @foreach ($id->products as $e)
+                                    @if ($e['tipogas'] == "otrotipogas")
+                                        <div class="item">
+                                            <div class="card card-balon">
+                                                <img class="lazyload" src="{{ $storageUrl . '/img/productos/' . $e['image'] }}" alt="{{ $e['name'] }}" />
+                                                <div class="content-balon">
+                                                    <h4>{{ $e['name'] }}</h4>
+                                                    <span>{{ $e['precio'] }} kg</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            
+                        </div>  
+                    @endif
+    
+                </div>
 
-            </div>
+            </div>  
         </div>
     </section>
 </div>
