@@ -9,7 +9,11 @@
                    
                 </div>
                 <div class="col-12 col-lg h-100 bg-white">
-                    <login ruta-login="{{ route('login.post',[],false) }}" ruta-restablecer-contrasena="{{ route('password.email') }}" ></login>
+                    <login 
+                    ruta-login="{{ route('login.post',[],false) }}" 
+                    ruta-restablecer-contrasena="{{ route('password.email') }}"                     
+                    images-url="{{ config('services.images_url') }}"
+                    ></login>
                 </div>
             </div>
         </div>

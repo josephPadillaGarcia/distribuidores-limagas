@@ -19,7 +19,7 @@
 <header class="img-bg" style="background-image: url( {{ $storageUrl.'/img/fondo1.jpg' }} );">
     <div class="container header-filter">
         <div class="logo">
-            <img src="{{ $storageUrl.'/img/logo1.png' }}" alt="">
+            <a href="/"><img src="{{ $storageUrl.'/img/logo1.png' }}" alt=""></a>
         </div>
         <div class="nav_busqueda color_white">
             <div>Departamento: <b>{{ $departamento }}</b></div>

@@ -8,13 +8,13 @@
 <header class="header-distribuidor img-bg" style="background-image: url({{ $storageUrl.'/img/fondo1.jpg' }});">
     <div class="container-short grid-single color_white">
         <div class="logo">
-            <img src="{{ $storageUrl.'/img/logo1.png' }}" alt="">
+            <a href="/"><img src="{{ $storageUrl.'/img/logo1.png' }}" alt=""></a>
         </div>
         <div class="nav">
             <ul>
-                <li><a href=""><i class="flaticon-mesa-de-ayuda"> </i>Contacto</a></li>
-                <li><a href=""><i class="flaticon-ubicacion"> </i>Ubicación</a></li>
-                <li><a href=""><i class="flaticon-gas"> </i>Productos</a></li>
+                <li><a href="#contacto"><i class="flaticon-mesa-de-ayuda"> </i>Contacto</a></li>
+                <li><a href="#ubicacion"><i class="flaticon-ubicacion"> </i>Ubicación</a></li>
+                <li><a href="#producto"><i class="flaticon-gas"> </i>Productos</a></li>
             </ul>
         </div>
     </div>
@@ -78,7 +78,7 @@
                 @endif                
             </ul>
         </div>
-        <div>
+        <div id="contacto">
             <h3 style="margin: 0;"><strong>Pedidos y atención al cliente</strong></h3>
         </div>
         <div class="telefono">
@@ -86,7 +86,7 @@
             <ul>
                 @if ($id->phone_numbers)
                     @foreach ($id->phone_numbers as $pn)
-                        <li><a href="" class="btn btn2 btn-icon"><i class="flaticon flaticon-telefono"> </i>{{ $pn['number'] }}</a></li>      
+                        <li><a href="tel:{{ $pn['number'] }}" class="btn btn2 btn-icon"><i class="flaticon flaticon-telefono"> </i>{{ $pn['number'] }}</a></li>      
                     @endforeach
                 @endif
             
@@ -98,7 +98,7 @@
             <ul>
                 @if ($id->num_what)
                     @foreach ($id->num_what as $pnw)
-                        <li><a href="https://api.whatsapp.com/send/?phone=51965151411&amp;text=Hola%2C+vi+su+anuncio+en+Google+y+deseo+información+de+sus+productos&amp;app_absent=0" class="btn btn2 btn-icon"><i class="flaticon flaticon-whatsapp"> </i>{{ $pnw['numwhat'] }}</a></li>      
+                        <li><a href="https://api.whatsapp.com/send/?phone=51{{ $pnw['numwhat'] }}&amp;text=Hola%2C+squisiera+por+favor+un+galon+de+gas&amp;app_absent=0" class="btn btn2 btn-icon"><i class="flaticon flaticon-whatsapp"> </i>{{ $pnw['numwhat'] }}</a></li>      
                     @endforeach
                 @endif
             
@@ -130,7 +130,7 @@
             @endif
         </div>
     
-        <div class="ubicacion">
+        <div class="ubicacion" id="ubicacion">
             <b>Ubicación:</b>
             <p><i class="flaticon flaticon-send"> </i>{{ $id->direction }}</p>
             <div class="mapa">
@@ -143,7 +143,7 @@
     </section>
 
 
-    <section class="section-productos">
+    <section class="section-productos" id="producto">
         <div class="text-center">
             <div class="container-short">
                 

@@ -3,13 +3,17 @@
 @endsection
 @section('page')
 
+@php    
+    $storageUrl = config('services.images_url');
+@endphp
+
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white py-2" id="sidenav-main">
     <div class="container-fluid">
         <button-menu></button-menu>
         <!-- Brand -->
         <a class="navbar-brand" href="{{ route('cms.dashboard') }}">
-            <img src="/storage/img/logo-limagas-color.png" class="align-middle d-block d-md-none logo-mini mx-auto" height="50" width="auto" />
-            <img src="/storage/img/logo-limagas-color.png" class="align-middle d-none d-md-block logo mx-auto" height="40" width="auto" />
+            <img src="{{ $storageUrl.'/logo-limagas-color.png' }} "  class="align-middle d-block d-md-none logo-mini mx-auto" height="50" width="auto" />
+            <img src="{{ $storageUrl.'/logo-limagas-color.png' }} " class="align-middle d-none d-md-block logo mx-auto" height="40" width="auto" />
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
@@ -47,7 +51,7 @@
                 <div class="row">
                     <div class="col-6 collapse-brand">
                         <a href="{{ route('cms.dashboard') }}">
-                            <img src="/storage/img/logo.png" class="align-middle" height="70px" width="auto" />
+                            <img src="{{ $storageUrl.'/logo.png' }} " class="align-middle" height="70px" width="auto" />
                         </a>
                     </div>
                     <div class="col-6 collapse-close">

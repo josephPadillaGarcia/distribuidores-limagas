@@ -1270,6 +1270,62 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2491,12 +2547,12 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _vm.detailBlock
-          ? _c("div", { staticClass: "row" }, [
-              _vm.element
-                ? _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "card" }, [
-                      _c("div", { staticClass: "card-body" }, [
-                        _c("h3", { staticClass: "mb-1" }, [
+          ? _c("div", [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _vm.element
+                    ? _c("div", [
+                        _c("h3", { staticClass: "mb-4" }, [
                           _vm._v(
                             "\n              Distribuidor:\n              "
                           ),
@@ -2507,7 +2563,7 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("h3", { staticClass: "mb-1" }, [
+                        _c("h3", { staticClass: "mb-4" }, [
                           _vm._v(
                             "\n              Descripción:\n              "
                           ),
@@ -2521,7 +2577,7 @@ var render = function() {
                           })
                         ]),
                         _vm._v(" "),
-                        _c("h3", { staticClass: "mb-1" }, [
+                        _c("h3", { staticClass: "mb-4" }, [
                           _vm._v("\n              Dirección:\n              "),
                           _c("br"),
                           _vm._v(" "),
@@ -2549,7 +2605,7 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("h3", { staticClass: "mb-1" }, [
+                        _c("h3", { staticClass: "mb-4" }, [
                           _vm._v("\n              Ubigeo:\n              "),
                           _c("br"),
                           _vm._v(" "),
@@ -2566,7 +2622,7 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("h3", { staticClass: "mb-1" }, [
+                        _c("h3", { staticClass: "mb-4" }, [
                           _vm._v("\n              Email:\n              "),
                           _c("br"),
                           _vm._v(" "),
@@ -2597,7 +2653,7 @@ var render = function() {
                               )
                         ]),
                         _vm._v(" "),
-                        _c("h3", { staticClass: "mb-1" }, [
+                        _c("h3", { staticClass: "mb-4" }, [
                           _vm._v("\n              Teléfono:\n              "),
                           _c("br"),
                           _vm._v(" "),
@@ -2638,7 +2694,7 @@ var render = function() {
                               )
                         ]),
                         _vm._v(" "),
-                        _c("h3", { staticClass: "mb-1" }, [
+                        _c("h3", { staticClass: "mb-4" }, [
                           _vm._v("\n              Whatsapp:\n              "),
                           _c("br"),
                           _vm._v(" "),
@@ -2676,93 +2732,133 @@ var render = function() {
                               )
                         ]),
                         _vm._v(" "),
-                        _c("h3", { staticClass: "mb-1" }, [
+                        _c("h3", { staticClass: "mb-4" }, [
                           _vm._v(
                             "\n              Facebook Link:\n              "
                           ),
                           _c("br"),
                           _vm._v(" "),
-                          _c("span", { staticClass: "font-weight-normal" }, [
-                            _vm._v(_vm._s(_vm.element.link_face))
-                          ])
+                          _vm.element.link_face
+                            ? _c("div", [
+                                _c(
+                                  "span",
+                                  { staticClass: "font-weight-normal" },
+                                  [_vm._v(_vm._s(_vm.element.link_face))]
+                                )
+                              ])
+                            : _c(
+                                "span",
+                                { staticClass: "font-weight-normal" },
+                                [_vm._v("No registrado")]
+                              )
                         ]),
                         _vm._v(" "),
-                        _c("h3", { staticClass: "mb-1" }, [
+                        _c("h3", { staticClass: "mb-4" }, [
                           _vm._v(
                             "\n              Instagram Link:\n              "
                           ),
                           _c("br"),
                           _vm._v(" "),
-                          _c("span", { staticClass: "font-weight-normal" }, [
-                            _vm._v(_vm._s(_vm.element.link_insta))
-                          ])
+                          _vm.element.link_insta
+                            ? _c("div", [
+                                _c(
+                                  "span",
+                                  { staticClass: "font-weight-normal" },
+                                  [_vm._v(_vm._s(_vm.element.link_insta))]
+                                )
+                              ])
+                            : _c(
+                                "span",
+                                { staticClass: "font-weight-normal" },
+                                [_vm._v("No registrado")]
+                              )
                         ]),
                         _vm._v(" "),
-                        _c("h3", { staticClass: "mb-1" }, [
-                          _vm._v(
-                            "\n              Metodos de Pago:\n              "
-                          ),
+                        _c("div", { staticClass: "content-metodos mb-4" }, [
+                          _c("h3", [_vm._v("Metodos de Pago:")]),
+                          _vm._v(" "),
                           _c("br"),
                           _vm._v(" "),
                           _vm.element.payment_methods
-                            ? _c(
-                                "span",
-                                _vm._l(_vm.element.payment_methods, function(
-                                  e,
-                                  i
-                                ) {
-                                  return _c("div", { key: e.id }, [
-                                    _c("img", {
-                                      staticClass: "img-fluid d-block mb-2",
-                                      attrs: {
-                                        src: _vm.imagesUrl + "/" + e.img_method,
-                                        alt: e.name
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v(_vm._s(e.method))]),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v(_vm._s(e.img_method))])
-                                  ])
-                                }),
-                                0
-                              )
+                            ? _c("div", [
+                                _c(
+                                  "div",
+                                  { staticClass: "row" },
+                                  _vm._l(_vm.element.payment_methods, function(
+                                    e,
+                                    i
+                                  ) {
+                                    return _c(
+                                      "div",
+                                      {
+                                        key: e.id,
+                                        staticClass: "col-6 col-md-2 col-lg-2"
+                                      },
+                                      [
+                                        _c("img", {
+                                          staticClass: "img-fluid d-block mb-2",
+                                          attrs: {
+                                            src:
+                                              _vm.imagesUrl +
+                                              "/" +
+                                              e.img_method,
+                                            alt: e.name
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("b", [_vm._v(_vm._s(e.method))])
+                                      ]
+                                    )
+                                  }),
+                                  0
+                                )
+                              ])
                             : _c("span", [
                                 _vm._v(" No tiene metodos de pago registrados ")
                               ])
                         ]),
                         _vm._v(" "),
-                        _c("h3", { staticClass: "mb-1" }, [
-                          _vm._v("\n              Productos:\n              "),
-                          _c("br"),
+                        _c("div", { staticClass: "content-productos mb-4" }, [
+                          _c("h3", [_vm._v("Productos:")]),
                           _vm._v(" "),
                           _vm.element.products
-                            ? _c(
-                                "span",
-                                _vm._l(_vm.element.products, function(e, i) {
-                                  return _c("div", { key: e.id }, [
-                                    _c("img", {
-                                      staticClass: "img-fluid d-block mb-2",
-                                      attrs: {
-                                        src:
-                                          _vm.imagesUrl +
-                                          "/productos/" +
-                                          e.image,
-                                        alt: e.name
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("p", [_vm._v(_vm._s(e.name))])
-                                  ])
-                                }),
-                                0
-                              )
+                            ? _c("div", [
+                                _c(
+                                  "div",
+                                  { staticClass: "row" },
+                                  _vm._l(_vm.element.products, function(e, i) {
+                                    return _c(
+                                      "div",
+                                      {
+                                        key: e.id,
+                                        staticClass: "col-12 col-md-3 col-lg-2"
+                                      },
+                                      [
+                                        _c("img", {
+                                          staticClass:
+                                            "img-fluid img-producto d-block mb-2",
+                                          attrs: {
+                                            src:
+                                              _vm.imagesUrl +
+                                              "/productos/" +
+                                              e.image,
+                                            alt: e.name
+                                          }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("b", [_vm._v(_vm._s(e.name))])
+                                      ]
+                                    )
+                                  }),
+                                  0
+                                )
+                              ])
                             : _c("span", [
                                 _vm._v(" No tiene productos registrados ")
                               ])
                         ]),
                         _vm._v(" "),
-                        _c("h3", { staticClass: "mb-1" }, [
+                        _c("h3", { staticClass: "mb-4" }, [
                           _vm._v("\n              Iframe:\n              "),
                           _c("br"),
                           _vm._v(" "),
@@ -2780,27 +2876,110 @@ var render = function() {
                               })
                         ]),
                         _vm._v(" "),
-                        _c("h3", { staticClass: "mb-1" }, [
-                          _vm._v(
-                            "\n              Galeria de imagenes:\n              "
-                          ),
-                          _c("br"),
+                        _c("div", { staticClass: "mb-4" }, [
+                          _c("h3", [_vm._v("Galeria de imagenes:")]),
                           _vm._v(" "),
-                          _vm.element.img_slider_1
-                            ? _c("span", [
-                                _c("img", {
-                                  staticClass: "img-fluid d-block mb-2",
-                                  attrs: {
-                                    src:
-                                      _vm.imagesUrl +
-                                      "/sliders/" +
-                                      _vm.element.img_slider_1
-                                  }
-                                })
-                              ])
-                            : _c("span", [
-                                _vm._v(" No tiene imagen registrada ")
-                              ])
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-12 col-md-3 col-lg-3" },
+                              [
+                                _vm.element.img_slider_1
+                                  ? _c("div", [
+                                      _c("img", {
+                                        staticClass: "img-fluid d-block mb-2",
+                                        attrs: {
+                                          src:
+                                            _vm.imagesUrl +
+                                            "/sliders/" +
+                                            _vm.element.img_slider_1
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e()
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-12 col-md-3 col-lg-3" },
+                              [
+                                _vm.element.img_slider_2
+                                  ? _c("div", [
+                                      _c("img", {
+                                        staticClass: "img-fluid d-block mb-2",
+                                        attrs: {
+                                          src:
+                                            _vm.imagesUrl +
+                                            "/sliders/" +
+                                            _vm.element.img_slider_2
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e()
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-12 col-md-3 col-lg-3" },
+                              [
+                                _vm.element.img_slider_3
+                                  ? _c("div", [
+                                      _c("img", {
+                                        staticClass: "img-fluid d-block mb-2",
+                                        attrs: {
+                                          src:
+                                            _vm.imagesUrl +
+                                            "/sliders/" +
+                                            _vm.element.img_slider_3
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e()
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-12 col-md-3 col-lg-3" },
+                              [
+                                _vm.element.img_slider_4
+                                  ? _c("div", [
+                                      _c("img", {
+                                        staticClass: "img-fluid d-block mb-2",
+                                        attrs: {
+                                          src:
+                                            _vm.imagesUrl +
+                                            "/sliders/" +
+                                            _vm.element.img_slider_4
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e()
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-12 col-md-3 col-lg-3" },
+                              [
+                                _vm.element.img_slider_5
+                                  ? _c("div", [
+                                      _c("img", {
+                                        staticClass: "img-fluid d-block mb-2",
+                                        attrs: {
+                                          src:
+                                            _vm.imagesUrl +
+                                            "/sliders/" +
+                                            _vm.element.img_slider_5
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e()
+                              ]
+                            )
+                          ])
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "mt-4 text-center" }, [
@@ -2824,9 +3003,9 @@ var render = function() {
                           )
                         ])
                       ])
-                    ])
-                  ])
-                : _vm._e()
+                    : _vm._e()
+                ])
+              ])
             ])
           : _vm._e()
       ]),
@@ -3412,7 +3591,7 @@ var render = function() {
                                       staticClass: "font-weight-bold",
                                       attrs: { for: "image" }
                                     },
-                                    [_vm._v("Imagen:")]
+                                    [_vm._v("Galeria de Imagenes:")]
                                   ),
                                   _vm._v(" "),
                                   _c(

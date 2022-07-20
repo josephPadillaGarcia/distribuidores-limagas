@@ -52,17 +52,17 @@
 
       <!--pre>{{ this.itemstable }}</pre-->
 
-      <div class="row" v-if="detailBlock">
-        <div class="row" v-if="element">
+      <div v-if="detailBlock">
+        <div class="card">
           <!--pre>{{ this.element }}</pre-->
-          <div class="card">
-            <div class="card-body">
-              <h3 class="mb-1">
+          <div class="card-body">
+            <div v-if="element">
+              <h3 class="mb-4">
                 Distribuidor:
                 <br />
                 <span class="font-weight-normal">{{ element.name }}</span>
               </h3>
-              <h3 class="mb-1">
+              <h3 class="mb-4">
                 Descripción:
                 <br />
                 <div
@@ -70,7 +70,7 @@
                   class="content-editor-value"
                 ></div>
               </h3>
-              <h3 class="mb-1">
+              <h3 class="mb-4">
                 Dirección:
                 <br />
                 <span class="font-weight-normal">
@@ -87,7 +87,7 @@
                   >
                 </span>
               </h3>
-              <h3 class="mb-1">
+              <h3 class="mb-4">
                 Ubigeo:
                 <br />
                 <span class="font-weight-normal">
@@ -96,7 +96,7 @@
                   {{ element.ubigeo_rel.department }}
                 </span>
               </h3>
-              <h3 class="mb-1">
+              <h3 class="mb-4">
                 Email:
                 <br />
                 <span class="font-weight-normal" v-if="element.emails">
@@ -107,7 +107,7 @@
                 <span class="font-weight-normal" v-else>No registrado</span>
               </h3>
 
-              <h3 class="mb-1">
+              <h3 class="mb-4">
                 Teléfono:
                 <br />
                 <span class="font-weight-normal" v-if="element.phone_numbers">
@@ -125,7 +125,7 @@
                 <span class="font-weight-normal" v-else>No registrado</span>
               </h3>
 
-              <h3 class="mb-1">
+              <h3 class="mb-4">
                 Whatsapp:
                 <br />
                 <span class="font-weight-normal" v-if="element.num_what">
@@ -143,56 +143,72 @@
                 <span class="font-weight-normal" v-else>No registrado</span>
               </h3>
 
-              <h3 class="mb-1">
+              <h3 class="mb-4">
                 Facebook Link:
                 <br />
-                <span class="font-weight-normal">{{ element.link_face }}</span>
+                <div v-if="element.link_face">
+                  <span class="font-weight-normal">{{
+                    element.link_face
+                  }}</span>
+                </div>
+                <span class="font-weight-normal" v-else>No registrado</span>
               </h3>
 
-              <h3 class="mb-1">
+              <h3 class="mb-4">
                 Instagram Link:
                 <br />
-                <span class="font-weight-normal">{{ element.link_insta }}</span>
+                <div v-if="element.link_insta">
+                  <span class="font-weight-normal">{{
+                    element.link_insta
+                  }}</span>
+                </div>
+                <span class="font-weight-normal" v-else>No registrado</span>
               </h3>
 
-              <h3 class="mb-1">
-                Metodos de Pago:
+              <div class="content-metodos mb-4">
+                <h3>Metodos de Pago:</h3>
                 <br />
-                <span v-if="element.payment_methods">
-                  <div
-                    class=""
-                    v-for="(e, i) in element.payment_methods"
-                    :key="e.id"
-                  >
-                    <img
-                      :src="imagesUrl + '/' + e.img_method"
-                      :alt="e.name"
-                      class="img-fluid d-block mb-2"
-                    />
-                    <p>{{ e.method }}</p>
-                    <p>{{ e.img_method }}</p>
+                <div v-if="element.payment_methods">
+                  <div class="row">
+                    <div
+                      class="col-6 col-md-2 col-lg-2"
+                      v-for="(e, i) in element.payment_methods"
+                      :key="e.id"
+                    >
+                      <img
+                        :src="imagesUrl + '/' + e.img_method"
+                        :alt="e.name"
+                        class="img-fluid d-block mb-2"
+                      />
+                      <b>{{ e.method }}</b>
+                    </div>
                   </div>
-                </span>
+                </div>
                 <span v-else> No tiene metodos de pago registrados </span>
-              </h3>
+              </div>
 
-              <h3 class="mb-1">
-                Productos:
-                <br />
-                <span v-if="element.products">
-                  <div class="" v-for="(e, i) in element.products" :key="e.id">
-                    <img
-                      :src="imagesUrl + '/productos/' + e.image"
-                      :alt="e.name"
-                      class="img-fluid d-block mb-2"
-                    />
-                    <p>{{ e.name }}</p>
+              <div class="content-productos mb-4">
+                <h3>Productos:</h3>
+                <div v-if="element.products">
+                  <div class="row">
+                    <div
+                      class="col-12 col-md-3 col-lg-2"
+                      v-for="(e, i) in element.products"
+                      :key="e.id"
+                    >
+                      <img
+                        :src="imagesUrl + '/productos/' + e.image"
+                        :alt="e.name"
+                        class="img-fluid img-producto d-block mb-2"
+                      />
+                      <b>{{ e.name }}</b>
+                    </div>
                   </div>
-                </span>
+                </div>
                 <span v-else> No tiene productos registrados </span>
-              </h3>
+              </div>
 
-              <h3 class="mb-1">
+              <h3 class="mb-4">
                 Iframe:
                 <br />
                 <span class="font-weight-normal" v-if="!element.iframe"
@@ -201,17 +217,57 @@
                 <div v-else v-html="element.iframe" class="parent-iframe"></div>
               </h3>
 
-              <h3 class="mb-1">
-                Galeria de imagenes:
-                <br />
-                <span v-if="element.img_slider_1">
-                  <img
-                    :src="imagesUrl + '/sliders/' + element.img_slider_1"
-                    class="img-fluid d-block mb-2"
-                  />
-                </span>
-                <span v-else> No tiene imagen registrada </span>
-              </h3>
+              <div class="mb-4">
+                <h3>Galeria de imagenes:</h3>
+                <div class="row" >
+                  <div class="col-12 col-md-3 col-lg-3">
+                    <div v-if="element.img_slider_1">
+                      <img
+                        :src="imagesUrl + '/sliders/' + element.img_slider_1"
+                        class="img-fluid d-block mb-2"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-3 col-lg-3">
+                    <div v-if="element.img_slider_2">
+                      <img
+                        :src="imagesUrl + '/sliders/' + element.img_slider_2"
+                        class="img-fluid d-block mb-2"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-3 col-lg-3">
+                    <div v-if="element.img_slider_3">
+                      <img
+                        :src="imagesUrl + '/sliders/' + element.img_slider_3"
+                        class="img-fluid d-block mb-2"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-3 col-lg-3">
+                    <div v-if="element.img_slider_4">
+                      <img
+                        :src="imagesUrl + '/sliders/' + element.img_slider_4"
+                        class="img-fluid d-block mb-2"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-3 col-lg-3">
+                    <div v-if="element.img_slider_5">
+                      <img
+                        :src="imagesUrl + '/sliders/' + element.img_slider_5"
+                        class="img-fluid d-block mb-2"
+                      />
+                    </div>
+                  </div>
+                </div>
+                
+                
+              </div>
 
               <div class="mt-4 text-center">
                 <button
@@ -429,7 +485,7 @@
               <template>
                 <div class="col-12 col-md-12 col-lg-12">
                   <div class="form-group">
-                    <label class="font-weight-bold" for="image">Imagen:</label>
+                    <label class="font-weight-bold" for="image">Galeria de Imagenes:</label>
                     <small class="d-block mb-0 lh-1"
                       >Resolución recomendada: 430x250px</small
                     >
@@ -818,7 +874,7 @@ export default {
       showBlock: true,
       detailBlock: false,
 
-      ImgUrlProps: ""
+      ImgUrlProps: "",
     };
   },
   methods: {

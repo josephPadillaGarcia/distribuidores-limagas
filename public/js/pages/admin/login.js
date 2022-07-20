@@ -180,7 +180,8 @@ __webpack_require__.r(__webpack_exports__);
     rutaLogin: {
       type: String,
       required: true
-    }
+    },
+    imagesUrl: String
   },
   components: {
     Button: _components_Button__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -456,7 +457,7 @@ var render = function() {
         _c("img", {
           staticClass: "d-block mx-auto mb-4",
           attrs: {
-            src: "/storage/img/logo-limagas-color.png",
+            src: _vm.imagesUrl + "/logo-limagas-color.png",
             height: "60",
             width: "auto",
             alt: "Logo"
