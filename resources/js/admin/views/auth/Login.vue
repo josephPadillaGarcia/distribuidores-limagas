@@ -10,18 +10,18 @@
       />
       <form class="px-sm-3 px-lg-4" @submit.prevent="login" v-if="loginBlock">
         <div class="form-group mb-3">
-          <label for="email" class="form-control-label d-block">Email</label>
+          <label for="name" class="form-control-label d-block">User</label>
           <input
             class="form-control "
             type="text"
-            v-model="email"
-            id="email"
+            v-model="name"
+            id="name"
           />
           <label
-            v-if="errors && errors.email"
+            v-if="errors && errors.name"
             class="mt-2 text-danger text-sm"
-            for="email"
-          >{{ errors.email[0] }}</label>
+            for="name"
+          >{{ errors.name[0] }}</label>
         </div>
         <div class="form-group">
           <label for="password" class="form-control-label d-block">Contraseña</label>
@@ -56,7 +56,8 @@
           ></Button>
         </div>
       </form>
-      <form @submit.prevent="resetPassword" v-if="resetearBlock" class="px-sm-3 px-lg-4">
+
+      <!--form @submit.prevent="resetPassword" v-if="resetearBlock" class="px-sm-3 px-lg-4">
         <div class="form-group">
           <label for="id_correo_electronico" class="form-control-label d-block">Correo Electronico</label>
           <input
@@ -82,7 +83,7 @@
         <div class="text-center">
           <Button :text="'Enviar'" :classes="['btn-primary','btn-block','mb-4']" :request-server="requestServer"></Button>
         </div>
-      </form>
+      </form-->
       <div class="row px-sm-3 px-lg-4" v-if="loginBlock">
         <div class="col-12">
           <!--<a
@@ -143,7 +144,7 @@ export default {
   methods: {
     restorePage() {
       this.errors = {};
-      this.email = "";
+      this.name = "";
       this.token_recordar = false;
       this.password = "";
       this.resetear = {
@@ -155,7 +156,7 @@ export default {
       this.requestServer = true;
       axios
         .post(this.rutaLogin, {
-          email: this.email,
+          name: this.name,
           password: this.password,
           remember: this.token_recordar
         })
@@ -201,7 +202,7 @@ export default {
                         return;
                     }*/
           if (error.response.status === 500) {
-            this.errors.email = [
+            this.errors.name = [
               "Ocurrió un error en nuestros servidores. Por favor inténtelo de nuevo."
             ];
             return;
@@ -212,7 +213,7 @@ export default {
   watch: {
     email: function(val) {
       if (val.length) {
-        this.errors.email = "";
+        this.errors.name = "";
       }
     },
     password: function(val) {
