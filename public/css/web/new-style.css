@@ -2090,7 +2090,9 @@ header.header-distribuidor .nav ul {
 
 /* line 388, scss/main.scss */
 .card.card-balon img {
-  max-width: 146px; }
+  max-width: 146px;
+  height: 200px; 
+}
 
 /* line 392, scss/main.scss */
 section.slider {
@@ -2357,7 +2359,11 @@ section.section-productos {
   .content-limagas, .content-otrogas {
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-    justify-content: center;
+    grid-template-columns: repeat(5, 1fr);
+    justify-self: center;
     margin-bottom: 4rem;
+}
+
+section.section {
+  height: 100vh;
 }

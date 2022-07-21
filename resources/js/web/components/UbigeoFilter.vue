@@ -4,7 +4,7 @@
       <div class="select">
         <span class="ri-lg ri-map-pin-2-fill"></span>
         <select id="department" name="department" v-model="department" class="">
-          <option value="" disabled>--Seleccionar--</option>
+          <option value="" disabled>Departamento</option>
           <option
             v-for="el in departments"
             :key="'dep' + el.code_department"
@@ -24,7 +24,7 @@
           v-model="province"
           class=""
         >
-          <option value="" disabled>--Seleccionar--</option>
+          <option value="" disabled>Distrito</option>
           <option
             v-for="el in provinces"
             :key="'dep' + el.code_province"
@@ -43,7 +43,7 @@
           v-model="district"
           class=""
         >
-          <option value="" disabled>--Seleccionar--</option>
+          <option value="" disabled>Provincia</option>
           <option
             v-for="el in districts"
             :key="'dep' + el.code_district"

@@ -257,7 +257,7 @@ var render = function() {
             },
             [
               _c("option", { attrs: { value: "", disabled: "" } }, [
-                _vm._v("--Seleccionar--")
+                _vm._v("Departamento")
               ]),
               _vm._v(" "),
               _vm._l(_vm.departments, function(el) {
@@ -319,7 +319,7 @@ var render = function() {
             },
             [
               _c("option", { attrs: { value: "", disabled: "" } }, [
-                _vm._v("--Seleccionar--")
+                _vm._v("Distrito")
               ]),
               _vm._v(" "),
               _vm._l(_vm.provinces, function(el) {
@@ -374,7 +374,7 @@ var render = function() {
             },
             [
               _c("option", { attrs: { value: "", disabled: "" } }, [
-                _vm._v("--Seleccionar--")
+                _vm._v("Provincia")
               ]),
               _vm._v(" "),
               _vm._l(_vm.districts, function(el) {

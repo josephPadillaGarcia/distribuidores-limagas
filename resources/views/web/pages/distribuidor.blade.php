@@ -142,7 +142,6 @@
     
     </section>
 
-
     <section class="section-productos" id="producto">
         <div class="text-center">
             <div class="container-short">
@@ -194,6 +193,8 @@
             </div>  
         </div>
     </section>
+
+    
 </div>
 
 <div class="pie"></div>

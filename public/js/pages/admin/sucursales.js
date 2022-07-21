@@ -41,6 +41,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     allitems: Array,
@@ -1882,9 +1884,9 @@ var render = function() {
                         ],
                         attrs: { type: "checkbox" },
                         domProps: {
-                          value: sp,
+                          value: sp["id"],
                           checked: Array.isArray(_vm.selectitems)
-                            ? _vm._i(_vm.selectitems, sp) > -1
+                            ? _vm._i(_vm.selectitems, sp["id"]) > -1
                             : _vm.selectitems
                         },
                         on: {
@@ -1893,7 +1895,7 @@ var render = function() {
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
                             if (Array.isArray($$a)) {
-                              var $$v = sp,
+                              var $$v = sp["id"],
                                 $$i = _vm._i($$a, $$v)
                               if ($$el.checked) {
                                 $$i < 0 && (_vm.selectitems = $$a.concat([$$v]))
@@ -2056,7 +2058,9 @@ var render = function() {
             }),
             0
           )
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c("pre", [_vm._v(_vm._s(_vm.selectitems))])
     ])
   ])
 }

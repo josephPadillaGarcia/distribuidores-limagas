@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\BranchOffice;
+use App\Productos;
 use App\ConfigQuantityPackage;
 use App\Customer;
 use App\Faq;
@@ -104,6 +105,19 @@ class WebController extends Controller
     }
 
     public function distribuidor(BranchOffice $id){
+        /*$productos = Productos::where('id', $id)*/       
+
+        /*foreach ($id['products'] as $p) {
+            $producto = array();
+            $item = Productos::where('id', $p)->get();
+            array_push($producto, $item);
+        }
+        
+        $data = array(
+            "id" => $id,
+            "producto" => $producto
+        );
+       return view("web.pages.distribuidor", compact('data'));*/
        return view("web.pages.distribuidor", compact('id'));
     }
 

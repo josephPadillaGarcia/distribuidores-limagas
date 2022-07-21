@@ -5,7 +5,7 @@
         <div v-for="sp in allitems" :key="sp.id">
           <div v-if="sp.name">
             <label>{{ sp.name }}</label>
-            <input type="checkbox" v-model="selectitems" :value="sp"/>
+            <input type="checkbox" v-model="selectitems" :value="sp['id']"/>
           </div>
           <div v-else-if="sp.method">
             <label>{{ sp.method }}</label>
@@ -26,6 +26,8 @@
           </div>
         </div>
       </div>
+
+      <pre>{{ selectitems }}</pre>
     </div>
   </div>
 </template>

@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-recaptcha */ "./node_modules/vue-recaptcha/dist/vue-recaptcha.es.js");
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-recaptcha */ "./node_modules/vue-recaptcha/dist/vue-recaptcha.es.js");
 //
 //
 //
@@ -253,7 +253,7 @@ __webpack_require__.r(__webpack_exports__);
         acceptedtc: true
       },
       errors: {},
-      sitekey: "6LfQG4YfAAAAANWF2kNqbXjmG6CeJ5sQnQ4wnQdm",
+      sitekey: process.env.MIX_SITE_KEY,
       messageCaptcha: "",
       captchaPass: false,
       errorCaptcha: ""
@@ -315,6 +315,7 @@ __webpack_require__.r(__webpack_exports__);
     VueRecaptcha: vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__["VueRecaptcha"]
   }
 });
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
