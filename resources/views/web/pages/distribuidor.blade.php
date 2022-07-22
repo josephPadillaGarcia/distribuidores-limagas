@@ -150,10 +150,10 @@
                 <h2><strong>Nuestros Productos para tu Hogar</strong></h2>
                 <br><br>
                 <div id="slider-historia">
-                    @if ($id->products)
+                    @if ($id->productos)
                         <div class="content-limagas">
     
-                            @foreach ($id->products as $e)
+                            @foreach ($id->productos as $e)
                                 @if ($e['tipogas'] == "limagas")
                                         <div class="card card-balon">
                                             <img class="lazyload" src="{{ $storageUrl . '/img/productos/' . $e['image'] }}" alt="{{ $e['name'] }}" />
@@ -168,10 +168,10 @@
                         </div>  
                     @endif
     
-                    @if ($id->products)
+                    @if ($id->productos)
                         <div class="content-otrogas">
                             
-                                @foreach ($id->products as $e)
+                                @foreach ($id->productos as $e)
                                     @if ($e['tipogas'] == "otrotipogas")
                                         <div class="item">
                                             <div class="card card-balon">

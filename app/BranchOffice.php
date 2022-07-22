@@ -21,4 +21,11 @@ class BranchOffice extends Model
     {
         return $this->hasOne('App\Ubigeo', 'code_ubigeo', 'code_ubigeo');
     }
+
+
+    // Relacion muchos a muchos
+
+    public function productos(){
+        return $this->belongsToMany('App\Productos', 'branchoffice_products', 'branchoffice_id', 'producto_id');
+    }
 }

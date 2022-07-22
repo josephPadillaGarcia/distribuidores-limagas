@@ -11,4 +11,11 @@ class Productos extends Model
         'active' => 'boolean'
     ];
     protected $guarded = [];
+
+
+    // Relacion muchos a muchos
+
+    public function branchoffices(){
+        return $this->belongsToMany('App\BranchOffice');
+    }
 }

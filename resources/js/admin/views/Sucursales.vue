@@ -997,9 +997,6 @@ this.detailBlock = true*/
         fd.append("emails", JSON.stringify(this.element.emails));
       }
 
-      /*if (this.element.emails) {
-        fd.append("emails", this.element.emails);
-      }*/
 
       if (this.element.iframe) {
         fd.append("iframe", this.element.iframe);
@@ -1021,9 +1018,6 @@ this.detailBlock = true*/
         fd.append("num_what", JSON.stringify(this.element.num_what));
       }
 
-      /*if (this.element.num_what) {
-        fd.append("num_what", this.element.num_what);
-      }*/
 
       if (this.element.payment_methods) {
         fd.append(
@@ -1036,17 +1030,9 @@ this.detailBlock = true*/
         fd.append("phone_numbers", JSON.stringify(this.element.phone_numbers));
       }
 
-      /*if (this.element.phone_numbers) {
-        fd.append("phone_numbers", this.element.phone_numbers);
-      }*/
-
       if (this.element.products) {
         fd.append("products", JSON.stringify(this.element.products));
       }
-
-      /*if (this.element.products) {
-        fd.append("products", this.element.products);
-      }*/
 
       if (this.element.province) {
         fd.append("province", this.element.province);

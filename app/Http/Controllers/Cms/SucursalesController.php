@@ -24,6 +24,8 @@ class SucursalesController extends Controller
 
     public function store(BranchOfficeRequest $request)
     {
+
+        $productos = json_decode($request->products, true);
         /*$aemails = json_decode($request->emails, true);*/
         //dd(json_decode($request->file('img_slider_1')));
         $el = request(["name", "description", "direction", "schedule","iframe", "link_face","link_insta", "payment_methods"]);
@@ -117,8 +119,20 @@ class SucursalesController extends Controller
         $el = array_merge($el, ["index" => $elIndex]);
         try {
             $el = BranchOffice::UpdateOrCreate($el);
-            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.create.success', ['name' => trans('custom.attribute.sucursal')])], 200);
+            //return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.create.success', ['name' => trans('custom.attribute.sucursal')])], 200);
         } catch (\Exception $e) {
+            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.create.error', ['name' => trans('custom.attribute.sucursal')])], 500);
+        }
+
+        try{
+            for ($i=0; $i < count($productos); $i++) { 
+                $el->productos()->attach($productos[$i]);
+            }
+
+            dd($productos);
+            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.create.success', ['name' => trans('custom.attribute.sucursal')])], 200);
+        }catch (\Exception $e){
+            $el->delete();
             return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.create.error', ['name' => trans('custom.attribute.sucursal')])], 500);
         }
     }
