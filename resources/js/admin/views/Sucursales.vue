@@ -475,10 +475,12 @@
                   @arrayitems="elementproducts"
                   :title="title"
                   head="productos"
-                  :methodsget="elproductos"
+                  :methodsget="idproducts"
                 />
                 <!-- ///////////////////////////////////////// -->
               </div>
+
+              <!--pre>{{ this.idproducts }}</pre-->
             </div>
 
             <div class="col-12 galeria">
@@ -751,7 +753,7 @@
       </template>
     </b-modal>
     <destroy
-      element="sucursal"
+      element="Distribuidor"
       @cancel="restoreEl"
       :open="modalDestroy"
       @submit="destroyConfirm"
@@ -877,7 +879,8 @@ export default {
 
       ImgUrlProps: "",
 
-      elproductos:{},
+      elproductos:[],
+      idproducts:[],
     };
   },
   methods: {
@@ -914,13 +917,15 @@ export default {
         });
     },
     newEl() {
-      this.title = "Nuevo";
+      this.title = "Nuevo";    
+      this.idproducts = [];
       this.modalCreateUpdate = true;
     },
     editEl(id) {
       this.title = "Actualizar";
       this.modalCreateUpdate = true;
       this.getEl(id);
+      this.getElProductos(id);
       /*this.startBlock = false,
 this.detailBlock = true*/
     },
@@ -1130,7 +1135,7 @@ this.detailBlock = true*/
         .catch((error) => {});
     },*/
     getEl(id) {
-      this.loadingGet = true;
+      this.loadingGet = true;  
       axios
         .get(this.route + "/json/get/" + id)
         .then((response) => {
@@ -1141,11 +1146,17 @@ this.detailBlock = true*/
     },
 
     getElProductos(id){
-      this.loadingGet = true;
+      this.loadingGet = true;      
+      this.idproducts = [];
       axios
         .get(this.route + "/items/json/get/branchoffice-productos/" + id)
         .then((response) => {
           this.elproductos = response.data;
+          this.elproductos.forEach((element, i) => {
+            console.log(element.id);
+            this.idproducts.push(element.id);
+            console.log(this.idproducts);
+          });
           this.loadingGet = false;
         })
         .catch((error) => {});

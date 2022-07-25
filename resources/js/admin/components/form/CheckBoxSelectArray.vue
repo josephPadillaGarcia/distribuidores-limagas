@@ -27,7 +27,8 @@
         </div>
       </div>
 
-      <pre>{{ selectitems }}</pre>
+      <!--pre>{{ methodsget }}</pre>
+      <pre>{{ selectitems }}</pre-->
     </div>
   </div>
 </template>

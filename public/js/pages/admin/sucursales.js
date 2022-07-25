@@ -43,6 +43,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     allitems: Array,
@@ -1322,6 +1323,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -1405,7 +1408,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       showBlock: true,
       detailBlock: false,
       ImgUrlProps: "",
-      elproductos: {}
+      elproductos: [],
+      idproducts: []
     };
   },
   methods: {
@@ -1445,12 +1449,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     newEl: function newEl() {
       this.title = "Nuevo";
+      this.idproducts = [];
       this.modalCreateUpdate = true;
     },
     editEl: function editEl(id) {
       this.title = "Actualizar";
       this.modalCreateUpdate = true;
       this.getEl(id);
+      this.getElProductos(id);
       /*this.startBlock = false,
       this.detailBlock = true*/
     },
@@ -1666,8 +1672,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this5 = this;
 
       this.loadingGet = true;
+      this.idproducts = [];
       axios.get(this.route + "/items/json/get/branchoffice-productos/" + id).then(function (response) {
         _this5.elproductos = response.data;
+
+        _this5.elproductos.forEach(function (element, i) {
+          console.log(element.id);
+
+          _this5.idproducts.push(element.id);
+
+          console.log(_this5.idproducts);
+        });
+
         _this5.loadingGet = false;
       })["catch"](function (error) {});
     },
@@ -1999,9 +2015,7 @@ var render = function() {
             }),
             0
           )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("pre", [_vm._v(_vm._s(_vm.selectitems))])
+        : _vm._e()
     ])
   ])
 }
@@ -3511,7 +3525,7 @@ var render = function() {
                                 allitems: _vm.products,
                                 title: _vm.title,
                                 head: "productos",
-                                methodsget: _vm.elproductos
+                                methodsget: _vm.idproducts
                               },
                               on: { arrayitems: _vm.elementproducts }
                             })
@@ -4095,7 +4109,7 @@ var render = function() {
       _vm._v(" "),
       _c("destroy", {
         attrs: {
-          element: "sucursal",
+          element: "Distribuidor",
           open: _vm.modalDestroy,
           "loading-get": _vm.loadingGet,
           "loading-submit": _vm.requestSubmit
