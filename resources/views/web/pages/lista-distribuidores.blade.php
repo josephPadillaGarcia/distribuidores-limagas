@@ -80,7 +80,7 @@
     
 </section>
 
-<div class="pie"></div>
+<div class="pie margin-top"></div>
 
 </main>
 
