@@ -730,16 +730,6 @@ var render = function() {
               "div",
               [
                 _vm.elements.length
-                  ? _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-12" }, [
-                        _c("i", { staticClass: "d-block mb-4" }, [
-                          _vm._v(_vm._s(_vm.messageOrder))
-                        ])
-                      ])
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.elements.length
                   ? _c(
                       "draggable",
                       {
@@ -807,18 +797,6 @@ var render = function() {
                                     "span",
                                     { staticClass: "font-weight-normal" },
                                     [_vm._v(_vm._s(el.tipogas))]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("h3", { staticClass: "mb-1" }, [
-                                  _c("span", {}, [
-                                    _vm._v("Mostrar en la Web:")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    { staticClass: "font-weight-normal" },
-                                    [_vm._v(_vm._s(el.active ? "Sí" : "No"))]
                                   )
                                 ]),
                                 _vm._v(" "),
@@ -1310,7 +1288,7 @@ var render = function() {
       _vm._v(" "),
       _c("destroy", {
         attrs: {
-          element: "cliente",
+          element: "Producto",
           open: _vm.modalDestroy,
           "loading-get": _vm.loadingGet,
           "loading-submit": _vm.requestSubmit

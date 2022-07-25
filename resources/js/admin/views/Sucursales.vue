@@ -189,11 +189,11 @@
 
               <div class="content-productos mb-4">
                 <h3>Productos:</h3>
-                <div v-if="element.products">
+                <div v-if="elproductos">
                   <div class="row">
                     <div
                       class="col-12 col-md-3 col-lg-2"
-                      v-for="(e, i) in element.products"
+                      v-for="(e, i) in elproductos"
                       :key="e.id"
                     >
                       <img
@@ -475,7 +475,7 @@
                   @arrayitems="elementproducts"
                   :title="title"
                   head="productos"
-                  :methodsget="element.products"
+                  :methodsget="elproductos"
                 />
                 <!-- ///////////////////////////////////////// -->
               </div>
@@ -822,6 +822,7 @@ export default {
     routeDepartmentsGet: String,
     routeDistrictsGet: String,
     routeProvincesGet: String,
+    routeItemsBranchOfficeProductos: String,
 
     //productos
     routeProductsGetAll: String,
@@ -875,47 +876,11 @@ export default {
       detailBlock: false,
 
       ImgUrlProps: "",
+
+      elproductos:{},
     };
   },
   methods: {
-    /*handleMove() {
-      if (this.q) {
-        return false;
-      }
-      return true;
-    },*/
-    /*handleChange() {
-      if (this.q) {
-        return false;
-      }
-      axios
-        .put(this.routeOrder, this.elements)
-        .then((response) => {
-          this.restore();
-          Swal.fire({
-            title: response.data.title,
-            text: response.data.message,
-            type: "success",
-            confirmButtonText: "OK",
-            buttonsStyling: false,
-            customClass: {
-              confirmButton: "btn btn-primary",
-            },
-          });
-        })
-        .catch((error) => {
-          Swal.fire({
-            title: error.response.data.title,
-            text: error.response.data.message,
-            type: "error",
-            confirmButtonText: "OK",
-            buttonsStyling: false,
-            customClass: {
-              confirmButton: "btn btn-primary",
-            },
-          });
-        });
-    },*/
     destroyConfirm() {
       this.requestSubmit = true;
       axios
@@ -1058,9 +1023,9 @@ this.detailBlock = true*/
         fd.append("img_slider_5", this.$refs.ref_image_5.dropzone.files[0]);
       }
 
-      for (var entrie of fd.entries()) {
+      /*for (var entrie of fd.entries()) {
         console.log(entrie[0] + ": " + entrie[1]);
-      }
+      }*/
 
       //console.log(fd.entries());
       /*console.log(this.element.horario);
@@ -1119,6 +1084,7 @@ this.detailBlock = true*/
     },
     showDistribuidor(id) {
       this.getEl(id);
+      this.getElProductos(id);
       this.showBlock = false;
       this.detailBlock = true;
     },
@@ -1169,6 +1135,17 @@ this.detailBlock = true*/
         .get(this.route + "/json/get/" + id)
         .then((response) => {
           this.element = response.data;
+          this.loadingGet = false;
+        })
+        .catch((error) => {});
+    },
+
+    getElProductos(id){
+      this.loadingGet = true;
+      axios
+        .get(this.route + "/items/json/get/branchoffice-productos/" + id)
+        .then((response) => {
+          this.elproductos = response.data;
           this.loadingGet = false;
         })
         .catch((error) => {});

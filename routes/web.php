@@ -45,6 +45,8 @@ Route::prefix('admin')->group(function() {
             Route::get('/json/get-all', 'SucursalesController@getAll')->name('get-all');
             Route::get('/json/get/{element}', 'SucursalesController@get')->name('get');
             Route::get('/items/json/get-all', 'SucursalesController@getItemsAll')->name('get-items-all');
+            
+            Route::get('/items/json/get/branchoffice-productos/{element}', 'SucursalesController@getItemsBranchOfficeProductos')->name('items-branchoffice-productos');
 
             //Productos
             Route::get('/product/json/get-all', 'SucursalesController@getAllProduct')->name('product-get-all');

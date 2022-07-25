@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Cms\Productos;
 
 use App\Customer;
 use App\Productos;
+use App\BranchOffice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Cms\CustomerRequest;
 use App\Http\Requests\Cms\ProductosRequest;
+use App\Http\Requests\Cms\BranchOfficeRequest;
 use App\Http\Traits\CmsTrait;
 use Illuminate\Support\Facades\Storage;
 
@@ -62,6 +64,7 @@ class IndexController extends Controller
     public function destroy(Productos $element)
     {
         $image = $element->image;
+        $el=Productos::find($element['id'])->branchoffices()->where('producto_id', $element['id'])->detach();
         try {
             $delete_element = $element->delete();
             if ($delete_element) {
@@ -69,6 +72,7 @@ class IndexController extends Controller
                     Storage::disk('public')->delete('img/productos/' . $image);
                 }
             }
+            
             return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.delete.success', ['name' => trans('custom.attribute.customer')])], 200);
         } catch (\Exception $e) {
             return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.delete.error', ['name' => trans('custom.attribute.customer')])], 500);
@@ -90,7 +94,7 @@ class IndexController extends Controller
 
     public function update(ProductosRequest $request, Productos $element)
     {
-        $request_testimonial = request(["name", "precio", "active"]);
+        $request_testimonial = request(["name", "precio", "active", "tipogas"]);
         if ($request->hasFile('image')) {
             $image_name = $this->setFileName('t-', $request->file('image'));
             $store_image = Storage::disk('public')->putFileAs('img/productos/', $request->file('image'), $image_name);

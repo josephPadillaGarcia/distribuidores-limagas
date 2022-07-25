@@ -34,11 +34,11 @@
         </div>
       </div>
       <div v-else>
-        <div class="row" v-if="elements.length">
+        <!--div class="row" v-if="elements.length">
           <div class="col-12">
             <i class="d-block mb-4">{{ messageOrder }}</i>
           </div>
-        </div>
+        </div-->
         <draggable
           class="row"
           v-if="elements.length"
@@ -71,12 +71,12 @@
                   Tipo de gas:
                   <span class="font-weight-normal">{{ el.tipogas }}</span>
                 </h3>
-                <h3 class="mb-1">
+                <!--h3 class="mb-1">
                   <span class="">Mostrar en la Web:</span>
                   <span class="font-weight-normal">{{
                     el.active ? "Sí" : "No"
                   }}</span>
-                </h3>
+                </h3-->
                 <div class="mt-4 text-center">
                   <button
                     @click="editEl(el.id)"
@@ -253,7 +253,7 @@
       </template>
     </b-modal>
     <destroy
-      element="cliente"
+      element="Producto"
       @cancel="restoreEl"
       :open="modalDestroy"
       @submit="destroyConfirm"

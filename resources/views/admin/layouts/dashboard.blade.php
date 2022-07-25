@@ -50,9 +50,9 @@
             <div class="navbar-collapse-header d-md-none">
                 <div class="row">
                     <div class="col-6 collapse-brand">
-                        <a href="{{ route('cms.dashboard') }}">
+                        <!--a href="{{ route('cms.dashboard') }}">
                             <img src="{{ $storageUrl.'/logo.png' }} " class="align-middle" height="70px" width="auto" />
-                        </a>
+                        </a-->
                     </div>
                     <div class="col-6 collapse-close">
                         <button-close></button-close>

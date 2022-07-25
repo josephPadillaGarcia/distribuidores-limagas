@@ -543,12 +543,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_form_CheckBoxSelectArray__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/form/CheckBoxSelectArray */ "./resources/js/admin/components/form/CheckBoxSelectArray.vue");
 var _components;
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -1364,6 +1358,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     routeDepartmentsGet: String,
     routeDistrictsGet: String,
     routeProvincesGet: String,
+    routeItemsBranchOfficeProductos: String,
     //productos
     routeProductsGetAll: String,
     routeProductsGet: String,
@@ -1409,49 +1404,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       elementsPerPage: 20,
       showBlock: true,
       detailBlock: false,
-      ImgUrlProps: ""
+      ImgUrlProps: "",
+      elproductos: {}
     };
   },
   methods: {
-    /*handleMove() {
-      if (this.q) {
-        return false;
-      }
-      return true;
-    },*/
-
-    /*handleChange() {
-      if (this.q) {
-        return false;
-      }
-      axios
-        .put(this.routeOrder, this.elements)
-        .then((response) => {
-          this.restore();
-          Swal.fire({
-            title: response.data.title,
-            text: response.data.message,
-            type: "success",
-            confirmButtonText: "OK",
-            buttonsStyling: false,
-            customClass: {
-              confirmButton: "btn btn-primary",
-            },
-          });
-        })
-        .catch((error) => {
-          Swal.fire({
-            title: error.response.data.title,
-            text: error.response.data.message,
-            type: "error",
-            confirmButtonText: "OK",
-            buttonsStyling: false,
-            customClass: {
-              confirmButton: "btn btn-primary",
-            },
-          });
-        });
-    },*/
     destroyConfirm: function destroyConfirm() {
       var _this = this;
 
@@ -1537,10 +1494,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.element.emails) {
         fd.append("emails", JSON.stringify(this.element.emails));
       }
-      /*if (this.element.emails) {
-        fd.append("emails", this.element.emails);
-      }*/
-
 
       if (this.element.iframe) {
         fd.append("iframe", this.element.iframe);
@@ -1561,10 +1514,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.element.num_what) {
         fd.append("num_what", JSON.stringify(this.element.num_what));
       }
-      /*if (this.element.num_what) {
-        fd.append("num_what", this.element.num_what);
-      }*/
-
 
       if (this.element.payment_methods) {
         fd.append("payment_methods", JSON.stringify(this.element.payment_methods));
@@ -1573,18 +1522,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.element.phone_numbers) {
         fd.append("phone_numbers", JSON.stringify(this.element.phone_numbers));
       }
-      /*if (this.element.phone_numbers) {
-        fd.append("phone_numbers", this.element.phone_numbers);
-      }*/
-
 
       if (this.element.products) {
         fd.append("products", JSON.stringify(this.element.products));
       }
-      /*if (this.element.products) {
-        fd.append("products", this.element.products);
-      }*/
-
 
       if (this.element.province) {
         fd.append("province", this.element.province);
@@ -1609,25 +1550,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.$refs.ref_image_5.dropzone.files[0]) {
         fd.append("img_slider_5", this.$refs.ref_image_5.dropzone.files[0]);
       }
+      /*for (var entrie of fd.entries()) {
+        console.log(entrie[0] + ": " + entrie[1]);
+      }*/
+      //console.log(fd.entries());
 
-      var _iterator = _createForOfIteratorHelper(fd.entries()),
-          _step;
+      /*console.log(this.element.horario);
+      console.log(this.element.zona);
+      data: this.element,*/
 
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var entrie = _step.value;
-          console.log(entrie[0] + ": " + entrie[1]);
-        } //console.log(fd.entries());
-
-        /*console.log(this.element.horario);
-        console.log(this.element.zona);
-        data: this.element,*/
-
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
 
       axios({
         method: method,
@@ -1682,6 +1613,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     showDistribuidor: function showDistribuidor(id) {
       this.getEl(id);
+      this.getElProductos(id);
       this.showBlock = false;
       this.detailBlock = true;
     },
@@ -1730,12 +1662,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this4.loadingGet = false;
       })["catch"](function (error) {});
     },
-    // Obteniendo todos los productos de gas
-    getProducts: function getProducts() {
+    getElProductos: function getElProductos(id) {
       var _this5 = this;
 
+      this.loadingGet = true;
+      axios.get(this.route + "/items/json/get/branchoffice-productos/" + id).then(function (response) {
+        _this5.elproductos = response.data;
+        _this5.loadingGet = false;
+      })["catch"](function (error) {});
+    },
+    // Obteniendo todos los productos de gas
+    getProducts: function getProducts() {
+      var _this6 = this;
+
       axios.get(this.routeProductsGetAll).then(function (response) {
-        _this5.products = response.data;
+        _this6.products = response.data;
       })["catch"](function (err) {});
     },
 
@@ -1753,10 +1694,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     //------------------------------
     // OBTENEMOS LOS METODOS DE PAGO
     getPaymentMethod: function getPaymentMethod() {
-      var _this6 = this;
+      var _this7 = this;
 
       axios.get(this.routePaymentMethodGetAll).then(function (response) {
-        _this6.payment_methods = response.data;
+        _this7.payment_methods = response.data;
       })["catch"](function (err) {});
     },
     elementpaymentmethod: function elementpaymentmethod(val) {
@@ -1982,9 +1923,9 @@ var render = function() {
                         ],
                         attrs: { type: "checkbox", checked: "" },
                         domProps: {
-                          value: sp,
+                          value: sp["id"],
                           checked: Array.isArray(_vm.selectitems)
-                            ? _vm._i(_vm.selectitems, sp) > -1
+                            ? _vm._i(_vm.selectitems, sp["id"]) > -1
                             : _vm.selectitems
                         },
                         on: {
@@ -1993,7 +1934,7 @@ var render = function() {
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
                             if (Array.isArray($$a)) {
-                              var $$v = sp,
+                              var $$v = sp["id"],
                                 $$i = _vm._i($$a, $$v)
                               if ($$el.checked) {
                                 $$i < 0 && (_vm.selectitems = $$a.concat([$$v]))
@@ -2825,12 +2766,12 @@ var render = function() {
                         _c("div", { staticClass: "content-productos mb-4" }, [
                           _c("h3", [_vm._v("Productos:")]),
                           _vm._v(" "),
-                          _vm.element.products
+                          _vm.elproductos
                             ? _c("div", [
                                 _c(
                                   "div",
                                   { staticClass: "row" },
-                                  _vm._l(_vm.element.products, function(e, i) {
+                                  _vm._l(_vm.elproductos, function(e, i) {
                                     return _c(
                                       "div",
                                       {
@@ -3570,7 +3511,7 @@ var render = function() {
                                 allitems: _vm.products,
                                 title: _vm.title,
                                 head: "productos",
-                                methodsget: _vm.element.products
+                                methodsget: _vm.elproductos
                               },
                               on: { arrayitems: _vm.elementproducts }
                             })

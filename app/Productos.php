@@ -16,6 +16,6 @@ class Productos extends Model
     // Relacion muchos a muchos
 
     public function branchoffices(){
-        return $this->belongsToMany('App\BranchOffice');
+        return $this->belongsToMany('App\BranchOffice', 'branchoffice_products', 'producto_id', 'branchoffice_id');
     }
 }

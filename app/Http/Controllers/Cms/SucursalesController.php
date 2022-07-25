@@ -128,8 +128,6 @@ class SucursalesController extends Controller
             for ($i=0; $i < count($productos); $i++) { 
                 $el->productos()->attach($productos[$i]);
             }
-
-            dd($productos);
             return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.create.success', ['name' => trans('custom.attribute.sucursal')])], 200);
         }catch (\Exception $e){
             $el->delete();
@@ -173,6 +171,7 @@ class SucursalesController extends Controller
 
     public function update(BranchOfficeRequest $request, BranchOffice $element)
     {
+
         $request_element = request(["name", "description", "direction", "schedule","iframe", "products", "link_face","link_insta"]);
         if($request->emails){
             $aemails = json_decode($request->emails, true);
@@ -272,18 +271,27 @@ class SucursalesController extends Controller
         if ($request->hasFile('img_slider_5') && $element->img_slider_5) {
             Storage::disk('private')->delete('img/sliders/'.$element->img_slider_5);
         }
-        /*if($request->emails){
-            $request_element = array_merge($request_element, ["emails" => $request->emails]);
-        }
-        else{
-            $request_element = array_merge($request_element, ["emails" => NULL]);
-        }*/
+
         $request_element = array_merge($request_element, [ "code_ubigeo" => $request->department . $request->province . $request->district]);
         try {
             $element = BranchOffice::UpdateOrCreate(["id" => $element->id], $request_element);
-            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.update.success', ['name' => trans('custom.attribute.sucursal')])], 200);
+            //return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.update.success', ['name' => trans('custom.attribute.sucursal')])], 200);
         } catch (\Exception $e) {
             return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.update.error', ['name' => trans('custom.attribute.sucursal')])], 500);
+        }
+
+        try{
+            
+            $productos = json_decode($request->products, true);
+            $eliminar_productos = $element->productos()->detach();
+            for ($i=0; $i < count($productos); $i++) { 
+                $element->productos()->attach($productos[$i]);
+            }
+
+            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.create.success', ['name' => trans('custom.attribute.sucursal')])], 200);
+        }catch (\Exception $e){
+            $element->delete();
+            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.create.error', ['name' => trans('custom.attribute.sucursal')])], 500);
         }
     }
 
@@ -318,5 +326,13 @@ class SucursalesController extends Controller
         return response()->json($els);
     }
     //--------------------------------------
+
+    //MUESTRA LOS PRODUCTOS RELACIONADO CON EL DISTRIBUIDOR
+    public function getItemsBranchOfficeProductos(BranchOffice $element){
+        $elproductos = BranchOffice::find($element['id'])->productos()->where('branchoffice_id', $element['id'])->get();
+        //dd(json_decode($elproductos));
+        return response()->json($elproductos);
+    }
+    //---------------------------------------------
 
 }
