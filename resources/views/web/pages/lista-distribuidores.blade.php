@@ -64,7 +64,11 @@
                         <div class="img">
                             <!--img src="public/img/banner1.jpg" alt=""-->
                             <img class="lazyload" src="{{ $storageUrl . '/img/sliders/' . $office->img_slider_1 }}" alt="{{ $office->name  }}" />
-                            <a href="{{ route('distribuidor',$office->id ) }}" class=""><i class="flaticon flaticon-proximo"></i></a>
+                            <a href="{{ route('distribuidor',$office->id ) }}" class="">
+                                <div class="todistribuidor">
+                                    <img src="{{ $storageUrl.'/img/next.svg' }}" alt="">
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

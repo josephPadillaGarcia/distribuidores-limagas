@@ -24,7 +24,7 @@
   font-style: normal;
   }
 
-.flaticon-marcador-de-posicion:before {
+/*.flaticon-marcador-de-posicion:before {
     content: "\f101";
 }
 .flaticon-atras:before {
@@ -167,14 +167,19 @@
 }
 .flaticon-youtube:before {
     content: "\f12f";
+}*/
+
+
+
+
+
+.flaticon-proximo:before {
+    content: "\f123";
 }
-
-
-
-
-
-
-/*.flaticon-llamada-telefonica:before {
+.flaticon-marcador-de-posicion:before {
+    content: "\f101";
+}
+.flaticon-llamada-telefonica:before {
     content: "\f102";
 }
 .flaticon-llamada-telefonica-1:before {
@@ -248,5 +253,4 @@
 }
 .flaticon-youtube-1:before {
     content: "\f11a";
-}*/
-
+}

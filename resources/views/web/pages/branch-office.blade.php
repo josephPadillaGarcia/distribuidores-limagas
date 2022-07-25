@@ -48,7 +48,7 @@
                 @endif
                 
                 @if ($information->linkedin_link)
-                    <a href="{{ $information->linkedin_link }}" class="btn-circle"><i class="flaticon-linkedin"></i></a>
+                    <a href="{{ $information->linkedin_link }}" class="btn-circle"><i class="flaticon-linkedin-1"></i></a>
                 @endif
             </div>
         </div>

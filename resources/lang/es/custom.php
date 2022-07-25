@@ -34,7 +34,7 @@ return [
         'service' => 'El servicio',
         'app_tracking' => 'App de rastreo',
         'tutorial' => 'El tutorial',
-        'sucursal' => 'La sucursal',
+        'sucursal' => 'El distribuidor',
         'product' => 'El producto'
     ],
     'title' => [

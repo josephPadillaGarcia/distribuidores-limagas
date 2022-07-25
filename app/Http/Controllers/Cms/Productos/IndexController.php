@@ -73,9 +73,9 @@ class IndexController extends Controller
                 }
             }
             
-            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.delete.success', ['name' => trans('custom.attribute.customer')])], 200);
+            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.delete.success', ['name' => trans('custom.attribute.product')])], 200);
         } catch (\Exception $e) {
-            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.delete.error', ['name' => trans('custom.attribute.customer')])], 500);
+            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.delete.error', ['name' => trans('custom.attribute.product')])], 500);
         }
     }
 
@@ -86,9 +86,9 @@ class IndexController extends Controller
             for ($i = 0; $i < count($elements); $i++) {
                 $cliente = Productos::UpdateOrCreate(["id" => $elements[$i]["id"]], ["index" => $i + 1]);
             }
-            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.update.success', ['name' => trans('custom.attribute.customer')])], 200);
+            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.update.success', ['name' => trans('custom.attribute.product')])], 200);
         } catch (\Exception $e) {
-            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.update.error', ['name' => trans('custom.attribute.customer')])], 500);
+            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.update.error', ['name' => trans('custom.attribute.product')])], 500);
         }
     }
 
@@ -110,9 +110,9 @@ class IndexController extends Controller
         }
         try {
             $element = Productos::UpdateOrCreate(["id" => $element->id], $request_testimonial);
-            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.update.success', ['name' => trans('custom.attribute.customer')])], 200);
+            return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.update.success', ['name' => trans('custom.attribute.product')])], 200);
         } catch (\Exception $e) {
-            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.update.error', ['name' => trans('custom.attribute.customer')])], 500);
+            return response()->json(['title' => trans('custom.title.error'), 'message' => trans('custom.message.update.error', ['name' => trans('custom.attribute.product')])], 500);
         }
     }
 }

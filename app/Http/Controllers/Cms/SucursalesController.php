@@ -149,6 +149,7 @@ class SucursalesController extends Controller
     public function destroy(BranchOffice $element)
     {
         try {
+            $el=BranchOffice::find($element['id'])->productos()->where('branchoffice_id', $element['id'])->detach();
             $delete_element = $element->delete();
             return response()->json(['title' => trans('custom.title.success'), 'message' => trans('custom.message.delete.success', ['name' => trans('custom.attribute.sucursal')])], 200);
         } catch (\Exception $e) {

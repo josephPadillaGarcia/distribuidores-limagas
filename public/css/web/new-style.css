@@ -2021,7 +2021,11 @@ header.header-filter {
       left: 0;
       top: 0;
       width: 100%;
-      height: 100%; }
+      height: 100%; 
+      
+    display: flex;
+    justify-content: end;
+    }
       /* line 319, scss/main.scss */
       .card-distribuidor .img a i {
         height: 100%;
@@ -2091,7 +2095,7 @@ header.header-distribuidor .nav ul {
 /* line 388, scss/main.scss */
 .card.card-balon img {
   max-width: 146px;
-  height: 200px; 
+  height: 168px; 
 }
 
 /* line 392, scss/main.scss */
@@ -2112,11 +2116,11 @@ section.slider {
 /* line 407, scss/main.scss */
 .card-balon h1, .card-balon h2, .card-balon h3, .card-balon h4, .card-balon h5, .card-balon h6 {
   color: #101010;
-  margin-bottom: 15px; }
+  margin-bottom: 10px; }
 
 /* line 411, scss/main.scss */
 .card-balon span {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 700;
   color: #0151aa; }
 
@@ -2237,7 +2241,8 @@ ul.list li {
 
 /* line 535, scss/main.scss */
 section.section-productos {
-  padding: 70px 0; }
+  padding: 70px 0 20px; 
+}
 
 /* line 538, scss/main.scss */
 .pie {
@@ -2345,25 +2350,46 @@ section.section-productos {
     width: auto !important; } }
 
 
-    .content-balon {
-      padding: 20px;
-      background: rgb(255 255 255 / 68%);
-      border: 2px solid white;
-      border-radius: 50%;
-      padding-bottom: 26px;
-      padding-top: 58px;
-      margin-top: -44px;
+    .content-balon {      
+    padding: 20px;
+    background: rgb(255 255 255 / 68%);
+    border: 2px solid white;
+    border-radius: 50%;
+    padding-bottom: 26px;
+    padding-top: 58px;
+    margin-top: -44px;
+    height: 155px;
+    box-shadow: 0px 4px 12px #00000014;
+    display: grid;
+
   }
 
-
   .content-limagas, .content-otrogas {
-    display: grid;
+    display: block;
     grid-gap: 1rem;
-    grid-template-columns: repeat(5, 1fr);
-    justify-self: center;
-    margin-bottom: 4rem;
+    grid-template-columns: repeat(5, minmax(150px, max-content));
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+.card.card-balon {
+  display: inline-block;
+  min-width: 200px;
+  margin: 0 12px 20px;
 }
 
 section.section {
   height: 100vh;
+}
+
+.todistribuidor {
+  background: #78b950ad;
+  width: 40px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-distribuidor .img a img {
+  width: 35px;
+  height: auto;
 }

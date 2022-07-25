@@ -86,7 +86,7 @@
             <ul>
                 @if ($id->phone_numbers)
                     @foreach ($id->phone_numbers as $pn)
-                        <li><a href="tel:{{ $pn['number'] }}" class="btn btn2 btn-icon"><i class="flaticon flaticon-telefono"> </i>{{ $pn['number'] }}</a></li>      
+                        <li><a href="tel:{{ $pn['number'] }}" class="btn btn2 btn-icon"><i class="flaticon-llamada-telefonica-1"> </i>{{ $pn['number'] }}</a></li>      
                     @endforeach
                 @endif
             
@@ -123,7 +123,7 @@
             @if ($id->link_face || $id->link_insta)
                 <ul>
                     <li><a href="{{ $id->link_face }}" class="btn btn-circle"><i class="flaticon-facebook"></i></a></li>
-                    <li><a href="{{ $id->link_insta }}" class="btn btn-circle"><i class="flaticon-instagram"></i></a></li> 
+                    <li><a href="{{ $id->link_insta }}" class="btn btn-circle"><i class="flaticon-instagram-1"></i></a></li> 
                 </ul>               
             @else
                 <strong>No hay redes sociales registrados</strong>
@@ -132,7 +132,7 @@
     
         <div class="ubicacion" id="ubicacion">
             <b>Ubicación:</b>
-            <p><i class="flaticon flaticon-send"> </i>{{ $id->direction }}</p>
+            <p><i class="flaticon flaticon-marcador-de-posicion"> </i>{{ $id->direction }}</p>
             <div class="mapa">
                 @if($id->iframe)
                         {!! $id->iframe !!}
@@ -144,7 +144,7 @@
 
     <section class="section-productos" id="producto">
         <div class="text-center">
-            <div class="container-short">
+            <div class="container">
                 
                 <img src="{{ $storageUrl.'/img/icon.png'}}" alt="">
                 <h2><strong>Nuestros Productos para tu Hogar</strong></h2>

@@ -2,7 +2,7 @@
   <div>
     <form @submit.prevent="submit" action="">
       <div class="select">
-        <span class="ri-lg ri-map-pin-2-fill"></span>
+        <span class="flaticon flaticon-marcador-de-posicion"></span>
         <select id="department" name="department" v-model="department" class="">
           <option value="" disabled>Departamento</option>
           <option
@@ -15,7 +15,7 @@
         </select>
       </div>
       <div class="select">
-        <span class="ri-lg ri-map-pin-2-fill"></span>
+        <span class="flaticon flaticon-marcador-de-posicion"></span>
         <select
           id="province"
           name="province"
@@ -35,7 +35,7 @@
         </select>
       </div>
       <div class="select">
-        <span class="ri-lg ri-map-pin-2-fill"></span>
+        <span class="flaticon flaticon-marcador-de-posicion"></span>
         <select
           id="district"
           name="district"
