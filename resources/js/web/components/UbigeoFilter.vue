@@ -24,7 +24,7 @@
           v-model="province"
           class=""
         >
-          <option value="" disabled>Distrito</option>
+          <option value="" disabled>Provincia</option>
           <option
             v-for="el in provinces"
             :key="'dep' + el.code_province"
@@ -43,7 +43,7 @@
           v-model="district"
           class=""
         >
-          <option value="" disabled>Provincia</option>
+          <option value="" disabled>Distrito</option>
           <option
             v-for="el in districts"
             :key="'dep' + el.code_district"

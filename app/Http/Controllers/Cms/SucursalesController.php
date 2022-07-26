@@ -176,17 +176,42 @@ class SucursalesController extends Controller
         $request_element = request(["name", "description", "direction", "schedule","iframe", "products", "link_face","link_insta"]);
         if($request->emails){
             $aemails = json_decode($request->emails, true);
-            $request_element = array_merge($request_element , ["emails" => $aemails]);
+            $request_element = array_merge($request_element, ["emails" => $aemails]);
         }
+        else{
+            $request_element = array_merge($request_element, ["emails" => NULL]);
+        }
+
         if($request->phone_numbers){
             $aphone = json_decode($request->phone_numbers, true);
             $request_element = array_merge($request_element, ["phone_numbers" => $aphone]);
         }
+        else{
+            $request_element = array_merge($request_element, ["phone_numbers" => NULL]);
+        }
+
         if($request->num_what){
             $awhat = json_decode($request->num_what, true);
             $request_element = array_merge($request_element, ["num_what" => $awhat]);
         }
-        
+        else{
+            $request_element = array_merge($request_element, ["num_what" => NULL]);
+        }
+
+        if($request->link_face){
+            $request_element = array_merge($request_element, ["link_face" => $request->link_face]);
+        }
+        else{
+            $request_element = array_merge($request_element, ["link_face" => NULL]);
+        }
+
+        if($request->link_insta){
+            $request_element = array_merge($request_element, ["link_insta" => $request->link_insta]);
+        }
+        else{
+            $request_element = array_merge($request_element, ["link_insta" => NULL]);
+        }
+
         if($request->products){
             $aproducts = json_decode($request->products, true);
             $request_element = array_merge($request_element, ["products" => $aproducts]);

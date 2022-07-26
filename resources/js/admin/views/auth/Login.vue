@@ -2,7 +2,7 @@
   <div class="row py-lg-0 my-lg-0 h-100 d-flex align-items-center mx-lg-5">
     <div class="col-12 px-lg-5 w-100 ">
       <img
-        :src="imagesUrl + '/logo-limagas-color.png'"
+        :src="imagesUrl + '/logo-color-limagas.png'"
         height="60"
         width="auto"
         alt="Logo"

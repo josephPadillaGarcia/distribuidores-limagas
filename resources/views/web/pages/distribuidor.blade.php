@@ -116,19 +116,25 @@
                 @endif
                 
             </ul>   
-        </div>
+        </div>        
 
-        <div class="telefono">
-            <p><strong>Síguenos en:</strong></p>
-            @if ($id->link_face || $id->link_insta)
+        @if (is_null($id->link_face) && is_null($id->link_insta))
+            <div class="telefono">
+            </div>
+        @else
+            <div class="telefono">
+                <p><strong>Síguenos en:</strong></p>
                 <ul>
-                    <li><a href="{{ $id->link_face }}" class="btn btn-circle"><i class="flaticon-facebook"></i></a></li>
-                    <li><a href="{{ $id->link_insta }}" class="btn btn-circle"><i class="flaticon-instagram-1"></i></a></li> 
-                </ul>               
-            @else
-                <strong>No hay redes sociales registrados</strong>
-            @endif
-        </div>
+                    @if (isset($id->link_face))
+                        <li><a href="{{ $id->link_face }}" class="btn btn-circle"><i class="flaticon-facebook"></i></a></li>
+                    @endif
+
+                    @if (isset($id->link_insta))
+                        <li><a href="{{ $id->link_insta }}" class="btn btn-circle"><i class="flaticon-instagram-1"></i></a></li>
+                    @endif                        
+                </ul>
+            </div>          
+        @endif
     
         <div class="ubicacion" id="ubicacion">
             <b>Ubicación:</b>
@@ -149,38 +155,44 @@
                 <img src="{{ $storageUrl.'/img/icon.png'}}" alt="">
                 <h2><strong>Nuestros Productos para tu Hogar</strong></h2>
                 <br><br>
-                <div id="slider-historia">
-                    @if ($id->productos)
+                <div id="slider-historia">                        
+                    @php
+                        function object_sorter($clave,$orden=null) {
+                            return function ($a, $b) use ($clave,$orden) {
+                                $result=  ($orden=="DESC") ? strnatcmp($b->$clave, $a->$clave) :  strnatcmp($a->$clave, $b->$clave);
+                                return $result;
+                            };
+                        }
+                        $listproductos = json_decode($id->productos);
+                        usort($listproductos, object_sorter('index'));
+                    @endphp
+                    @if ($listproductos)
                         <div class="content-limagas">
-    
-                            @foreach ($id->productos as $e)
-                                @if ($e['tipogas'] == "limagas")
+                            @foreach ($listproductos as $e)
+                                @if ($e->tipogas == "limagas")
                                         <div class="card card-balon">
-                                            <img class="lazyload" src="{{ $storageUrl . '/img/productos/' . $e['image'] }}" alt="{{ $e['name'] }}" />
+                                            <img class="lazyload" src="{{ $storageUrl . '/img/productos/' . $e->image }}" alt="{{ $e->name }}" />
                                             <div class="content-balon">
-                                                <h4>{{ $e['name'] }}</h4>
-                                                <span>{{ $e['precio'] }} kg</span>
-                                            </div>
+                                                <h4>{{ $e->name }}</h4>
+                                                <span>{{ $e->precio }} kg</span>
+                                            </div>                                            
                                         </div>
                                 @endif
-                            @endforeach
-    
-                        </div>  
+                            @endforeach   
+                        </div>
                     @endif
     
-                    @if ($id->productos)
+                    @if ($listproductos)
                         <div class="content-otrogas">
                             
-                                @foreach ($id->productos as $e)
-                                    @if ($e['tipogas'] == "otrotipogas")
-                                        <div class="item">
-                                            <div class="card card-balon">
-                                                <img class="lazyload" src="{{ $storageUrl . '/img/productos/' . $e['image'] }}" alt="{{ $e['name'] }}" />
-                                                <div class="content-balon">
-                                                    <h4>{{ $e['name'] }}</h4>
-                                                    <span>{{ $e['precio'] }} kg</span>
-                                                </div>
-                                            </div>
+                                @foreach ($listproductos as $e)
+                                    @if ($e->tipogas == "otrotipogas")
+                                        <div class="card card-balon">
+                                            <img class="lazyload" src="{{ $storageUrl . '/img/productos/' . $e->image }}" alt="{{ $e->name }}" />
+                                            <div class="content-balon">
+                                                <h4>{{ $e->name }}</h4>
+                                                <span>{{ $e->precio }} kg</span>
+                                            </div>                                            
                                         </div>
                                     @endif
                                 @endforeach

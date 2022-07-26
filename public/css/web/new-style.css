@@ -2168,7 +2168,8 @@ section.slider {
   .content .telefono, .content .correo {
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-gap: 15px; }
+    grid-gap: 15px; 
+    align-items: center;}
     /* line 460, scss/main.scss */
     .content .telefono b, .content .correo b {
       height: 44px;
@@ -2373,8 +2374,9 @@ section.section-productos {
 }
 .card.card-balon {
   display: inline-block;
-  min-width: 200px;
-  margin: 0 12px 20px;
+    min-width: 200px;
+    width: 200px;
+    margin: 0 12px 20px;
 }
 
 /*section.section {
@@ -2392,4 +2394,8 @@ section.section-productos {
 .card-distribuidor .img a img {
   width: 35px;
   height: auto;
+}
+
+*{  
+  scroll-behavior: smooth;
 }

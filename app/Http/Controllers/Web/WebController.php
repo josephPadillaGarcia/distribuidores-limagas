@@ -105,19 +105,6 @@ class WebController extends Controller
     }
 
     public function distribuidor(BranchOffice $id){
-        /*$productos = Productos::where('id', $id)*/       
-
-        /*foreach ($id['products'] as $p) {
-            $producto = array();
-            $item = Productos::where('id', $p)->get();
-            array_push($producto, $item);
-        }
-        
-        $data = array(
-            "id" => $id,
-            "producto" => $producto
-        );
-       return view("web.pages.distribuidor", compact('data'));*/
        return view("web.pages.distribuidor", compact('id'));
     }
 
