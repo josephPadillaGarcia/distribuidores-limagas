@@ -1153,9 +1153,7 @@ this.detailBlock = true*/
         .then((response) => {
           this.elproductos = response.data;
           this.elproductos.forEach((element, i) => {
-            console.log(element.id);
             this.idproducts.push(element.id);
-            console.log(this.idproducts);
           });
           this.loadingGet = false;
         })

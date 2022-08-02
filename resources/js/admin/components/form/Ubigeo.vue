@@ -1,5 +1,6 @@
 <template>
   <div class="row mb-4">
+
     <div class="col-12 col-lg">
       <label class="font-weight-bold" id="department">Departamento:</label>
       <Skeleton height="30px" v-if="requestDepartments" />
@@ -18,8 +19,13 @@
         >{{ errors.department[0] }}</label>
       </div>
     </div>
+
+    <div v-for="(el,i) in departments" :key="i">
+<p>{{ codeDepartment }}</p>
+    </div>
+
     <div class="col-12 col-lg">
-      <label class="font-weight-bold" for="province">Provincia</label>
+      <label class="font-weight-bold" for="province">Provincia:</label>
       <Skeleton height="30px" v-if="requestProvinces" />
       <div v-else>
         <select
@@ -38,8 +44,9 @@
         >{{ errors.province[0] }}</label>
       </div>
     </div>
+
     <div class="col-12 col-lg">
-      <label class="font-weight-bold" for="district">Distrito</label>
+      <label class="font-weight-bold" for="district">Distrito:</label>
       <Skeleton height="30px" v-if="requestDistricts" />
       <div v-else>
         <select
@@ -57,6 +64,7 @@
         >{{ errors.district[0] }}</label>
       </div>
     </div>
+
   </div>
 </template>
 <script>
@@ -161,9 +169,11 @@ export default {
     },
   },
   created() {
-    this.getDepartments();
     if (this.codeUbigeoParent) {
       this.setUbigeo();
+      this.getDepartments();
+    }else{      
+      this.getDepartments();
     }
   },
   watch: {
